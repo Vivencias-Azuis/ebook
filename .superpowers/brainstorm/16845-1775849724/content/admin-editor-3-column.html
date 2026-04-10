@@ -1,0 +1,122 @@
+<h2>Editor Admin em 3 colunas</h2>
+<p class="subtitle">Direção escolhida: navegação rápida para produto, capítulos, blocos e propriedades.</p>
+
+<div class="mockup">
+  <div class="mockup-header">/admin/editor/[productId]</div>
+  <div class="mockup-body">
+    <div style="display:grid;grid-template-columns:260px 1fr 320px;gap:18px;min-height:620px;color:#17211f">
+      <section style="background:#eef5f3;border:1px solid #d2e1dd;border-radius:20px;padding:18px;display:grid;grid-template-rows:auto auto 1fr auto;gap:14px">
+        <div>
+          <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#5f6d68">Produto</div>
+          <div style="margin-top:6px;font-weight:700">Guia Prático: Primeiros 30 Dias</div>
+          <div style="margin-top:4px;font-size:14px;color:#5f6d68">Publicado • R$ 297,00</div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button style="border:0;background:#17211f;color:#fff;padding:10px 14px;border-radius:999px;font-weight:600">Salvar</button>
+          <button style="border:1px solid #c9d7d3;background:#fff;color:#17211f;padding:10px 14px;border-radius:999px">Preview</button>
+        </div>
+
+        <div>
+          <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#5f6d68;margin-bottom:10px">Capítulos</div>
+          <div style="display:grid;gap:10px">
+            <div style="background:#fff;border:1px solid #b8cdc7;border-radius:16px;padding:14px">
+              <strong>1. Introdução</strong>
+              <div style="font-size:13px;color:#5f6d68;margin-top:6px">3 blocos • selecionado</div>
+            </div>
+            <div style="background:#fff;border:1px solid #d7e3df;border-radius:16px;padding:14px">
+              <strong>2. Semana 1</strong>
+              <div style="font-size:13px;color:#5f6d68;margin-top:6px">5 blocos</div>
+            </div>
+            <div style="background:#fff;border:1px solid #d7e3df;border-radius:16px;padding:14px">
+              <strong>3. Semana 2</strong>
+              <div style="font-size:13px;color:#5f6d68;margin-top:6px">4 blocos</div>
+            </div>
+          </div>
+        </div>
+
+        <button style="border:1px dashed #9db5ae;background:#f8fbfa;color:#17211f;padding:12px 14px;border-radius:16px;text-align:left">
+          + Novo capítulo
+        </button>
+      </section>
+
+      <section style="background:#f8f2e8;border:1px solid #e2d3bd;border-radius:20px;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div>
+            <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7b6a55">Blocos do capítulo</div>
+            <div style="margin-top:6px;font-weight:700">Introdução</div>
+          </div>
+          <button style="border:0;background:#17211f;color:#fff;padding:10px 14px;border-radius:999px;font-weight:600">+ Novo bloco</button>
+        </div>
+
+        <div style="display:grid;gap:12px;align-content:start">
+          <div style="background:#fff;border:1px solid #d9c7ab;border-radius:18px;padding:16px;display:grid;gap:8px">
+            <div style="display:flex;justify-content:space-between;gap:12px">
+              <strong>Rich text</strong>
+              <div style="font-size:13px;color:#7b6a55">Selecionado</div>
+            </div>
+            <div style="font-size:14px;color:#5f564b">Você não precisa descobrir tudo hoje.</div>
+            <div style="display:flex;gap:8px">
+              <button style="border:1px solid #ddd;background:#fff;padding:6px 10px;border-radius:999px">Subir</button>
+              <button style="border:1px solid #ddd;background:#fff;padding:6px 10px;border-radius:999px">Descer</button>
+              <button style="border:1px solid #ddd;background:#fff;padding:6px 10px;border-radius:999px">Duplicar</button>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #eadfcd;border-radius:18px;padding:16px;display:grid;gap:8px">
+            <strong>Checklist</strong>
+            <div style="font-size:14px;color:#5f564b">Checklist da semana inicial</div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #eadfcd;border-radius:18px;padding:16px;display:grid;gap:8px">
+            <strong>Callout</strong>
+            <div style="font-size:14px;color:#5f564b">Regra de ouro sobre informação confiável</div>
+          </div>
+        </div>
+
+        <div style="padding:14px 16px;background:#fff;border:1px dashed #d9c7ab;border-radius:18px;color:#7b6a55">
+          Preview administrativo do capítulo selecionado
+        </div>
+      </section>
+
+      <section style="background:#f4f0fb;border:1px solid #d9cdea;border-radius:20px;padding:18px;display:grid;gap:14px;align-content:start">
+        <div>
+          <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#6b5e7f">Propriedades</div>
+          <div style="margin-top:6px;font-weight:700">Bloco: Rich text</div>
+        </div>
+
+        <label style="display:grid;gap:6px">
+          <span style="font-size:14px;color:#51485f">Título</span>
+          <input value="Você não precisa descobrir tudo hoje" style="border:1px solid #d8d0e3;border-radius:12px;padding:12px;background:#fff" />
+        </label>
+
+        <label style="display:grid;gap:6px">
+          <span style="font-size:14px;color:#51485f">Conteúdo</span>
+          <textarea style="border:1px solid #d8d0e3;border-radius:12px;padding:12px;background:#fff;min-height:220px">Este guia organiza seus próximos 30 dias em passos pequenos, claros e possíveis.</textarea>
+        </label>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button style="border:0;background:#17211f;color:#fff;padding:10px 14px;border-radius:999px;font-weight:600">Salvar bloco</button>
+          <button style="border:1px solid #d8d0e3;background:#fff;padding:10px 14px;border-radius:999px">Excluir</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:24px">
+  <div class="option" data-choice="approve-editor" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Aprovar editor</h3>
+      <p>Seguir com esse layout base para o CRUD visual.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="adjust-editor" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Ajustar editor</h3>
+      <p>Mudar navegação, coluna de propriedades ou fluxo de blocos.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<h2>Jornada do infoproduto</h2>
+<p class="subtitle">Estrutura visual da V1: venda, compra, biblioteca, leitor e admin.</p>
+
+<div class="mockup">
+  <div class="mockup-header">Fluxo principal</div>
+  <div class="mockup-body">
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;align-items:stretch">
+      <div style="border:1px solid #ddd;border-radius:14px;padding:16px;background:#fff">
+        <strong>1. Página de vendas</strong>
+        <p>Promessa, dor, bônus, prova, FAQ e CTA.</p>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:14px;padding:16px;background:#fff">
+        <strong>2. Conta</strong>
+        <p>Cadastro/login antes do checkout.</p>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:14px;padding:16px;background:#fff">
+        <strong>3. Stripe Checkout</strong>
+        <p>Pagamento único por produto.</p>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:14px;padding:16px;background:#fff">
+        <strong>4. Biblioteca</strong>
+        <p>Produtos comprados e progresso.</p>
+      </div>
+      <div style="border:1px solid #ddd;border-radius:14px;padding:16px;background:#fff">
+        <strong>5. Leitor rico</strong>
+        <p>Capítulos, blocos, downloads e quizzes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="split" style="margin-top:24px">
+  <div class="mockup">
+    <div class="mockup-header">Cliente</div>
+    <div class="mockup-body">
+      <div style="display:grid;gap:12px">
+        <div style="padding:18px;border-radius:16px;background:#eaf7f5">
+          <strong>Minha Biblioteca</strong>
+          <p>Cards dos produtos liberados, progresso e botão continuar.</p>
+        </div>
+        <div style="padding:18px;border-radius:16px;background:#f7f0de">
+          <strong>Leitor Interativo</strong>
+          <p>Sidebar de capítulos + conteúdo central + ações do bloco.</p>
+        </div>
+        <div style="padding:18px;border-radius:16px;background:#f3eef8">
+          <strong>Progresso</strong>
+          <p>Checklist pessoal, capítulos concluídos e retomada rápida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Admin</div>
+    <div class="mockup-body">
+      <div style="display:grid;gap:12px">
+        <div style="padding:18px;border-radius:16px;background:#f5f5f5">
+          <strong>Produtos</strong>
+          <p>Preço, status, slug, capa, página de vendas.</p>
+        </div>
+        <div style="padding:18px;border-radius:16px;background:#f5f5f5">
+          <strong>Editor de capítulos</strong>
+          <p>Ordenação, publicação e blocos ricos por capítulo.</p>
+        </div>
+        <div style="padding:18px;border-radius:16px;background:#f5f5f5">
+          <strong>Pedidos e acessos</strong>
+          <p>Compras Stripe, entitlements e suporte ao cliente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options" data-multiselect style="margin-top:24px">
+  <div class="option" data-choice="approve-flow" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Aprovar fluxo</h3>
+      <p>Seguir com essa divisão de telas para a especificação.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="simplify-v1" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Simplificar V1</h3>
+      <p>Cortar algum bloco, como quiz, assets ricos ou auditoria admin.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="more-premium-reader" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Leitor mais premium</h3>
+      <p>Dar mais peso visual ao leitor e à experiência de consumo.</p>
+    </div>
+  </div>
+</div>
