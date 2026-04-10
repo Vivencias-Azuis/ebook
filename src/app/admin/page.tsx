@@ -1,10 +1,17 @@
 import Link from "next/link";
 
+import { requireAdminSession } from "@/domains/auth/server";
+import { getActiveEntitlements, getRecentOrders } from "@/domains/orders/admin";
 import { getPublishedProducts } from "@/domains/products/queries";
 import { formatMoney } from "@/lib/format";
 
 export default async function AdminPage() {
-  const products = await getPublishedProducts();
+  await requireAdminSession();
+  const [products, recentOrders, activeEntitlements] = await Promise.all([
+    getPublishedProducts(),
+    getRecentOrders(),
+    getActiveEntitlements(),
+  ]);
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.08),_transparent_35%),linear-gradient(180deg,#fafaf9_0%,#ffffff_60%)] text-zinc-950">
@@ -101,6 +108,52 @@ export default async function AdminPage() {
               </div>
             </div>
           )}
+        </section>
+
+        <section className="mt-8 grid gap-6 xl:grid-cols-2">
+          <div className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.28)] backdrop-blur">
+            <div className="border-b border-zinc-200 px-6 py-4 sm:px-8">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+                Pedidos recentes
+              </p>
+            </div>
+            <div className="divide-y divide-zinc-200">
+              {recentOrders.length > 0 ? recentOrders.map((order) => (
+                <div key={order.id} className="px-6 py-4 text-sm sm:px-8">
+                  <p className="font-medium text-zinc-950">{order.productTitle}</p>
+                  <p className="text-zinc-600">{order.userEmail}</p>
+                  <p className="mt-1 text-zinc-500">
+                    {order.status} • {formatMoney(order.amountCents, order.currency.toUpperCase())}
+                  </p>
+                </div>
+              )) : (
+                <div className="px-6 py-6 text-sm text-zinc-600 sm:px-8">
+                  Nenhum pedido recente.
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.28)] backdrop-blur">
+            <div className="border-b border-zinc-200 px-6 py-4 sm:px-8">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+                Acessos ativos
+              </p>
+            </div>
+            <div className="divide-y divide-zinc-200">
+              {activeEntitlements.length > 0 ? activeEntitlements.map((entitlement) => (
+                <div key={entitlement.id} className="px-6 py-4 text-sm sm:px-8">
+                  <p className="font-medium text-zinc-950">{entitlement.productTitle}</p>
+                  <p className="text-zinc-600">{entitlement.userEmail}</p>
+                  <p className="mt-1 text-zinc-500">{entitlement.status}</p>
+                </div>
+              )) : (
+                <div className="px-6 py-6 text-sm text-zinc-600 sm:px-8">
+                  Nenhum acesso ativo.
+                </div>
+              )}
+            </div>
+          </div>
         </section>
       </div>
     </main>

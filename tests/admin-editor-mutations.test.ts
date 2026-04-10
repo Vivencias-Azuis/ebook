@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { reorderItems } from "@/domains/admin/editor-mutations";
+import {
+  buildDefaultBlockPayload,
+  reorderItems,
+} from "@/domains/admin/editor-mutations";
 
 describe("reorderItems", () => {
   it("swaps an item upward", () => {
@@ -35,5 +38,23 @@ describe("reorderItems", () => {
       { id: "chapter-1", sortOrder: 1 },
       { id: "chapter-2", sortOrder: 2 },
     ]);
+  });
+});
+
+describe("buildDefaultBlockPayload", () => {
+  it("creates a valid checklist payload", () => {
+    expect(JSON.parse(buildDefaultBlockPayload("checklist"))).toEqual({
+      items: [{ id: "item-1", label: "Novo item" }],
+    });
+  });
+
+  it("creates a valid quiz payload with at least two answers", () => {
+    expect(JSON.parse(buildDefaultBlockPayload("quiz"))).toEqual({
+      question: "Nova pergunta",
+      answers: [
+        { id: "answer-1", label: "Resposta 1", isCorrect: true },
+        { id: "answer-2", label: "Resposta 2", isCorrect: false },
+      ],
+    });
   });
 });

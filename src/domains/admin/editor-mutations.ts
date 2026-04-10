@@ -6,6 +6,10 @@ import { chapters, contentBlocks } from "@/db/schema";
 import { type BlockType } from "@/domains/content/blocks";
 
 export type ReorderDirection = "up" | "down";
+export type UpdateChapterInput = Partial<{
+  title: string;
+  isPublished: boolean;
+}>;
 
 export type UpdateBlockInput = Partial<{
   title: string | null;
@@ -70,7 +74,7 @@ async function getNextBlockSortOrder(chapterId: string) {
   return (lastBlock?.sortOrder ?? 0) + 1;
 }
 
-function buildDefaultBlockPayload(type: BlockType) {
+export function buildDefaultBlockPayload(type: BlockType) {
   switch (type) {
     case "rich_text":
       return JSON.stringify({ markdown: "Novo conteúdo" });
@@ -131,6 +135,20 @@ export async function createChapter(productId: string, title: string) {
   }
 
   return chapter;
+}
+
+export async function updateChapter(chapterId: string, input: UpdateChapterInput) {
+  const updateValues = Object.fromEntries(
+    Object.entries(input).filter(([, value]) => value !== undefined),
+  ) as UpdateChapterInput;
+
+  const [chapter] = await db
+    .update(chapters)
+    .set(updateValues)
+    .where(eq(chapters.id, chapterId))
+    .returning();
+
+  return chapter ?? null;
 }
 
 export async function createBlock(chapterId: string, type: BlockType) {

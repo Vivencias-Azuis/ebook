@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       },
     ],
     success_url: new URL(
-      "/library?checkout=success",
+      "/library?checkout=processing",
       baseUrl,
     ).toString(),
     cancel_url: new URL(`/products/${product.slug}?checkout=cancelled`, baseUrl)

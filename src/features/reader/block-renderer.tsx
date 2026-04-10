@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 
 import { parseBlockPayload, type BlockType } from "@/domains/content/blocks";
+import type { BlockProgressState } from "@/domains/progress/queries";
 
 type BlockRendererProps = {
   type: BlockType;
   title: string | null;
   payloadJson: string;
+  progressState?: BlockProgressState | null;
 };
 
 function toneClassName(tone: "info" | "warning" | "success") {
@@ -31,11 +33,12 @@ export function BlockRenderer({
   type,
   title,
   payloadJson,
+  progressState,
 }: BlockRendererProps) {
   let content: ReactNode;
 
   try {
-    content = renderBlockContent(type, payloadJson);
+    content = renderBlockContent(type, payloadJson, progressState ?? null);
   } catch {
     content = (
       <p
@@ -56,7 +59,11 @@ export function BlockRenderer({
   );
 }
 
-function renderBlockContent(type: BlockType, payloadJson: string): ReactNode {
+function renderBlockContent(
+  type: BlockType,
+  payloadJson: string,
+  progressState: BlockProgressState | null,
+): ReactNode {
   switch (type) {
     case "rich_text": {
       const payload = parseBlockPayload(type, payloadJson);
@@ -77,6 +84,7 @@ function renderBlockContent(type: BlockType, payloadJson: string): ReactNode {
     }
     case "checklist": {
       const payload = parseBlockPayload(type, payloadJson);
+      const checkedItemIds = progressState?.checkedItemIds ?? [];
       return (
         <ul className="space-y-3">
           {payload.items.map((item) => {
@@ -85,7 +93,7 @@ function renderBlockContent(type: BlockType, payloadJson: string): ReactNode {
               <li key={item.id} className="flex items-start gap-3 text-zinc-800">
                 <input
                   aria-label={item.label}
-                  checked={false}
+                  checked={checkedItemIds.includes(item.id)}
                   className="mt-1 h-4 w-4 rounded border-zinc-300 text-emerald-600"
                   disabled
                   id={inputId}

@@ -1,7 +1,11 @@
 import Link from "next/link";
 
 import { requireServerSession } from "@/domains/auth/server";
-import { getUserLibraryProducts } from "@/domains/products/library";
+import {
+  deriveLibraryCheckoutMessage,
+  getUserLibraryProducts,
+} from "@/domains/products/library";
+import { getUserProgressSummariesForProducts } from "@/domains/progress/queries";
 import { formatMoney } from "@/lib/format";
 
 type LibraryPageProps = {
@@ -18,6 +22,11 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
   ]);
   const checkout = params?.checkout;
   const hasProducts = products.length > 0;
+  const progressSummaries = await getUserProgressSummariesForProducts(
+    session.user.id,
+    products.map((product) => product.productId),
+  );
+  const checkoutMessage = deriveLibraryCheckoutMessage(checkout, hasProducts);
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.08),_transparent_35%),linear-gradient(180deg,#fafaf9_0%,#ffffff_60%)] text-zinc-950">
@@ -34,59 +43,72 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
           </p>
         </header>
 
-        {checkout === "success" ? (
+        {checkoutMessage ? (
           <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-            Pagamento confirmado. Seu conteúdo já está disponível na biblioteca.
+            {checkoutMessage}
           </div>
         ) : null}
 
         {hasProducts ? (
           <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {products.map((product) => (
-              <article
-                key={product.entitlementId}
-                className="flex h-full flex-col justify-between rounded-3xl border border-zinc-200 bg-white/90 p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.25)] backdrop-blur"
-              >
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-                      Disponível na biblioteca
-                    </p>
-                    <h2 className="text-2xl font-semibold tracking-tight">
-                      {product.title}
-                    </h2>
-                    {product.subtitle ? (
-                      <p className="text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">
-                        {product.subtitle}
-                      </p>
-                    ) : null}
-                  </div>
-                  <p className="text-sm leading-7 text-zinc-600">
-                    {product.description}
-                  </p>
-                </div>
+            {products.map((product) => {
+              const progress = progressSummaries[product.productId] ?? {
+                totalBlocks: 0,
+                completedBlocks: 0,
+                percent: 0,
+                continueReadingChapterId: null,
+              };
 
-                <div className="mt-8 flex items-end justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-                      Preço original
-                    </p>
-                    <p className="text-xl font-semibold text-zinc-950">
-                      {formatMoney(
-                        product.priceCents,
-                        product.currency.toUpperCase(),
-                      )}
+              return (
+                <article
+                  key={product.entitlementId}
+                  className="flex h-full flex-col justify-between rounded-3xl border border-zinc-200 bg-white/90 p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.25)] backdrop-blur"
+                >
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+                        Disponível na biblioteca
+                      </p>
+                      <h2 className="text-2xl font-semibold tracking-tight">
+                        {product.title}
+                      </h2>
+                      {product.subtitle ? (
+                        <p className="text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">
+                          {product.subtitle}
+                        </p>
+                      ) : null}
+                    </div>
+                    <p className="text-sm leading-7 text-zinc-600">
+                      {product.description}
                     </p>
                   </div>
-                  <Link
-                    href={`/products/${product.slug}/read`}
-                    className="inline-flex items-center justify-center rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
-                  >
-                    Ler agora
-                  </Link>
-                </div>
-              </article>
-            ))}
+
+                  <div className="mt-8 flex items-end justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+                        Preço original
+                      </p>
+                      <p className="text-xl font-semibold text-zinc-950">
+                        {formatMoney(
+                          product.priceCents,
+                          product.currency.toUpperCase(),
+                        )}
+                      </p>
+                      <p className="mt-2 text-xs text-zinc-500">
+                        Progresso: {progress.completedBlocks}/{progress.totalBlocks} blocos •{" "}
+                        {progress.percent}%
+                      </p>
+                    </div>
+                    <Link
+                      href={`/products/${product.slug}/read${progress.continueReadingChapterId ? `#${progress.continueReadingChapterId}` : ""}`}
+                      className="inline-flex items-center justify-center rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+                    >
+                      {progress.completedBlocks > 0 ? "Continuar leitura" : "Ler agora"}
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </section>
         ) : (
           <div className="mt-12 rounded-3xl border border-dashed border-zinc-300 bg-white/70 p-8 text-zinc-600">

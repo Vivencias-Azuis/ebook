@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { EditorCenterColumn } from "@/components/admin/editor-center-column";
 import { EditorLeftColumn } from "@/components/admin/editor-left-column";
 import { EditorRightColumn } from "@/components/admin/editor-right-column";
+import { requireAdminSession } from "@/domains/auth/server";
 import {
   deriveEditorSelection,
   getEditorChapters,
@@ -14,6 +15,7 @@ type PageProps = {
 };
 
 export default async function AdminEditorPage({ params, searchParams }: PageProps) {
+  await requireAdminSession();
   const { productId } = await params;
   const search = await searchParams;
   const product = await getEditorProduct(productId);
@@ -43,7 +45,11 @@ export default async function AdminEditorPage({ params, searchParams }: PageProp
           chapter={editor.selectedChapter}
           selectedBlockId={editor.selectedBlock?.id ?? null}
         />
-        <EditorRightColumn block={editor.selectedBlock} productId={editor.product.id} />
+        <EditorRightColumn
+          block={editor.selectedBlock}
+          chapter={editor.selectedChapter}
+          productId={editor.product.id}
+        />
       </div>
     </main>
   );

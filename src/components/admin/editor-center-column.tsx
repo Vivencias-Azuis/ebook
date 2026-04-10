@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { EditorChapter } from "@/domains/admin/editor-queries";
 import { createBlockAction, reorderBlockAction } from "@/app/admin/editor/actions";
+import { blockTypeSchema } from "@/domains/content/blocks";
 
 export function EditorCenterColumn({
   productId,
@@ -23,11 +24,27 @@ export function EditorCenterColumn({
           <h2 className="mt-2 text-xl font-semibold">{chapter.title}</h2>
         </div>
         <form
-          action={async () => {
+          action={async (formData: FormData) => {
             "use server";
-            await createBlockAction(productId, chapter.id, "rich_text");
+            const parsedType = blockTypeSchema.parse(formData.get("type"));
+            await createBlockAction(productId, chapter.id, parsedType);
           }}
+          className="flex items-center gap-2"
         >
+          <select
+            name="type"
+            defaultValue="rich_text"
+            className="rounded-full border bg-white px-3 py-2 text-sm"
+          >
+            <option value="rich_text">Rich text</option>
+            <option value="callout">Callout</option>
+            <option value="checklist">Checklist</option>
+            <option value="download">Download</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="quiz">Quiz</option>
+            <option value="divider">Divider</option>
+          </select>
           <button type="submit" className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">
             + Novo bloco
           </button>
@@ -43,6 +60,9 @@ export function EditorCenterColumn({
               <Link href={`?chapter=${chapter.id}&block=${block.id}`} className="flex-1 min-w-0">
                 <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">{block.type}</div>
                 <div className="mt-1 font-medium">{block.title || "Sem título"}</div>
+                <div className="mt-1 text-xs text-zinc-500">
+                  {block.isPublished ? "Publicado" : "Rascunho"}
+                </div>
               </Link>
               <div className="flex gap-2">
                 <form

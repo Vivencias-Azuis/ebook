@@ -16,6 +16,21 @@ export type LibraryProduct = {
   status: "draft" | "published" | "archived";
 };
 
+export function deriveLibraryCheckoutMessage(
+  checkoutState: string | undefined,
+  hasProducts: boolean,
+) {
+  if (checkoutState !== "processing") {
+    return null;
+  }
+
+  if (hasProducts) {
+    return "Pagamento recebido. Seu novo acesso pode levar alguns segundos para aparecer na biblioteca.";
+  }
+
+  return "Pagamento recebido. Estamos confirmando seu acesso. Se o novo produto ainda nao apareceu, atualize a pagina em alguns segundos.";
+}
+
 export async function getUserLibraryProducts(userId: string) {
   return db
     .select({

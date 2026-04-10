@@ -1,7 +1,10 @@
 import Link from "next/link";
 import type { EditorChapter, EditorProduct } from "@/domains/admin/editor-queries";
 import { formatMoney } from "@/lib/format";
-import { createChapterAction, reorderChapterAction } from "@/app/admin/editor/actions";
+import {
+  createChapterAction,
+  reorderChapterAction,
+} from "@/app/admin/editor/actions";
 
 export function EditorLeftColumn({
   product,
