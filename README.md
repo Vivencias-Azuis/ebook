@@ -68,7 +68,12 @@ Popular dados iniciais:
 npm run db:seed
 ```
 
-O seed cria um produto inicial publicado, um capítulo e um bloco de conteúdo para validar o fluxo da vitrine e do leitor.
+O seed cria o curso publicado `guia-pratico-primeiros-30-dias-apos-diagnostico` e um usuário de teste com acesso liberado.
+
+Usuário de teste:
+
+- `teste.guia.pratico@vivenciasazuis.local`
+- senha: `VivenciasAzuis@123`
 
 ## Rodando localmente
 
@@ -86,6 +91,7 @@ Rotas úteis:
 - `/library`
 - `/admin`
 - `/products/guia-pratico-primeiros-30-dias`
+- `/products/guia-pratico-primeiros-30-dias-apos-diagnostico`
 
 ## Stripe local
 

@@ -20,7 +20,6 @@ export const auth = betterAuth({
       ...schema,
       user: schema.users,
     },
-    usePlural: true,
   }),
   emailAndPassword: {
     enabled: true,
