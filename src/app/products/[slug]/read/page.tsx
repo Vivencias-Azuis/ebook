@@ -96,7 +96,7 @@ export default async function ProductReadPage({
   return (
     <main className="va-reader-page va-reader-shell min-h-screen overflow-hidden text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
-        <header className="va-reader-topbar mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <header className="va-reader-bar va-reader-topbar mb-4 flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <Link
             href="/library"
             className="va-reader-ghost-button inline-flex w-fit items-center rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/14"
@@ -125,8 +125,8 @@ export default async function ProductReadPage({
           />
 
           <div className="order-1 flex min-h-[calc(100vh-8rem)] flex-col gap-4 lg:order-2">
-            <div className="va-reader-stage">
-              <article className="va-reader-slide relative flex flex-1 flex-col overflow-hidden">
+            <div className="va-reader-stage flex min-h-[calc(100vh-8rem)]">
+              <article className="va-reader-panel va-reader-slide relative flex flex-1 flex-col overflow-hidden">
                 <div className="va-reader-slide-header border-b border-white/10 px-6 py-6 sm:px-9">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
@@ -284,7 +284,7 @@ export default async function ProductReadPage({
             </div>
 
             <nav
-              className="va-reader-nav grid grid-cols-[1fr_auto_1fr] items-center gap-3"
+              className="va-reader-bar va-reader-nav grid grid-cols-[1fr_auto_1fr] items-center gap-3 p-3"
               aria-label="Navegação entre etapas"
             >
               {previousPage ? (
