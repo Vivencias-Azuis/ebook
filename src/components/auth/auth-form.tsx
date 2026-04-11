@@ -10,9 +10,20 @@ type AuthMode = "login" | "register";
 
 type AuthFormProps = {
   mode: AuthMode;
+  nextPath?: string;
 };
 
 function getErrorMessage(error: unknown) {
+  if (
+    error &&
+    typeof error === "object" &&
+    "message" in error &&
+    typeof error.message === "string" &&
+    error.message.trim()
+  ) {
+    return error.message;
+  }
+
   if (error instanceof Error && error.message.trim()) {
     return error.message;
   }
@@ -20,7 +31,15 @@ function getErrorMessage(error: unknown) {
   return "Não foi possível concluir a autenticação.";
 }
 
-export function AuthForm({ mode }: AuthFormProps) {
+function normalizeNextPath(nextPath?: string) {
+  if (typeof nextPath !== "string" || !nextPath.startsWith("/")) {
+    return "/library";
+  }
+
+  return nextPath;
+}
+
+export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,6 +48,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [password, setPassword] = useState("");
 
   const isRegister = mode === "register";
+  const callbackPath = normalizeNextPath(nextPath);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,22 +56,25 @@ export function AuthForm({ mode }: AuthFormProps) {
     setIsPending(true);
 
     try {
-      if (isRegister) {
-        await authClient.signUp.email({
-          name,
-          email,
-          password,
-          callbackURL: "/library",
-        });
-      } else {
-        await authClient.signIn.email({
-          email,
-          password,
-          callbackURL: "/library",
-        });
+      const result = isRegister
+        ? await authClient.signUp.email({
+            name,
+            email,
+            password,
+            callbackURL: callbackPath,
+          })
+        : await authClient.signIn.email({
+            email,
+            password,
+            callbackURL: callbackPath,
+          });
+
+      if (result && typeof result === "object" && "error" in result && result.error) {
+        setError(getErrorMessage(result.error));
+        return;
       }
 
-      router.replace("/library");
+      router.replace(callbackPath);
     } catch (error) {
       setError(getErrorMessage(error));
     } finally {

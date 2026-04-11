@@ -427,4 +427,103 @@ describe("ProductReadPage", () => {
     );
     expect(revalidatePath).toHaveBeenCalledWith("/library");
   });
+
+  it("keeps non-paying users in preview mode, locks later chapters, and shows a paywall popup on the last free slide", async () => {
+    vi.mocked(requireServerSession).mockResolvedValue({
+      user: { id: "user-1" },
+    } as any);
+    vi.mocked(getProductBySlug).mockResolvedValue({
+      id: "prod-1",
+      slug: "guia-pratico",
+      title: "Guia Pratico",
+      status: "published",
+    } as any);
+    vi.mocked(getUserProductEntitlement).mockResolvedValue(null);
+    vi.mocked(canAccessProduct).mockReturnValue(false);
+    vi.mocked(getPublishedProductContent).mockResolvedValue([
+      {
+        id: "chapter-1",
+        title: "Comeco",
+        sortOrder: 1,
+        blocks: [],
+      },
+      {
+        id: "chapter-2",
+        title: "Rede de apoio",
+        sortOrder: 2,
+        blocks: [],
+      },
+    ] as any);
+    vi.mocked(getUserProductProgress).mockResolvedValue({});
+    vi.mocked(summarizeProductProgress).mockReturnValue({
+      percent: 10,
+    } as any);
+    vi.mocked(buildReaderPages).mockReturnValue([
+      {
+        pageNumber: 1,
+        chapterId: "chapter-1",
+        chapterTitle: "Comeco",
+        chapterSortOrder: 1,
+        block: {
+          id: "slide-block-1",
+          title: "Boas-vindas",
+          type: "rich_text",
+          payloadJson: JSON.stringify({ markdown: "Primeira parte" }),
+          sortOrder: 1,
+        },
+        sourceBlockId: "block-1",
+        slideNumber: 1,
+        slideCount: 2,
+      },
+      {
+        pageNumber: 2,
+        chapterId: "chapter-1",
+        chapterTitle: "Comeco",
+        chapterSortOrder: 1,
+        block: {
+          id: "slide-block-2",
+          title: "Boas-vindas",
+          type: "rich_text",
+          payloadJson: JSON.stringify({ markdown: "Segunda parte" }),
+          sortOrder: 1,
+        },
+        sourceBlockId: "block-1",
+        slideNumber: 2,
+        slideCount: 2,
+      },
+      {
+        pageNumber: 3,
+        chapterId: "chapter-2",
+        chapterTitle: "Rede de apoio",
+        chapterSortOrder: 2,
+        block: {
+          id: "slide-block-3",
+          title: "Quem acionar",
+          type: "rich_text",
+          payloadJson: JSON.stringify({ markdown: "Conteudo premium" }),
+          sortOrder: 1,
+        },
+        sourceBlockId: "block-3",
+        slideNumber: 1,
+        slideCount: 1,
+      },
+    ]);
+
+    const page = await ProductReadPage({
+      params: Promise.resolve({ slug: "guia-pratico" }),
+      searchParams: Promise.resolve({ page: "3" }),
+    });
+
+    const markup = renderToStaticMarkup(page);
+
+    expect(markup).not.toContain("redirect:/products/guia-pratico");
+    expect(markup).toContain("Amostra gratuita concluída");
+    expect(markup).toContain("Desbloqueie o restante do curso");
+    expect(markup).toContain('name="productId"');
+    expect(markup).toContain('value="prod-1"');
+    expect(markup).toContain("Conteúdo premium");
+    expect(markup).toContain("Etapa 2 de 2");
+    expect(markup).not.toContain("Etapa 3 de 3");
+    expect(markup).not.toContain("Conteudo premium");
+  });
 });

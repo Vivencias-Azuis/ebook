@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 import { requireServerSession } from "@/domains/auth/server";
@@ -25,6 +25,7 @@ import {
   buildReaderPages,
   normalizeReaderPageNumber,
 } from "@/features/reader/pagination";
+import { ReaderPreviewShell } from "@/features/reader/reader-preview-shell";
 import { ReaderSidebar } from "@/features/reader/reader-sidebar";
 
 type ProductReadPageProps = {
@@ -57,10 +58,7 @@ export default async function ProductReadPage({
     session.user.id,
     product.id,
   );
-
-  if (!canAccessProduct(entitlement)) {
-    redirect(`/products/${product.slug}`);
-  }
+  const hasFullAccess = canAccessProduct(entitlement);
 
   const chapters = await getPublishedProductContent(product.id);
   const progressByBlockId = await getUserProductProgress(
@@ -69,15 +67,27 @@ export default async function ProductReadPage({
   );
   const progressSummary = summarizeProductProgress(chapters, progressByBlockId);
   const readerPages = buildReaderPages(chapters);
-  const currentPageNumber = normalizeReaderPageNumber(page, readerPages.length);
-  const currentPage = readerPages[currentPageNumber - 1] ?? null;
+  const previewChapterId = chapters[0]?.id ?? null;
+  const accessibleReaderPages =
+    hasFullAccess || !previewChapterId
+      ? readerPages
+      : readerPages.filter(
+          (readerPage) => readerPage.chapterId === previewChapterId,
+        );
+  const currentPageNumber = normalizeReaderPageNumber(
+    page,
+    accessibleReaderPages.length,
+  );
+  const currentPage = accessibleReaderPages[currentPageNumber - 1] ?? null;
   const currentBlock = currentPage?.block ?? null;
   const currentSourceBlockId =
     currentPage?.sourceBlockId ?? currentBlock?.id ?? null;
   const previousPage = currentPageNumber > 1 ? currentPageNumber - 1 : null;
   const nextPage =
-    currentPageNumber < readerPages.length ? currentPageNumber + 1 : null;
-  const slideLabel = `Etapa ${currentPageNumber} de ${Math.max(readerPages.length, 1)}`;
+    currentPageNumber < accessibleReaderPages.length
+      ? currentPageNumber + 1
+      : null;
+  const slideLabel = `Etapa ${currentPageNumber} de ${Math.max(accessibleReaderPages.length, 1)}`;
   const slideDetailLabel =
     currentPage && currentPage.slideCount > 1
       ? `Parte ${currentPage.slideNumber} de ${currentPage.slideCount}`
@@ -92,9 +102,22 @@ export default async function ProductReadPage({
       : progressSummary.percent > 0
         ? "Você já começou"
         : "Comece com calma";
+  const accessiblePageNumbers = new Set(
+    accessibleReaderPages.map((readerPage) => readerPage.pageNumber),
+  );
+  const isPreviewMode = !hasFullAccess;
+  const shouldOpenPaywall =
+    isPreviewMode &&
+    accessibleReaderPages.length > 0 &&
+    currentPageNumber === accessibleReaderPages.length;
 
   return (
-    <main className="va-reader-page va-reader-shell min-h-screen overflow-hidden text-white">
+    <ReaderPreviewShell
+      isPreviewMode={isPreviewMode}
+      shouldOpenPaywall={shouldOpenPaywall}
+      productId={product.id}
+    >
+      <main className="va-reader-page va-reader-shell min-h-screen overflow-hidden text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
         <header className="va-reader-bar va-reader-topbar mb-4 flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <Link
@@ -122,6 +145,8 @@ export default async function ProductReadPage({
             progressPercent={progressSummary.percent}
             readerPages={readerPages}
             progressByBlockId={progressByBlockId}
+            accessiblePageNumbers={accessiblePageNumbers}
+            isPreviewMode={isPreviewMode}
           />
 
           <div className="order-1 flex min-h-[calc(100vh-8rem)] flex-col gap-4 lg:order-2">
@@ -336,6 +361,7 @@ export default async function ProductReadPage({
           </div>
         </section>
       </div>
-    </main>
+      </main>
+    </ReaderPreviewShell>
   );
 }

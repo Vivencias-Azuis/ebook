@@ -13,6 +13,8 @@ type ReaderSidebarProps = {
   progressPercent: number;
   readerPages: ReaderPage[];
   progressByBlockId: Record<string, BlockProgressState>;
+  accessiblePageNumbers: Set<number>;
+  isPreviewMode: boolean;
 };
 
 type ReaderSidebarChapter = {
@@ -55,6 +57,8 @@ export function ReaderSidebar({
   progressPercent,
   readerPages,
   progressByBlockId,
+  accessiblePageNumbers,
+  isPreviewMode,
 }: ReaderSidebarProps) {
   const [isOpen, setIsOpen] = useState(true);
   const chapters = groupPagesByChapter(readerPages);
@@ -113,6 +117,9 @@ export function ReaderSidebar({
               <div className="space-y-2">
                 {chapter.pages.map((readerPage) => {
                   const isActive = readerPage.pageNumber === currentPageNumber;
+                  const isAccessible = accessiblePageNumbers.has(
+                    readerPage.pageNumber,
+                  );
                   const progressBlockId =
                     readerPage.sourceBlockId ?? readerPage.block?.id ?? null;
                   const isCompleted = progressBlockId
@@ -122,6 +129,30 @@ export function ReaderSidebar({
                     readerPage.slideCount > 1
                       ? `Parte ${readerPage.slideNumber} de ${readerPage.slideCount}`
                       : `Página ${readerPage.pageNumber}`;
+
+                  if (!isAccessible) {
+                    return (
+                      <div
+                        key={`${readerPage.chapterId}-${readerPage.pageNumber}`}
+                        aria-disabled="true"
+                        className="va-reader-index-item cursor-not-allowed border-dashed bg-[color:var(--va-paper)]/75 opacity-70"
+                      >
+                        <span className="flex flex-col items-start gap-2">
+                          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
+                            Conteúdo premium
+                          </span>
+                          {isPreviewMode ? (
+                            <span className="rounded-full bg-white px-2.5 py-1 text-[0.7rem] font-bold text-[color:var(--va-blue-800)]">
+                              🔒 Desbloqueie para continuar
+                            </span>
+                          ) : null}
+                        </span>
+                        <span className="mt-1 block font-semibold text-[color:var(--va-navy)]">
+                          {readerPage.block?.title ?? chapter.chapterTitle}
+                        </span>
+                      </div>
+                    );
+                  }
 
                   return (
                     <Link

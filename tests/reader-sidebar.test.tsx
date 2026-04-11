@@ -96,6 +96,8 @@ describe("ReaderSidebar", () => {
           progressPercent={34}
           readerPages={readerPages}
           progressByBlockId={progressByBlockId}
+          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          isPreviewMode={false}
         />,
       );
     });
@@ -130,6 +132,8 @@ describe("ReaderSidebar", () => {
           progressPercent={34}
           readerPages={readerPages}
           progressByBlockId={progressByBlockId}
+          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          isPreviewMode={false}
         />,
       );
     });
@@ -160,6 +164,8 @@ describe("ReaderSidebar", () => {
           progressPercent={0}
           readerPages={readerPages}
           progressByBlockId={{}}
+          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          isPreviewMode={false}
         />,
       );
     });
@@ -211,11 +217,43 @@ describe("ReaderSidebar", () => {
             },
           ]}
           progressByBlockId={{ "block-legacy": { completed: true } }}
+          accessiblePageNumbers={new Set([1])}
+          isPreviewMode={false}
         />,
       );
     });
 
     expect(container.textContent).toContain("Lido");
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("renders locked pages with cadeado and no navigation link in preview mode", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico"
+          productSlug="guia-pratico"
+          currentPageNumber={1}
+          progressPercent={10}
+          readerPages={readerPages}
+          progressByBlockId={{}}
+          accessiblePageNumbers={new Set([1, 2, 3])}
+          isPreviewMode
+        />,
+      );
+    });
+
+    expect(container.textContent).toContain("Conteúdo premium");
+    expect(container.textContent).toContain("Desbloqueie para continuar");
+    expect(container.textContent).toContain("🔒");
+    expect(container.innerHTML).not.toContain("page=4");
 
     await act(async () => {
       root.unmount();

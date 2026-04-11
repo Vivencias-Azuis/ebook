@@ -18,4 +18,10 @@ describe("deriveLibraryCheckoutMessage", () => {
   it("returns null when there is no checkout state", () => {
     expect(deriveLibraryCheckoutMessage(undefined, false)).toBeNull();
   });
+
+  it("shows the broader processing message when the catalog is visible but nothing is unlocked yet", () => {
+    expect(deriveLibraryCheckoutMessage("processing", false)).toContain(
+      "Estamos confirmando seu acesso.",
+    );
+  });
 });
