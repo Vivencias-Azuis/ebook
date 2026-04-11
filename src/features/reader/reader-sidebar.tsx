@@ -111,9 +111,13 @@ export function ReaderSidebar({
               <div className="space-y-2">
                 {chapter.pages.map((readerPage) => {
                   const isActive = readerPage.pageNumber === currentPageNumber;
-                  const isCompleted = readerPage.block
-                    ? progressByBlockId[readerPage.block.id]?.completed
+                  const isCompleted = readerPage.sourceBlockId
+                    ? progressByBlockId[readerPage.sourceBlockId]?.completed
                     : false;
+                  const pageLabel =
+                    readerPage.slideCount > 1
+                      ? `Parte ${readerPage.slideNumber} de ${readerPage.slideCount}`
+                      : `Página ${readerPage.pageNumber}`;
 
                   return (
                     <Link
@@ -126,7 +130,7 @@ export function ReaderSidebar({
                     >
                       <span className="flex items-center justify-between gap-3">
                         <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                          Página {readerPage.pageNumber}
+                          {pageLabel}
                         </span>
                         {isCompleted ? (
                           <span className="rounded-full bg-[color:var(--va-blue-100)] px-2 py-0.5 text-[0.65rem] font-bold text-[color:var(--va-blue-800)]">
