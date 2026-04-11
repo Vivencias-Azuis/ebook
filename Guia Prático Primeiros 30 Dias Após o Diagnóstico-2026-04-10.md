@@ -1,737 +1,1099 @@
-# Guia Prático: Primeiros 30 Dias Após o Diagnóstico
+# Guia Prático: Primeiros 30 Dias Após Suspeita ou Diagnóstico
 
-  
+## O que você vai encontrar aqui
 
-## Detalhes do Produto
+Este guia reúne um percurso de leitura em etapas, um PDF para consulta offline e materiais de apoio para usar ao longo dos primeiros 30 dias.
 
-  
+## COMECE POR AQUI
 
-\- **Descrição Curta:** Um roteiro claro e acolhedor para os primeiros 30 dias após o diagnóstico de autismo, eliminando a paralisia da desorientação e transformando o medo em ação confiante através de passos práticos validados.
+### Para quem este guia é
 
-\- **Mecanismo Proprietário:** Protocolo dos 30 Dias Estruturados™ — Um sistema de progressão gradual que organiza as primeiras decisões em etapas semanais, impedindo a sobrecarga informativa e criando momentum através de pequenas vitórias documentadas.
+Este guia é para famílias que acabaram de receber uma suspeita ou um diagnóstico de autismo e precisam de um começo mais simples do que tentar entender tudo ao mesmo tempo.
 
-\- **Entregáveis Claros:** 1 E-book em PDF com 45 páginas + 4 Checklists Semanais + 1 Diário de Progresso + 1 Mapa Visual de Profissionais + 1 Lista de Perguntas para Médicos + 1 Guia de Primeiras Conversas com a Escola
+Nos primeiros 30 dias, ele serve para organizar decisões, perguntas e próximos passos.
 
-\- **Preço Sugerido:** R$ 67
+### O que este guia resolve
 
-\- **Resultado em 72h:** Sair da paralisia do "não sei por onde começar" e completar as 3 primeiras ações concretas do plano (agendar consulta, organizar documentos e conectar-se com uma família de apoio).
+Ele ajuda a sair da desordem inicial com:
 
-  
+- documentos reunidos e fáceis de encontrar;
+- dúvidas priorizadas, em vez de uma lista infinita na cabeça;
+- perguntas prontas para levar a profissionais;
+- uma primeira estratégia para escola e rotina;
+- um plano simples para os próximos 60 dias.
 
-## O Produto: Guia Estratégico em PDF
+O objetivo é ajudar você a responder, com mais critério, as perguntas que mais pesam no começo:
 
-  
+- "E se eu escolher a terapia errada?"
+- "Será que demorei demais para perceber?"
+- "Como eu falo com a escola sem virar uma briga?"
+- "Como não gastar dinheiro por desespero?"
+- "Como parar de abrir 50 abas e seguir sem decidir nada?"
 
-### Introdução: Como Usar Este Guia
+Ele ajuda a separar o que precisa ser feito agora, o que pode esperar e o que deve ser conversado com profissionais.
 
-  
+**Este guia não substitui avaliação médica, acompanhamento terapêutico, orientação escolar ou qualquer conduta individualizada.** Use este material como apoio de organização. Decisões clínicas, terapêuticas e educacionais devem ser conversadas com profissionais qualificados e com a escola.
 
-Você acabou de receber o diagnóstico.
+### Como usar este guia
 
-  
+Leia primeiro a seção de **Primeiras 72 horas**. Depois, avance uma semana por vez e volte aos materiais interativos sempre que travar.
 
-E agora sua mente não para.
+Se você está em fase de suspeita, este guia serve para observar com mais critério, registrar sinais e chegar mais preparada à avaliação.
 
-  
+Se você já recebeu o diagnóstico, ele serve para organizar prioridades, rede de apoio, escola, direitos e os próximos 60 dias.
 
-Tem mil perguntas. Tem medo. Tem culpa. Tem uma lista infinita de coisas que você acha que precisa fazer... mas não sabe por onde começar.
+O percurso está dividido assim:
 
-  
+- **Primeiras 72 horas:** parar a avalanche e evitar decisões caras no susto.
+- **Semana 1: sair do caos:** organizar documentos, dúvidas e prioridades.
+- **Semana 2: profissionais, terapias e critério:** escolher apoio sem cair em cilada.
+- **Semana 3: casa, rotina e escola:** observar, ajustar e conversar melhor com a escola.
+- **Semana 4: Brasil real, direitos e próximos 60 dias:** transformar o primeiro mês em continuidade.
+- **Família inteira:** irmãos, cuidadores e rede de apoio.
+- **Materiais interativos:** perguntas, modelos de mensagem e checklists.
 
-Este guia existe para tirar você desse lugar.
+Materiais de apoio:
 
-  
+- guia em módulos para leitura e impressão;
+- PDF para imprimir, levar em consulta ou revisar com a escola;
+- checklist geral para dias de exaustão;
+- checklists semanais;
+- modelos de mensagem para escola e família;
+- perguntas para profissionais;
+- exemplos preenchidos para não começar do zero.
 
-Não vou te dar mais 500 artigos para ler. Não vou te sobrecarregar com teoria. Vou te entregar um roteiro claro para os próximos 30 dias.
+### O que este guia não promete
 
-  
+Este guia não promete cura, reversão de diagnóstico, controle total da rotina ou resultado igual para todas as crianças.
 
-Quatro semanas. Quatro focos. Um passo de cada vez.
+Autismo não é uma falha a ser corrigida. A criança não precisa deixar de ser quem é para receber apoio. O objetivo dos primeiros 30 dias é criar uma base: entender necessidades, reduzir sobrecarga, organizar prioridades e abrir caminhos de cuidado.
 
-  
+### Para quem este guia não é
 
-Ao final deste mês, você vai olhar para trás e perceber que saiu da paralisia. Que tomou decisões. Que agiu. E que está no controle da jornada da sua família.
+Este guia não é para quem procura um protocolo fechado de terapia, uma promessa de cura, um substituto para avaliação profissional ou uma resposta única para todas as crianças.
 
-  
+Também não é um curso para profissionais aprenderem intervenção clínica. Ele foi escrito para mães, pais e cuidadores que precisam organizar o começo da jornada familiar com mais critério.
 
-Leia uma semana por vez. Complete os checklists. Respire.
+### Plano de 30 dias em uma página
 
-  
+Use esta visão quando estiver sem energia para ler tudo:
 
-Você não precisa descobrir tudo hoje.
+- **Hoje:** guarde o laudo ou registre a suspeita, anote dúvidas e evite decisões caras por medo.
+- **Próximas 72 horas:** escolha duas fontes confiáveis e pare de consumir conteúdo que aumenta pânico.
+- **Semana 1:** organize documentos, histórico da criança e três prioridades.
+- **Semana 2:** converse com profissionais usando perguntas objetivas e compare respostas.
+- **Semana 3:** observe rotina, teste uma rotina visual simples e prepare a conversa com a escola.
+- **Semana 4:** registre avanços, revise prioridades e monte o plano dos próximos 60 dias.
 
-  
+Hoje, reúna laudo, relatórios, observações e dúvidas no mesmo lugar.
 
-\---
+### Seu objetivo nos próximos 30 dias
 
-  
+O objetivo é sair de três situações comuns:
 
-## PARTE 1: O Gancho e a Dor
+- informação demais e decisão de menos;
+- culpa demais e apoio de menos;
+- urgência demais e prioridade de menos.
 
-  
+Ao final deste guia, a ideia é ter:
 
-### Capítulo 1: O Dia Que Mudou Tudo
+- uma pasta física ou digital com os documentos principais;
+- uma lista de dúvidas para profissionais;
+- uma primeira compreensão das áreas de apoio;
+- uma conversa mais preparada com a escola, se a criança estiver matriculada;
+- um registro simples de rotina, sinais de sobrecarga, interesses e avanços;
+- um plano realista para os próximos 60 dias.
 
-  
+### O primeiro passo hoje
 
-Você lembra exatamente onde estava quando ouviu.
+Junte em um só lugar o laudo ou relatório, as dúvidas que já vieram à cabeça e qualquer documento importante que você já tenha.
 
-  
+## PRIMEIRAS 72 HORAS
 
-"Seu filho tem Transtorno do Espectro Autista."
+### Missão 0: parar a avalanche
 
-  
+**Resultado esperado:** você termina as primeiras 72 horas com a informação principal guardada, uma lista de dúvidas e nenhuma decisão cara tomada no susto.
 
-Talvez você já esperasse. Talvez tenha sido um choque. Mas o que veio depois foi igual para todo mundo: o vazio.
+**Tempo estimado:** 20 a 40 minutos, divididos como conseguir.
 
-  
+### O que isso resolve
 
-Aquele silêncio ensurdecedor onde você não sabe se chora, se pesquisa no Google ou se finge que está tudo bem.
+Nos primeiros dias, a tendência é abrir dezenas de abas, perguntar para todo mundo e tentar montar um plano perfeito. Isso costuma aumentar a ansiedade.
 
-  
+O objetivo aqui é reduzir ruído e definir a primeira decisão com critério.
 
-E então começa a avalanche.
+### O que fazer agora
 
-  
+Nas primeiras 72 horas, o foco é:
 
-Você abre o celular. Digita "autismo" e aparecem 47 milhões de resultados. Metade diz uma coisa. A outra metade contradiz. Tem gente vendendo cura. Tem gente dizendo que não tem cura. Tem tia no grupo da família mandando link de vídeo duvidoso.
+- proteger sua energia;
+- guardar os documentos ou registrar a suspeita com clareza;
+- anotar dúvidas;
+- evitar decisões caras ou definitivas;
+- escolher fontes confiáveis.
 
-  
+Se você está em fase de suspeita, observe e registre o que já chama atenção.
 
-Você está perdida.
+Se você já recebeu o diagnóstico, use esse tempo para entender o que o documento já afirma e o que ainda precisa de avaliação ou encaminhamento.
 
-  
+### Se você está em fase de suspeita...
 
-E a pior parte? Você sente que deveria saber o que fazer agora. Que uma boa mãe já teria um plano. Que você está falhando porque está paralisada.
+- anote exemplos concretos de comunicação, sono, alimentação e sobrecarga;
+- guarde vídeos, relatos ou registros que ajudem na avaliação;
+- leve perguntas para confirmar ou descartar hipóteses com mais clareza.
 
-  
+### Se você já recebeu o diagnóstico...
 
-Mas a verdade é esta: **não é você que está falhando. É o sistema que te jogou nesse mar sem boia.**
+- destaque o que o laudo já conclui com segurança;
+- separe o que pede encaminhamento, retorno ou acompanhamento;
+- leve o documento para organizar a conversa seguinte com família, escola e profissionais.
 
-  
+### O que evitar
 
-### Capítulo 2: O Inimigo Invisível — Ruído Informativo Crônico
+Evite tomar decisões grandes no calor do susto.
 
-  
+Por enquanto, não faça:
 
-Sabe por que você se sente tão exausta mesmo sem ter feito nada?
+- contratar pacote terapêutico caro sem entender a proposta;
+- entrar em muitos grupos ao mesmo tempo;
+- comprar suplementos, cursos ou tratamentos por medo;
+- comparar sua criança com vídeos de internet;
+- aceitar promessa de cura, recuperação garantida ou método secreto.
 
-  
+Uma promessa de cura normalmente aparece com urgência, depoimentos fortes e pouca explicação técnica. Cuidado com qualquer oferta que faça você sentir que será culpada se não comprar imediatamente.
 
-Porque você está lutando contra o **Ruído Informativo Crônico**.
+### Como saber se houve progresso
 
-  
+Você saiu da avalanche quando:
 
-É aquela sensação de estar em uma sala com cem pessoas gritando ao mesmo tempo. Cada uma te dá uma direção diferente. Cada uma jura que o caminho dela é o certo.
+- o documento principal está salvo;
+- as dúvidas estão escritas em vez de girando na cabeça;
+- você consegue dizer qual é a próxima conversa, em vez de tentar resolver tudo hoje;
+- nenhuma compra grande foi feita por impulso.
 
-  
+### Ação 1: criar uma nota de dúvidas
 
-E você? Você fica no meio, paralisada, sem conseguir dar um passo sequer.
+Abra uma nota no celular ou pegue uma folha. Escreva o título:
 
-  
+**Dúvidas para investigar com calma**
 
-O Ruído Informativo Crônico não é falta de informação. É o oposto. É informação demais, contraditória demais, emocional demais.
+Anote tudo que vier, sem tentar responder agora:
 
-  
+- O que essa suspeita ou diagnóstico muda na rotina?
+- Quais apoios meu filho precisa primeiro?
+- Preciso procurar neuropediatra, psiquiatra infantil ou outro profissional?
+- A escola precisa ser avisada agora?
+- Como explicar isso para a família?
+- Quais terapias fazem sentido para o perfil dele?
 
-E ele te rouba três coisas:
+Essa lista evita que sua cabeça tente segurar tudo sozinha.
 
-  
+### Ação 2: guardar o laudo e documentos
 
-1\. **Tempo** — Você passa horas pesquisando e termina mais confusa do que começou.
+Coloque em uma pasta física ou digital:
 
-2\. **Energia** — Cada artigo alarmista drena sua força emocional.
+- laudo ou relatório recebido;
+- exames já feitos;
+- relatórios escolares;
+- avaliações anteriores;
+- receitas ou medicações em uso;
+- carteira do plano de saúde, se houver;
+- documentos pessoais da criança.
 
-3\. **Confiança** — Você para de acreditar que pode tomar uma decisão certa.
+Não precisa organizar perfeitamente. Basta juntar em um lugar.
 
-  
+### Ação 3: escolher duas fontes confiáveis
 
-Mas tem um jeito de sair disso.
+Você não precisa consumir tudo sobre autismo. Você precisa de poucas fontes boas.
 
-  
+Procure fontes que:
 
-E começa nos próximos 30 dias.
+- respeitam pessoas autistas;
+- explicam limites e evidências;
+- não vendem medo;
+- não prometem cura;
+- recomendam avaliação individualizada;
+- diferenciam opinião pessoal de orientação profissional.
 
-  
+Se um conteúdo deixa você mais apavorada e menos capaz de agir, ele não serve para este momento.
 
-\---
+### Apoio imediato
 
-  
+Use o **Checklist das primeiras 72 horas** antes de encerrar estes três dias. Ele confirma o básico e impede que o começo vire só ansiedade.
 
-## PARTE 2: A Revelação — O Mecanismo Único
+### Checklist das primeiras 72 horas
 
-  
+- [ ] Guardei o laudo ou relatório em uma pasta.
+- [ ] Criei uma nota com dúvidas para investigar depois.
+- [ ] Evitei contratar qualquer solução por medo.
+- [ ] Separei duas fontes confiáveis para acompanhar.
+- [ ] Não vou resolver tudo esta semana.
 
-### Capítulo 3: O Protocolo dos 30 Dias Estruturados™
+Se você fez esse checklist, o começo já está reunido em um só lugar.
 
-  
+### Versão rápida das primeiras 72 horas
 
-Aqui está o segredo que ninguém te conta:
+Se você estiver exausta, marque só isto:
 
-  
+- [ ] Tenho o laudo ou relatório salvo.
+- [ ] Tenho uma lista de dúvidas no celular.
+- [ ] Não comprei nada por medo hoje.
 
-**Você não precisa resolver tudo. Você precisa resolver a primeira coisa.**
+## SEMANA 1: SAIR DO CAOS
 
-  
+### Missão 1: sair do caos
 
-E depois a segunda. E depois a terceira.
+**Resultado esperado:** você termina a semana com documentos, histórico simples, dúvidas e até três prioridades iniciais.
 
-  
+**Tempo estimado:** 15 a 25 minutos por dia.
 
-O Protocolo dos 30 Dias Estruturados™ funciona assim:
+### Objetivo da semana
 
-  
+Nesta semana, o objetivo é transformar confusão em mapa. Você vai organizar documentos, histórico da criança, dúvidas e prioridades.
 
-Eu peguei tudo o que uma família precisa fazer nos primeiros 30 dias após o diagnóstico e dividi em 4 semanas. Cada semana tem um foco. Um objetivo claro. Um checklist simples.
+Não é uma semana para virar especialista. É uma semana para deixar o básico visível.
 
-  
+### O que isso resolve
 
-Você não vai se perder em teoria. Você vai agir.
+Você sai da mistura de informação, culpa e urgência com um mapa mínimo do que já sabe.
 
-  
+### O que fazer agora
 
-E cada pequena ação vai te dar algo que você perdeu no dia do diagnóstico: **controle**.
+- escrever o que você entendeu do laudo ou da suspeita;
+- montar uma linha do tempo simples da criança;
+- escolher até três prioridades iniciais;
+- preparar perguntas para consulta;
+- separar a pasta de documentos;
+- avisar uma pessoa de confiança.
 
-  
+Se você está em fase de suspeita, esta semana serve para observar sinais e construir uma boa avaliação.
 
-**As 4 Semanas:**
+Se você já recebeu o diagnóstico, esta semana serve para transformar o documento em informação útil para casa, escola e profissionais.
 
-  
+### Se você está em fase de suspeita...
 
-\- **Semana 1: Respire e Organize** — Processar emoções, reunir documentos e criar sua base de informações confiáveis.
+- leve para a avaliação exemplos concretos, registros e linha do tempo;
+- marque o que é recorrente, o que é recente e o que piora em certos contextos;
+- use a semana para sair da impressão geral e chegar em dados observáveis.
 
-\- **Semana 2: Monte Sua Equipe** — Identificar e agendar os profissionais certos (neuropediatra, psicólogo, terapeuta ocupacional).
+### Se você já recebeu o diagnóstico...
 
-\- **Semana 3: Estruture o Dia a Dia** — Implementar rotinas visuais, ajustar a casa e preparar conversas com a escola.
+- leia o laudo procurando o que já está confirmado e o que ficou em aberto;
+- transforme dúvidas em perguntas sobre próximos passos;
+- organize o que precisa ir para retorno, nova consulta ou encaminhamento.
 
-\- **Semana 4: Conecte-se e Planeje** — Entrar em comunidades de apoio, registrar progressos e definir os próximos passos.
+### O que evitar
 
-  
+- tentar entender tudo sozinha;
+- escolher mil prioridades ao mesmo tempo;
+- responder a cada dúvida com internet;
+- entrar em disputa sobre rótulos antes de organizar a realidade da criança.
 
-Cada semana resolve um pedaço do caos. E no final do mês, você não está mais perdida.
+### Como saber se houve progresso
 
-  
+Você avança quando:
 
-Você está no caminho.
+- consegue resumir o laudo ou a suspeita em poucas frases;
+- tem uma linha do tempo simples da criança;
+- sabe quais são as três maiores urgências do momento;
+- já existe uma pasta básica com os documentos principais.
 
-  
+### Dia 1: escrever o que você entendeu
 
-\---
+Pegue o laudo ou relatório e responda:
 
-  
+- Qual foi a conclusão principal?
+- Quais observações apareceram sobre comunicação?
+- Quais observações apareceram sobre comportamento, interesses ou sensibilidade?
+- Quais encaminhamentos foram recomendados?
+- O que eu não entendi?
 
-## PARTE 3: O Conteúdo Central — Aplicação Prática
+Se houver termos técnicos, anote para perguntar depois. Não tente interpretar tudo sozinha.
 
-  
+### Dia 2: montar o histórico da criança
 
-### SEMANA 1: Respire e Organize
+Escreva uma linha do tempo simples:
 
-  
+- gestação e nascimento, se houver algo relevante;
+- desenvolvimento da fala;
+- sono;
+- alimentação;
+- brincadeiras preferidas;
+- interesses intensos;
+- sensibilidades a som, luz, textura, cheiro ou toque;
+- momentos de crise ou sobrecarga;
+- adaptação escolar;
+- avaliações ou terapias anteriores.
 
-**Objetivo da Semana:** Sair do choque emocional e criar uma base sólida de informações para as próximas decisões.
+Esse histórico ajuda profissionais a enxergarem a criança inteira, não só o laudo.
 
-  
+**Versão rápida:** escreva só cinco linhas: fala, sono, alimentação, escola e crises/sobrecarga.
 
-#### Dia 1-2: Permita-se Sentir
+**Exemplo preenchido:**
 
-  
+- Fala: começou a falar palavras soltas, mas usa pouco para pedir ajuda.
+- Sono: demora para dormir e acorda de madrugada algumas vezes.
+- Alimentação: aceita poucos alimentos e rejeita texturas molhadas.
+- Escola: participa melhor em atividades previsíveis, sofre com barulho.
+- Sobrecarga: chora e se joga no chão quando há mudança sem aviso.
 
-Antes de fazer qualquer coisa, você precisa respirar.
+### Dia 3: separar prioridades
 
-  
+Nem tudo precisa ser prioridade ao mesmo tempo.
 
-O diagnóstico é um luto. Não do seu filho, mas da expectativa que você tinha. E está tudo bem sentir isso.
+Escolha até três focos iniciais:
 
-  
+- comunicação;
+- sono;
+- alimentação;
+- seletividade alimentar;
+- crises e sobrecarga;
+- autonomia;
+- escola;
+- interação social;
+- segurança;
+- regulação sensorial.
 
-**Tarefa:**
+Se tudo parece urgente, comece pelo que mais afeta segurança, saúde e rotina diária.
 
-\- Reserve 30 minutos sozinha. Escreva em um papel tudo o que está sentindo. Medo, raiva, culpa, alívio. Tudo.
+### Dia 4: preparar perguntas para consulta
 
-\- Não julgue. Apenas coloque para fora.
+Leve perguntas escritas. Na consulta, a emoção pode fazer você esquecer.
 
-  
+Perguntas úteis:
 
-#### Dia 3-4: Reúna os Documentos
+- O que este laudo afirma com segurança?
+- Há algo que ainda precisa ser investigado?
+- Quais sinais merecem atenção nos próximos meses?
+- Quais terapias ou apoios são prioridade neste momento?
+- Existe alguma recomendação para escola?
+- Que tipo de relatório devo pedir aos profissionais?
+- Quando devemos reavaliar o plano?
 
-  
+### Apoio imediato
 
-Agora vamos organizar o que você já tem.
+Use o **Mapa de 30 dias em uma página** antes da primeira consulta para enxergar o que é hoje, o que é esta semana e o que pode esperar.
 
-  
+Use também as **Perguntas rápidas para profissionais** se quiser sair da consulta com um roteiro curto e objetivo.
 
-**Checklist de Documentos:**
+### Dia 5: organizar a pasta
 
-\- \[ \] Laudo do diagnóstico (cópia física e digital)
+Crie uma estrutura simples:
 
-\- \[ \] Relatórios de avaliações anteriores (pediatra, escola, outros)
+- Laudos e relatórios.
+- Escola.
+- Saúde.
+- Terapias.
+- Dúvidas.
+- Registros da rotina.
 
-\- \[ \] Carteirinha do plano de saúde (se tiver)
+Use pasta física, Google Drive, Notion, caderno ou o que for viável. O melhor sistema é o que você consegue manter.
 
-\- \[ \] Caderneta de vacinação
+### Apoio imediato
 
-\- \[ \] Documentos pessoais da criança (RG, CPF, certidão)
+Use o **Checklist de documentos** aqui, antes de criar a pasta final. Ele evita esquecer o que depois faz falta.
 
-  
+### Dia 6: conversar com uma pessoa de confiança
 
-**Crie uma pasta física e uma digital. Tudo em um lugar só.**
+Escolha uma pessoa que consiga ouvir sem julgar. Diga de forma direta:
 
-  
+"Recebemos uma suspeita ou um diagnóstico de autismo. Ainda estamos entendendo os próximos passos. Neste momento, o que mais ajuda é apoio prático e respeito. Não precisamos de comparação, culpa ou promessa milagrosa."
 
-#### Dia 5-7: Filtre Suas Fontes de Informação
+Se a pessoa minimizar, não tente educar toda a família agora. Proteja sua energia.
 
-  
+### Apoio imediato
 
-Chegou a hora de cortar o ruído.
+Use o **Roteiro para familiares** se a conversa precisar ser mais curta ou se houver risco de julgamento.
 
-  
+### Dia 7: revisar a semana
 
-**Tarefa:**
+Pergunte:
 
-\- Saia de grupos de WhatsApp que te deixam ansiosa.
+- O que ficou mais claro?
+- Qual dúvida continua aberta?
+- Qual documento ainda falta?
+- Qual é a próxima ação pequena?
 
-\- Pare de seguir perfis que vendem "cura milagrosa".
+### Apoio imediato
 
-\- Escolha 2 fontes confiáveis para seguir (como o Vivências Azuis, por exemplo).
+Use o **Diário semanal** por 7 dias antes de revisar prioridades. Ele mostra padrão, não impressão solta.
 
-  
+### Checklist da Semana 1
 
-**Regra de Ouro:** Se a informação te deixa com mais medo do que clareza, ela não serve para você agora.
+- [ ] Li o laudo e anotei o que entendi.
+- [ ] Listei dúvidas sem tentar resolver tudo sozinha.
+- [ ] Montei uma linha do tempo da criança.
+- [ ] Escolhi até três prioridades iniciais.
+- [ ] Organizei documentos em uma pasta.
+- [ ] Conversei com pelo menos uma pessoa de confiança.
 
-  
+Se você ainda não definiu profissionais, tudo bem. Nesta etapa, o objetivo é transformar informação solta em mapa.
 
-**Checklist da Semana 1:**
+## SEMANA 2: PROFISSIONAIS, TERAPIAS E CRITÉRIO
 
-\- \[ \] Processei minhas emoções no papel
+### Missão 2: escolher apoio sem cair em cilada
 
-\- \[ \] Organizei todos os documentos em uma pasta
+**Resultado esperado:** você termina a semana sabendo quais áreas investigar, quais perguntas fazer e quais sinais de alerta observar antes de contratar.
 
-\- \[ \] Filtrei minhas fontes de informação
+**Tempo estimado:** 20 a 30 minutos por bloco de pesquisa ou conversa.
 
-\- \[ \] Defini 2 fontes confiáveis para seguir
+### Objetivo da semana
 
-  
+Nesta semana, o foco é entender quais profissionais podem ajudar e como escolher com critério. A ideia não é montar uma agenda impossível. É começar com prioridades.
 
-\---
+### O que isso resolve
 
-  
+Você para de escolher no impulso e passa a comparar opções com critérios mais claros.
 
-### SEMANA 2: Monte Sua Equipe
+### O que fazer agora
 
-  
+- mapear quais áreas fazem sentido agora;
+- fazer perguntas objetivas antes de contratar;
+- comparar respostas, não só nomes;
+- observar sinais de alerta;
+- decidir o próximo passo possível, não o pacote inteiro.
 
-**Objetivo da Semana:** Identificar os profissionais essenciais e dar os primeiros passos para montar a rede de apoio multidisciplinar.
+Se você está em fase de suspeita, priorize profissionais que ajudem a avaliar e explicar hipóteses com cuidado.
 
-  
+Se você já recebeu o diagnóstico, priorize profissionais que transformem o diagnóstico em plano, objetivo e acompanhamento.
 
-#### Dia 8-10: Entenda Quem Você Precisa
+### Se você está em fase de suspeita...
 
-  
+- procure quem ajude a avaliar desenvolvimento, comunicação e perfil da criança;
+- pergunte como a hipótese será investigada antes de qualquer pacote terapêutico;
+- priorize quem aceita acompanhar a observação com a família.
 
-O diagnóstico é só o começo. Agora você precisa de uma equipe.
+### Se você já recebeu o diagnóstico...
 
-  
+- procure quem converta o diagnóstico em objetivos, frequência e monitoramento;
+- peça um caminho claro de coordenação entre terapia, família e escola;
+- confirme se o profissional entrega relatório e reavaliação periódica.
 
-**Os 4 Profissionais Essenciais:**
+### O que evitar
 
-  
+- contratar por medo;
+- fechar pacote antes de entender objetivos e frequência;
+- aceitar promessa de cura ou reversão garantida;
+- transformar método em torcida.
 
-1\. **Neuropediatra ou Psiquiatra Infantil** — Acompanhamento médico, prescrição (se necessário) e laudos.
+### Como saber se houve progresso
 
-2\. **Psicólogo (com especialização em TEA)** — Terapia comportamental (ABA, por exemplo) e desenvolvimento de habilidades sociais.
+Você avança quando consegue dizer:
 
-3\. **Fonoaudiólogo** — Comunicação, linguagem e questões sensoriais orais.
+- quem pode ajudar agora;
+- por que essa área faz sentido;
+- quais perguntas você já fez;
+- qual resposta soou clara e qual soou apressada.
 
-4\. **Terapeuta Ocupacional** — Integração sensorial, coordenação motora e autonomia.
+### Profissionais que podem fazer parte da rede
 
-  
+Dependendo da idade, necessidades e contexto da criança, a rede pode incluir:
 
-**Tarefa:** Pesquise e anote 2 nomes de cada profissional. Pergunte em grupos confiáveis, peça indicação ao médico que fez o diagnóstico.
+- neuropediatra ou psiquiatra infantil;
+- psicólogo com experiência em desenvolvimento infantil e TEA;
+- fonoaudiólogo;
+- terapeuta ocupacional;
+- psicopedagogo;
+- nutricionista;
+- fisioterapeuta;
+- equipe escolar.
 
-  
+Nem toda criança precisa de todos ao mesmo tempo. A ordem deve nascer das necessidades atuais.
 
-#### Dia 11-12: Prepare Suas Perguntas
+### Como avaliar uma indicação
 
-  
+Antes de contratar, pergunte:
 
-Antes de ligar para agendar, prepare-se.
+- Você tem experiência com crianças autistas?
+- Como avalia as necessidades antes de propor frequência?
+- Como envolve a família no processo?
+- Como define objetivos terapêuticos?
+- Como mede evolução?
+- Você entrega relatório?
+- Como conversa com escola e outros profissionais?
 
-  
+Boas respostas costumam ser específicas, cuidadosas e abertas a colaboração.
 
-**Lista de Perguntas para o Primeiro Contato:**
+**Resposta boa:** "Antes de definir frequência, quero avaliar comunicação, rotina, regulação e o que a família já observa. Depois combinamos objetivos para três meses e revisamos com relatório."
 
-\- Você tem experiência com crianças no espectro?
+**Resposta ruim:** "Toda criança autista precisa do mesmo pacote. Se começar agora, dá para reverter muita coisa. Mas precisa fechar hoje para não perder tempo."
 
-\- Qual abordagem você utiliza?
+A resposta boa mostra critério, avaliação e acompanhamento. A resposta ruim usa medo, pressa e promessa ampla.
 
-\- Quantas sessões por semana você recomenda?
+### Sinais de alerta
 
-\- Qual o valor da consulta? Atende por convênio?
+Tenha cuidado com profissionais ou serviços que:
 
-\- Tem disponibilidade para atender nos próximos 15 dias?
+- prometem cura;
+- garantem resultado igual para toda criança;
+- culpam os pais;
+- dizem que só um método funciona;
+- pressionam compra imediata;
+- desqualificam outros profissionais sem explicar;
+- recusam compartilhar objetivos e evolução.
 
-  
+Uma intervenção séria pode exigir intensidade, mas precisa ser explicada com clareza.
 
-**Anote as respostas. Compare. Escolha.**
+### 3 armadilhas das primeiras semanas
 
-  
+1. **Comprar urgência:** contratar algo porque alguém disse "cada dia perdido piora tudo". Cuidado com medo como argumento de venda.
+2. **Terceirizar toda decisão:** esperar que um profissional resolva tudo sem explicar objetivos, indicadores e papel da família.
+3. **Virar guerra de método:** entrar em discussões infinitas sobre uma abordagem antes de entender a necessidade concreta da criança.
 
-#### Dia 13-14: Agende as Primeiras Consultas
+### Como comparar opções
 
-  
+Monte uma tabela simples:
 
-Não precisa agendar todos no mesmo dia. Mas precisa agendar.
+- Nome do profissional.
+- Área.
+- Experiência com TEA.
+- Local ou online.
+- Valor.
+- Disponibilidade.
+- Atende convênio?
+- Entrega relatório?
+- Impressão após conversa.
 
-  
+Não escolha só pelo preço ou só pela fama. Escolha pela combinação de competência, clareza, acesso e viabilidade para sua família.
 
-**Meta:** Pelo menos 2 consultas agendadas até o final da semana.
+### Perguntas para a primeira consulta
 
-  
+Leve estas perguntas:
 
-**Checklist da Semana 2:**
+- Qual sua leitura inicial sobre as necessidades da criança?
+- Quais objetivos você sugeriria para os próximos três meses?
+- O que a família pode observar em casa?
+- Como vamos saber se está funcionando?
+- Há algo que precisa ser avaliado por outro profissional?
+- Com que frequência você recomenda acompanhamento e por quê?
+- Que relatório você pode fornecer para a escola?
 
-\- \[ \] Identifiquei os 4 profissionais essenciais
+### Checklist da Semana 2
 
-\- \[ \] Pesquisei e anotei 2 nomes de cada
+- [ ] Listei quais áreas parecem prioridade agora.
+- [ ] Pedi indicações em fontes confiáveis.
+- [ ] Conversei com pelo menos dois profissionais ou serviços.
+- [ ] Fiz perguntas sobre experiência, objetivos e relatórios.
+- [ ] Evitei decisões baseadas em medo ou promessa de cura.
+- [ ] Escolhi o primeiro próximo passo profissional possível.
 
-\- \[ \] Preparei minha lista de perguntas
+Comparar duas respostas com critério já reduz bastante a chance de fechar um pacote por desespero.
 
-\- \[ \] Agendei pelo menos 2 primeiras consultas
+## SEMANA 3: CASA, ROTINA E ESCOLA
 
-  
+### Missão 3: preparar casa, rotina e escola
 
-\---
+**Resultado esperado:** você termina a semana com padrões observados, uma rotina visual simples testada e uma conversa escolar mais preparada.
 
-  
+**Tempo estimado:** observação leve ao longo do dia + 20 minutos para organizar a mensagem.
 
-### SEMANA 3: Estruture o Dia a Dia
+### Objetivo da semana
 
-  
+Nesta semana, você vai observar a rotina com mais cuidado e fazer ajustes pequenos. Mudanças simples podem reduzir sobrecarga e facilitar a comunicação.
 
-**Objetivo da Semana:** Implementar pequenas mudanças na rotina que trazem previsibilidade e reduzem crises.
+### O que isso resolve
 
-  
+Você tira a rotina do improviso e passa a observar o que ajuda, o que atrapalha e o que precisa ser combinado com a escola.
 
-#### Dia 15-17: Crie Rotinas Visuais
+### O que fazer agora
 
-  
+- observar padrões antes de mudar tudo;
+- testar uma rotina visual simples;
+- criar um espaço de regulação;
+- usar frases mais curtas e escolhas limitadas;
+- preparar a conversa com a escola.
 
-Crianças no espectro processam melhor informações visuais do que verbais.
+### Se você está em fase de suspeita...
 
-  
+- observe em quais momentos a rotina desorganiza mais;
+- registre gatilhos de sobrecarga para levar à avaliação ou consulta;
+- teste mudanças pequenas, sem transformar a casa inteira.
 
-**Tarefa:** Crie um quadro de rotina visual para o dia.
+### Se você já recebeu o diagnóstico...
 
-  
+- compartilhe com a escola o que já funciona e o que piora a participação;
+- peça alinhamento sobre adaptações, comunicação e momentos de transição;
+- use o que foi observado em casa para pedir apoio mais específico.
 
-**Como fazer:**
+### O que evitar
 
-\- Use fotos ou desenhos simples (acordar, escovar dentes, café, brincar, almoço...).
+- interpretar cada crise como falha;
+- mudar dez coisas ao mesmo tempo;
+- usar rotina visual como punição;
+- mandar mensagem para a escola sem um pedido claro.
 
-\- Cole em sequência em um quadro na parede.
+### Como saber se houve progresso
 
-\- Toda manhã, mostre para a criança o que vai acontecer no dia.
+Você avança quando percebe pelo menos um destes sinais:
 
-  
+- menos atrito em transições;
+- mais previsibilidade;
+- melhor resposta a instruções curtas;
+- uma conversa escolar mais objetiva.
 
-**Dica:** Use aplicativos gratuitos como Canva para criar os cartões visuais.
+### Observar antes de mudar
 
-  
+Por três dias, anote:
 
-#### Dia 18-20: Ajuste o Ambiente da Casa
+- horários de sono;
+- alimentação;
+- momentos de maior irritação;
+- barulhos, luzes, roupas ou texturas que incomodam;
+- situações que ajudam a acalmar;
+- interesses que engajam;
+- formas de comunicação usadas pela criança.
 
-  
+O objetivo não é vigiar a criança. É perceber padrões.
 
-Pequenas mudanças no ambiente podem reduzir sobrecarga sensorial.
+### Rotina visual simples
 
-  
+Algumas crianças se beneficiam de previsibilidade visual. Você pode começar com poucos cartões:
 
-**Checklist de Ajustes:**
+- acordar;
+- banheiro;
+- comer;
+- escola;
+- brincar;
+- banho;
+- dormir.
 
-\- \[ \] Reduza luzes muito fortes (use lâmpadas mais suaves)
+Use fotos reais, desenhos simples ou palavras, conforme a compreensão da criança. Mostre a sequência e avise mudanças com antecedência quando possível.
 
-\- \[ \] Diminua ruídos de fundo (TV ligada o tempo todo, por exemplo)
+### Cantinho de regulação
 
-\- \[ \] Crie um "cantinho da calma" (um espaço seguro com almofadas, brinquedos sensoriais)
+Crie um espaço simples de pausa:
 
-\- \[ \] Organize os brinquedos (menos opções visíveis = menos sobrecarga)
+- menos luz;
+- menos barulho;
+- almofada ou tapete;
+- brinquedo sensorial seguro;
+- livro ou objeto de interesse;
+- sem punição.
 
-  
+Esse espaço não deve ser usado como castigo. Ele serve para reduzir sobrecarga.
 
-#### Dia 21: Prepare a Conversa com a Escola
+### Comunicação em casa
 
-  
+Tente frases curtas e concretas:
 
-Se seu filho está na escola, você vai precisar conversar com a coordenação.
+- "Agora banho."
+- "Depois comida."
+- "Mais cinco minutos."
+- "Você quer água ou suco?"
 
-  
+Quando possível, ofereça escolhas limitadas. Muitas opções podem aumentar ansiedade.
 
-**O Que Levar:**
+### Mensagem para a escola
 
-\- Cópia do laudo
+Você pode enviar algo assim:
 
-\- Lista de estratégias que funcionam em casa
+"Olá, gostaria de marcar uma conversa sobre o acompanhamento do(a) [nome da criança]. Recebemos uma suspeita ou um diagnóstico de TEA e queremos alinhar estratégias de apoio na rotina escolar. Posso levar o laudo/relatório e compartilhar o que tem funcionado em casa. Gostaria também de entender como a escola observa comunicação, participação, adaptação e momentos de sobrecarga."
 
-\- Pedido de reunião para discutir adaptações
+### O que pedir na reunião escolar
 
-  
+Leve:
 
-**O Que Pedir:**
+- cópia do laudo ou relatório, se desejar compartilhar;
+- lista de estratégias que funcionam em casa;
+- principais sensibilidades observadas;
+- dúvidas sobre rotina escolar;
+- pedido de acompanhamento e comunicação frequente.
 
-\- Acompanhamento com profissional de apoio (se necessário)
+Pergunte:
 
-\- Adaptações na rotina e nas atividades
+- Em quais momentos a criança participa melhor?
+- O que costuma gerar sobrecarga?
+- Como a escola comunica mudanças de rotina?
+- Há adaptações possíveis em atividade, tempo, ambiente ou comunicação?
+- Como família e escola vão trocar informações?
 
-\- Comunicação constante entre escola e família
+Exemplos de adaptações concretas para discutir:
 
-  
+- avisar mudanças de rotina com antecedência;
+- permitir pausa em ambiente mais calmo;
+- reduzir cópia extensa quando isso não for o objetivo da atividade;
+- usar apoio visual para sequência de tarefas;
+- combinar um canal semanal de comunicação família-escola;
+- observar recreio, entrada e saída, não só sala de aula.
 
-**Checklist da Semana 3:**
+### Checklist da Semana 3
 
-\- \[ \] Criei o quadro de rotina visual
+- [ ] Observei padrões de sono, alimentação, comunicação e sobrecarga.
+- [ ] Testei uma rotina visual simples.
+- [ ] Criei ou ajustei um espaço de regulação.
+- [ ] Usei frases mais curtas e escolhas limitadas.
+- [ ] Enviei ou preparei uma mensagem para a escola.
+- [ ] Listei perguntas para a reunião escolar.
 
-\- \[ \] Fiz ajustes no ambiente da casa
+Se a escola ainda não respondeu, volte ao pedido por escrito. Você já tirou a conversa do improviso.
 
-\- \[ \] Preparei a conversa com a escola
+## SEMANA 4: BRASIL REAL, DIREITOS E PRÓXIMOS 60 DIAS
 
-\- \[ \] Agendei reunião com a coordenação (se aplicável)
+### Missão 4: fechar o primeiro ciclo
 
-  
+**Resultado esperado:** você termina os 30 dias com progresso registrado, prioridades revistas e um plano realista para os próximos 60 dias.
 
-\---
+**Tempo estimado:** 30 a 45 minutos para revisar e planejar.
 
-  
+### Objetivo da semana
 
-### SEMANA 4: Conecte-se e Planeje
+Nesta semana, você vai olhar para o que foi organizado e transformar isso em plano. A meta é sair dos 30 dias com continuidade, não com perfeição.
 
-  
+### O que isso resolve
 
-**Objetivo da Semana:** Construir sua rede de apoio e definir os próximos passos com clareza.
+Você transforma o primeiro mês em um caminho que conversa com a rede pública, a escola e os próximos passos da família.
 
-  
+### O que fazer agora
 
-#### Dia 22-24: Entre em Uma Comunidade de Apoio
+- registrar o que mudou no mês;
+- revisar prioridades;
+- mapear direitos e caminhos de apoio;
+- fechar os próximos 60 dias com ações pequenas;
+- deixar pronto o que a escola, a UBS ou outro serviço pode pedir.
 
-  
+Se você está em fase de suspeita, esta semana ajuda a localizar o fluxo de avaliação e os registros que sustentam os encaminhamentos.
 
-Você não precisa fazer isso sozinha.
+Se você já recebeu o diagnóstico, esta semana ajuda a usar a documentação para acesso a apoio, escola e direitos.
 
-  
+### Se você está em fase de suspeita...
 
-**Tarefa:** Entre em pelo menos 1 comunidade de famílias no espectro.
+- leve sua linha do tempo e registros para a avaliação ou retorno;
+- confirme qual profissional fecha melhor a hipótese e em que prazo;
+- organize o que falta para seguir o fluxo de diagnóstico ou investigação.
 
-  
+### Se você já recebeu o diagnóstico...
 
-**Onde encontrar:**
+- use o laudo para pedir adaptação escolar, encaminhamentos e acesso a serviços;
+- veja se cabe CIPTEA, CRAS ou orientação para benefício, quando houver critério;
+- feche os próximos 60 dias com ações ligadas a apoio e acesso, não só observação.
 
-\- Grupos no Facebook (procure por "mães de autistas" + sua cidade)
+### O que evitar
 
-\- Comunidades online como a do Vivências Azuis
+- tratar direitos como detalhe tardio;
+- esperar o plano perfeito antes de pedir apoio;
+- assumir que a rede funciona igual em todo lugar;
+- deixar documentos importantes espalhados.
 
-\- Associações locais de autismo
+### Como saber se houve progresso
 
-  
+Você avança quando consegue sair da pergunta "e agora?" para uma lista curta de ações, responsáveis e próximos passos.
 
-**Regra:** Observe por alguns dias antes de se expor. Veja se o ambiente é acolhedor e respeitoso.
+### Registro simples de progresso
 
-  
+Uma vez por semana, anote:
 
-#### Dia 25-27: Registre o Progresso
+- uma coisa que ficou mais clara;
+- uma pequena evolução da criança;
+- uma situação difícil;
+- uma estratégia que ajudou;
+- uma dúvida para levar a profissionais;
+- uma prioridade para a próxima semana.
 
-  
+Pequenas evoluções contam. Dormir melhor uma noite, aceitar uma transição com menos sofrimento, apontar, pedir ajuda, brincar mais tempo ou tolerar um ambiente por alguns minutos a mais são dados importantes.
 
-Você fez muito nessas 4 semanas. Hora de documentar.
+### Revisar prioridades
 
-  
+Volte aos três focos escolhidos na Semana 1. Pergunte:
 
-**Tarefa:** Preencha o Diário de Progresso (incluído no final deste guia).
+- Eles ainda são os principais?
+- Algum deles ficou menos urgente?
+- Surgiu algo relacionado a segurança ou saúde?
+- O que depende de profissional?
+- O que a família consegue ajustar sozinha?
 
-  
+### Brasil real e direitos
 
-**O que anotar:**
+Esta seção não substitui orientação jurídica, médica, assistencial ou escolar. Ela serve para você saber por onde começar a perguntar e quais documentos manter organizados.
 
-\- O que você conquistou
+Um caminho comum começa pela **UBS** ou unidade de saúde de referência da família. Leve o laudo ou relatório, a caderneta de saúde, relatórios anteriores e sua lista de dúvidas. Peça orientação sobre os encaminhamentos disponíveis no município.
 
-\- Como você se sente agora vs. Dia 1
+Dependendo da cidade, da idade, da necessidade e da organização da rede local, a família pode ser encaminhada para:
 
-\- Pequenas vitórias do seu filho
+- atenção especializada;
+- **CER** ou serviço de reabilitação;
+- **CAPS** ou **CAPSi**, quando houver sofrimento psíquico, crise ou necessidade de cuidado em saúde mental;
+- serviços conveniados ou parceiros da rede local;
+- assistência social, quando houver necessidade de benefícios, orientação familiar ou vulnerabilidade.
 
-\- Próximos passos que você identificou
+Perguntas úteis na UBS:
 
-  
+- Qual é o fluxo do município para criança com suspeita ou diagnóstico de TEA?
+- Existe CER, CAPSi, ambulatório especializado ou serviço de reabilitação de referência?
+- Preciso de novo encaminhamento ou o laudo atual basta?
+- Como acompanho fila, retorno ou regulação?
+- Há equipe multiprofissional disponível?
 
-#### Dia 28-30: Defina os Próximos 30 Dias
+Direitos e próximos passos:
 
-  
+- confirme no seu município como emitir a **CIPTEA** e que documento pedem;
+- guarde laudo, relatório, mensagem, protocolo e comprovantes de atendimento;
+- se houver necessidade de apoio financeiro ou social, procure o **CRAS** ou a assistência social local;
+- para ampliar entendimento sobre direitos, consulte a **Lei 12.764/2012** e a **Lei Brasileira de Inclusão** no site do **Planalto**;
+- para fluxos de cuidado e atenção, consulte materiais do **Ministério da Saúde** sobre TEA e rede de atenção;
+- quando a rede local mudar o fluxo, peça o nome do serviço, o endereço e o prazo estimado.
 
-Agora você tem clareza. Hora de planejar o próximo mês.
+Na escola, guarde:
 
-  
+- laudo ou relatório entregue;
+- mensagens enviadas;
+- atas de reunião;
+- combinados por escrito;
+- relatórios pedagógicos;
+- registros de adaptação, sobrecarga, participação e comunicação.
 
-**Perguntas para Responder:**
+Quando pedir apoio, escreva de forma objetiva:
 
-\- Quais terapias vou iniciar?
+"Gostaria de entender quais adaptações a escola pode oferecer e como vamos acompanhar se elas estão ajudando. Podemos registrar os combinados por escrito?"
 
-\- Preciso ajustar algo na rotina?
+### Fontes confiáveis para continuar
 
-\- Que dúvidas ainda tenho e onde vou buscar respostas?
+- **Planalto:** Lei 12.764/2012 e Lei Brasileira de Inclusão.
+- **Ministério da Saúde:** materiais sobre TEA, atenção primária e rede de cuidado.
+- **Portal estadual ou municipal:** orientações sobre CIPTEA e fluxos locais.
+- **CRAS / assistência social local:** orientação sobre benefícios, documentação e rede de apoio.
 
-\- Qual será minha prioridade número 1 no próximo mês?
+### Organizar os próximos 60 dias
 
-  
+Use o título:
 
-**Checklist da Semana 4:**
+**Próximos 60 dias**
 
-\- \[ \] Entrei em uma comunidade de apoio
+Escolha até cinco ações:
 
-\- \[ \] Preenchi o Diário de Progresso
+- marcar consulta ou retorno;
+- iniciar avaliação terapêutica;
+- pedir relatório para escola;
+- criar rotina visual mais completa;
+- ajustar sono ou alimentação com orientação;
+- organizar reunião com coordenação;
+- buscar comunidade confiável;
+- revisar plano após um mês.
 
-\- \[ \] Defini minha prioridade para os próximos 30 dias
+Cada ação precisa ter responsável e próximo passo.
 
-\- \[ \] Celebrei as pequenas vitórias deste mês
+Exemplo:
 
-  
+- Ação: marcar neuropediatra.
+- Responsável: mãe/pai/cuidador.
+- Próximo passo: ligar para duas indicações até sexta.
 
-\---
+### Comunidade de apoio
 
-  
+Comunidade pode ajudar muito, mas escolha com cuidado.
 
-## PARTE 4: Conclusão — A Isca para o Premium
+Procure espaços que:
 
-  
+- acolhem dúvidas sem julgamento;
+- respeitam pessoas autistas;
+- não transformam tudo em guerra de método;
+- não pressionam compra;
+- aceitam diferentes realidades familiares.
 
-### Capítulo 4: Você Não Está Mais Perdida
+Entre, observe e só depois participe.
 
-  
+### Plano B
 
-Trinta dias atrás, você estava paralisada.
+Alguns obstáculos aparecem cedo. Tenha uma resposta inicial para cada um:
 
-  
+- **Família minimiza:** reduza explicações longas e peça ajuda concreta: levar à consulta, cuidar de irmãos, respeitar rotina.
+- **Escola nega conversa:** formalize pedido por mensagem ou e-mail e solicite reunião com coordenação.
+- **Plano de saúde cria barreira:** peça negativa por escrito, protocolo de atendimento e relatório profissional com justificativa.
+- **Profissional pressiona pacote caro:** diga que vai comparar opções e peça objetivos por escrito antes de decidir.
+- **Você travou:** volte ao Plano de 30 dias em uma página e escolha só a próxima ação.
 
-Hoje, você tem uma pasta de documentos organizada. Tem consultas agendadas. Tem uma rotina visual funcionando. Tem uma comunidade te apoiando.
+### Fechamento dos 30 dias
 
-  
+Você não precisa terminar este mês com todas as respostas. Um bom fechamento é ter menos ruído e mais direção.
 
-Você saiu do caos.
+Se você organizou documentos, fez perguntas melhores, evitou promessas perigosas, conversou com a escola ou iniciou busca profissional com critério, você já mudou o ponto de partida.
 
-  
+### Checklist da Semana 4
 
-Mas agora vem a próxima pergunta:
+- [ ] Registrei pequenas evoluções e dificuldades.
+- [ ] Revisei as prioridades escolhidas na Semana 1.
+- [ ] Defini até cinco ações para os próximos 60 dias.
+- [ ] Escolhi responsáveis e próximos passos.
+- [ ] Avaliei uma comunidade de apoio com cuidado.
+- [ ] Fechei o mês sem exigir perfeição da minha família.
 
-  
+Você não terminou com todas as respostas. Você terminou com menos ruído, menos impulso e mais critérios para a próxima decisão.
 
-**E os próximos 6 meses? E o próximo ano?**
+### Apoio imediato
 
-  
+Use o **Plano dos próximos 60 dias** ao fechar a Semana 4. Ele transforma o mês em sequência clara de ações, responsáveis e próximos passos.
 
-Porque a jornada do autismo não é uma corrida de 30 dias. É uma maratona.
+## FAMÍLIA INTEIRA
 
-  
+### O que isso resolve
 
-E você vai precisar de mais do que um guia. Você vai precisar de um sistema completo que te acompanhe em cada fase.
+O diagnóstico ou a suspeita mexe com toda a casa. Esta seção ajuda irmãos, cuidadores e rede de apoio a sair do improviso.
 
-  
+### O que fazer agora
 
-Um lugar onde você tenha acesso a:
+- explicar de forma simples o que está acontecendo;
+- proteger o tempo dos irmãos;
+- pedir ajuda prática para outro adulto quando houver;
+- combinar uma linguagem comum dentro de casa;
+- deixar claro que a criança não virou problema nem objeto de correção.
 
-  
+### O que evitar
 
-\- Artigos atualizados sobre cada desafio que surgir (sono, alimentação, escola, adolescência).
+- transformar irmãos em tradutores, terapeutas ou responsáveis;
+- pedir que todo mundo seja forte o tempo todo;
+- esconder tudo das pessoas que convivem com a família;
+- tentar sustentar o peso sozinho.
 
-\- Ferramentas práticas para cada nova etapa.
+### Como saber se houve progresso
 
-\- Uma comunidade ativa, com respostas rápidas para suas dúvidas do dia a dia.
+Você percebe avanço quando a família para de reagir no susto e passa a combinar o básico: quem ajuda, como ajuda e o que não cabe em cada pessoa.
 
-\- Profissionais validados que você pode consultar quando precisar.
+### Irmãos
 
-  
+Irmãos podem perceber mudanças na rotina antes de entender o motivo. O objetivo não é transformar o irmão em cuidador, nem esconder tudo dele.
 
-**Esse lugar existe. E se chama Clareza no Espectro.**
+Uma explicação simples pode ser:
 
-  
+"Seu irmão/sua irmã percebe algumas coisas de um jeito diferente e pode precisar de ajuda em momentos que parecem fáceis para outras pessoas. Isso não quer dizer que você perdeu seu lugar. A gente também vai cuidar do seu tempo, das suas dúvidas e das suas necessidades."
 
-É a evolução natural deste guia. É o próximo passo lógico para quem quer sair da sobrevivência e entrar na construção de uma vida plena e confiante ao lado do seu filho.
+Cuidados importantes:
 
-  
+- reserve pequenos momentos individuais com irmãos, mesmo que curtos;
+- não peça que a criança "seja madura" o tempo todo;
+- explique mudanças de rotina com antecedência;
+- valide ciúme, raiva ou confusão sem culpa;
+- evite transformar irmãos em tradutores, terapeutas ou responsáveis.
 
-Se você sente que está pronta para ter um suporte contínuo, um filtro permanente contra o ruído e uma comunidade que caminha com você...
+Frase útil:
 
-  
+"Você também pode achar isso difícil. Pode perguntar. Pode sentir. A família está aprendendo junto."
 
-Conheça o Clareza no Espectro em: \[link\]
+### Cuidador também precisa de plano
 
-  
+O diagnóstico reorganiza a vida da criança, mas também mexe com sono, trabalho, dinheiro, casamento, família e culpa de quem cuida.
 
-Mas por agora, celebre.
+Autocuidado aqui não é conforto extra. É o mínimo necessário para você conseguir continuar.
 
-  
+Plano mínimo de cuidador:
 
-Você fez o mais difícil: começou.
+- escolher uma pessoa para pedir ajuda prática;
+- dormir quando houver chance real, sem tentar pesquisar até madrugada;
+- comer algo simples antes de resolver burocracia;
+- separar 20 minutos por semana para revisar o plano, não todos os dias;
+- anotar dúvidas em vez de carregar tudo na cabeça;
+- dividir tarefas quando houver outro adulto disponível.
 
-  
+Mensagem para pedir ajuda:
 
-\---
+"Eu não preciso que você resolva o diagnóstico. Preciso de ajuda prática esta semana: levar em uma consulta, ficar com [nome] por uma hora, buscar documento ou preparar uma refeição."
 
-  
+Pedir ajuda prática não é fracasso. É dividir a carga de um período pesado.
 
-## Bônus Inclusos
+## MATERIAIS INTERATIVOS
 
-  
+Use estes materiais como ferramentas de trabalho, no momento em que a jornada pedir.
 
-### BÔNUS 1: Checklists Semanais Destacáveis
+### Quando usar cada material
 
-  
+- **Checklist das primeiras 72 horas:** logo no começo, para sair da avalanche.
+- **Mapa de 30 dias em uma página:** antes da primeira consulta e sempre que você precisar decidir o próximo passo.
+- **Checklist de documentos:** quando for montar a pasta ou antes de qualquer avaliação.
+- **Perguntas rápidas para profissionais:** antes de marcar, na primeira consulta ou ao comparar respostas.
+- **Roteiro para familiares:** antes de conversas com parentes ou pessoas que minimizam.
+- **Roteiro para escola:** antes da conversa com a coordenação ou para formalizar pedido por mensagem.
+- **Diário semanal:** por 7 dias seguidos, antes de revisar prioridades.
+- **Plano dos próximos 60 dias:** na Semana 4, para fechar o primeiro ciclo com ações concretas.
 
-Cada checklist das 4 semanas em uma página separada, pronta para imprimir e marcar conforme você avança.
+### Anexo 1: Perguntas rápidas para profissionais
 
-  
+- Qual objetivo inicial você recomenda?
+- Por que esse objetivo vem primeiro?
+- Como a família participa?
+- Como a evolução será registrada?
+- Quando revisaremos o plano?
+- Você pode conversar com a escola?
+- Você entrega relatório por escrito?
 
-### BÔNUS 2: Diário de Progresso dos 30 Dias
+### Anexo 1B: Tabela rápida para comparar profissionais
 
-  
+- Nome:
+- Área:
+- Experiência com TEA:
+- Objetivo inicial sugerido:
+- Como mede evolução:
+- Entrega relatório:
+- Valor e frequência:
+- Senti clareza ou pressão?
 
-Um template de 2 páginas para você registrar suas conquistas, emoções e próximos passos. Documentar a jornada te ajuda a ver o quanto você evoluiu.
+### Anexo 1C: Roteiro para escola
 
-  
+"Olá, gostaria de marcar uma conversa sobre o acompanhamento do(a) [nome da criança]. Recebemos uma suspeita ou um diagnóstico de TEA e queremos alinhar estratégias de apoio na rotina escolar. Posso levar o laudo/relatório e compartilhar o que tem funcionado em casa. Gostaria também de entender como a escola observa comunicação, participação, adaptação e momentos de sobrecarga."
 
-### BÔNUS 3: Mapa Visual de Profissionais
+### Anexo 2: Roteiro para familiares
 
-  
+"Estamos entendendo melhor as necessidades do(a) [nome]. A suspeita ou o diagnóstico não muda quem ele(a) é, mas ajuda a buscar apoio adequado. Neste momento, precisamos de respeito, paciência e ajuda prática. Comparações e culpabilização não ajudam."
 
-Um infográfico explicando o papel de cada profissional da equipe multidisciplinar e quando procurar cada um.
+Se a conversa ficar pesada, encerre:
 
-  
+"Eu entendo que você tenha dúvidas. Agora eu não tenho energia para discutir. Quando tivermos mais informações, compartilhamos."
 
-### BÔNUS 4: Lista de Perguntas para Médicos
+### Anexo 3: Checklist das primeiras 72 horas
 
-  
+- [ ] Guardei o laudo ou registrei a suspeita.
+- [ ] Anotei dúvidas concretas.
+- [ ] Escolhi duas fontes confiáveis.
+- [ ] Evitei decisões caras por medo.
+- [ ] Sei qual é a próxima conversa.
 
-15 perguntas essenciais para fazer na primeira consulta com neuropediatra, psicólogo e terapeutas.
+### Anexo 4: Checklist de documentos
 
-  
+- [ ] Laudo ou relatório principal.
+- [ ] Exames e avaliações anteriores.
+- [ ] Relatórios escolares.
+- [ ] Receitas e medicações.
+- [ ] Carteirinha do plano de saúde.
+- [ ] Documentos pessoais.
+- [ ] Lista de dúvidas.
+- [ ] Registro de rotina.
 
-### BÔNUS 5: Guia de Primeiras Conversas com a Escola
+### Anexo 5: Mapa de 30 dias em uma página
 
-  
+- **Hoje:** guardar o laudo ou registrar a suspeita e anotar dúvidas.
+- **Próximas 72 horas:** escolher fontes confiáveis e não comprar por impulso.
+- **Semana 1:** organizar documentos, histórico e prioridades.
+- **Semana 2:** comparar profissionais com perguntas objetivas.
+- **Semana 3:** observar rotina e preparar escola.
+- **Semana 4:** revisar, registrar e fechar os próximos 60 dias.
 
-Um roteiro passo a passo de como abordar a coordenação, quais documentos levar e o que pedir para garantir a inclusão do seu filho.
+### Anexo 6: Diário semanal
 
-  
+Preencha uma vez por semana:
 
-\---
+- O que observei?
+- O que ajudou?
+- O que piorou a sobrecarga?
+- Que pergunta preciso fazer?
+- Que pequena vitória aconteceu?
+- Qual será a próxima ação?
 
-  
+**Exemplo preenchido:**
 
-**Agora é com você.**
+- O que observei? Mudança de rotina piora o fim da tarde.
+- O que ajudou? Avisar antes e mostrar a sequência no papel.
+- O que piorou a sobrecarga? TV ligada durante o jantar.
+- Que pergunta preciso fazer? Como trabalhar transições?
+- Que pequena vitória aconteceu? Pediu água apontando.
+- Qual será a próxima ação? Testar rotina visual por sete dias.
 
-  
+### Anexo 7: Plano dos próximos 60 dias
 
-Respire fundo. Abra a Semana 1. E dê o primeiro passo.
+- Ação:
+- Responsável:
+- Próximo passo:
+- Prazo:
+- Como saberei que avançou:
 
-  
+### Anexo 8: Download do PDF completo
 
-Você não está mais sozinha. E você não está mais perdida.
+Se preferir, mantenha uma versão em PDF deste guia para leitura, impressão e consulta fora da plataforma.
 
-  
-
-💙
+O PDF reúne este conteúdo em formato único para leitura, impressão e revisão com familiares, escola ou profissionais.

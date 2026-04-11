@@ -39,6 +39,23 @@ export function CatalogLanding({
 
   return (
     <main className="va-page text-[color:var(--va-ink)]">
+      <header className="px-4 pt-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-[color:var(--va-line)] bg-white/80 px-5 py-3 backdrop-blur sm:px-6">
+          <Link
+            href="/"
+            className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
+          >
+            Vivências Azuis
+          </Link>
+          <Link
+            href="/login"
+            className="text-sm font-medium text-[color:var(--va-soft-ink)] transition-colors hover:text-[color:var(--va-blue)]"
+          >
+            Entrar
+          </Link>
+        </div>
+      </header>
+
       <section className="px-4 pt-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl rounded-[2rem] bg-[linear-gradient(135deg,var(--va-blue-800)_0%,var(--va-blue)_52%,var(--va-navy)_100%)] px-8 py-12 text-white shadow-[0_30px_90px_-40px_rgba(11,35,66,0.45)] sm:px-10 lg:px-12 lg:py-14">
           <div className="mx-auto max-w-4xl text-center">

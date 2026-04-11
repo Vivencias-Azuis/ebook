@@ -23,8 +23,8 @@ function toneClassName(tone: "info" | "warning" | "success") {
 
 function PreparedPlaceholder({ label }: { label: string }) {
   return (
-    <div className="rounded-md border border-dashed border-zinc-300 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
-      {label}
+    <div className="rounded-[1.35rem] border border-dashed border-[color:var(--va-blue-300)] bg-[color:var(--va-blue-100)]/35 px-5 py-4 text-sm text-[color:var(--va-blue-800)]">
+      <span className="font-semibold">Material preparado:</span> {label}
     </div>
   );
 }
@@ -52,10 +52,136 @@ export function BlockRenderer({
   }
 
   return (
-    <section className="space-y-3">
-      {title ? <h3 className="text-lg font-semibold text-zinc-950">{title}</h3> : null}
+    <section className="space-y-4">
+      {title ? (
+        <h3 className="font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)]">
+          {title}
+        </h3>
+      ) : null}
       {content}
     </section>
+  );
+}
+
+function normalizeMarkdownLine(line: string) {
+  return line
+    .replace(/^\\- /, "- ")
+    .replace(/^(\d+)\\. /, "$1. ")
+    .trim();
+}
+
+function renderInlineText(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={`${part}-${index}`} className="font-semibold text-[color:var(--va-navy)]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+
+    return part;
+  });
+}
+
+function renderRichText(markdown: string) {
+  const lines = markdown
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map(normalizeMarkdownLine)
+    .filter(Boolean);
+  const elements: ReactNode[] = [];
+  let listItems: string[] = [];
+
+  function flushList() {
+    if (listItems.length === 0) {
+      return;
+    }
+
+    const items = listItems;
+    listItems = [];
+    elements.push(
+      <ul key={`list-${elements.length}`} className="my-6 space-y-3">
+        {items.map((item, index) => (
+          <li key={`${item}-${index}`} className="flex gap-3 leading-8">
+            <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--va-blue)]" />
+            <span>{renderInlineText(item.replace(/^- /, ""))}</span>
+          </li>
+        ))}
+      </ul>,
+    );
+  }
+
+  for (const line of lines) {
+    if (line === "---" || line === "\\---") {
+      flushList();
+      elements.push(
+        <div
+          key={`divider-${elements.length}`}
+          className="my-10 h-px bg-gradient-to-r from-transparent via-[color:var(--va-line-strong)] to-transparent"
+        />,
+      );
+      continue;
+    }
+
+    if (line.startsWith("- ")) {
+      listItems.push(line);
+      continue;
+    }
+
+    flushList();
+
+    if (line.startsWith("### ")) {
+      elements.push(
+        <h4
+          key={`h4-${elements.length}`}
+          className="pt-7 font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)]"
+        >
+          {renderInlineText(line.replace(/^### /, ""))}
+        </h4>,
+      );
+      continue;
+    }
+
+    if (line.startsWith("## ")) {
+      elements.push(
+        <h3
+          key={`h3-${elements.length}`}
+          className="pt-8 font-serif text-3xl font-semibold leading-tight text-[color:var(--va-navy)]"
+        >
+          {renderInlineText(line.replace(/^## /, ""))}
+        </h3>,
+      );
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      elements.push(
+        <h2
+          key={`h2-${elements.length}`}
+          className="font-serif text-4xl font-semibold leading-tight text-[color:var(--va-navy)]"
+        >
+          {renderInlineText(line.replace(/^# /, ""))}
+        </h2>,
+      );
+      continue;
+    }
+
+    elements.push(
+      <p key={`p-${elements.length}`} className="leading-8">
+        {renderInlineText(line)}
+      </p>,
+    );
+  }
+
+  flushList();
+
+  return (
+    <div className="reader-prose space-y-5 font-serif text-[1.08rem] text-[color:var(--va-ink)]">
+      {elements}
+    </div>
   );
 }
 
@@ -67,16 +193,12 @@ function renderBlockContent(
   switch (type) {
     case "rich_text": {
       const payload = parseBlockPayload(type, payloadJson);
-      return (
-        <div className="whitespace-pre-wrap leading-7 text-zinc-800">
-          {payload.markdown}
-        </div>
-      );
+      return renderRichText(payload.markdown);
     }
     case "callout": {
       const payload = parseBlockPayload(type, payloadJson);
       return (
-        <div className={`rounded-md border px-4 py-3 ${toneClassName(payload.tone)}`}>
+        <div className={`rounded-[1.35rem] border px-5 py-4 shadow-[0_18px_44px_-34px_rgba(11,35,66,0.3)] ${toneClassName(payload.tone)}`}>
           <p className="text-sm font-medium uppercase tracking-wide">{payload.tone}</p>
           <p className="mt-2 whitespace-pre-wrap leading-7">{payload.body}</p>
         </div>
@@ -90,17 +212,20 @@ function renderBlockContent(
           {payload.items.map((item) => {
             const inputId = `checklist-${item.id}`;
             return (
-              <li key={item.id} className="flex items-start gap-3 text-zinc-800">
+              <li
+                key={item.id}
+                className="flex items-start gap-3 rounded-[1.2rem] border border-[color:var(--va-line)] bg-white/72 px-4 py-3 text-[color:var(--va-ink)] shadow-[0_14px_34px_-30px_rgba(11,35,66,0.35)]"
+              >
                 <input
                   aria-label={item.label}
                   checked={checkedItemIds.includes(item.id)}
-                  className="mt-1 h-4 w-4 rounded border-zinc-300 text-emerald-600"
+                  className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-blue)]"
                   disabled
                   id={inputId}
                   readOnly
                   type="checkbox"
                 />
-                <label htmlFor={inputId} className="leading-6">
+                <label htmlFor={inputId} className="leading-7">
                   {item.label}
                 </label>
               </li>
@@ -114,7 +239,63 @@ function renderBlockContent(
       return <hr className="border-zinc-200" />;
     case "download": {
       const payload = parseBlockPayload(type, payloadJson);
-      return <PreparedPlaceholder label={`Download block ready: ${payload.label}`} />;
+
+      if (payload.mode === "dynamic_pdf" && payload.productSlug) {
+        const fastHref = `/api/products/${payload.productSlug}/download-pdf?variant=fast`;
+        const printHref = `/api/products/${payload.productSlug}/download-pdf?variant=print`;
+
+        return (
+          <div className="rounded-[1.2rem] border border-[color:var(--va-line)] bg-white/78 p-5 shadow-[0_18px_44px_-34px_rgba(11,35,66,0.3)]">
+            <p className="font-serif text-xl font-semibold text-[color:var(--va-navy)]">
+              Material para baixar
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[color:var(--va-soft-ink)]">
+              Escolha entre uma versão mais leve para leitura rápida ou uma versão pensada para impressão.
+            </p>
+            <details className="mt-4">
+              <summary className="inline-flex cursor-pointer rounded-[8px] bg-[color:var(--va-navy)] px-5 py-3 text-sm font-bold text-white shadow-[0_18px_38px_-28px_rgba(11,35,66,0.62)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-800)]">
+                {payload.label}
+              </summary>
+              <div className="mt-3 flex flex-col gap-2">
+                <a
+                  className="rounded-[8px] border border-[color:var(--va-line)] bg-white px-4 py-3 text-sm font-semibold text-[color:var(--va-blue-800)]"
+                  href={fastHref}
+                >
+                  PDF rápido
+                </a>
+                <a
+                  className="rounded-[8px] border border-[color:var(--va-line)] bg-white px-4 py-3 text-sm font-semibold text-[color:var(--va-blue-800)]"
+                  href={printHref}
+                >
+                  PDF para imprimir
+                </a>
+              </div>
+            </details>
+          </div>
+        );
+      }
+
+      if (!payload.href) {
+        return <PreparedPlaceholder label={`Download block ready: ${payload.label}`} />;
+      }
+
+      return (
+        <div className="rounded-[1.2rem] border border-[color:var(--va-line)] bg-white/78 p-5 shadow-[0_18px_44px_-34px_rgba(11,35,66,0.3)]">
+          <p className="font-serif text-xl font-semibold text-[color:var(--va-navy)]">
+            Material para baixar
+          </p>
+          <p className="mt-2 text-sm leading-6 text-[color:var(--va-soft-ink)]">
+            Salve uma copia do curso completo para consultar fora da plataforma.
+          </p>
+          <a
+            className="mt-4 inline-flex rounded-[8px] bg-[color:var(--va-navy)] px-5 py-3 text-sm font-bold text-white shadow-[0_18px_38px_-28px_rgba(11,35,66,0.62)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-800)]"
+            download
+            href={payload.href}
+          >
+            {payload.label}
+          </a>
+        </div>
+      );
     }
     case "audio":
       parseBlockPayload(type, payloadJson);

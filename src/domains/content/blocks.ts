@@ -33,10 +33,25 @@ const checklistPayloadSchema = z.object({
     .min(1),
 });
 
-const downloadPayloadSchema = z.object({
-  assetId: z.string().min(1),
-  label: z.string().min(1),
-});
+const downloadPayloadSchema = z
+  .object({
+    assetId: z.string().min(1),
+    label: z.string().min(1),
+    href: z.string().min(1).optional(),
+    mode: z.enum(["static", "dynamic_pdf"]).optional(),
+    productSlug: z.string().min(1).optional(),
+  })
+  .refine((payload) => {
+    if (payload.mode === "dynamic_pdf") {
+      return Boolean(payload.productSlug);
+    }
+
+    if (payload.mode === "static") {
+      return Boolean(payload.href);
+    }
+
+    return true;
+  }, "Static PDF downloads require an href; dynamic PDF downloads require a productSlug.");
 
 const mediaPayloadSchema = z.object({
   url: z.string().url(),
