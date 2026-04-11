@@ -107,9 +107,37 @@ describe("ReaderSidebar", () => {
     expect(container.textContent).toContain("Parte 2 de 2");
     expect(container.textContent).toContain("Boas-vindas");
     expect(container.textContent).toContain("Checklist inicial");
-    expect(container.textContent).toContain("bloco lido");
+    expect(container.textContent).toContain("Lido");
     expect(container.innerHTML).toContain("page=2");
     expect(container.innerHTML).toContain('aria-current="page"');
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("stacks the sidebar header and item metadata to avoid squeezing the title", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico: Primeiros 30 Dias Após Suspeita ou Diagnóstico"
+          productSlug="guia-pratico"
+          currentPageNumber={2}
+          progressPercent={34}
+          readerPages={readerPages}
+          progressByBlockId={progressByBlockId}
+        />,
+      );
+    });
+
+    expect(container.innerHTML).toContain("mb-5 space-y-4");
+    expect(container.innerHTML).toContain("flex items-center justify-between gap-3");
+    expect(container.innerHTML).toContain("flex flex-col items-start gap-2");
+    expect(container.textContent).toContain("Lido");
 
     await act(async () => {
       root.unmount();
@@ -185,7 +213,7 @@ describe("ReaderSidebar", () => {
       );
     });
 
-    expect(container.textContent).toContain("bloco lido");
+    expect(container.textContent).toContain("Lido");
 
     await act(async () => {
       root.unmount();
