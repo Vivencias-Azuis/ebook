@@ -329,4 +329,103 @@ describe("ProductReadPage", () => {
     );
     expect(revalidatePath).toHaveBeenCalledWith("/library");
   });
+
+  it("submits checklist progress against the original block id on a slide-aware route", async () => {
+    vi.mocked(requireServerSession).mockResolvedValue({
+      user: { id: "user-1" },
+    } as any);
+    vi.mocked(getProductBySlug).mockResolvedValue({
+      id: "prod-1",
+      slug: "guia-pratico",
+      title: "Guia Pratico",
+      status: "published",
+    } as any);
+    vi.mocked(getUserProductEntitlement).mockResolvedValue({
+      status: "active",
+    } as any);
+    vi.mocked(canAccessProduct).mockReturnValue(true);
+    vi.mocked(getPublishedProductContent).mockResolvedValue([
+      {
+        id: "chapter-1",
+        title: "Comeco",
+        sortOrder: 1,
+        blocks: [],
+      },
+    ] as any);
+    vi.mocked(getUserProductProgress).mockResolvedValue({
+      "block-checklist": { completed: false, checkedItemIds: ["item-1"] },
+    } as any);
+    vi.mocked(summarizeProductProgress).mockReturnValue({
+      percent: 24,
+    } as any);
+    vi.mocked(buildReaderPages).mockReturnValue([
+      {
+        pageNumber: 1,
+        chapterId: "chapter-1",
+        chapterTitle: "Comeco",
+        chapterSortOrder: 1,
+        block: {
+          id: "slide-block-1",
+          title: "Introducao",
+          type: "rich_text",
+          payloadJson: JSON.stringify({ markdown: "Primeira parte" }),
+          sortOrder: 1,
+        },
+        sourceBlockId: "block-rich-text",
+        slideNumber: 1,
+        slideCount: 2,
+      },
+      {
+        pageNumber: 2,
+        chapterId: "chapter-1",
+        chapterTitle: "Comeco",
+        chapterSortOrder: 1,
+        block: {
+          id: "slide-checklist-1",
+          title: "Checklist inicial",
+          type: "checklist",
+          payloadJson: JSON.stringify({
+            items: [
+              { id: "item-1", label: "Primeiro passo" },
+              { id: "item-2", label: "Segundo passo" },
+            ],
+          }),
+          sortOrder: 2,
+        },
+        sourceBlockId: "block-checklist",
+        slideNumber: 1,
+        slideCount: 1,
+      },
+    ]);
+
+    const page = await ProductReadPage({
+      params: Promise.resolve({ slug: "guia-pratico" }),
+      searchParams: Promise.resolve({ page: "2" }),
+    });
+    const action = findFormActionByButtonLabel(page, "Salvar checklist");
+
+    expect(action).toBeTypeOf("function");
+
+    const formData = new FormData();
+    formData.append("allItemIds", "item-1");
+    formData.append("allItemIds", "item-2");
+    formData.append("checkedItemIds", "item-1");
+    formData.append("checkedItemIds", "item-2");
+
+    await (action as (formData: FormData) => Promise<void>)(formData);
+
+    expect(setChecklistProgress).toHaveBeenCalledWith({
+      userId: "user-1",
+      productId: "prod-1",
+      chapterId: "chapter-1",
+      blockId: "block-checklist",
+      allItemIds: ["item-1", "item-2"],
+      checkedItemIds: ["item-1", "item-2"],
+    });
+    expect(setBlockCompletion).not.toHaveBeenCalled();
+    expect(revalidatePath).toHaveBeenCalledWith(
+      "/products/guia-pratico/read?page=2",
+    );
+    expect(revalidatePath).toHaveBeenCalledWith("/library");
+  });
 });
