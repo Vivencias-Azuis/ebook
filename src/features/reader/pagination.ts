@@ -85,7 +85,8 @@ function splitMarkdownIntoSlides(markdown: string) {
   const paragraphs = markdown
     .split(/\n\s*\n/g)
     .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .flatMap(splitOversizedParagraph);
 
   if (paragraphs.length === 0) {
     return [markdown];
@@ -114,6 +115,31 @@ function splitMarkdownIntoSlides(markdown: string) {
   }
 
   return slides;
+}
+
+function splitOversizedParagraph(paragraph: string) {
+  if (paragraph.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
+    return [paragraph];
+  }
+
+  const chunks: string[] = [];
+  let remaining = paragraph;
+
+  while (remaining.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
+    const splitAt = remaining.lastIndexOf(
+      " ",
+      RICH_TEXT_SLIDE_CHARACTER_LIMIT,
+    );
+    const chunkEnd = splitAt > 0 ? splitAt : RICH_TEXT_SLIDE_CHARACTER_LIMIT;
+    chunks.push(remaining.slice(0, chunkEnd).trim());
+    remaining = remaining.slice(chunkEnd).trim();
+  }
+
+  if (remaining) {
+    chunks.push(remaining);
+  }
+
+  return chunks;
 }
 
 export function normalizeReaderPageNumber(

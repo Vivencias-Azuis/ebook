@@ -11,6 +11,10 @@ const longMarkdown = Array.from({ length: 24 }, (_, index) => {
   return `Paragrafo ${paragraphNumber} com texto suficiente para ocupar espaco na leitura e manter a fragmentacao em etapas confortaveis.`;
 }).join("\n\n");
 
+const oversizedParagraphMarkdown = Array.from({ length: 400 }, () => "texto").join(
+  " ",
+);
+
 const chapters = [
   {
     id: "chapter-1",
@@ -101,6 +105,49 @@ describe("buildReaderPages", () => {
       slideNumber: 1,
       slideCount: 1,
     });
+  });
+
+  it("splits a single oversized rich-text paragraph into multiple slides", () => {
+    const pages = buildReaderPages([
+      {
+        id: "chapter-oversized",
+        title: "Capítulo longo",
+        sortOrder: 1,
+        blocks: [
+          {
+            id: "block-oversized",
+            title: "Bloco longo",
+            type: "rich_text" as const,
+            payloadJson: JSON.stringify({ markdown: oversizedParagraphMarkdown }),
+            sortOrder: 1,
+          },
+        ],
+      },
+    ]);
+    const firstSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[0].block?.payloadJson ?? "",
+    ).markdown;
+    const secondSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[1].block?.payloadJson ?? "",
+    ).markdown;
+
+    expect(pages).toHaveLength(2);
+    expect(pages[0]).toMatchObject({
+      sourceBlockId: "block-oversized",
+      slideNumber: 1,
+      slideCount: 2,
+    });
+    expect(pages[1]).toMatchObject({
+      sourceBlockId: "block-oversized",
+      slideNumber: 2,
+      slideCount: 2,
+    });
+    expect(firstSlideMarkdown).not.toBe(secondSlideMarkdown);
+    expect(`${firstSlideMarkdown} ${secondSlideMarkdown}`).toBe(
+      oversizedParagraphMarkdown,
+    );
   });
 });
 
