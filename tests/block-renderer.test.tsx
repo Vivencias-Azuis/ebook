@@ -28,3 +28,46 @@ it("renders checklist items with checkbox inputs and labels", () => {
   expect(markup).toContain('for="checklist-item-1"');
   expect(markup).toContain("Leia a introdução");
 });
+
+it("renders download blocks as links when an href is provided", () => {
+  const markup = renderToStaticMarkup(
+    <BlockRenderer
+      type="download"
+      title="Material completo"
+      payloadJson={JSON.stringify({
+        assetId: "guia-pratico-pdf",
+        label: "Baixar curso completo em PDF",
+        href: "/downloads/guia-pratico-primeiros-30-dias.pdf",
+      })}
+    />,
+  );
+
+  expect(markup).toContain("Material completo");
+  expect(markup).toContain('href="/downloads/guia-pratico-primeiros-30-dias.pdf"');
+  expect(markup).toContain("Baixar curso completo em PDF");
+});
+
+it("renders a PDF download menu with fast and print options when generation mode is dynamic", () => {
+  const markup = renderToStaticMarkup(
+    <BlockRenderer
+      type="download"
+      title="Download do PDF"
+      payloadJson={JSON.stringify({
+        assetId: "guia-pratico-pdf",
+        label: "Baixar PDF",
+        mode: "dynamic_pdf",
+        productSlug: "guia-pratico-primeiros-30-dias-apos-diagnostico",
+      })}
+    />,
+  );
+
+  expect(markup).toContain("Baixar PDF");
+  expect(markup).toContain("PDF rápido");
+  expect(markup).toContain("PDF para imprimir");
+  expect(markup).toContain(
+    "/api/products/guia-pratico-primeiros-30-dias-apos-diagnostico/download-pdf?variant=fast",
+  );
+  expect(markup).toContain(
+    "/api/products/guia-pratico-primeiros-30-dias-apos-diagnostico/download-pdf?variant=print",
+  );
+});
