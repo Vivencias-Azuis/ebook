@@ -245,10 +245,6 @@ button {
   color: var(--va-ink);
 }
 
-.va-reader-slide-body > :first-child {
-  height: 100%;
-}
-
 .va-reader-slide-body .reader-prose {
   max-width: 42rem;
 }
@@ -278,7 +274,9 @@ button {
   }
 
   .va-reader-slide-body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
   }
 }
 
