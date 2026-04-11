@@ -82,7 +82,7 @@ afterEach(() => {
 });
 
 describe("ReaderSidebar", () => {
-  it("shows slide-aware labels and keeps completion anchored to the source block", async () => {
+  it("shows slide-aware labels and block-scoped completion copy for fragmented content", async () => {
     const container = document.createElement("div");
     document.body.appendChild(container);
     const root = createRoot(container);
@@ -107,7 +107,7 @@ describe("ReaderSidebar", () => {
     expect(container.textContent).toContain("Parte 2 de 2");
     expect(container.textContent).toContain("Boas-vindas");
     expect(container.textContent).toContain("Checklist inicial");
-    expect(container.textContent).toContain("lida");
+    expect(container.textContent).toContain("bloco lido");
     expect(container.innerHTML).toContain("page=2");
     expect(container.innerHTML).toContain('aria-current="page"');
 
@@ -185,7 +185,7 @@ describe("ReaderSidebar", () => {
       );
     });
 
-    expect(container.textContent).toContain("lida");
+    expect(container.textContent).toContain("bloco lido");
 
     await act(async () => {
       root.unmount();

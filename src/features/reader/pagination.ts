@@ -82,28 +82,28 @@ function getSlideBlocks(block: ReaderBlock) {
 }
 
 function splitMarkdownIntoSlides(markdown: string) {
-  const paragraphs = markdown
+  const blocks = markdown
     .split(/\n\s*\n/g)
-    .map((paragraph) => paragraph.trim())
+    .map((block) => block.trim())
     .filter(Boolean)
-    .flatMap(splitOversizedParagraph);
+    .flatMap(splitOversizedBlock);
 
-  if (paragraphs.length === 0) {
+  if (blocks.length === 0) {
     return [markdown];
   }
 
   const slides: string[] = [];
   let currentSlide = "";
 
-  for (const paragraph of paragraphs) {
-    const nextSlide = currentSlide ? `${currentSlide}\n\n${paragraph}` : paragraph;
+  for (const block of blocks) {
+    const nextSlide = currentSlide ? `${currentSlide}\n\n${block}` : block;
 
     if (
       currentSlide &&
       nextSlide.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT
     ) {
       slides.push(currentSlide);
-      currentSlide = paragraph;
+      currentSlide = block;
       continue;
     }
 
@@ -118,19 +118,71 @@ function splitMarkdownIntoSlides(markdown: string) {
 }
 
 function splitOversizedParagraph(paragraph: string) {
-  if (paragraph.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
-    return [paragraph];
+  return splitOversizedBlock(paragraph);
+}
+
+function splitOversizedBlock(block: string) {
+  if (block.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
+    return [block];
+  }
+
+  const lines = block
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const chunks: string[] = [];
+  let currentChunk = "";
+
+  for (const line of lines) {
+    for (const lineChunk of splitOversizedLine(line)) {
+      const nextChunk = currentChunk ? `${currentChunk}\n${lineChunk}` : lineChunk;
+
+      if (currentChunk && nextChunk.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
+        chunks.push(currentChunk);
+        currentChunk = lineChunk;
+        continue;
+      }
+
+      currentChunk = nextChunk;
+    }
+  }
+
+  if (currentChunk) {
+    chunks.push(currentChunk);
+  }
+
+  return chunks;
+}
+
+function splitOversizedLine(line: string) {
+  const structuredPrefix = line.match(/^(?:- |### |## |# )/)?.[0] ?? "";
+  const content = structuredPrefix ? line.slice(structuredPrefix.length).trim() : line;
+
+  if (line.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
+    return [line];
+  }
+
+  const contentChunks = splitTextBySpaces(
+    content,
+    Math.max(RICH_TEXT_SLIDE_CHARACTER_LIMIT - structuredPrefix.length, 1),
+  );
+
+  return contentChunks.map((chunk) =>
+    structuredPrefix ? `${structuredPrefix}${chunk}` : chunk,
+  );
+}
+
+function splitTextBySpaces(text: string, maxLength: number) {
+  if (text.length <= maxLength) {
+    return [text];
   }
 
   const chunks: string[] = [];
-  let remaining = paragraph;
+  let remaining = text;
 
-  while (remaining.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
-    const splitAt = remaining.lastIndexOf(
-      " ",
-      RICH_TEXT_SLIDE_CHARACTER_LIMIT,
-    );
-    const chunkEnd = splitAt > 0 ? splitAt : RICH_TEXT_SLIDE_CHARACTER_LIMIT;
+  while (remaining.length > maxLength) {
+    const splitAt = remaining.lastIndexOf(" ", maxLength);
+    const chunkEnd = splitAt > 0 ? splitAt : maxLength;
     chunks.push(remaining.slice(0, chunkEnd).trim());
     remaining = remaining.slice(chunkEnd).trim();
   }

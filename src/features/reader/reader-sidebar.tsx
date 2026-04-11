@@ -136,7 +136,7 @@ export function ReaderSidebar({
                         </span>
                         {isCompleted ? (
                           <span className="rounded-full bg-[color:var(--va-blue-100)] px-2 py-0.5 text-[0.65rem] font-bold text-[color:var(--va-blue-800)]">
-                            lida
+                            bloco lido
                           </span>
                         ) : null}
                       </span>

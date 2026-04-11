@@ -15,6 +15,8 @@ const oversizedParagraphMarkdown = Array.from({ length: 400 }, () => "texto").jo
   " ",
 );
 
+const oversizedListItemMarkdown = `- ${Array.from({ length: 420 }, () => "item longo").join(" ")}`;
+
 const chapters = [
   {
     id: "chapter-1",
@@ -148,6 +150,32 @@ describe("buildReaderPages", () => {
     expect(`${firstSlideMarkdown} ${secondSlideMarkdown}`).toBe(
       oversizedParagraphMarkdown,
     );
+  });
+
+  it("preserves list markers when a long markdown list item spans multiple slides", () => {
+    const pages = buildReaderPages([
+      {
+        id: "chapter-list",
+        title: "Capítulo com lista",
+        sortOrder: 1,
+        blocks: [
+          {
+            id: "block-list",
+            title: "Lista longa",
+            type: "rich_text" as const,
+            payloadJson: JSON.stringify({ markdown: oversizedListItemMarkdown }),
+            sortOrder: 1,
+          },
+        ],
+      },
+    ]);
+    const slideMarkdown = pages.map((page) =>
+      parseBlockPayload("rich_text", page.block?.payloadJson ?? "").markdown,
+    );
+
+    expect(pages).toHaveLength(3);
+    expect(slideMarkdown.every((markdown) => markdown.startsWith("- "))).toBe(true);
+    expect(slideMarkdown.join(" ")).toContain("- item longo item longo");
   });
 });
 

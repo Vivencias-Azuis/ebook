@@ -238,7 +238,8 @@ describe("ProductReadPage", () => {
 
     expect(markup).toContain("Etapa 2 de 2");
     expect(markup).toContain("Parte 2 de 2");
-    expect(markup).toContain("Marcar página como lida");
+    expect(markup).toContain("Marcar bloco como lido");
+    expect(markup).toContain("vale para todas as partes deste bloco");
     expect(markup).toContain("BBBBBBBBBB");
     expect(markup).not.toContain("AAAAAAAAAA");
   });
@@ -310,7 +311,7 @@ describe("ProductReadPage", () => {
       params: Promise.resolve({ slug: "guia-pratico" }),
       searchParams: Promise.resolve({ page: "2" }),
     });
-    const action = findFormActionByButtonLabel(page, "Marcar página como lida");
+    const action = findFormActionByButtonLabel(page, "Marcar bloco como lido");
 
     expect(action).toBeTypeOf("function");
 

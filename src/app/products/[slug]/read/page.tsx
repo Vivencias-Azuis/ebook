@@ -268,13 +268,19 @@ export default async function ProductReadPage({
                           revalidatePath("/library");
                         }}
                       >
+                        {currentPage?.slideCount && currentPage.slideCount > 1 ? (
+                          <p className="mb-3 text-sm text-white/68">
+                            Esta etapa faz parte de um bloco maior. O status vale
+                            para todas as partes deste bloco.
+                          </p>
+                        ) : null}
                         <button
                           type="submit"
                           className="rounded-full border border-[color:var(--va-line-strong)] bg-white px-5 py-2.5 text-sm font-bold text-[color:var(--va-blue-800)] shadow-[0_14px_34px_-30px_rgba(11,35,66,0.24)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
                         >
                           {blockProgress?.completed
-                            ? "Marcar como pendente"
-                            : "Marcar página como lida"}
+                            ? "Marcar bloco como pendente"
+                            : "Marcar bloco como lido"}
                         </button>
                       </form>
                     )}
