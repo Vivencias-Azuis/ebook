@@ -135,7 +135,9 @@ describe("ReaderSidebar", () => {
     });
 
     expect(container.innerHTML).toContain("mb-5 space-y-4");
-    expect(container.innerHTML).toContain("flex items-center justify-between gap-3");
+    expect(container.innerHTML).toContain(
+      "flex items-center justify-between gap-3",
+    );
     expect(container.innerHTML).toContain("flex flex-col items-start gap-2");
     expect(container.textContent).toContain("Lido");
 

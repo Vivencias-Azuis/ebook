@@ -98,10 +98,7 @@ function splitMarkdownIntoSlides(markdown: string) {
   for (const block of blocks) {
     const nextSlide = currentSlide ? `${currentSlide}\n\n${block}` : block;
 
-    if (
-      currentSlide &&
-      nextSlide.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT
-    ) {
+    if (currentSlide && nextSlide.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
       slides.push(currentSlide);
       currentSlide = block;
       continue;
@@ -135,7 +132,9 @@ function splitOversizedBlock(block: string) {
 
   for (const line of lines) {
     for (const lineChunk of splitOversizedLine(line)) {
-      const nextChunk = currentChunk ? `${currentChunk}\n${lineChunk}` : lineChunk;
+      const nextChunk = currentChunk
+        ? `${currentChunk}\n${lineChunk}`
+        : lineChunk;
 
       if (currentChunk && nextChunk.length > RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
         chunks.push(currentChunk);
@@ -156,7 +155,9 @@ function splitOversizedBlock(block: string) {
 
 function splitOversizedLine(line: string) {
   const structuredPrefix = line.match(/^(?:- |### |## |# )/)?.[0] ?? "";
-  const content = structuredPrefix ? line.slice(structuredPrefix.length).trim() : line;
+  const content = structuredPrefix
+    ? line.slice(structuredPrefix.length).trim()
+    : line;
 
   if (line.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
     return [line];

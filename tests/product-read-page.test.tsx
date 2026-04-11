@@ -41,9 +41,9 @@ vi.mock("@/domains/progress/mutations", () => ({
 }));
 
 vi.mock("@/features/reader/pagination", async () => {
-  const actual = await vi.importActual<typeof import("@/features/reader/pagination")>(
-    "@/features/reader/pagination",
-  );
+  const actual = await vi.importActual<
+    typeof import("@/features/reader/pagination")
+  >("@/features/reader/pagination");
 
   return {
     ...actual,
@@ -71,9 +71,7 @@ import {
   getProductBySlug,
   getPublishedProductContent,
 } from "@/domains/products/queries";
-import {
-  buildReaderPages,
-} from "@/features/reader/pagination";
+import { buildReaderPages } from "@/features/reader/pagination";
 
 function collectText(node: unknown): string {
   if (node == null || typeof node === "boolean") {

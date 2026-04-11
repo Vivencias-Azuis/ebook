@@ -11,9 +11,10 @@ const longMarkdown = Array.from({ length: 24 }, (_, index) => {
   return `Paragrafo ${paragraphNumber} com texto suficiente para ocupar espaco na leitura e manter a fragmentacao em etapas confortaveis.`;
 }).join("\n\n");
 
-const oversizedParagraphMarkdown = Array.from({ length: 400 }, () => "texto").join(
-  " ",
-);
+const oversizedParagraphMarkdown = Array.from(
+  { length: 400 },
+  () => "texto",
+).join(" ");
 
 const oversizedListItemMarkdown = `- ${Array.from({ length: 420 }, () => "item longo").join(" ")}`;
 
@@ -82,7 +83,9 @@ describe("buildReaderPages", () => {
     expect(firstSlideMarkdown).not.toBe(secondSlideMarkdown);
     expect(firstSlideMarkdown).not.toBe(longMarkdown);
     expect(secondSlideMarkdown).not.toBe(longMarkdown);
-    expect(`${firstSlideMarkdown}\n\n${secondSlideMarkdown}`).toBe(longMarkdown);
+    expect(`${firstSlideMarkdown}\n\n${secondSlideMarkdown}`).toBe(
+      longMarkdown,
+    );
     expect(firstSlideParagraphs[0]).toContain("Paragrafo 1 ");
     expect(firstSlideParagraphs.at(-1)).not.toContain("Paragrafo 24 ");
     expect(secondSlideParagraphs[0]).not.toContain("Paragrafo 1 ");
@@ -120,7 +123,9 @@ describe("buildReaderPages", () => {
             id: "block-oversized",
             title: "Bloco longo",
             type: "rich_text" as const,
-            payloadJson: JSON.stringify({ markdown: oversizedParagraphMarkdown }),
+            payloadJson: JSON.stringify({
+              markdown: oversizedParagraphMarkdown,
+            }),
             sortOrder: 1,
           },
         ],
@@ -163,18 +168,23 @@ describe("buildReaderPages", () => {
             id: "block-list",
             title: "Lista longa",
             type: "rich_text" as const,
-            payloadJson: JSON.stringify({ markdown: oversizedListItemMarkdown }),
+            payloadJson: JSON.stringify({
+              markdown: oversizedListItemMarkdown,
+            }),
             sortOrder: 1,
           },
         ],
       },
     ]);
-    const slideMarkdown = pages.map((page) =>
-      parseBlockPayload("rich_text", page.block?.payloadJson ?? "").markdown,
+    const slideMarkdown = pages.map(
+      (page) =>
+        parseBlockPayload("rich_text", page.block?.payloadJson ?? "").markdown,
     );
 
     expect(pages).toHaveLength(3);
-    expect(slideMarkdown.every((markdown) => markdown.startsWith("- "))).toBe(true);
+    expect(slideMarkdown.every((markdown) => markdown.startsWith("- "))).toBe(
+      true,
+    );
     expect(slideMarkdown.join(" ")).toContain("- item longo item longo");
   });
 });

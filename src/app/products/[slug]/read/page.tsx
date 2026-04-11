@@ -83,7 +83,7 @@ export default async function ProductReadPage({
       ? `Parte ${currentPage.slideNumber} de ${currentPage.slideCount}`
       : "Slide completo";
   const blockProgress = currentSourceBlockId
-    ? progressByBlockId[currentSourceBlockId] ?? null
+    ? (progressByBlockId[currentSourceBlockId] ?? null)
     : null;
   const renderedPayloadJson = currentBlock?.payloadJson ?? null;
   const progressLabel =
@@ -134,11 +134,15 @@ export default async function ProductReadPage({
                         Capítulo {currentPage?.chapterSortOrder ?? 1}
                       </p>
                       <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight tracking-[-0.03em] text-white sm:text-5xl">
-                        {currentBlock?.title ?? currentPage?.chapterTitle ?? "Leitura"}
+                        {currentBlock?.title ??
+                          currentPage?.chapterTitle ??
+                          "Leitura"}
                       </h2>
                     </div>
                     <div className="text-right text-sm text-white/70">
-                      <p className="font-semibold text-white/88">{slideLabel}</p>
+                      <p className="font-semibold text-white/88">
+                        {slideLabel}
+                      </p>
                       <p className="mt-1">{slideDetailLabel}</p>
                     </div>
                   </div>
@@ -174,7 +178,9 @@ export default async function ProductReadPage({
                     </div>
                   ) : null}
 
-                  {currentBlock && currentBlock.type !== "checklist" && renderedPayloadJson ? (
+                  {currentBlock &&
+                  currentBlock.type !== "checklist" &&
+                  renderedPayloadJson ? (
                     <div className="mx-auto max-w-3xl">
                       <BlockRenderer
                         type={currentBlock.type}
@@ -236,7 +242,9 @@ export default async function ProductReadPage({
                                 name="checkedItemIds"
                                 value={item.id}
                                 defaultChecked={
-                                  blockProgress?.checkedItemIds?.includes(item.id) ?? false
+                                  blockProgress?.checkedItemIds?.includes(
+                                    item.id,
+                                  ) ?? false
                                 }
                                 className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-blue)]"
                               />
@@ -268,10 +276,11 @@ export default async function ProductReadPage({
                           revalidatePath("/library");
                         }}
                       >
-                        {currentPage?.slideCount && currentPage.slideCount > 1 ? (
+                        {currentPage?.slideCount &&
+                        currentPage.slideCount > 1 ? (
                           <p className="mb-3 text-sm text-white/68">
-                            Esta etapa faz parte de um bloco maior. O status vale
-                            para todas as partes deste bloco.
+                            Esta etapa faz parte de um bloco maior. O status
+                            vale para todas as partes deste bloco.
                           </p>
                         ) : null}
                         <button
