@@ -111,8 +111,10 @@ export function ReaderSidebar({
               <div className="space-y-2">
                 {chapter.pages.map((readerPage) => {
                   const isActive = readerPage.pageNumber === currentPageNumber;
-                  const isCompleted = readerPage.sourceBlockId
-                    ? progressByBlockId[readerPage.sourceBlockId]?.completed
+                  const progressBlockId =
+                    readerPage.sourceBlockId ?? readerPage.block?.id ?? null;
+                  const isCompleted = progressBlockId
+                    ? progressByBlockId[progressBlockId]?.completed
                     : false;
                   const pageLabel =
                     readerPage.slideCount > 1

@@ -13,7 +13,7 @@ const readerPages: ReaderPage[] = [
     chapterTitle: "Comeco",
     chapterSortOrder: 1,
     block: {
-      id: "block-1-slide-1",
+      id: "block-1",
       title: "Boas-vindas",
       type: "rich_text",
       payloadJson: '{"content":"<p>Intro</p>"}',
@@ -29,7 +29,7 @@ const readerPages: ReaderPage[] = [
     chapterTitle: "Comeco",
     chapterSortOrder: 1,
     block: {
-      id: "block-1-slide-2",
+      id: "block-1",
       title: "Boas-vindas",
       type: "rich_text",
       payloadJson: '{"content":"<p>Continuação</p>"}',
@@ -144,6 +144,48 @@ describe("ReaderSidebar", () => {
 
     expect(container.textContent).toContain("Mostrar sumário");
     expect(container.textContent).not.toContain("Boas-vindas");
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("falls back to the block id when sourceBlockId is unavailable", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico"
+          productSlug="guia-pratico"
+          currentPageNumber={1}
+          progressPercent={50}
+          readerPages={[
+            {
+              pageNumber: 1,
+              chapterId: "chapter-1",
+              chapterTitle: "Comeco",
+              chapterSortOrder: 1,
+              block: {
+                id: "block-legacy",
+                title: "Bloco antigo",
+                type: "rich_text",
+                payloadJson: '{"content":"<p>Legado</p>"}',
+                sortOrder: 1,
+              },
+              sourceBlockId: null,
+              slideNumber: 1,
+              slideCount: 1,
+            },
+          ]}
+          progressByBlockId={{ "block-legacy": { completed: true } }}
+        />,
+      );
+    });
+
+    expect(container.textContent).toContain("lida");
 
     await act(async () => {
       root.unmount();
