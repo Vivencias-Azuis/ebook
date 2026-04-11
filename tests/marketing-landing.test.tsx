@@ -31,9 +31,7 @@ describe("ProductSalesLanding", () => {
     expect(markup).toContain(
       "Se hoje tudo parece importante ao mesmo tempo, este material é para você",
     );
-    expect(markup).toContain(
-      "Talvez você esteja pensando nisso agora",
-    );
+    expect(markup).toContain("Talvez você esteja pensando nisso agora");
     expect(markup).toContain("Comprar agora");
     expect(markup).toContain('name="productId"');
     expect(markup).toContain("R$");

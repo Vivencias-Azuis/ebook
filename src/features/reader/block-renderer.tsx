@@ -76,7 +76,10 @@ function renderInlineText(text: string) {
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={`${part}-${index}`} className="font-semibold text-[color:var(--va-navy)]">
+        <strong
+          key={`${part}-${index}`}
+          className="font-semibold text-[color:var(--va-navy)]"
+        >
           {part.slice(2, -2)}
         </strong>
       );
@@ -198,8 +201,12 @@ function renderBlockContent(
     case "callout": {
       const payload = parseBlockPayload(type, payloadJson);
       return (
-        <div className={`rounded-[1.35rem] border px-5 py-4 shadow-[0_18px_44px_-34px_rgba(11,35,66,0.3)] ${toneClassName(payload.tone)}`}>
-          <p className="text-sm font-medium uppercase tracking-wide">{payload.tone}</p>
+        <div
+          className={`rounded-[1.35rem] border px-5 py-4 shadow-[0_18px_44px_-34px_rgba(11,35,66,0.3)] ${toneClassName(payload.tone)}`}
+        >
+          <p className="text-sm font-medium uppercase tracking-wide">
+            {payload.tone}
+          </p>
           <p className="mt-2 whitespace-pre-wrap leading-7">{payload.body}</p>
         </div>
       );
@@ -250,7 +257,8 @@ function renderBlockContent(
               Material para baixar
             </p>
             <p className="mt-2 text-sm leading-6 text-[color:var(--va-soft-ink)]">
-              Escolha entre uma versão mais leve para leitura rápida ou uma versão pensada para impressão.
+              Escolha entre uma versão mais leve para leitura rápida ou uma
+              versão pensada para impressão.
             </p>
             <details className="mt-4">
               <summary className="inline-flex cursor-pointer rounded-[8px] bg-[color:var(--va-navy)] px-5 py-3 text-sm font-bold text-white shadow-[0_18px_38px_-28px_rgba(11,35,66,0.62)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-800)]">
@@ -276,7 +284,11 @@ function renderBlockContent(
       }
 
       if (!payload.href) {
-        return <PreparedPlaceholder label={`Download block ready: ${payload.label}`} />;
+        return (
+          <PreparedPlaceholder
+            label={`Download block ready: ${payload.label}`}
+          />
+        );
       }
 
       return (
@@ -305,6 +317,8 @@ function renderBlockContent(
       return <PreparedPlaceholder label="Video block ready for playback UI." />;
     case "quiz":
       parseBlockPayload(type, payloadJson);
-      return <PreparedPlaceholder label="Quiz block ready for interaction UI." />;
+      return (
+        <PreparedPlaceholder label="Quiz block ready for interaction UI." />
+      );
   }
 }

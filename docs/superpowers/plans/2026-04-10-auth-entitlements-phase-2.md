@@ -11,29 +11,33 @@
 ---
 
 ### Task 1: better-auth integration
+
 - [ ] Wire `better-auth` config and route handler.
 - [ ] Create login and register pages with basic forms.
 - [ ] Add a server-side session helper.
 - [ ] Verify build and auth route compilation.
 
 ### Task 2: persist webhook purchases
+
 - [ ] Expand Stripe checkout metadata to include user identifier when available.
 - [ ] On `checkout.session.completed`, upsert `orders`.
 - [ ] Create or preserve `entitlements` idempotently.
 - [ ] Add focused tests for webhook persistence helpers.
 
 ### Task 3: real customer library
+
 - [ ] Change `/library` to require session.
 - [ ] Query purchased products from `entitlements` instead of all published products.
 - [ ] Show empty-state when the account has no products.
 
 ### Task 4: protect `/products/[slug]/read`
+
 - [ ] Require session.
 - [ ] Require an active entitlement for the product.
 - [ ] Redirect or block access when the user has not purchased the product.
 
 ### Task 5: final verification
+
 - [ ] Run `npm run lint`.
 - [ ] Run `npm test`.
 - [ ] Run `npm run build`.
-

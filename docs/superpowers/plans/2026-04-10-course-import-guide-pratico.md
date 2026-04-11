@@ -31,6 +31,7 @@ README.md
 ## Task 1: Add Failing Parser Tests
 
 **Files:**
+
 - Create: `tests/course-import-guide-pratico.test.ts`
 - Create: `src/domains/course-import/guide-pratico.ts`
 
@@ -62,12 +63,16 @@ describe("buildGuidePraticoCourseDefinition", () => {
     const course = buildGuidePraticoCourseDefinition();
 
     expect(course.chapters.length).toBeGreaterThanOrEqual(4);
-    expect(course.chapters[0]?.blocks.some((block) => block.type === "rich_text")).toBe(true);
+    expect(
+      course.chapters[0]?.blocks.some((block) => block.type === "rich_text"),
+    ).toBe(true);
   });
 
   it("creates checklist and download blocks for actionable sections and deliverables", () => {
     const course = buildGuidePraticoCourseDefinition();
-    const blockTypes = course.chapters.flatMap((chapter) => chapter.blocks.map((block) => block.type));
+    const blockTypes = course.chapters.flatMap((chapter) =>
+      chapter.blocks.map((block) => block.type),
+    );
 
     expect(blockTypes).toContain("checklist");
     expect(blockTypes).toContain("download");
@@ -87,8 +92,10 @@ Expected: FAIL because `@/domains/course-import/guide-pratico` and its exports d
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-export const GUIDE_PRATICO_PRODUCT_ID = "product-guia-pratico-primeiros-30-dias";
-export const GUIDE_PRATICO_SLUG = "guia-pratico-primeiros-30-dias-apos-diagnostico";
+export const GUIDE_PRATICO_PRODUCT_ID =
+  "product-guia-pratico-primeiros-30-dias";
+export const GUIDE_PRATICO_SLUG =
+  "guia-pratico-primeiros-30-dias-apos-diagnostico";
 
 export type ImportedBlock = {
   id: string;
@@ -156,7 +163,10 @@ export function buildGuidePraticoCourseDefinition(): ImportedCourseDefinition {
             id: "block-guia-introducao-rich-text",
             type: "rich_text",
             title: "Como usar este guia",
-            payloadJson: JSON.stringify({ markdown: normalized.split("## PARTE 1:")[0]?.trim() ?? normalized.trim() }),
+            payloadJson: JSON.stringify({
+              markdown:
+                normalized.split("## PARTE 1:")[0]?.trim() ?? normalized.trim(),
+            }),
             sortOrder: 1,
             isPublished: true,
           },
@@ -172,7 +182,10 @@ export function buildGuidePraticoCourseDefinition(): ImportedCourseDefinition {
             id: "block-guia-parte-1-rich-text",
             type: "rich_text",
             title: "O dia que mudou tudo",
-            payloadJson: JSON.stringify({ markdown: "Capítulos iniciais importados do guia para leitura no app." }),
+            payloadJson: JSON.stringify({
+              markdown:
+                "Capítulos iniciais importados do guia para leitura no app.",
+            }),
             sortOrder: 1,
             isPublished: true,
           },
@@ -188,7 +201,10 @@ export function buildGuidePraticoCourseDefinition(): ImportedCourseDefinition {
             id: "block-guia-semana-1-rich-text",
             type: "rich_text",
             title: "Objetivo da semana",
-            payloadJson: JSON.stringify({ markdown: "Sair do choque emocional e criar uma base sólida de informações." }),
+            payloadJson: JSON.stringify({
+              markdown:
+                "Sair do choque emocional e criar uma base sólida de informações.",
+            }),
             sortOrder: 1,
             isPublished: true,
           },
@@ -198,9 +214,20 @@ export function buildGuidePraticoCourseDefinition(): ImportedCourseDefinition {
             title: "Checklist inicial",
             payloadJson: JSON.stringify({
               items: [
-                { id: "semana-1-item-1", label: "Reservar 30 minutos sozinha para escrever o que está sentindo." },
-                { id: "semana-1-item-2", label: "Reunir laudos, relatórios e documentos já disponíveis." },
-                { id: "semana-1-item-3", label: "Separar fontes confiáveis para consulta." },
+                {
+                  id: "semana-1-item-1",
+                  label:
+                    "Reservar 30 minutos sozinha para escrever o que está sentindo.",
+                },
+                {
+                  id: "semana-1-item-2",
+                  label:
+                    "Reunir laudos, relatórios e documentos já disponíveis.",
+                },
+                {
+                  id: "semana-1-item-3",
+                  label: "Separar fontes confiáveis para consulta.",
+                },
               ],
             }),
             sortOrder: 2,
@@ -220,7 +247,8 @@ export function buildGuidePraticoCourseDefinition(): ImportedCourseDefinition {
             title: "Downloads inclusos",
             payloadJson: JSON.stringify({
               assetId: "placeholder-guia-pratico-downloads",
-              label: "PDF, checklists semanais, diário de progresso, mapa visual e roteiros de apoio",
+              label:
+                "PDF, checklists semanais, diário de progresso, mapa visual e roteiros de apoio",
             }),
             sortOrder: 1,
             isPublished: true,
@@ -241,6 +269,7 @@ Expected: PASS with 3 tests green.
 ## Task 2: Add Persistence Tests For Seeded Course And Access
 
 **Files:**
+
 - Modify: `tests/course-import-guide-pratico.test.ts`
 - Modify: `src/domains/course-import/guide-pratico.ts`
 
@@ -298,9 +327,16 @@ import { randomUUID } from "node:crypto";
 import { eq } from "drizzle-orm";
 
 import { db } from "@/db/client";
-import { chapters, contentBlocks, entitlements, products, users } from "@/db/schema";
+import {
+  chapters,
+  contentBlocks,
+  entitlements,
+  products,
+  users,
+} from "@/db/schema";
 
-export const GUIDE_PRATICO_TEST_USER_EMAIL = "teste.guia.pratico@vivenciasazuis.local";
+export const GUIDE_PRATICO_TEST_USER_EMAIL =
+  "teste.guia.pratico@vivenciasazuis.local";
 
 export async function importGuidePraticoCourse() {
   const course = buildGuidePraticoCourseDefinition();
@@ -407,6 +443,7 @@ Expected: PASS with parser and persistence coverage green.
 ## Task 3: Wire The Importer Into The Seed Flow
 
 **Files:**
+
 - Modify: `src/db/seed.ts`
 - Modify: `README.md`
 - Test: `tests/course-import-guide-pratico.test.ts`
@@ -461,6 +498,7 @@ Expected: PASS with all seed integration coverage green.
 ## Task 4: Final Verification
 
 **Files:**
+
 - Verify only
 
 - [ ] **Step 1: Run the guide import test file**

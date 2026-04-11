@@ -28,7 +28,9 @@ describe("buildGuidePraticoCourseDefinition", () => {
           eq(account.accountId, "user-guia-pratico-seed"),
         ),
       );
-    await db.delete(users).where(eq(users.email, GUIDE_PRATICO_TEST_USER_EMAIL));
+    await db
+      .delete(users)
+      .where(eq(users.email, GUIDE_PRATICO_TEST_USER_EMAIL));
     await db.delete(products).where(eq(products.id, GUIDE_PRATICO_PRODUCT_ID));
   }
 
@@ -39,11 +41,13 @@ describe("buildGuidePraticoCourseDefinition", () => {
       id: GUIDE_PRATICO_PRODUCT_ID,
       slug: GUIDE_PRATICO_SLUG,
       status: "published",
-      priceCents: 9700,
+      priceCents: 997,
       currency: "brl",
     });
     expect(course.product.description).toContain("evitar decisões caras");
-    expect(course.product.description).toContain("conversar com profissionais e escola");
+    expect(course.product.description).toContain(
+      "conversar com profissionais e escola",
+    );
     expect(course.product.title).toContain("Suspeita ou Diagnóstico");
     expect(course.product.subtitle).toContain("organizar o que fazer primeiro");
   });
@@ -61,12 +65,16 @@ describe("buildGuidePraticoCourseDefinition", () => {
       "Semana 4: Brasil real, direitos e próximos 60 dias",
       "Família inteira e materiais interativos",
     ]);
-    expect(course.chapters[0]?.blocks.some((block) => block.type === "rich_text")).toBe(true);
+    expect(
+      course.chapters[0]?.blocks.some((block) => block.type === "rich_text"),
+    ).toBe(true);
   });
 
   it("creates checklist and download blocks for actionable sections and deliverables", () => {
     const course = buildGuidePraticoCourseDefinition();
-    const blockTypes = course.chapters.flatMap((chapter) => chapter.blocks.map((block) => block.type));
+    const blockTypes = course.chapters.flatMap((chapter) =>
+      chapter.blocks.map((block) => block.type),
+    );
     const checklistBlock = course.chapters
       .flatMap((chapter) => chapter.blocks)
       .find((block) => block.type === "checklist");
@@ -74,7 +82,7 @@ describe("buildGuidePraticoCourseDefinition", () => {
     expect(blockTypes).toContain("checklist");
     expect(blockTypes).toContain("download");
     expect(
-      JSON.parse(checklistBlock?.payloadJson ?? "{\"items\":[]}").items.length,
+      JSON.parse(checklistBlock?.payloadJson ?? '{"items":[]}').items.length,
     ).toBeGreaterThan(0);
   });
 
@@ -139,7 +147,9 @@ describe("buildGuidePraticoCourseDefinition", () => {
     expect(markdown).toContain("Resultado esperado");
     expect(markdown).toContain("Família inteira");
     expect(markdown).toContain("Materiais interativos");
-    expect(markdown).toContain("PDF para imprimir, levar em consulta ou revisar com a escola");
+    expect(markdown).toContain(
+      "PDF para imprimir, levar em consulta ou revisar com a escola",
+    );
   });
 
   it("adds Brazilian support, rights, caregiver, and family guidance", () => {
@@ -184,9 +194,9 @@ describe("buildGuidePraticoCourseDefinition", () => {
   });
 
   it("fails fast when required markdown sections are missing", () => {
-    expect(() => buildGuidePraticoCourseDefinitionFromMarkdown("# Guia incompleto")).toThrow(
-      /Missing required guide section/i,
-    );
+    expect(() =>
+      buildGuidePraticoCourseDefinitionFromMarkdown("# Guia incompleto"),
+    ).toThrow(/Missing required guide section/i);
   });
 
   it("persists the product, test user, and entitlement idempotently", async () => {

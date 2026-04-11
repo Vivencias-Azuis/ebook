@@ -73,7 +73,9 @@ export function CatalogLanding({
             <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-semibold text-white/88">
               <span className="va-chip va-chip-on-dark">Acesso imediato</span>
               <span className="va-chip va-chip-on-dark">Linguagem simples</span>
-              <span className="va-chip va-chip-on-dark">Aplicável na rotina</span>
+              <span className="va-chip va-chip-on-dark">
+                Aplicável na rotina
+              </span>
             </div>
             {featuredProduct ? (
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -103,12 +105,13 @@ export function CatalogLanding({
                 {featuredProduct.title}
               </h2>
               <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                {featuredProduct.subtitle ?? "Um começo simples para organizar o primeiro mês"}
+                {featuredProduct.subtitle ??
+                  "Um começo simples para organizar o primeiro mês"}
               </p>
               <p className="mt-6 max-w-2xl text-base leading-7 text-[color:var(--va-soft-ink)]">
                 Material pensado para famílias que precisam sair do excesso de
-                informação e transformar ansiedade em próximos passos mais claros
-                sobre rotina, escola, terapias e organização da jornada.
+                informação e transformar ansiedade em próximos passos mais
+                claros sobre rotina, escola, terapias e organização da jornada.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -219,7 +222,10 @@ export function CatalogLanding({
                       Preço
                     </p>
                     <p className="mt-2 text-xl font-semibold text-[color:var(--va-ink)]">
-                      {formatMoney(product.priceCents, product.currency.toUpperCase())}
+                      {formatMoney(
+                        product.priceCents,
+                        product.currency.toUpperCase(),
+                      )}
                     </p>
                   </div>
                   <Link

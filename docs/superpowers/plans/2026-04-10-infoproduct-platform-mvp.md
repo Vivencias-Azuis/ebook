@@ -65,6 +65,7 @@ tests/stripe-webhook.test.ts
 ## Task 1: Scaffold Next.js App
 
 **Files:**
+
 - Create: `package.json`
 - Create: `next.config.ts`
 - Create: `tsconfig.json`
@@ -122,6 +123,7 @@ Expected: both commands complete successfully.
 ## Task 2: Database Schema and Seed
 
 **Files:**
+
 - Create: `drizzle.config.ts`
 - Create: `src/db/client.ts`
 - Create: `src/db/schema.ts`
@@ -170,17 +172,30 @@ Create `src/db/schema.ts` with tables for users, products, chapters, blocks, ord
 
 ```ts
 import { relations, sql } from "drizzle-orm";
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  sqliteTable,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: text("id").primaryKey(),
   name: text("name"),
   email: text("email").notNull().unique(),
-  emailVerified: integer("email_verified", { mode: "boolean" }).notNull().default(false),
+  emailVerified: integer("email_verified", { mode: "boolean" })
+    .notNull()
+    .default(false),
   image: text("image"),
-  role: text("role", { enum: ["customer", "admin"] }).notNull().default("customer"),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  role: text("role", { enum: ["customer", "admin"] })
+    .notNull()
+    .default("customer"),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const products = sqliteTable("products", {
@@ -191,59 +206,115 @@ export const products = sqliteTable("products", {
   description: text("description").notNull(),
   priceCents: integer("price_cents").notNull(),
   currency: text("currency").notNull().default("brl"),
-  status: text("status", { enum: ["draft", "published", "archived"] }).notNull().default("draft"),
+  status: text("status", { enum: ["draft", "published", "archived"] })
+    .notNull()
+    .default("draft"),
   stripePriceId: text("stripe_price_id"),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const chapters = sqliteTable("chapters", {
   id: text("id").primaryKey(),
-  productId: text("product_id").notNull().references(() => products.id, { onDelete: "cascade" }),
+  productId: text("product_id")
+    .notNull()
+    .references(() => products.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
   sortOrder: integer("sort_order").notNull(),
-  isPublished: integer("is_published", { mode: "boolean" }).notNull().default(false),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  isPublished: integer("is_published", { mode: "boolean" })
+    .notNull()
+    .default(false),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const contentBlocks = sqliteTable("content_blocks", {
   id: text("id").primaryKey(),
-  chapterId: text("chapter_id").notNull().references(() => chapters.id, { onDelete: "cascade" }),
-  type: text("type", { enum: ["rich_text", "callout", "checklist", "download", "audio", "video", "quiz", "divider"] }).notNull(),
+  chapterId: text("chapter_id")
+    .notNull()
+    .references(() => chapters.id, { onDelete: "cascade" }),
+  type: text("type", {
+    enum: [
+      "rich_text",
+      "callout",
+      "checklist",
+      "download",
+      "audio",
+      "video",
+      "quiz",
+      "divider",
+    ],
+  }).notNull(),
   title: text("title"),
   payloadJson: text("payload_json").notNull(),
   sortOrder: integer("sort_order").notNull(),
-  isPublished: integer("is_published", { mode: "boolean" }).notNull().default(false),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  isPublished: integer("is_published", { mode: "boolean" })
+    .notNull()
+    .default(false),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const orders = sqliteTable("orders", {
   id: text("id").primaryKey(),
-  userId: text("user_id").notNull().references(() => users.id),
-  productId: text("product_id").notNull().references(() => products.id),
-  stripeCheckoutSessionId: text("stripe_checkout_session_id").notNull().unique(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id),
+  productId: text("product_id")
+    .notNull()
+    .references(() => products.id),
+  stripeCheckoutSessionId: text("stripe_checkout_session_id")
+    .notNull()
+    .unique(),
   stripePaymentIntentId: text("stripe_payment_intent_id"),
-  status: text("status", { enum: ["pending", "paid", "failed", "refunded"] }).notNull(),
+  status: text("status", {
+    enum: ["pending", "paid", "failed", "refunded"],
+  }).notNull(),
   amountCents: integer("amount_cents").notNull(),
   currency: text("currency").notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const entitlements = sqliteTable(
   "entitlements",
   {
     id: text("id").primaryKey(),
-    userId: text("user_id").notNull().references(() => users.id),
-    productId: text("product_id").notNull().references(() => products.id),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id),
+    productId: text("product_id")
+      .notNull()
+      .references(() => products.id),
     sourceOrderId: text("source_order_id").references(() => orders.id),
-    status: text("status", { enum: ["active", "revoked"] }).notNull().default("active"),
-    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    status: text("status", { enum: ["active", "revoked"] })
+      .notNull()
+      .default("active"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .default(sql`CURRENT_TIMESTAMP`),
   },
   (table) => ({
-    userProductUnique: uniqueIndex("entitlements_user_product_unique").on(table.userId, table.productId),
+    userProductUnique: uniqueIndex("entitlements_user_product_unique").on(
+      table.userId,
+      table.productId,
+    ),
   }),
 );
 
@@ -251,15 +322,25 @@ export const progress = sqliteTable(
   "progress",
   {
     id: text("id").primaryKey(),
-    userId: text("user_id").notNull().references(() => users.id),
-    productId: text("product_id").notNull().references(() => products.id),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id),
+    productId: text("product_id")
+      .notNull()
+      .references(() => products.id),
     chapterId: text("chapter_id").references(() => chapters.id),
     blockId: text("block_id").references(() => contentBlocks.id),
     state: text("state").notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .default(sql`CURRENT_TIMESTAMP`),
   },
   (table) => ({
-    progressUnique: uniqueIndex("progress_user_product_block_unique").on(table.userId, table.productId, table.blockId),
+    progressUnique: uniqueIndex("progress_user_product_block_unique").on(
+      table.userId,
+      table.productId,
+      table.blockId,
+    ),
   }),
 );
 
@@ -268,7 +349,10 @@ export const productRelations = relations(products, ({ many }) => ({
 }));
 
 export const chapterRelations = relations(chapters, ({ one, many }) => ({
-  product: one(products, { fields: [chapters.productId], references: [products.id] }),
+  product: one(products, {
+    fields: [chapters.productId],
+    references: [products.id],
+  }),
   blocks: many(contentBlocks),
 }));
 ```
@@ -322,36 +406,48 @@ Create `src/db/seed.ts`:
 import { db } from "./client";
 import { chapters, contentBlocks, products } from "./schema";
 
-await db.insert(products).values({
-  id: "prod_primeiros_30_dias",
-  slug: "primeiros-30-dias-apos-o-diagnostico",
-  title: "Guia Prático: Primeiros 30 Dias Após o Diagnóstico",
-  subtitle: "Um roteiro claro e acolhedor para sair da paralisia e agir com confiança.",
-  description: "Plano prático em quatro semanas para famílias após o diagnóstico de autismo.",
-  priceCents: 6700,
-  currency: "brl",
-  status: "published",
-}).onConflictDoNothing();
+await db
+  .insert(products)
+  .values({
+    id: "prod_primeiros_30_dias",
+    slug: "primeiros-30-dias-apos-o-diagnostico",
+    title: "Guia Prático: Primeiros 30 Dias Após o Diagnóstico",
+    subtitle:
+      "Um roteiro claro e acolhedor para sair da paralisia e agir com confiança.",
+    description:
+      "Plano prático em quatro semanas para famílias após o diagnóstico de autismo.",
+    priceCents: 6700,
+    currency: "brl",
+    status: "published",
+  })
+  .onConflictDoNothing();
 
-await db.insert(chapters).values({
-  id: "chap_intro",
-  productId: "prod_primeiros_30_dias",
-  title: "Como usar este guia",
-  sortOrder: 1,
-  isPublished: true,
-}).onConflictDoNothing();
+await db
+  .insert(chapters)
+  .values({
+    id: "chap_intro",
+    productId: "prod_primeiros_30_dias",
+    title: "Como usar este guia",
+    sortOrder: 1,
+    isPublished: true,
+  })
+  .onConflictDoNothing();
 
-await db.insert(contentBlocks).values({
-  id: "block_intro_text",
-  chapterId: "chap_intro",
-  type: "rich_text",
-  title: "Você não precisa descobrir tudo hoje",
-  payloadJson: JSON.stringify({
-    markdown: "Este guia organiza seus próximos 30 dias em passos pequenos, claros e possíveis.",
-  }),
-  sortOrder: 1,
-  isPublished: true,
-}).onConflictDoNothing();
+await db
+  .insert(contentBlocks)
+  .values({
+    id: "block_intro_text",
+    chapterId: "chap_intro",
+    type: "rich_text",
+    title: "Você não precisa descobrir tudo hoje",
+    payloadJson: JSON.stringify({
+      markdown:
+        "Este guia organiza seus próximos 30 dias em passos pequenos, claros e possíveis.",
+    }),
+    sortOrder: 1,
+    isPublished: true,
+  })
+  .onConflictDoNothing();
 ```
 
 - [ ] **Step 7: Verify database setup**
@@ -369,6 +465,7 @@ Expected: migration is generated, applied, and seed completes without duplicate 
 ## Task 3: Content Block Validation and Rendering
 
 **Files:**
+
 - Create: `src/domains/content/blocks.ts`
 - Create: `src/features/reader/block-renderer.tsx`
 - Create: `tests/blocks.test.ts`
@@ -383,12 +480,17 @@ import { parseBlockPayload } from "@/domains/content/blocks";
 
 describe("parseBlockPayload", () => {
   it("accepts rich text payloads", () => {
-    const result = parseBlockPayload("rich_text", JSON.stringify({ markdown: "Hello" }));
+    const result = parseBlockPayload(
+      "rich_text",
+      JSON.stringify({ markdown: "Hello" }),
+    );
     expect(result).toEqual({ markdown: "Hello" });
   });
 
   it("rejects invalid checklist payloads", () => {
-    expect(() => parseBlockPayload("checklist", JSON.stringify({ items: "bad" }))).toThrow();
+    expect(() =>
+      parseBlockPayload("checklist", JSON.stringify({ items: "bad" })),
+    ).toThrow();
   });
 });
 ```
@@ -410,19 +512,43 @@ Create `src/domains/content/blocks.ts`:
 ```ts
 import { z } from "zod";
 
-export const blockTypeSchema = z.enum(["rich_text", "callout", "checklist", "download", "audio", "video", "quiz", "divider"]);
+export const blockTypeSchema = z.enum([
+  "rich_text",
+  "callout",
+  "checklist",
+  "download",
+  "audio",
+  "video",
+  "quiz",
+  "divider",
+]);
 export type BlockType = z.infer<typeof blockTypeSchema>;
 
 const schemas = {
   rich_text: z.object({ markdown: z.string().min(1) }),
-  callout: z.object({ tone: z.enum(["info", "warning", "success"]), body: z.string().min(1) }),
-  checklist: z.object({ items: z.array(z.object({ id: z.string().min(1), label: z.string().min(1) })).min(1) }),
+  callout: z.object({
+    tone: z.enum(["info", "warning", "success"]),
+    body: z.string().min(1),
+  }),
+  checklist: z.object({
+    items: z
+      .array(z.object({ id: z.string().min(1), label: z.string().min(1) }))
+      .min(1),
+  }),
   download: z.object({ assetId: z.string().min(1), label: z.string().min(1) }),
   audio: z.object({ url: z.string().url(), title: z.string().optional() }),
   video: z.object({ url: z.string().url(), title: z.string().optional() }),
   quiz: z.object({
     question: z.string().min(1),
-    answers: z.array(z.object({ id: z.string().min(1), label: z.string().min(1), isCorrect: z.boolean() })).min(2),
+    answers: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          label: z.string().min(1),
+          isCorrect: z.boolean(),
+        }),
+      )
+      .min(2),
   }),
   divider: z.object({}),
 } satisfies Record<BlockType, z.ZodTypeAny>;
@@ -446,11 +572,19 @@ type BlockRendererProps = {
   payloadJson: string;
 };
 
-export function BlockRenderer({ type, title, payloadJson }: BlockRendererProps) {
+export function BlockRenderer({
+  type,
+  title,
+  payloadJson,
+}: BlockRendererProps) {
   const payload = parseBlockPayload(type, payloadJson);
 
   if (type === "rich_text") {
-    return <article className="prose max-w-none whitespace-pre-wrap">{payload.markdown}</article>;
+    return (
+      <article className="prose max-w-none whitespace-pre-wrap">
+        {payload.markdown}
+      </article>
+    );
   }
 
   if (type === "callout") {
@@ -485,7 +619,9 @@ export function BlockRenderer({ type, title, payloadJson }: BlockRendererProps) 
   return (
     <div className="rounded-2xl border p-4">
       {title ? <h3 className="font-semibold">{title}</h3> : null}
-      <p className="text-sm text-muted-foreground">Bloco {type} preparado para renderização rica.</p>
+      <p className="text-sm text-muted-foreground">
+        Bloco {type} preparado para renderização rica.
+      </p>
     </div>
   );
 }
@@ -504,6 +640,7 @@ Expected: PASS.
 ## Task 4: Product Queries and Public Sales Page
 
 **Files:**
+
 - Create: `src/domains/products/queries.ts`
 - Create: `src/lib/format.ts`
 - Modify: `src/app/(public)/page.tsx`
@@ -532,11 +669,19 @@ import { db } from "@/db/client";
 import { chapters, contentBlocks, products } from "@/db/schema";
 
 export async function getPublishedProducts() {
-  return db.select().from(products).where(eq(products.status, "published")).orderBy(asc(products.createdAt));
+  return db
+    .select()
+    .from(products)
+    .where(eq(products.status, "published"))
+    .orderBy(asc(products.createdAt));
 }
 
 export async function getProductBySlug(slug: string) {
-  const [product] = await db.select().from(products).where(eq(products.slug, slug)).limit(1);
+  const [product] = await db
+    .select()
+    .from(products)
+    .where(eq(products.slug, slug))
+    .limit(1);
   return product ?? null;
 }
 
@@ -556,7 +701,9 @@ export async function getPublishedProductContent(productId: string) {
 
   return productChapters.map((chapter) => ({
     ...chapter,
-    blocks: rows.filter((row) => row.chapters.id === chapter.id).map((row) => row.content_blocks),
+    blocks: rows
+      .filter((row) => row.chapters.id === chapter.id)
+      .map((row) => row.content_blocks),
   }));
 }
 ```
@@ -575,14 +722,24 @@ export default async function HomePage() {
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">Vivências Azuis</p>
-      <h1 className="mt-4 max-w-3xl text-5xl font-semibold tracking-tight">Guias práticos para famílias no espectro.</h1>
+      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">
+        Vivências Azuis
+      </p>
+      <h1 className="mt-4 max-w-3xl text-5xl font-semibold tracking-tight">
+        Guias práticos para famílias no espectro.
+      </h1>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {products.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-3xl border p-6 transition hover:shadow-lg">
+          <Link
+            key={product.id}
+            href={`/products/${product.slug}`}
+            className="rounded-3xl border p-6 transition hover:shadow-lg"
+          >
             <h2 className="text-2xl font-semibold">{product.title}</h2>
             <p className="mt-3 text-neutral-600">{product.description}</p>
-            <p className="mt-6 font-semibold">{formatMoney(product.priceCents, product.currency.toUpperCase())}</p>
+            <p className="mt-6 font-semibold">
+              {formatMoney(product.priceCents, product.currency.toUpperCase())}
+            </p>
           </Link>
         ))}
       </div>
@@ -615,17 +772,29 @@ export default async function ProductSalesPage({ params }: PageProps) {
   return (
     <main className="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr]">
       <section>
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">Guia prático</p>
-        <h1 className="mt-4 text-5xl font-semibold tracking-tight">{product.title}</h1>
-        {product.subtitle ? <p className="mt-5 text-xl text-neutral-700">{product.subtitle}</p> : null}
-        <p className="mt-8 text-lg leading-8 text-neutral-700">{product.description}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">
+          Guia prático
+        </p>
+        <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          {product.title}
+        </h1>
+        {product.subtitle ? (
+          <p className="mt-5 text-xl text-neutral-700">{product.subtitle}</p>
+        ) : null}
+        <p className="mt-8 text-lg leading-8 text-neutral-700">
+          {product.description}
+        </p>
       </section>
       <aside className="rounded-3xl border bg-stone-50 p-8">
         <p className="text-sm text-neutral-600">Acesso permanente</p>
-        <p className="mt-2 text-4xl font-semibold">{formatMoney(product.priceCents, product.currency.toUpperCase())}</p>
+        <p className="mt-2 text-4xl font-semibold">
+          {formatMoney(product.priceCents, product.currency.toUpperCase())}
+        </p>
         <form action="/api/checkout" method="post" className="mt-8">
           <input type="hidden" name="productId" value={product.id} />
-          <button className="w-full rounded-full bg-teal-700 px-6 py-4 font-semibold text-white">Comprar agora</button>
+          <button className="w-full rounded-full bg-teal-700 px-6 py-4 font-semibold text-white">
+            Comprar agora
+          </button>
         </form>
       </aside>
     </main>
@@ -646,6 +815,7 @@ Expected: build succeeds.
 ## Task 5: Access Rules
 
 **Files:**
+
 - Create: `src/domains/orders/access.ts`
 - Create: `tests/access.test.ts`
 
@@ -699,11 +869,19 @@ export function canAccessProduct(entitlement: EntitlementLike) {
   return entitlement?.status === "active";
 }
 
-export async function getUserProductEntitlement(userId: string, productId: string) {
+export async function getUserProductEntitlement(
+  userId: string,
+  productId: string,
+) {
   const [entitlement] = await db
     .select()
     .from(entitlements)
-    .where(and(eq(entitlements.userId, userId), eq(entitlements.productId, productId)))
+    .where(
+      and(
+        eq(entitlements.userId, userId),
+        eq(entitlements.productId, productId),
+      ),
+    )
     .limit(1);
 
   return entitlement ?? null;
@@ -723,6 +901,7 @@ Expected: PASS.
 ## Task 6: Stripe Checkout and Webhook Skeleton
 
 **Files:**
+
 - Create: `src/domains/orders/stripe.ts`
 - Create: `src/app/api/checkout/route.ts`
 - Create: `src/app/api/stripe/webhook/route.ts`
@@ -794,14 +973,20 @@ export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
 
   if (!signature) {
-    return NextResponse.json({ error: "Missing Stripe signature." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Missing Stripe signature." },
+      { status: 400 },
+    );
   }
 
   const body = await request.text();
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   if (!webhookSecret) {
-    return NextResponse.json({ error: "Stripe webhook secret is not configured." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Stripe webhook secret is not configured." },
+      { status: 500 },
+    );
   }
 
   let event;
@@ -809,7 +994,10 @@ export async function POST(request: Request) {
   try {
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch {
-    return NextResponse.json({ error: "Invalid Stripe signature." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid Stripe signature." },
+      { status: 400 },
+    );
   }
 
   if (event.type === "checkout.session.completed") {
@@ -837,6 +1025,7 @@ Expected: build succeeds.
 ## Task 7: Customer Library and Reader
 
 **Files:**
+
 - Create: `src/app/(customer)/library/page.tsx`
 - Create: `src/app/(customer)/products/[slug]/read/page.tsx`
 
@@ -854,10 +1043,17 @@ export default async function LibraryPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
       <h1 className="text-4xl font-semibold">Minha biblioteca</h1>
-      <p className="mt-3 text-neutral-600">Seus produtos comprados aparecerão aqui. Nesta primeira fatia, exibimos o produto seed para validar a leitura.</p>
+      <p className="mt-3 text-neutral-600">
+        Seus produtos comprados aparecerão aqui. Nesta primeira fatia, exibimos
+        o produto seed para validar a leitura.
+      </p>
       <div className="mt-8 grid gap-4">
         {products.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}/read`} className="rounded-2xl border p-5 hover:shadow">
+          <Link
+            key={product.id}
+            href={`/products/${product.slug}/read`}
+            className="rounded-2xl border p-5 hover:shadow"
+          >
             <h2 className="text-xl font-semibold">{product.title}</h2>
             <p className="mt-2 text-neutral-600">Continuar leitura</p>
           </Link>
@@ -874,7 +1070,10 @@ Create `src/app/(customer)/products/[slug]/read/page.tsx`:
 
 ```tsx
 import { notFound } from "next/navigation";
-import { getProductBySlug, getPublishedProductContent } from "@/domains/products/queries";
+import {
+  getProductBySlug,
+  getPublishedProductContent,
+} from "@/domains/products/queries";
 import { BlockRenderer } from "@/features/reader/block-renderer";
 
 type PageProps = {
@@ -897,7 +1096,11 @@ export default async function CustomerProductPage({ params }: PageProps) {
         <h1 className="text-lg font-semibold">{product.title}</h1>
         <nav className="mt-6 space-y-2">
           {chapters.map((chapter) => (
-            <a key={chapter.id} href={`#${chapter.id}`} className="block rounded-xl px-3 py-2 text-sm hover:bg-white">
+            <a
+              key={chapter.id}
+              href={`#${chapter.id}`}
+              className="block rounded-xl px-3 py-2 text-sm hover:bg-white"
+            >
               {chapter.title}
             </a>
           ))}
@@ -905,11 +1108,20 @@ export default async function CustomerProductPage({ params }: PageProps) {
       </aside>
       <section className="space-y-10">
         {chapters.map((chapter) => (
-          <article key={chapter.id} id={chapter.id} className="rounded-3xl border p-8">
+          <article
+            key={chapter.id}
+            id={chapter.id}
+            className="rounded-3xl border p-8"
+          >
             <h2 className="text-3xl font-semibold">{chapter.title}</h2>
             <div className="mt-8 space-y-6">
               {chapter.blocks.map((block) => (
-                <BlockRenderer key={block.id} type={block.type} title={block.title} payloadJson={block.payloadJson} />
+                <BlockRenderer
+                  key={block.id}
+                  type={block.type}
+                  title={block.title}
+                  payloadJson={block.payloadJson}
+                />
               ))}
             </div>
           </article>
@@ -933,6 +1145,7 @@ Expected: build succeeds.
 ## Task 8: Admin Shell
 
 **Files:**
+
 - Create: `src/app/(admin)/admin/page.tsx`
 
 - [ ] **Step 1: Add admin dashboard shell**
@@ -951,10 +1164,14 @@ export default async function AdminPage() {
     <main className="mx-auto max-w-6xl px-6 py-10">
       <div className="flex items-start justify-between gap-6">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">Admin</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-700">
+            Admin
+          </p>
           <h1 className="mt-3 text-4xl font-semibold">Painel de produtos</h1>
         </div>
-        <button className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-semibold text-white">Novo produto</button>
+        <button className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-semibold text-white">
+          Novo produto
+        </button>
       </div>
       <div className="mt-10 overflow-hidden rounded-3xl border">
         <table className="w-full text-left text-sm">
@@ -971,9 +1188,19 @@ export default async function AdminPage() {
               <tr key={product.id} className="border-t">
                 <td className="p-4 font-medium">{product.title}</td>
                 <td className="p-4">{product.status}</td>
-                <td className="p-4">{formatMoney(product.priceCents, product.currency.toUpperCase())}</td>
                 <td className="p-4">
-                  <Link href={`/products/${product.slug}`} className="text-teal-700 underline">Ver página</Link>
+                  {formatMoney(
+                    product.priceCents,
+                    product.currency.toUpperCase(),
+                  )}
+                </td>
+                <td className="p-4">
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className="text-teal-700 underline"
+                  >
+                    Ver página
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -998,6 +1225,7 @@ Expected: build succeeds.
 ## Task 9: Final Verification
 
 **Files:**
+
 - No new files.
 
 - [ ] **Step 1: Run static checks**

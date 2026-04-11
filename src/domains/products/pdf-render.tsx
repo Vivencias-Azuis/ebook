@@ -1,6 +1,10 @@
 type PdfBlock =
   | { kind: "rich_text"; title: string | null; markdown: string }
-  | { kind: "checklist"; title: string | null; items: Array<{ id: string; label: string }> };
+  | {
+      kind: "checklist";
+      title: string | null;
+      items: Array<{ id: string; label: string }>;
+    };
 
 type PdfDocument = {
   product: { title: string; subtitle?: string | null };
@@ -25,7 +29,9 @@ export function ProductPdfTemplate({
       <body data-variant={variant}>
         <header className="cover">
           <h1>{document.product.title}</h1>
-          {document.product.subtitle ? <p>{document.product.subtitle}</p> : null}
+          {document.product.subtitle ? (
+            <p>{document.product.subtitle}</p>
+          ) : null}
         </header>
         {document.chapters.map((chapter) => (
           <section key={chapter.title}>

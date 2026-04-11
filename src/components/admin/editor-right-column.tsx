@@ -27,7 +27,9 @@ export function EditorRightColumn({
             className="grid gap-4"
           >
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Capítulo</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                Capítulo
+              </p>
               <h3 className="mt-2 text-lg font-semibold">Editar capítulo</h3>
             </div>
             <label className="grid gap-2">
@@ -62,7 +64,9 @@ export function EditorRightColumn({
 
   return (
     <aside className="rounded-3xl border bg-violet-50 p-5">
-      <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Propriedades</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+        Propriedades
+      </p>
       <h3 className="mt-2 text-lg font-semibold">{block.type}</h3>
       <div className="mt-4">
         <BlockFormRouter block={block} productId={productId} />

@@ -24,6 +24,7 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 **Layout:** Split screen em duas colunas de 50% cada.
 
 **Coluna esquerda (dark):**
+
 - Fundo: `linear-gradient(160deg, var(--va-blue-800), var(--va-navy))`
 - Radial sutil no canto superior esquerdo com `rgba(122,180,227,0.08)`
 - Topo: label "Vivências Azuis" em `var(--va-blue-300)`, uppercase, tracking largo
@@ -32,6 +33,7 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 - Chips com `va-chip va-chip-on-dark` no rodapé da coluna
 
 **Coluna direita (formulário):**
+
 - Fundo: `va-page` (warm sand)
 - Label "Conta" em `var(--va-blue)`, uppercase
 - Título "Entrar" em serif `var(--va-navy)`
@@ -54,11 +56,13 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 **Header nav:** pill com `va-reader-bar` (igual ao reader) — "Vivências Azuis" à esquerda, "Sair" à direita.
 
 **Hero:**
+
 - Label "Biblioteca" em `var(--va-blue)`, uppercase
 - Título "Seus guias" em serif `var(--va-navy)`, `text-4xl`
 - Subtítulo em `var(--va-soft-ink)`
 
 **Cards de produto:** usar classe `va-panel` existente.
+
 - Label "Guia digital" em `var(--va-muted)`, uppercase
 - Título do produto em serif `var(--va-navy)`
 - Barra de progresso: `h-2`, track branco, fill `linear-gradient(90deg, var(--va-blue-300), var(--va-blue))`
@@ -83,6 +87,7 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 - Conteúdo ganha largura extra quando sidebar recolhida
 
 **Agrupamento por capítulo no sumário:**
+
 - Cada grupo de capítulo tem label acima: "Cap. N" em `0.42rem`, uppercase, `var(--va-muted)`
 - Itens do capítulo listados abaixo sem separação excessiva
 - Item ativo: border `var(--va-blue-300)`, fundo branco
@@ -90,6 +95,7 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 - Sem "Página X" como label duplicado — mostrar diretamente o título do bloco ou título do capítulo
 
 **Tipografia do conteúdo:**
+
 - Corpo de texto: `font-family: serif`, `text-[1.05rem]`, `leading-[1.9]` (mais espaçado que atual)
 - Parágrafos com `space-y-6` (era `space-y-5`)
 
@@ -99,13 +105,13 @@ O restante da aplicação (catalog landing, reader panel, produto) já usa o des
 
 ## Arquivos a modificar
 
-| Arquivo | Mudança |
-|---|---|
-| `src/app/login/page.tsx` | Redesign completo — split screen |
-| `src/app/register/page.tsx` | Mesmo template do login |
-| `src/app/library/page.tsx` | va-* tokens + layout hero + cards melhorados |
-| `src/app/products/[slug]/read/page.tsx` | Sidebar recolhível + agrupamento por capítulo |
-| `src/features/reader/reader-sidebar.tsx` | Novo Client Component extraído da page |
+| Arquivo                                  | Mudança                                       |
+| ---------------------------------------- | --------------------------------------------- |
+| `src/app/login/page.tsx`                 | Redesign completo — split screen              |
+| `src/app/register/page.tsx`              | Mesmo template do login                       |
+| `src/app/library/page.tsx`               | va-\* tokens + layout hero + cards melhorados |
+| `src/app/products/[slug]/read/page.tsx`  | Sidebar recolhível + agrupamento por capítulo |
+| `src/features/reader/reader-sidebar.tsx` | Novo Client Component extraído da page        |
 
 ---
 

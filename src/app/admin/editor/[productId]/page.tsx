@@ -14,7 +14,10 @@ type PageProps = {
   searchParams: Promise<{ chapter?: string; block?: string }>;
 };
 
-export default async function AdminEditorPage({ params, searchParams }: PageProps) {
+export default async function AdminEditorPage({
+  params,
+  searchParams,
+}: PageProps) {
   await requireAdminSession();
   const { productId } = await params;
   const search = await searchParams;

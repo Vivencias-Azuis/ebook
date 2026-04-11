@@ -64,7 +64,9 @@ describe("deriveContinueReadingChapterId", () => {
 
 describe("buildChecklistProgressState", () => {
   it("marks the checklist complete only when all items are checked", () => {
-    expect(buildChecklistProgressState(["item-1", "item-2"], ["item-1"])).toEqual({
+    expect(
+      buildChecklistProgressState(["item-1", "item-2"], ["item-1"]),
+    ).toEqual({
       completed: false,
       checkedItemIds: ["item-1"],
     });

@@ -61,8 +61,9 @@ export function summarizeProductProgress(
   const completedBlocks = productChapters.reduce(
     (sum, chapter) =>
       sum +
-      chapter.blocks.filter((block) => progressByBlockId[block.id]?.completed === true)
-        .length,
+      chapter.blocks.filter(
+        (block) => progressByBlockId[block.id]?.completed === true,
+      ).length,
     0,
   );
 
@@ -79,7 +80,9 @@ export function deriveContinueReadingChapterId(
   progressByBlockId: Record<string, BlockProgressState>,
 ) {
   for (const chapter of productChapters) {
-    if (chapter.blocks.some((block) => !progressByBlockId[block.id]?.completed)) {
+    if (
+      chapter.blocks.some((block) => !progressByBlockId[block.id]?.completed)
+    ) {
       return chapter.id;
     }
   }
@@ -87,7 +90,10 @@ export function deriveContinueReadingChapterId(
   return productChapters.at(-1)?.id ?? null;
 }
 
-export async function getUserProductProgress(userId: string, productId: string) {
+export async function getUserProductProgress(
+  userId: string,
+  productId: string,
+) {
   const rows = await db
     .select({
       blockId: progress.blockId,
@@ -105,7 +111,10 @@ export async function getUserProductProgress(userId: string, productId: string) 
   return Object.fromEntries(
     rows
       .filter((row) => row.blockId)
-      .map((row) => [row.blockId as string, parseBlockProgressState(row.state)]),
+      .map((row) => [
+        row.blockId as string,
+        parseBlockProgressState(row.state),
+      ]),
   ) as Record<string, BlockProgressState>;
 }
 
@@ -233,7 +242,10 @@ export async function getUserProgressSummariesForProducts(
     }
   }
 
-  const progressByProductId = new Map<string, Record<string, BlockProgressState>>();
+  const progressByProductId = new Map<
+    string,
+    Record<string, BlockProgressState>
+  >();
 
   for (const row of progressRows) {
     if (!row.blockId) {

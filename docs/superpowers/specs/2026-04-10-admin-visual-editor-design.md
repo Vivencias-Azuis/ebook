@@ -251,4 +251,3 @@ The slice is successful when an admin can:
 5. Reorder blocks in the chapter
 6. Create another chapter
 7. Reorder chapters
-

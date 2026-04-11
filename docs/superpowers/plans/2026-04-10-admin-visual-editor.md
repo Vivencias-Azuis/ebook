@@ -38,6 +38,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 1: Editor Read Model
 
 **Files:**
+
 - Create: `src/domains/admin/editor-queries.ts`
 - Test: `tests/admin-editor-queries.test.ts`
 
@@ -62,7 +63,14 @@ const chapters = [
     sortOrder: 1,
     isPublished: true,
     blocks: [
-      { id: "block-a", title: "Intro", type: "rich_text" as const, sortOrder: 1, isPublished: true, payloadJson: "{\"markdown\":\"Hello\"}" },
+      {
+        id: "block-a",
+        title: "Intro",
+        type: "rich_text" as const,
+        sortOrder: 1,
+        isPublished: true,
+        payloadJson: '{"markdown":"Hello"}',
+      },
     ],
   },
   {
@@ -76,7 +84,12 @@ const chapters = [
 
 describe("deriveEditorSelection", () => {
   it("defaults to the first chapter and first block", () => {
-    const result = deriveEditorSelection({ product, chapters, selectedChapterId: null, selectedBlockId: null });
+    const result = deriveEditorSelection({
+      product,
+      chapters,
+      selectedChapterId: null,
+      selectedBlockId: null,
+    });
     expect(result.selectedChapter?.id).toBe("chapter-intro");
     expect(result.selectedBlock?.id).toBe("block-a");
   });
@@ -133,11 +146,17 @@ export type EditorChapter = {
 export type EditorProduct = typeof products.$inferSelect;
 
 export async function getEditorProduct(productId: string) {
-  const [product] = await db.select().from(products).where(eq(products.id, productId)).limit(1);
+  const [product] = await db
+    .select()
+    .from(products)
+    .where(eq(products.id, productId))
+    .limit(1);
   return product ?? null;
 }
 
-export async function getEditorChapters(productId: string): Promise<EditorChapter[]> {
+export async function getEditorChapters(
+  productId: string,
+): Promise<EditorChapter[]> {
   const productChapters = await db
     .select()
     .from(chapters)
@@ -179,12 +198,14 @@ export function deriveEditorSelection({
   selectedBlockId: string | null;
 }) {
   const selectedChapter =
-    chapters.find((chapter) => chapter.id === selectedChapterId) ?? chapters[0] ?? null;
+    chapters.find((chapter) => chapter.id === selectedChapterId) ??
+    chapters[0] ??
+    null;
 
   const selectedBlock = selectedChapter
-    ? selectedChapter.blocks.find((block) => block.id === selectedBlockId) ??
+    ? (selectedChapter.blocks.find((block) => block.id === selectedBlockId) ??
       selectedChapter.blocks[0] ??
-      null
+      null)
     : null;
 
   return {
@@ -209,6 +230,7 @@ Expected: PASS
 ## Task 2: Mutation Layer
 
 **Files:**
+
 - Create: `src/domains/admin/editor-mutations.ts`
 - Test: `tests/admin-editor-mutations.test.ts`
 
@@ -293,7 +315,10 @@ export function reorderItems<T extends SortableItem>(
 }
 
 export async function createChapter(productId: string, title: string) {
-  const existing = await db.select().from(chapters).where(eq(chapters.productId, productId));
+  const existing = await db
+    .select()
+    .from(chapters)
+    .where(eq(chapters.productId, productId));
   const nextSort = existing.length + 1;
   await db.insert(chapters).values({
     id: crypto.randomUUID(),
@@ -304,13 +329,21 @@ export async function createChapter(productId: string, title: string) {
   });
 }
 
-export async function createBlock(chapterId: string, type: typeof contentBlocks.$inferSelect.type) {
-  const existing = await db.select().from(contentBlocks).where(eq(contentBlocks.chapterId, chapterId));
+export async function createBlock(
+  chapterId: string,
+  type: typeof contentBlocks.$inferSelect.type,
+) {
+  const existing = await db
+    .select()
+    .from(contentBlocks)
+    .where(eq(contentBlocks.chapterId, chapterId));
   const nextSort = existing.length + 1;
   const payloadByType = {
     rich_text: JSON.stringify({ markdown: "" }),
     callout: JSON.stringify({ tone: "info", body: "" }),
-    checklist: JSON.stringify({ items: [{ id: crypto.randomUUID(), label: "" }] }),
+    checklist: JSON.stringify({
+      items: [{ id: crypto.randomUUID(), label: "" }],
+    }),
     download: JSON.stringify({ assetId: "", label: "" }),
     audio: JSON.stringify({ url: "" }),
     video: JSON.stringify({ url: "" }),
@@ -335,7 +368,10 @@ export async function createBlock(chapterId: string, type: typeof contentBlocks.
   });
 }
 
-export async function updateBlock(blockId: string, input: { title: string | null; payloadJson: string; isPublished: boolean }) {
+export async function updateBlock(
+  blockId: string,
+  input: { title: string | null; payloadJson: string; isPublished: boolean },
+) {
   await db
     .update(contentBlocks)
     .set({
@@ -364,6 +400,7 @@ Expected: PASS
 ## Task 3: Three-Column Editor Shell
 
 **Files:**
+
 - Create: `src/components/admin/editor-shell.tsx`
 - Create: `src/components/admin/editor-left-column.tsx`
 - Create: `src/components/admin/editor-center-column.tsx`
@@ -377,7 +414,10 @@ Create `src/components/admin/editor-left-column.tsx`:
 
 ```tsx
 import Link from "next/link";
-import type { EditorChapter, EditorProduct } from "@/domains/admin/editor-queries";
+import type {
+  EditorChapter,
+  EditorProduct,
+} from "@/domains/admin/editor-queries";
 import { formatMoney } from "@/lib/format";
 
 export function EditorLeftColumn({
@@ -392,15 +432,23 @@ export function EditorLeftColumn({
   return (
     <aside className="grid gap-4 rounded-3xl border bg-zinc-50 p-5">
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Produto</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+          Produto
+        </p>
         <h2 className="mt-2 text-lg font-semibold">{product.title}</h2>
         <p className="mt-2 text-sm text-zinc-600">
-          {product.status} • {formatMoney(product.priceCents, product.currency.toUpperCase())}
+          {product.status} •{" "}
+          {formatMoney(product.priceCents, product.currency.toUpperCase())}
         </p>
       </div>
       <div className="flex gap-2">
-        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">Salvar</button>
-        <Link href={`/products/${product.slug}`} className="rounded-full border px-4 py-2 text-sm font-medium">
+        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">
+          Salvar
+        </button>
+        <Link
+          href={`/products/${product.slug}`}
+          className="rounded-full border px-4 py-2 text-sm font-medium"
+        >
           Preview
         </Link>
       </div>
@@ -412,10 +460,15 @@ export function EditorLeftColumn({
             className={`rounded-2xl border px-4 py-3 text-sm ${selectedChapterId === chapter.id ? "border-zinc-950 bg-white" : "border-zinc-200 bg-transparent"}`}
           >
             <div className="font-medium">{chapter.title}</div>
-            <div className="text-xs text-zinc-500">{chapter.blocks.length} bloco{chapter.blocks.length === 1 ? "" : "s"}</div>
+            <div className="text-xs text-zinc-500">
+              {chapter.blocks.length} bloco
+              {chapter.blocks.length === 1 ? "" : "s"}
+            </div>
           </Link>
         ))}
-        <button className="rounded-2xl border border-dashed px-4 py-3 text-left text-sm">+ Novo capítulo</button>
+        <button className="rounded-2xl border border-dashed px-4 py-3 text-left text-sm">
+          + Novo capítulo
+        </button>
       </div>
     </aside>
   );
@@ -428,7 +481,10 @@ Create `src/components/admin/editor-center-column.tsx`:
 
 ```tsx
 import Link from "next/link";
-import type { EditorBlock, EditorChapter } from "@/domains/admin/editor-queries";
+import type {
+  EditorBlock,
+  EditorChapter,
+} from "@/domains/admin/editor-queries";
 
 export function EditorCenterColumn({
   productId,
@@ -440,17 +496,25 @@ export function EditorCenterColumn({
   selectedBlockId: string | null;
 }) {
   if (!chapter) {
-    return <div className="rounded-3xl border border-dashed p-6 text-sm text-zinc-600">Crie o primeiro capítulo para começar.</div>;
+    return (
+      <div className="rounded-3xl border border-dashed p-6 text-sm text-zinc-600">
+        Crie o primeiro capítulo para começar.
+      </div>
+    );
   }
 
   return (
     <section className="grid gap-4 rounded-3xl border bg-stone-50 p-5">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Capítulo</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+            Capítulo
+          </p>
           <h2 className="mt-2 text-xl font-semibold">{chapter.title}</h2>
         </div>
-        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">+ Novo bloco</button>
+        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">
+          + Novo bloco
+        </button>
       </div>
       <div className="grid gap-3">
         {chapter.blocks.map((block: EditorBlock) => (
@@ -461,18 +525,28 @@ export function EditorCenterColumn({
           >
             <div className="flex items-center justify-between gap-4">
               <div>
-                <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">{block.type}</div>
-                <div className="mt-1 font-medium">{block.title || "Sem título"}</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                  {block.type}
+                </div>
+                <div className="mt-1 font-medium">
+                  {block.title || "Sem título"}
+                </div>
               </div>
               <div className="flex gap-2">
-                <button className="rounded-full border px-3 py-1 text-xs">Subir</button>
-                <button className="rounded-full border px-3 py-1 text-xs">Descer</button>
+                <button className="rounded-full border px-3 py-1 text-xs">
+                  Subir
+                </button>
+                <button className="rounded-full border px-3 py-1 text-xs">
+                  Descer
+                </button>
               </div>
             </div>
           </Link>
         ))}
         {chapter.blocks.length === 0 ? (
-          <div className="rounded-2xl border border-dashed p-5 text-sm text-zinc-600">Nenhum bloco ainda neste capítulo.</div>
+          <div className="rounded-2xl border border-dashed p-5 text-sm text-zinc-600">
+            Nenhum bloco ainda neste capítulo.
+          </div>
         ) : null}
       </div>
     </section>
@@ -497,7 +571,9 @@ export function EditorRightColumn({ block }: { block: EditorBlock | null }) {
 
   return (
     <aside className="rounded-3xl border bg-violet-50 p-5">
-      <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Propriedades</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+        Propriedades
+      </p>
       <h3 className="mt-2 text-lg font-semibold">{block.type}</h3>
       <div className="mt-4">
         <BlockFormRouter block={block} />
@@ -527,7 +603,10 @@ type PageProps = {
   searchParams?: Promise<{ chapter?: string; block?: string }>;
 };
 
-export default async function AdminEditorPage({ params, searchParams }: PageProps) {
+export default async function AdminEditorPage({
+  params,
+  searchParams,
+}: PageProps) {
   const { productId } = await params;
   const search = await searchParams;
   const product = await getEditorProduct(productId);
@@ -577,6 +656,7 @@ Expected: PASS
 ## Task 4: Type-Specific Block Forms
 
 **Files:**
+
 - Create: `src/components/admin/block-forms/rich-text-form.tsx`
 - Create: `src/components/admin/block-forms/callout-form.tsx`
 - Create: `src/components/admin/block-forms/checklist-form.tsx`
@@ -601,24 +681,58 @@ import { RichTextForm } from "./rich-text-form";
 
 export function BlockFormRouter({ block }: { block: EditorBlock }) {
   if (block.type === "rich_text") {
-    return <RichTextForm block={block} payload={parseBlockPayload("rich_text", block.payloadJson)} />;
+    return (
+      <RichTextForm
+        block={block}
+        payload={parseBlockPayload("rich_text", block.payloadJson)}
+      />
+    );
   }
   if (block.type === "callout") {
-    return <CalloutForm block={block} payload={parseBlockPayload("callout", block.payloadJson)} />;
+    return (
+      <CalloutForm
+        block={block}
+        payload={parseBlockPayload("callout", block.payloadJson)}
+      />
+    );
   }
   if (block.type === "checklist") {
-    return <ChecklistForm block={block} payload={parseBlockPayload("checklist", block.payloadJson)} />;
+    return (
+      <ChecklistForm
+        block={block}
+        payload={parseBlockPayload("checklist", block.payloadJson)}
+      />
+    );
   }
   if (block.type === "download") {
-    return <DownloadForm block={block} payload={parseBlockPayload("download", block.payloadJson)} />;
+    return (
+      <DownloadForm
+        block={block}
+        payload={parseBlockPayload("download", block.payloadJson)}
+      />
+    );
   }
   if (block.type === "audio" || block.type === "video") {
-    return <MediaForm block={block} payload={parseBlockPayload(block.type, block.payloadJson)} />;
+    return (
+      <MediaForm
+        block={block}
+        payload={parseBlockPayload(block.type, block.payloadJson)}
+      />
+    );
   }
   if (block.type === "quiz") {
-    return <QuizForm block={block} payload={parseBlockPayload("quiz", block.payloadJson)} />;
+    return (
+      <QuizForm
+        block={block}
+        payload={parseBlockPayload("quiz", block.payloadJson)}
+      />
+    );
   }
-  return <div className="text-sm text-zinc-600">Este bloco não precisa de edição lateral.</div>;
+  return (
+    <div className="text-sm text-zinc-600">
+      Este bloco não precisa de edição lateral.
+    </div>
+  );
 }
 ```
 
@@ -640,15 +754,25 @@ export function RichTextForm({
     <form className="grid gap-4">
       <label className="grid gap-2">
         <span className="text-sm font-medium">Título</span>
-        <input defaultValue={block.title ?? ""} className="rounded-xl border bg-white px-4 py-3" />
+        <input
+          defaultValue={block.title ?? ""}
+          className="rounded-xl border bg-white px-4 py-3"
+        />
       </label>
       <label className="grid gap-2">
         <span className="text-sm font-medium">Conteúdo</span>
-        <textarea defaultValue={payload.markdown} className="min-h-56 rounded-xl border bg-white px-4 py-3" />
+        <textarea
+          defaultValue={payload.markdown}
+          className="min-h-56 rounded-xl border bg-white px-4 py-3"
+        />
       </label>
       <div className="flex gap-2">
-        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">Salvar bloco</button>
-        <button className="rounded-full border px-4 py-2 text-sm font-medium">Excluir</button>
+        <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">
+          Salvar bloco
+        </button>
+        <button className="rounded-full border px-4 py-2 text-sm font-medium">
+          Excluir
+        </button>
       </div>
     </form>
   );
@@ -678,6 +802,7 @@ Expected: PASS
 ## Task 5: Wire Actions for Save/Create/Delete
 
 **Files:**
+
 - Create: `src/app/admin/editor/actions.ts`
 - Modify: `src/components/admin/editor-left-column.tsx`
 - Modify: `src/components/admin/editor-center-column.tsx`
@@ -703,7 +828,11 @@ export async function createChapterAction(productId: string, title: string) {
   revalidatePath(`/admin/editor/${productId}`);
 }
 
-export async function createBlockAction(productId: string, chapterId: string, type: Parameters<typeof createBlock>[1]) {
+export async function createBlockAction(
+  productId: string,
+  chapterId: string,
+  type: Parameters<typeof createBlock>[1],
+) {
   await createBlock(chapterId, type);
   revalidatePath(`/admin/editor/${productId}`);
 }
@@ -728,21 +857,32 @@ export async function deleteBlockAction(productId: string, blockId: string) {
 Update left and center columns so buttons submit small forms:
 
 ```tsx
-<form action={async (formData) => {
-  "use server";
-  await createChapterAction(product.id, String(formData.get("title") ?? "Novo capítulo"));
-}}>
+<form
+  action={async (formData) => {
+    "use server";
+    await createChapterAction(
+      product.id,
+      String(formData.get("title") ?? "Novo capítulo"),
+    );
+  }}
+>
   <input type="hidden" name="title" value="Novo capítulo" />
-  <button className="rounded-2xl border border-dashed px-4 py-3 text-left text-sm">+ Novo capítulo</button>
+  <button className="rounded-2xl border border-dashed px-4 py-3 text-left text-sm">
+    + Novo capítulo
+  </button>
 </form>
 ```
 
 ```tsx
-<form action={async () => {
-  "use server";
-  await createBlockAction(productId, chapter.id, "rich_text");
-}}>
-  <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">+ Novo bloco</button>
+<form
+  action={async () => {
+    "use server";
+    await createBlockAction(productId, chapter.id, "rich_text");
+  }}
+>
+  <button className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">
+    + Novo bloco
+  </button>
 </form>
 ```
 
@@ -781,6 +921,7 @@ Expected: PASS
 ## Task 6: Reordering and Publish Toggles
 
 **Files:**
+
 - Modify: `src/domains/admin/editor-mutations.ts`
 - Modify: `src/app/admin/editor/actions.ts`
 - Modify: `src/components/admin/editor-left-column.tsx`
@@ -791,22 +932,42 @@ Expected: PASS
 Extend `src/domains/admin/editor-mutations.ts`:
 
 ```ts
-export async function reorderChapter(productId: string, chapterId: string, direction: "up" | "down") {
-  const existing = await db.select().from(chapters).where(eq(chapters.productId, productId));
+export async function reorderChapter(
+  productId: string,
+  chapterId: string,
+  direction: "up" | "down",
+) {
+  const existing = await db
+    .select()
+    .from(chapters)
+    .where(eq(chapters.productId, productId));
   const reordered = reorderItems(existing, chapterId, direction);
   await Promise.all(
     reordered.map((chapter) =>
-      db.update(chapters).set({ sortOrder: chapter.sortOrder }).where(eq(chapters.id, chapter.id)),
+      db
+        .update(chapters)
+        .set({ sortOrder: chapter.sortOrder })
+        .where(eq(chapters.id, chapter.id)),
     ),
   );
 }
 
-export async function reorderBlock(chapterId: string, blockId: string, direction: "up" | "down") {
-  const existing = await db.select().from(contentBlocks).where(eq(contentBlocks.chapterId, chapterId));
+export async function reorderBlock(
+  chapterId: string,
+  blockId: string,
+  direction: "up" | "down",
+) {
+  const existing = await db
+    .select()
+    .from(contentBlocks)
+    .where(eq(contentBlocks.chapterId, chapterId));
   const reordered = reorderItems(existing, blockId, direction);
   await Promise.all(
     reordered.map((block) =>
-      db.update(contentBlocks).set({ sortOrder: block.sortOrder }).where(eq(contentBlocks.id, block.id)),
+      db
+        .update(contentBlocks)
+        .set({ sortOrder: block.sortOrder })
+        .where(eq(contentBlocks.id, block.id)),
     ),
   );
 }
@@ -817,12 +978,21 @@ export async function reorderBlock(chapterId: string, blockId: string, direction
 Extend `src/app/admin/editor/actions.ts`:
 
 ```ts
-export async function reorderChapterAction(productId: string, chapterId: string, direction: "up" | "down") {
+export async function reorderChapterAction(
+  productId: string,
+  chapterId: string,
+  direction: "up" | "down",
+) {
   await reorderChapter(productId, chapterId, direction);
   revalidatePath(`/admin/editor/${productId}`);
 }
 
-export async function reorderBlockAction(productId: string, chapterId: string, blockId: string, direction: "up" | "down") {
+export async function reorderBlockAction(
+  productId: string,
+  chapterId: string,
+  blockId: string,
+  direction: "up" | "down",
+) {
   await reorderBlock(chapterId, blockId, direction);
   revalidatePath(`/admin/editor/${productId}`);
 }
@@ -833,10 +1003,12 @@ export async function reorderBlockAction(productId: string, chapterId: string, b
 Replace inert buttons with forms:
 
 ```tsx
-<form action={async () => {
-  "use server";
-  await reorderBlockAction(productId, chapter.id, block.id, "up");
-}}>
+<form
+  action={async () => {
+    "use server";
+    await reorderBlockAction(productId, chapter.id, block.id, "up");
+  }}
+>
   <button className="rounded-full border px-3 py-1 text-xs">Subir</button>
 </form>
 ```
@@ -856,6 +1028,7 @@ Expected: PASS
 ## Task 7: Final Verification
 
 **Files:**
+
 - No new files
 
 - [ ] **Step 1: Run focused tests**
@@ -911,4 +1084,3 @@ Spec coverage:
 - Move up/down ordering: covered in Task 2 and Task 6.
 - Publish toggles: included in Task 5 form shape and Task 6 mutations path.
 - Empty and error states: covered in Task 3 shell behavior.
-

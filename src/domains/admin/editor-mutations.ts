@@ -30,7 +30,9 @@ export function reorderItems<T extends { id: string; sortOrder: number }>(
   itemId: string,
   direction: ReorderDirection,
 ) {
-  const orderedItems = [...items].sort((left, right) => left.sortOrder - right.sortOrder);
+  const orderedItems = [...items].sort(
+    (left, right) => left.sortOrder - right.sortOrder,
+  );
   const currentIndex = orderedItems.findIndex((item) => item.id === itemId);
 
   if (currentIndex === -1) {
@@ -137,7 +139,10 @@ export async function createChapter(productId: string, title: string) {
   return chapter;
 }
 
-export async function updateChapter(chapterId: string, input: UpdateChapterInput) {
+export async function updateChapter(
+  chapterId: string,
+  input: UpdateChapterInput,
+) {
   const updateValues = Object.fromEntries(
     Object.entries(input).filter(([, value]) => value !== undefined),
   ) as UpdateChapterInput;
@@ -192,24 +197,44 @@ export async function deleteBlock(blockId: string) {
   return block ?? null;
 }
 
-export async function reorderChapter(productId: string, chapterId: string, direction: ReorderDirection) {
-  const existing = await db.select().from(chapters).where(eq(chapters.productId, productId));
+export async function reorderChapter(
+  productId: string,
+  chapterId: string,
+  direction: ReorderDirection,
+) {
+  const existing = await db
+    .select()
+    .from(chapters)
+    .where(eq(chapters.productId, productId));
   if (existing.length === 0) return;
   const reordered = reorderItems(existing, chapterId, direction);
   await Promise.all(
     reordered.map((chapter) =>
-      db.update(chapters).set({ sortOrder: chapter.sortOrder }).where(eq(chapters.id, chapter.id)),
+      db
+        .update(chapters)
+        .set({ sortOrder: chapter.sortOrder })
+        .where(eq(chapters.id, chapter.id)),
     ),
   );
 }
 
-export async function reorderBlock(chapterId: string, blockId: string, direction: ReorderDirection) {
-  const existing = await db.select().from(contentBlocks).where(eq(contentBlocks.chapterId, chapterId));
+export async function reorderBlock(
+  chapterId: string,
+  blockId: string,
+  direction: ReorderDirection,
+) {
+  const existing = await db
+    .select()
+    .from(contentBlocks)
+    .where(eq(contentBlocks.chapterId, chapterId));
   if (existing.length === 0) return;
   const reordered = reorderItems(existing, blockId, direction);
   await Promise.all(
     reordered.map((block) =>
-      db.update(contentBlocks).set({ sortOrder: block.sortOrder }).where(eq(contentBlocks.id, block.id)),
+      db
+        .update(contentBlocks)
+        .set({ sortOrder: block.sortOrder })
+        .where(eq(contentBlocks.id, block.id)),
     ),
   );
 }

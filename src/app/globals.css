@@ -59,7 +59,11 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.75rem;
   background:
-    radial-gradient(circle at top left, rgba(122, 180, 227, 0.14), transparent 35%),
+    radial-gradient(
+      circle at top left,
+      rgba(122, 180, 227, 0.14),
+      transparent 35%
+    ),
     linear-gradient(180deg, var(--va-blue-800) 0%, var(--va-navy) 100%);
   padding: 1.75rem;
   box-shadow: 0 28px 90px -48px rgba(11, 35, 66, 0.58);
@@ -127,15 +131,22 @@ button {
 }
 
 .va-reader-panel-muted {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 251, 255, 0.98) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(247, 251, 255, 0.98) 100%
+  );
 }
 
 .va-reader-index-item {
   display: block;
   border: 1px solid transparent;
   border-radius: 1.25rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(247, 251, 255, 0.94) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(247, 251, 255, 0.94) 100%
+  );
   padding: 1rem;
   box-shadow: 0 16px 34px -30px rgba(11, 35, 66, 0.18);
 }

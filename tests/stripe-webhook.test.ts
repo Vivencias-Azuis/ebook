@@ -28,24 +28,28 @@ function buildSession(
   } as CheckoutSessionCompletedSession;
 }
 
-class FakeCheckoutSessionPersistenceRepository
-  implements CheckoutSessionPersistenceRepository
-{
-  public readonly orders = new Map<string, Awaited<
-    ReturnType<CheckoutSessionPersistenceRepository["upsertOrder"]>
-  >>();
+class FakeCheckoutSessionPersistenceRepository implements CheckoutSessionPersistenceRepository {
+  public readonly orders = new Map<
+    string,
+    Awaited<ReturnType<CheckoutSessionPersistenceRepository["upsertOrder"]>>
+  >();
 
-  public readonly entitlements = new Map<string, Awaited<
-    ReturnType<CheckoutSessionPersistenceRepository["ensureActiveEntitlement"]>
-  >>();
+  public readonly entitlements = new Map<
+    string,
+    Awaited<
+      ReturnType<
+        CheckoutSessionPersistenceRepository["ensureActiveEntitlement"]
+      >
+    >
+  >();
 
   public upsertOrderCalls = 0;
 
   public ensureActiveEntitlementCalls = 0;
 
-  async upsertOrder(input: Parameters<
-    CheckoutSessionPersistenceRepository["upsertOrder"]
-  >[0]) {
+  async upsertOrder(
+    input: Parameters<CheckoutSessionPersistenceRepository["upsertOrder"]>[0],
+  ) {
     this.upsertOrderCalls += 1;
 
     const existing = this.orders.get(input.stripeCheckoutSessionId);
@@ -66,9 +70,11 @@ class FakeCheckoutSessionPersistenceRepository
     return created;
   }
 
-  async ensureActiveEntitlement(input: Parameters<
-    CheckoutSessionPersistenceRepository["ensureActiveEntitlement"]
-  >[0]) {
+  async ensureActiveEntitlement(
+    input: Parameters<
+      CheckoutSessionPersistenceRepository["ensureActiveEntitlement"]
+    >[0],
+  ) {
     this.ensureActiveEntitlementCalls += 1;
 
     const key = `${input.userId}:${input.productId}`;

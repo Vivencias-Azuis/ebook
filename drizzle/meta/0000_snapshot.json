@@ -66,12 +66,8 @@
           "name": "chapters_product_id_products_id_fk",
           "tableFrom": "chapters",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -156,12 +152,8 @@
           "name": "content_blocks_chapter_id_chapters_id_fk",
           "tableFrom": "content_blocks",
           "tableTo": "chapters",
-          "columnsFrom": [
-            "chapter_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["chapter_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -221,10 +213,7 @@
       "indexes": {
         "entitlements_user_product_unique": {
           "name": "entitlements_user_product_unique",
-          "columns": [
-            "user_id",
-            "product_id"
-          ],
+          "columns": ["user_id", "product_id"],
           "isUnique": true
         }
       },
@@ -233,12 +222,8 @@
           "name": "entitlements_user_id_users_id_fk",
           "tableFrom": "entitlements",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -246,12 +231,8 @@
           "name": "entitlements_product_id_products_id_fk",
           "tableFrom": "entitlements",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -259,12 +240,8 @@
           "name": "entitlements_source_order_id_orders_id_fk",
           "tableFrom": "entitlements",
           "tableTo": "orders",
-          "columnsFrom": [
-            "source_order_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["source_order_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -353,16 +330,12 @@
       "indexes": {
         "orders_stripe_checkout_session_id_unique": {
           "name": "orders_stripe_checkout_session_id_unique",
-          "columns": [
-            "stripe_checkout_session_id"
-          ],
+          "columns": ["stripe_checkout_session_id"],
           "isUnique": true
         },
         "orders_stripe_payment_intent_id_unique": {
           "name": "orders_stripe_payment_intent_id_unique",
-          "columns": [
-            "stripe_payment_intent_id"
-          ],
+          "columns": ["stripe_payment_intent_id"],
           "isUnique": true
         }
       },
@@ -371,12 +344,8 @@
           "name": "orders_user_id_users_id_fk",
           "tableFrom": "orders",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
@@ -384,12 +353,8 @@
           "name": "orders_product_id_products_id_fk",
           "tableFrom": "orders",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         }
@@ -486,9 +451,7 @@
       "indexes": {
         "products_slug_unique": {
           "name": "products_slug_unique",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": true
         }
       },
@@ -568,12 +531,7 @@
       "indexes": {
         "progress_user_product_scope_target_unique": {
           "name": "progress_user_product_scope_target_unique",
-          "columns": [
-            "user_id",
-            "product_id",
-            "scope",
-            "target_id"
-          ],
+          "columns": ["user_id", "product_id", "scope", "target_id"],
           "isUnique": true
         }
       },
@@ -582,12 +540,8 @@
           "name": "progress_user_id_users_id_fk",
           "tableFrom": "progress",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -595,12 +549,8 @@
           "name": "progress_product_id_products_id_fk",
           "tableFrom": "progress",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -608,12 +558,8 @@
           "name": "progress_chapter_id_chapters_id_fk",
           "tableFrom": "progress",
           "tableTo": "chapters",
-          "columnsFrom": [
-            "chapter_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["chapter_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -621,12 +567,8 @@
           "name": "progress_block_id_content_blocks_id_fk",
           "tableFrom": "progress",
           "tableTo": "content_blocks",
-          "columnsFrom": [
-            "block_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["block_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -702,9 +644,7 @@
       "indexes": {
         "users_email_unique": {
           "name": "users_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },

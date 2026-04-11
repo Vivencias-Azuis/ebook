@@ -6,11 +6,21 @@ import { hashPassword } from "better-auth/crypto";
 import { and, eq } from "drizzle-orm";
 
 import { db } from "@/db/client";
-import { account, chapters, contentBlocks, entitlements, products, users } from "@/db/schema";
+import {
+  account,
+  chapters,
+  contentBlocks,
+  entitlements,
+  products,
+  users,
+} from "@/db/schema";
 
-export const GUIDE_PRATICO_PRODUCT_ID = "product-guia-pratico-primeiros-30-dias";
-export const GUIDE_PRATICO_SLUG = "guia-pratico-primeiros-30-dias-apos-diagnostico";
-export const GUIDE_PRATICO_TEST_USER_EMAIL = "teste.guia.pratico@vivenciasazuis.local";
+export const GUIDE_PRATICO_PRODUCT_ID =
+  "product-guia-pratico-primeiros-30-dias";
+export const GUIDE_PRATICO_SLUG =
+  "guia-pratico-primeiros-30-dias-apos-diagnostico";
+export const GUIDE_PRATICO_TEST_USER_EMAIL =
+  "teste.guia.pratico@vivenciasazuis.local";
 export const GUIDE_PRATICO_TEST_USER_ID = "user-guia-pratico-seed";
 export const GUIDE_PRATICO_TEST_USER_PASSWORD = "VivenciasAzuis@123";
 
@@ -49,13 +59,41 @@ export type ImportedCourseDefinition = {
 
 const GUIDE_FILE_PREFIX = "Guia Prático Primeiros 30 Dias Após o Diagnóstico";
 const COURSE_SECTION_MARKERS = [
-  { id: "chapter-guia-comece", title: "Comece por aqui", marker: "## COMECE POR AQUI" },
-  { id: "chapter-guia-72h", title: "Primeiras 72 horas", marker: "## PRIMEIRAS 72 HORAS" },
-  { id: "chapter-guia-semana-1", title: "Semana 1: Sair do caos", marker: "## SEMANA 1: SAIR DO CAOS" },
-  { id: "chapter-guia-semana-2", title: "Semana 2: Profissionais, terapias e critério", marker: "## SEMANA 2: PROFISSIONAIS, TERAPIAS E CRITÉRIO" },
-  { id: "chapter-guia-semana-3", title: "Semana 3: Casa, rotina e escola", marker: "## SEMANA 3: CASA, ROTINA E ESCOLA" },
-  { id: "chapter-guia-semana-4", title: "Semana 4: Brasil real, direitos e próximos 60 dias", marker: "## SEMANA 4: BRASIL REAL, DIREITOS E PRÓXIMOS 60 DIAS" },
-  { id: "chapter-guia-familia-materiais", title: "Família inteira e materiais interativos", marker: "## FAMÍLIA INTEIRA" },
+  {
+    id: "chapter-guia-comece",
+    title: "Comece por aqui",
+    marker: "## COMECE POR AQUI",
+  },
+  {
+    id: "chapter-guia-72h",
+    title: "Primeiras 72 horas",
+    marker: "## PRIMEIRAS 72 HORAS",
+  },
+  {
+    id: "chapter-guia-semana-1",
+    title: "Semana 1: Sair do caos",
+    marker: "## SEMANA 1: SAIR DO CAOS",
+  },
+  {
+    id: "chapter-guia-semana-2",
+    title: "Semana 2: Profissionais, terapias e critério",
+    marker: "## SEMANA 2: PROFISSIONAIS, TERAPIAS E CRITÉRIO",
+  },
+  {
+    id: "chapter-guia-semana-3",
+    title: "Semana 3: Casa, rotina e escola",
+    marker: "## SEMANA 3: CASA, ROTINA E ESCOLA",
+  },
+  {
+    id: "chapter-guia-semana-4",
+    title: "Semana 4: Brasil real, direitos e próximos 60 dias",
+    marker: "## SEMANA 4: BRASIL REAL, DIREITOS E PRÓXIMOS 60 DIAS",
+  },
+  {
+    id: "chapter-guia-familia-materiais",
+    title: "Família inteira e materiais interativos",
+    marker: "## FAMÍLIA INTEIRA",
+  },
 ] as const;
 
 function getRequiredSection(sectionContent: string, sectionLabel: string) {
@@ -70,7 +108,9 @@ function getRequiredSection(sectionContent: string, sectionLabel: string) {
 
 export function resolveGuidePraticoMarkdownPath(cwd = process.cwd()) {
   const fileName = readdirSync(cwd)
-    .filter((entry) => entry.startsWith(GUIDE_FILE_PREFIX) && entry.endsWith(".md"))
+    .filter(
+      (entry) => entry.startsWith(GUIDE_FILE_PREFIX) && entry.endsWith(".md"),
+    )
     .sort()[0];
 
   if (!fileName) {
@@ -85,7 +125,11 @@ function readGuideMarkdown() {
   return readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
 }
 
-function sliceBetween(markdown: string, startMarker: string, endMarker?: string) {
+function sliceBetween(
+  markdown: string,
+  startMarker: string,
+  endMarker?: string,
+) {
   const startIndex = markdown.indexOf(startMarker);
 
   if (startIndex === -1) {
@@ -108,7 +152,9 @@ function sliceRequiredSectionByMarker(
   markdown: string,
   section: (typeof COURSE_SECTION_MARKERS)[number],
 ) {
-  const sectionIndex = COURSE_SECTION_MARKERS.findIndex((item) => item.id === section.id);
+  const sectionIndex = COURSE_SECTION_MARKERS.findIndex(
+    (item) => item.id === section.id,
+  );
   const nextMarker = COURSE_SECTION_MARKERS[sectionIndex + 1]?.marker;
   const content = sliceBetween(markdown, section.marker, nextMarker);
 
@@ -119,7 +165,9 @@ function collectChecklistItems(section: string, idPrefix = "checklist-item") {
   return section
     .split("\n")
     .map((line) => line.trim())
-    .filter((line) => line.startsWith("- [ ]") || line.startsWith("\\- \\[ \\]"))
+    .filter(
+      (line) => line.startsWith("- [ ]") || line.startsWith("\\- \\[ \\]"),
+    )
     .map((line, index) => ({
       id: `${idPrefix}-item-${index + 1}`,
       label: line
@@ -130,7 +178,12 @@ function collectChecklistItems(section: string, idPrefix = "checklist-item") {
     }));
 }
 
-function richTextBlock(id: string, title: string, markdown: string, sortOrder: number): ImportedBlock {
+function richTextBlock(
+  id: string,
+  title: string,
+  markdown: string,
+  sortOrder: number,
+): ImportedBlock {
   return {
     id,
     type: "rich_text",
@@ -141,7 +194,12 @@ function richTextBlock(id: string, title: string, markdown: string, sortOrder: n
   };
 }
 
-function checklistBlock(id: string, title: string, items: Array<{ id: string; label: string }>, sortOrder: number): ImportedBlock {
+function checklistBlock(
+  id: string,
+  title: string,
+  items: Array<{ id: string; label: string }>,
+  sortOrder: number,
+): ImportedBlock {
   return {
     id,
     type: "checklist",
@@ -208,10 +266,11 @@ export function buildGuidePraticoCourseDefinitionFromMarkdown(
       id: GUIDE_PRATICO_PRODUCT_ID,
       slug: GUIDE_PRATICO_SLUG,
       title: "Guia Prático: Primeiros 30 Dias Após Suspeita ou Diagnóstico",
-      subtitle: "Um guia prático para organizar o que fazer primeiro sem se afogar em informação",
+      subtitle:
+        "Um guia prático para organizar o que fazer primeiro sem se afogar em informação",
       description:
         "Um guia prático para organizar documentos, evitar decisões caras por medo e conversar com profissionais e escola com mais clareza nos primeiros 30 dias.",
-      priceCents: 9700,
+      priceCents: 997,
       currency: "brl",
       status: "published",
     },
@@ -351,7 +410,8 @@ export async function importGuidePraticoCourse() {
       .from(users)
       .where(eq(users.email, GUIDE_PRATICO_TEST_USER_EMAIL))
       .limit(1);
-    const guidePraticoUserId = existingSeedUser?.id ?? GUIDE_PRATICO_TEST_USER_ID;
+    const guidePraticoUserId =
+      existingSeedUser?.id ?? GUIDE_PRATICO_TEST_USER_ID;
 
     await tx
       .insert(users)

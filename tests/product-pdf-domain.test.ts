@@ -30,7 +30,9 @@ describe("product pdf domain", () => {
         {
           id: "c1",
           title: "Cap 1",
-          blocks: [{ kind: "rich_text" as const, title: null, markdown: "novo" }],
+          blocks: [
+            { kind: "rich_text" as const, title: null, markdown: "novo" },
+          ],
         },
       ],
     };
@@ -71,8 +73,12 @@ describe("product pdf domain", () => {
       chapters: [{ id: "c1", title: "Cap 1", sortOrder: 1, blocks: [] }],
     });
 
-    expect(renderProductPdfHtml(normalized, "fast")).toContain('data-variant="fast"');
-    expect(renderProductPdfHtml(normalized, "print")).toContain('data-variant="print"');
+    expect(renderProductPdfHtml(normalized, "fast")).toContain(
+      'data-variant="fast"',
+    );
+    expect(renderProductPdfHtml(normalized, "print")).toContain(
+      'data-variant="print"',
+    );
   });
 
   it("renders escaped product and block content into the pdf html", () => {
@@ -97,7 +103,9 @@ describe("product pdf domain", () => {
               {
                 kind: "checklist",
                 title: "Checklist",
-                items: [{ id: "i1", label: 'Ligar para a escola & dizer "oi"' }],
+                items: [
+                  { id: "i1", label: 'Ligar para a escola & dizer "oi"' },
+                ],
               },
             ],
           },
@@ -110,5 +118,85 @@ describe("product pdf domain", () => {
     expect(html).toContain("&lt;Comece com calma&gt;");
     expect(html).toContain("Texto &lt;importante&gt; &amp; objetivo");
     expect(html).toContain("Ligar para a escola &amp; dizer &quot;oi&quot;");
+  });
+
+  it("renders markdown as semantic, styled pdf content instead of raw markdown", () => {
+    const html = renderProductPdfHtml(
+      {
+        product: {
+          id: "prod-1",
+          slug: "guia",
+          title: "Guia Prático",
+          subtitle: "Um guia calmo para os primeiros passos.",
+        },
+        chapters: [
+          {
+            id: "c1",
+            title: "Comece por aqui",
+            blocks: [
+              {
+                kind: "rich_text",
+                title: "Para quem está perdido",
+                markdown: [
+                  "## Primeira semana",
+                  "",
+                  "Texto de abertura com **ênfase** importante.",
+                  "",
+                  "- Organizar documentos",
+                  "- Conversar com a escola",
+                  "",
+                  "---",
+                  "",
+                  "### Próximo passo",
+                  "",
+                  "Fechar uma prioridade por vez.",
+                ].join("\n"),
+              },
+              {
+                kind: "checklist",
+                title: "Checklist inicial",
+                items: [{ id: "i1", label: "Separar exames" }],
+              },
+            ],
+          },
+        ],
+      },
+      "print",
+    );
+
+    expect(html).toContain('class="pdf-shell"');
+    expect(html).toContain('class="cover-kicker"');
+    expect(html).toContain("<h4>Primeira semana</h4>");
+    expect(html).toContain("<strong>ênfase</strong>");
+    expect(html).toContain("<li>Organizar documentos</li>");
+    expect(html).toContain("<hr");
+    expect(html).toContain('class="checklist-marker"');
+    expect(html).not.toContain("<pre>");
+    expect(html).not.toContain("## Primeira semana");
+    expect(html).not.toContain("---");
+  });
+
+  it("does not duplicate the first markdown heading when it matches the block title", () => {
+    const html = renderProductPdfHtml(
+      {
+        product: { id: "prod-1", slug: "guia", title: "Guia" },
+        chapters: [
+          {
+            id: "c1",
+            title: "Comece por aqui",
+            blocks: [
+              {
+                kind: "rich_text",
+                title: "Para quem este guia é",
+                markdown: "### Para quem este guia é\n\nTexto sem repetição.",
+              },
+            ],
+          },
+        ],
+      },
+      "print",
+    );
+
+    expect(html.match(/Para quem este guia é/g)).toHaveLength(1);
   });
 });

@@ -3,7 +3,10 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 import { requireServerSession } from "@/domains/auth/server";
-import { canAccessProduct, getUserProductEntitlement } from "@/domains/orders/access";
+import {
+  canAccessProduct,
+  getUserProductEntitlement,
+} from "@/domains/orders/access";
 import { parseBlockPayload } from "@/domains/content/blocks";
 import {
   getUserProductProgress,
@@ -13,7 +16,10 @@ import {
   setBlockCompletion,
   setChecklistProgress,
 } from "@/domains/progress/mutations";
-import { getProductBySlug, getPublishedProductContent } from "@/domains/products/queries";
+import {
+  getProductBySlug,
+  getPublishedProductContent,
+} from "@/domains/products/queries";
 import { BlockRenderer } from "@/features/reader/block-renderer";
 import {
   buildReaderPages,
@@ -47,21 +53,28 @@ export default async function ProductReadPage({
     notFound();
   }
 
-  const entitlement = await getUserProductEntitlement(session.user.id, product.id);
+  const entitlement = await getUserProductEntitlement(
+    session.user.id,
+    product.id,
+  );
 
   if (!canAccessProduct(entitlement)) {
     redirect(`/products/${product.slug}`);
   }
 
   const chapters = await getPublishedProductContent(product.id);
-  const progressByBlockId = await getUserProductProgress(session.user.id, product.id);
+  const progressByBlockId = await getUserProductProgress(
+    session.user.id,
+    product.id,
+  );
   const progressSummary = summarizeProductProgress(chapters, progressByBlockId);
   const readerPages = buildReaderPages(chapters);
   const currentPageNumber = normalizeReaderPageNumber(page, readerPages.length);
   const currentPage = readerPages[currentPageNumber - 1] ?? null;
   const currentBlock = currentPage?.block ?? null;
   const previousPage = currentPageNumber > 1 ? currentPageNumber - 1 : null;
-  const nextPage = currentPageNumber < readerPages.length ? currentPageNumber + 1 : null;
+  const nextPage =
+    currentPageNumber < readerPages.length ? currentPageNumber + 1 : null;
   const progressLabel =
     progressSummary.percent === 100
       ? "Guia concluído"
@@ -134,7 +147,8 @@ export default async function ProductReadPage({
                       Transforme esta página em ação.
                     </p>
                     <p className="mt-2 leading-7">
-                      Marque abaixo o que já foi feito e volte quando precisar continuar.
+                      Marque abaixo o que já foi feito e volte quando precisar
+                      continuar.
                     </p>
                   </div>
                 ) : null}
@@ -160,7 +174,9 @@ export default async function ProductReadPage({
                         const checkedItemIds = formData
                           .getAll("checkedItemIds")
                           .map(String);
-                        const allItemIds = formData.getAll("allItemIds").map(String);
+                        const allItemIds = formData
+                          .getAll("allItemIds")
+                          .map(String);
 
                         await setChecklistProgress({
                           userId: session.user.id,
@@ -170,7 +186,9 @@ export default async function ProductReadPage({
                           allItemIds,
                           checkedItemIds,
                         });
-                        revalidatePath(readerPageHref(product.slug, currentPageNumber));
+                        revalidatePath(
+                          readerPageHref(product.slug, currentPageNumber),
+                        );
                         revalidatePath("/library");
                       }}
                       className="rounded-[1.5rem] border border-[color:var(--va-line)] bg-[linear-gradient(180deg,#ffffff_0%,rgba(215,231,247,0.28)_100%)] p-5 shadow-[0_18px_50px_-42px_rgba(11,35,66,0.28)]"
@@ -179,16 +197,27 @@ export default async function ProductReadPage({
                         Plano de ação
                       </p>
                       <div className="mt-4 grid gap-3">
-                        {parseBlockPayload("checklist", currentBlock.payloadJson).items.map((item) => (
-                          <label key={item.id} className="flex items-start gap-3 rounded-[1rem] border border-[color:var(--va-line)] bg-white px-3 py-3 text-sm text-[color:var(--va-ink)]">
-                            <input type="hidden" name="allItemIds" value={item.id} />
+                        {parseBlockPayload(
+                          "checklist",
+                          currentBlock.payloadJson,
+                        ).items.map((item) => (
+                          <label
+                            key={item.id}
+                            className="flex items-start gap-3 rounded-[1rem] border border-[color:var(--va-line)] bg-white px-3 py-3 text-sm text-[color:var(--va-ink)]"
+                          >
+                            <input
+                              type="hidden"
+                              name="allItemIds"
+                              value={item.id}
+                            />
                             <input
                               type="checkbox"
                               name="checkedItemIds"
                               value={item.id}
                               defaultChecked={
-                                progressByBlockId[currentBlock.id]?.checkedItemIds?.includes(item.id) ??
-                                false
+                                progressByBlockId[
+                                  currentBlock.id
+                                ]?.checkedItemIds?.includes(item.id) ?? false
                               }
                               className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-blue)]"
                             />
@@ -212,9 +241,12 @@ export default async function ProductReadPage({
                           productId: product.id,
                           chapterId: currentPage?.chapterId ?? "",
                           blockId: currentBlock.id,
-                          completed: !progressByBlockId[currentBlock.id]?.completed,
+                          completed:
+                            !progressByBlockId[currentBlock.id]?.completed,
                         });
-                        revalidatePath(readerPageHref(product.slug, currentPageNumber));
+                        revalidatePath(
+                          readerPageHref(product.slug, currentPageNumber),
+                        );
                         revalidatePath("/library");
                       }}
                     >
@@ -232,7 +264,10 @@ export default async function ProductReadPage({
               ) : null}
             </article>
 
-            <nav className="va-reader-bar mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 p-3" aria-label="Navegação entre páginas">
+            <nav
+              className="va-reader-bar mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 p-3"
+              aria-label="Navegação entre páginas"
+            >
               {previousPage ? (
                 <Link
                   href={readerPageHref(product.slug, previousPage)}

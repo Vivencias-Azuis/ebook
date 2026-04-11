@@ -3,13 +3,19 @@ import { readFile } from "node:fs/promises";
 import { NextResponse } from "next/server";
 
 import { requireServerSession } from "@/domains/auth/server";
-import { canAccessProduct, getUserProductEntitlement } from "@/domains/orders/access";
+import {
+  canAccessProduct,
+  getUserProductEntitlement,
+} from "@/domains/orders/access";
 import {
   ensureProductPdf,
   normalizeProductContentForPdf,
   type ProductPdfVariant,
 } from "@/domains/products/pdf";
-import { getProductBySlug, getPublishedProductContent } from "@/domains/products/queries";
+import {
+  getProductBySlug,
+  getPublishedProductContent,
+} from "@/domains/products/queries";
 
 function parseVariant(value: string | null): ProductPdfVariant | null {
   return value === "fast" || value === "print" ? value : null;
@@ -23,7 +29,10 @@ export async function GET(
   const variant = parseVariant(url.searchParams.get("variant"));
 
   if (!variant) {
-    return NextResponse.json({ error: "Invalid pdf variant." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid pdf variant." },
+      { status: 400 },
+    );
   }
 
   const session = await requireServerSession();
@@ -34,7 +43,10 @@ export async function GET(
     return NextResponse.json({ error: "Product not found." }, { status: 404 });
   }
 
-  const entitlement = await getUserProductEntitlement(session.user.id, product.id);
+  const entitlement = await getUserProductEntitlement(
+    session.user.id,
+    product.id,
+  );
 
   if (!canAccessProduct(entitlement)) {
     return NextResponse.json({ error: "Forbidden." }, { status: 403 });
