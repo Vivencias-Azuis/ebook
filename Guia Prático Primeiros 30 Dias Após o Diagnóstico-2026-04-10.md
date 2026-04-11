@@ -540,6 +540,34 @@ Uma intervenção séria pode exigir intensidade, mas precisa ser explicada com 
 2. **Terceirizar toda decisão:** esperar que um profissional resolva tudo sem explicar objetivos, indicadores e papel da família.
 3. **Virar guerra de método:** entrar em discussões infinitas sobre uma abordagem antes de entender a necessidade concreta da criança.
 
+### Terapias, evidência e respeito à criança
+
+Nos primeiros 30 dias, você não precisa virar especialista em todas as abordagens. Mas precisa saber fazer perguntas melhores.
+
+Existem diferentes modelos e estratégias usados no cuidado de crianças autistas, como intervenções comportamentais, estratégias naturalísticas, comunicação alternativa e aumentativa, integração de rotina, terapia ocupacional com foco sensorial e funcional, fonoaudiologia, orientação parental, recursos visuais e apoio escolar. Algumas famílias também vão ouvir nomes como ABA, TEACCH, PECS, Denver, DIR/Floortime ou outros.
+
+O nome da abordagem, sozinho, não garante qualidade. Uma intervenção séria precisa explicar:
+
+- qual necessidade da criança será trabalhada;
+- qual objetivo será buscado nos próximos meses;
+- como a evolução será observada;
+- como a família e a escola entram no plano;
+- como a criança será respeitada durante o processo;
+- quando o plano será revisto.
+
+Perguntas úteis:
+
+- Que evidências sustentam essa proposta para crianças com perfil parecido?
+- O objetivo é aumentar comunicação, autonomia e participação ou apenas fazer a criança parecer "menos autista"?
+- Como vocês lidam com recusa, cansaço, choro ou sobrecarga?
+- A intervenção usa punição, exposição forçada ou retirada de conforto como estratégia?
+- Como vocês adaptam o plano aos interesses e limites da criança?
+- O que faria vocês mudarem a frequência, a meta ou a abordagem?
+
+Uma boa prática terapêutica não deve apagar a criança. Ela deve ampliar comunicação, segurança, autonomia, participação e qualidade de vida.
+
+Se alguém vender um método como único caminho, pedir obediência sem explicar objetivos ou tratar sinais de sofrimento como "manha", pare e peça outra opinião.
+
 ### Como comparar opções
 
 Monte uma tabela simples:
@@ -805,7 +833,11 @@ Volte aos três focos escolhidos na Semana 1. Pergunte:
 
 Esta seção não substitui orientação jurídica, médica, assistencial ou escolar. Ela serve para você saber por onde começar a perguntar e quais documentos manter organizados.
 
-Um caminho comum começa pela **UBS** ou unidade de saúde de referência da família. Leve o laudo ou relatório, a caderneta de saúde, relatórios anteriores e sua lista de dúvidas. Peça orientação sobre os encaminhamentos disponíveis no município.
+Um caminho comum começa pela **UBS** ou unidade de saúde de referência da família. Leve o laudo ou relatório, a caderneta de saúde, relatórios anteriores e sua lista de dúvidas.
+
+Você pode dizer:
+
+"Tenho uma criança com suspeita ou diagnóstico de TEA e preciso entender o fluxo do município para avaliação, encaminhamentos e acompanhamento. Quero registrar o pedido e saber qual é o próximo passo."
 
 Dependendo da cidade, da idade, da necessidade e da organização da rede local, a família pode ser encaminhada para:
 
@@ -822,15 +854,45 @@ Perguntas úteis na UBS:
 - Preciso de novo encaminhamento ou o laudo atual basta?
 - Como acompanho fila, retorno ou regulação?
 - Há equipe multiprofissional disponível?
+- Vocês podem registrar este pedido por escrito ou me orientar onde protocolar?
 
-Direitos e próximos passos:
+### CIPTEA: por onde começar
 
-- confirme no seu município como emitir a **CIPTEA** e que documento pedem;
-- guarde laudo, relatório, mensagem, protocolo e comprovantes de atendimento;
-- se houver necessidade de apoio financeiro ou social, procure o **CRAS** ou a assistência social local;
-- para ampliar entendimento sobre direitos, consulte a **Lei 12.764/2012** e a **Lei Brasileira de Inclusão** no site do **Planalto**;
-- para fluxos de cuidado e atenção, consulte materiais do **Ministério da Saúde** sobre TEA e rede de atenção;
-- quando a rede local mudar o fluxo, peça o nome do serviço, o endereço e o prazo estimado.
+A **CIPTEA** é a Carteira de Identificação da Pessoa com Transtorno do Espectro Autista. O fluxo muda por estado ou município.
+
+Próxima ação:
+
+- busque no site da prefeitura ou do governo estadual por "CIPTEA";
+- se não encontrar, pergunte na UBS, CRAS, secretaria de saúde ou secretaria de assistência social;
+- confirme se pedem laudo, foto, RG, CPF, comprovante de residência e documento do responsável;
+- guarde protocolo, comprovante de solicitação e prazo informado.
+
+Frase útil:
+
+"Gostaria de saber onde solicito a CIPTEA, quais documentos são exigidos e se vocês podem me informar o prazo ou protocolo do pedido."
+
+### CRAS, assistência social e BPC/LOAS
+
+Se a família precisa de apoio financeiro, orientação social ou acesso a benefícios, procure o **CRAS** do território. O CRAS não "dá o benefício" automaticamente, mas orienta cadastro, documentação, CadÚnico e caminhos possíveis.
+
+Um benefício que algumas famílias investigam é o **BPC/LOAS**, voltado a pessoas com deficiência ou idosos em situação de baixa renda, conforme critérios legais e avaliação social. Nem toda criança autista terá direito automaticamente. O ponto dos primeiros 30 dias é descobrir se vale iniciar avaliação.
+
+Você pode dizer no CRAS:
+
+"Tenho uma criança com diagnóstico ou suspeita de TEA e preciso de orientação sobre CadÚnico, avaliação social e possibilidade de BPC/LOAS. Quais documentos devo trazer e qual é o próximo passo?"
+
+Leve ou organize:
+
+- laudo ou relatório médico;
+- documentos da criança e responsáveis;
+- comprovante de residência;
+- comprovantes de renda, quando houver;
+- gastos recorrentes com saúde, transporte, terapias ou medicação;
+- relatórios escolares ou terapêuticos, se existirem.
+
+### Escola: pedido formal e registro
+
+Na escola, não dependa apenas de conversa no corredor. Peça reunião, registre combinados e acompanhe se as adaptações estão funcionando.
 
 Na escola, guarde:
 
@@ -845,12 +907,52 @@ Quando pedir apoio, escreva de forma objetiva:
 
 "Gostaria de entender quais adaptações a escola pode oferecer e como vamos acompanhar se elas estão ajudando. Podemos registrar os combinados por escrito?"
 
+Se a escola disser "não temos estrutura", responda sem transformar a primeira conversa em briga:
+
+"Entendo que existem limites práticos. Mesmo assim, preciso que a escola registre quais barreiras foram identificadas, quais adaptações são possíveis agora e qual encaminhamento será feito para garantir participação e segurança."
+
+### Plano de saúde, negativas e protocolos
+
+Se você usa plano de saúde e houver negativa, limitação de cobertura, demora ou exigência confusa, peça a negativa por escrito e registre protocolo.
+
+Anote:
+
+- data e horário do contato;
+- número de protocolo;
+- nome do atendente, se informado;
+- pedido feito;
+- resposta recebida;
+- prazo prometido;
+- documentos enviados.
+
+Frase útil:
+
+"Preciso da resposta formal por escrito, com o motivo da negativa ou limitação, o número de protocolo e o prazo de reavaliação."
+
+Quando houver negativa importante, demora que prejudique cuidado, conflito com escola ou dúvida sobre benefício, considere procurar Defensoria Pública, Ministério Público, Procon, advogado especializado ou serviço de orientação jurídica da sua região. O guia não substitui essa orientação; ele ajuda você a chegar com documentos e registros organizados.
+
 ### Fontes confiáveis para continuar
 
 - **Planalto:** Lei 12.764/2012 e Lei Brasileira de Inclusão.
 - **Ministério da Saúde:** materiais sobre TEA, atenção primária e rede de cuidado.
 - **Portal estadual ou municipal:** orientações sobre CIPTEA e fluxos locais.
 - **CRAS / assistência social local:** orientação sobre benefícios, documentação e rede de apoio.
+- **Defensoria Pública ou orientação jurídica local:** quando houver negativa, exclusão, demora grave ou dúvida sobre direitos.
+
+### Ouvir pessoas autistas
+
+Além de profissionais e familiares, procure também conteúdos produzidos por pessoas autistas adultas e organizações lideradas por autistas. Isso ajuda a família a enxergar o autismo como uma forma de desenvolvimento humano que precisa de apoio, acessibilidade e respeito, não como tragédia ou defeito.
+
+Ao buscar essas vozes, prefira fontes que:
+
+- falem de direitos, comunicação, acessibilidade e qualidade de vida;
+- expliquem sobrecarga sensorial, masking, autonomia e consentimento;
+- critiquem práticas violentas ou humilhantes sem negar a importância de apoio;
+- ajudem famílias a apoiar a criança sem tentar apagar quem ela é.
+
+Uma pergunta importante para carregar daqui para frente:
+
+"Essa decisão aumenta segurança, comunicação, autonomia e participação da criança ou só deixa os adultos mais confortáveis?"
 
 ### Organizar os próximos 60 dias
 
@@ -911,8 +1013,11 @@ Se você organizou documentos, fez perguntas melhores, evitou promessas perigosa
 
 - [ ] Registrei pequenas evoluções e dificuldades.
 - [ ] Revisei as prioridades escolhidas na Semana 1.
+- [ ] Sei qual serviço procurar para UBS, CIPTEA, CRAS ou BPC/LOAS, se fizer sentido.
+- [ ] Guardei protocolos, mensagens, negativas ou combinados importantes.
 - [ ] Defini até cinco ações para os próximos 60 dias.
 - [ ] Escolhi responsáveis e próximos passos.
+- [ ] Busquei pelo menos uma fonte produzida por pessoas autistas ou organização liderada por autistas.
 - [ ] Avaliei uma comunidade de apoio com cuidado.
 - [ ] Fechei o mês sem exigir perfeição da minha família.
 
