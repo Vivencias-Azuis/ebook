@@ -17,7 +17,7 @@ function getErrorMessage(error: unknown) {
     return error.message;
   }
 
-  return "Unable to complete authentication.";
+  return "Não foi possível concluir a autenticação.";
 }
 
 export function AuthForm({ mode }: AuthFormProps) {
@@ -60,14 +60,17 @@ export function AuthForm({ mode }: AuthFormProps) {
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
+    <form className="space-y-5" onSubmit={handleSubmit}>
       {isRegister ? (
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-zinc-700" htmlFor="name">
-            Name
+        <div className="space-y-1.5">
+          <label
+            className="block text-sm font-semibold text-[color:var(--va-ink)]"
+            htmlFor="name"
+          >
+            Nome
           </label>
           <input
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition focus:border-zinc-950"
+            className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
             id="name"
             name="name"
             autoComplete="name"
@@ -78,12 +81,15 @@ export function AuthForm({ mode }: AuthFormProps) {
         </div>
       ) : null}
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-zinc-700" htmlFor="email">
+      <div className="space-y-1.5">
+        <label
+          className="block text-sm font-semibold text-[color:var(--va-ink)]"
+          htmlFor="email"
+        >
           Email
         </label>
         <input
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition focus:border-zinc-950"
+          className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
           id="email"
           name="email"
           type="email"
@@ -94,12 +100,15 @@ export function AuthForm({ mode }: AuthFormProps) {
         />
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-zinc-700" htmlFor="password">
-          Password
+      <div className="space-y-1.5">
+        <label
+          className="block text-sm font-semibold text-[color:var(--va-ink)]"
+          htmlFor="password"
+        >
+          Senha
         </label>
         <input
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition focus:border-zinc-950"
+          className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
           id="password"
           name="password"
           type="password"
@@ -112,21 +121,21 @@ export function AuthForm({ mode }: AuthFormProps) {
       </div>
 
       {error ? (
-        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p className="rounded-[0.75rem] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </p>
       ) : null}
 
       <button
-        className="inline-flex w-full items-center justify-center rounded-xl bg-zinc-950 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--va-blue-700),var(--va-navy))] px-4 py-3 text-sm font-bold text-white shadow-[0_14px_34px_-22px_rgba(11,35,66,0.52)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
         type="submit"
         disabled={isPending}
       >
         {isPending
-          ? "Please wait..."
+          ? "Aguarde..."
           : isRegister
-            ? "Create account"
-            : "Sign in"}
+            ? "Criar conta"
+            : "Entrar na conta"}
       </button>
     </form>
   );
