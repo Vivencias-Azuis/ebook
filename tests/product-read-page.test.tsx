@@ -55,7 +55,7 @@ import {
 } from "@/domains/products/queries";
 
 describe("ProductReadPage", () => {
-  it("renders the editorial reader shell and current progress", async () => {
+  it("renders a premium slide shell with slide-aware navigation", async () => {
     vi.mocked(requireServerSession).mockResolvedValue({
       user: { id: "user-1" },
     } as any);
@@ -80,8 +80,7 @@ describe("ProductReadPage", () => {
             title: "Boas-vindas",
             type: "rich_text",
             payloadJson: JSON.stringify({
-              content:
-                "<p>Voce nao precisa organizar tudo hoje. Vamos por partes.</p>",
+              markdown: `${"A".repeat(1000)}\n\n${"B".repeat(1000)}`,
             }),
             sortOrder: 1,
           },
@@ -101,13 +100,68 @@ describe("ProductReadPage", () => {
     const markup = renderToStaticMarkup(page);
 
     expect(markup).toContain("va-reader-page");
-    expect(markup).toContain("va-reader-bar");
-    expect(markup).toContain("va-reader-panel");
+    expect(markup).toContain("va-reader-shell");
+    expect(markup).toContain("va-reader-stage");
+    expect(markup).toContain("va-reader-slide");
     expect(markup).toContain("Ocultar sumário");
     expect(markup).toContain("reader-sidebar-root");
     expect(markup).toContain('aria-expanded="true"');
-    expect(markup).toContain("Página 1 de 1");
-    expect(markup).toContain("24%");
+    expect(markup).toContain("Etapa 1 de 2");
+    expect(markup).toContain("24% concluído");
+    expect(markup).toContain("Continuar");
     expect(markup).toContain("Boas-vindas");
+  });
+
+  it("renders only the current fragmented slide payload while keeping block actions", async () => {
+    vi.mocked(requireServerSession).mockResolvedValue({
+      user: { id: "user-1" },
+    } as any);
+    vi.mocked(getProductBySlug).mockResolvedValue({
+      id: "prod-1",
+      slug: "guia-pratico",
+      title: "Guia Pratico",
+      status: "published",
+    } as any);
+    vi.mocked(getUserProductEntitlement).mockResolvedValue({
+      status: "active",
+    } as any);
+    vi.mocked(canAccessProduct).mockReturnValue(true);
+    vi.mocked(getPublishedProductContent).mockResolvedValue([
+      {
+        id: "chapter-1",
+        title: "Comeco",
+        sortOrder: 1,
+        blocks: [
+          {
+            id: "block-1",
+            title: "Boas-vindas",
+            type: "rich_text",
+            payloadJson: JSON.stringify({
+              markdown: `${"A".repeat(1000)}\n\n${"B".repeat(1000)}`,
+            }),
+            sortOrder: 1,
+          },
+        ],
+      },
+    ] as any);
+    vi.mocked(getUserProductProgress).mockResolvedValue({
+      "block-1": { completed: false },
+    } as any);
+    vi.mocked(summarizeProductProgress).mockReturnValue({
+      percent: 24,
+    } as any);
+
+    const page = await ProductReadPage({
+      params: Promise.resolve({ slug: "guia-pratico" }),
+      searchParams: Promise.resolve({ page: "2" }),
+    });
+
+    const markup = renderToStaticMarkup(page);
+
+    expect(markup).toContain("Etapa 2 de 2");
+    expect(markup).toContain("Parte 2 de 2");
+    expect(markup).toContain("Marcar página como lida");
+    expect(markup).toContain("BBBBBBBBBB");
+    expect(markup).not.toContain("AAAAAAAAAA");
   });
 });
