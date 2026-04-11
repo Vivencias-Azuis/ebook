@@ -4,8 +4,8 @@ import { db } from "@/db/client";
 import { entitlements, products } from "@/db/schema";
 
 export type LibraryProduct = {
-  entitlementId: string;
-  entitlementCreatedAt: Date;
+  entitlementId: string | null;
+  entitlementCreatedAt: Date | null;
   productId: string;
   slug: string;
   title: string;
@@ -14,6 +14,7 @@ export type LibraryProduct = {
   priceCents: number;
   currency: string;
   status: "draft" | "published" | "archived";
+  hasAccess: boolean;
 };
 
 export function deriveLibraryCheckoutMessage(
@@ -44,11 +45,23 @@ export async function getUserLibraryProducts(userId: string) {
       priceCents: products.priceCents,
       currency: products.currency,
       status: products.status,
+      hasAccess: entitlements.id,
     })
-    .from(entitlements)
-    .innerJoin(products, eq(entitlements.productId, products.id))
-    .where(
-      and(eq(entitlements.userId, userId), eq(entitlements.status, "active")),
+    .from(products)
+    .leftJoin(
+      entitlements,
+      and(
+        eq(entitlements.productId, products.id),
+        eq(entitlements.userId, userId),
+        eq(entitlements.status, "active"),
+      ),
     )
-    .orderBy(asc(entitlements.createdAt));
+    .where(eq(products.status, "published"))
+    .orderBy(asc(products.createdAt))
+    .then((rows) =>
+      rows.map((row) => ({
+        ...row,
+        hasAccess: row.hasAccess !== null,
+      })),
+    );
 }

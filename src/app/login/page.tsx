@@ -2,7 +2,19 @@ import Link from "next/link";
 
 import { AuthForm } from "@/components/auth/auth-form";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams?: Promise<{
+    next?: string;
+  }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const params = await searchParams;
+  const nextPath =
+    typeof params?.next === "string" && params.next.startsWith("/")
+      ? params.next
+      : "/library";
+
   return (
     <main className="min-h-screen text-[color:var(--va-ink)]">
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -48,14 +60,14 @@ export default function LoginPage() {
             </p>
 
             <div className="mt-8">
-              <AuthForm mode="login" />
+              <AuthForm mode="login" nextPath={nextPath} />
             </div>
 
             <p className="mt-6 text-sm text-[color:var(--va-soft-ink)]">
               Ainda não tem conta?{" "}
               <Link
                 className="font-bold text-[color:var(--va-blue-700)] hover:underline"
-                href="/register"
+                href={`/register?next=${encodeURIComponent(nextPath)}`}
               >
                 Criar conta
               </Link>

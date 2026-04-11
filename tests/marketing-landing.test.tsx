@@ -39,16 +39,40 @@ describe("ProductSalesLanding", () => {
 });
 
 describe("CatalogLanding", () => {
-  it("renders the featured offer and routes users to the product page", () => {
+  it("renders only the real course catalog and routes users to login with a reader redirect", () => {
+    const sampleProduct = {
+      ...product,
+      id: "product-guided-first-steps",
+      slug: "guia-pratico-primeiros-30-dias",
+      title: "Guia Prático: Primeiros 30 Dias",
+      description:
+        "Um guia introdutório publicado para validar a base do catálogo e do leitor.",
+    };
+    const realProduct = {
+      ...product,
+      id: "product-guia-pratico-primeiros-30-dias",
+      slug: "guia-pratico-primeiros-30-dias-apos-diagnostico",
+      title: "Guia Prático: Primeiros 30 Dias Após Suspeita ou Diagnóstico",
+    };
+
     const markup = renderToStaticMarkup(
-      <CatalogLanding featuredProduct={product} products={[product]} />,
+      <CatalogLanding featuredProduct={realProduct} products={[realProduct]} />,
     );
 
+    expect(markup).toContain("Vivências Azuis");
+    expect(markup).toContain("Cursos disponíveis");
+    expect(markup).toContain("Entrar para começar");
     expect(markup).toContain(
-      "Guia prático para transformar o começo da jornada em próximos passos claros",
+      "/login?next=%2Fproducts%2Fguia-pratico-primeiros-30-dias-apos-diagnostico%2Fread",
     );
-    expect(markup).toContain("Conheça o guia");
-    expect(markup).toContain("/products/guia-pratico-primeiros-30-dias");
-    expect(markup).toContain("Acesso imediato");
+    expect(markup).not.toContain("Curso em destaque");
+    expect(markup).not.toContain("Primeiro capítulo liberado");
+    expect(markup).toContain(
+      "Guia Prático: Primeiros 30 Dias Após Suspeita ou Diagnóstico",
+    );
+    expect(markup).not.toContain(
+      "/login?next=%2Fproducts%2Fguia-pratico-primeiros-30-dias%2Fread",
+    );
+    expect(markup).not.toContain(sampleProduct.description);
   });
 });
