@@ -48,17 +48,18 @@ export function buildReaderPages(chapters: ReaderChapter[]) {
     }
 
     for (const block of chapter.blocks) {
-      const slideCount = getBlockSlideCount(block);
+      const slideBlocks = getSlideBlocks(block);
+      const slideCount = slideBlocks.length;
 
-      for (let slideNumber = 1; slideNumber <= slideCount; slideNumber += 1) {
+      for (const [index, slideBlock] of slideBlocks.entries()) {
         pages.push({
           pageNumber: pages.length + 1,
           chapterId: chapter.id,
           chapterTitle: chapter.title,
           chapterSortOrder: chapter.sortOrder,
-          block,
+          block: slideBlock,
           sourceBlockId: block.id,
-          slideNumber,
+          slideNumber: index + 1,
           slideCount,
         });
       }
@@ -68,13 +69,16 @@ export function buildReaderPages(chapters: ReaderChapter[]) {
   return pages;
 }
 
-function getBlockSlideCount(block: ReaderBlock) {
+function getSlideBlocks(block: ReaderBlock) {
   if (block.type !== "rich_text") {
-    return 1;
+    return [block];
   }
 
   const { markdown } = parseBlockPayload("rich_text", block.payloadJson);
-  return splitMarkdownIntoSlides(markdown).length;
+  return splitMarkdownIntoSlides(markdown).map((slideMarkdown) => ({
+    ...block,
+    payloadJson: JSON.stringify({ markdown: slideMarkdown }),
+  }));
 }
 
 function splitMarkdownIntoSlides(markdown: string) {

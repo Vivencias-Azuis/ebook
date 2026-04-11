@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { parseBlockPayload } from "@/domains/content/blocks";
 import {
   buildReaderPages,
   normalizeReaderPageNumber,
@@ -45,6 +46,16 @@ const chapters = [
 describe("buildReaderPages", () => {
   it("splits long rich-text blocks into sequential slides without changing block progress identity", () => {
     const pages = buildReaderPages(chapters);
+    const firstSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[0].block?.payloadJson ?? "",
+    ).markdown;
+    const secondSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[1].block?.payloadJson ?? "",
+    ).markdown;
+    const firstSlideParagraphs = firstSlideMarkdown.split("\n\n");
+    const secondSlideParagraphs = secondSlideMarkdown.split("\n\n");
 
     expect(pages).toHaveLength(4);
     expect(pages.map((page) => page.pageNumber)).toEqual([1, 2, 3, 4]);
@@ -62,6 +73,14 @@ describe("buildReaderPages", () => {
       slideNumber: 2,
       slideCount: 2,
     });
+    expect(firstSlideMarkdown).not.toBe(secondSlideMarkdown);
+    expect(firstSlideMarkdown).not.toBe(longMarkdown);
+    expect(secondSlideMarkdown).not.toBe(longMarkdown);
+    expect(`${firstSlideMarkdown}\n\n${secondSlideMarkdown}`).toBe(longMarkdown);
+    expect(firstSlideParagraphs[0]).toContain("Paragrafo 1 ");
+    expect(firstSlideParagraphs.at(-1)).not.toContain("Paragrafo 24 ");
+    expect(secondSlideParagraphs[0]).not.toContain("Paragrafo 1 ");
+    expect(secondSlideParagraphs.at(-1)).toContain("Paragrafo 24 ");
     expect(pages[2]).toMatchObject({
       chapterTitle: "Introdução",
       block: { id: "block-2" },
@@ -69,6 +88,7 @@ describe("buildReaderPages", () => {
       slideNumber: 1,
       slideCount: 1,
     });
+    expect(pages[2].block?.payloadJson).toBe(chapters[0].blocks[1].payloadJson);
   });
 
   it("creates a placeholder page for chapters without blocks", () => {
