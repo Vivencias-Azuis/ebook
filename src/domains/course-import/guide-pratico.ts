@@ -211,7 +211,7 @@ export function buildGuidePraticoCourseDefinitionFromMarkdown(
       subtitle: "Um guia prático para organizar o que fazer primeiro sem se afogar em informação",
       description:
         "Um guia prático para organizar documentos, evitar decisões caras por medo e conversar com profissionais e escola com mais clareza nos primeiros 30 dias.",
-      priceCents: 9700,
+      priceCents: 997,
       currency: "brl",
       status: "published",
     },

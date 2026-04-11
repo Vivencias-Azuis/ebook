@@ -39,7 +39,7 @@ describe("buildGuidePraticoCourseDefinition", () => {
       id: GUIDE_PRATICO_PRODUCT_ID,
       slug: GUIDE_PRATICO_SLUG,
       status: "published",
-      priceCents: 9700,
+      priceCents: 997,
       currency: "brl",
     });
     expect(course.product.description).toContain("evitar decisões caras");
