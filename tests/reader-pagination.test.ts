@@ -1,9 +1,22 @@
 import { describe, expect, it } from "vitest";
 
+import { parseBlockPayload } from "@/domains/content/blocks";
 import {
   buildReaderPages,
   normalizeReaderPageNumber,
 } from "@/features/reader/pagination";
+
+const longMarkdown = Array.from({ length: 24 }, (_, index) => {
+  const paragraphNumber = index + 1;
+  return `Paragrafo ${paragraphNumber} com texto suficiente para ocupar espaco na leitura e manter a fragmentacao em etapas confortaveis.`;
+}).join("\n\n");
+
+const oversizedParagraphMarkdown = Array.from(
+  { length: 400 },
+  () => "texto",
+).join(" ");
+
+const oversizedListItemMarkdown = `- ${Array.from({ length: 420 }, () => "item longo").join(" ")}`;
 
 const chapters = [
   {
@@ -15,14 +28,16 @@ const chapters = [
         id: "block-1",
         title: "Boas-vindas",
         type: "rich_text" as const,
-        payloadJson: "{}",
+        payloadJson: JSON.stringify({ markdown: longMarkdown }),
         sortOrder: 1,
       },
       {
         id: "block-2",
         title: "Primeiros passos",
         type: "checklist" as const,
-        payloadJson: "{}",
+        payloadJson: JSON.stringify({
+          items: [{ id: "item-1", label: "Fazer o primeiro exercicio" }],
+        }),
         sortOrder: 2,
       },
     ],
@@ -36,28 +51,141 @@ const chapters = [
 ];
 
 describe("buildReaderPages", () => {
-  it("turns each block into a sequential reader page", () => {
+  it("splits long rich-text blocks into sequential slides without changing block progress identity", () => {
     const pages = buildReaderPages(chapters);
+    const firstSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[0].block?.payloadJson ?? "",
+    ).markdown;
+    const secondSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[1].block?.payloadJson ?? "",
+    ).markdown;
+    const firstSlideParagraphs = firstSlideMarkdown.split("\n\n");
+    const secondSlideParagraphs = secondSlideMarkdown.split("\n\n");
 
-    expect(pages).toHaveLength(3);
-    expect(pages.map((page) => page.pageNumber)).toEqual([1, 2, 3]);
+    expect(pages).toHaveLength(4);
+    expect(pages.map((page) => page.pageNumber)).toEqual([1, 2, 3, 4]);
     expect(pages[0]).toMatchObject({
       chapterTitle: "Introdução",
       block: { id: "block-1" },
+      sourceBlockId: "block-1",
+      slideNumber: 1,
+      slideCount: 2,
     });
     expect(pages[1]).toMatchObject({
       chapterTitle: "Introdução",
-      block: { id: "block-2" },
+      block: { id: "block-1" },
+      sourceBlockId: "block-1",
+      slideNumber: 2,
+      slideCount: 2,
     });
+    expect(firstSlideMarkdown).not.toBe(secondSlideMarkdown);
+    expect(firstSlideMarkdown).not.toBe(longMarkdown);
+    expect(secondSlideMarkdown).not.toBe(longMarkdown);
+    expect(`${firstSlideMarkdown}\n\n${secondSlideMarkdown}`).toBe(
+      longMarkdown,
+    );
+    expect(firstSlideParagraphs[0]).toContain("Paragrafo 1 ");
+    expect(firstSlideParagraphs.at(-1)).not.toContain("Paragrafo 24 ");
+    expect(secondSlideParagraphs[0]).not.toContain("Paragrafo 1 ");
+    expect(secondSlideParagraphs.at(-1)).toContain("Paragrafo 24 ");
+    expect(pages[2]).toMatchObject({
+      chapterTitle: "Introdução",
+      block: { id: "block-2" },
+      sourceBlockId: "block-2",
+      slideNumber: 1,
+      slideCount: 1,
+    });
+    expect(pages[2].block?.payloadJson).toBe(chapters[0].blocks[1].payloadJson);
   });
 
   it("creates a placeholder page for chapters without blocks", () => {
     const pages = buildReaderPages(chapters);
 
-    expect(pages[2]).toMatchObject({
+    expect(pages[3]).toMatchObject({
       chapterTitle: "Sem conteúdo",
       block: null,
+      sourceBlockId: null,
+      slideNumber: 1,
+      slideCount: 1,
     });
+  });
+
+  it("splits a single oversized rich-text paragraph into multiple slides", () => {
+    const pages = buildReaderPages([
+      {
+        id: "chapter-oversized",
+        title: "Capítulo longo",
+        sortOrder: 1,
+        blocks: [
+          {
+            id: "block-oversized",
+            title: "Bloco longo",
+            type: "rich_text" as const,
+            payloadJson: JSON.stringify({
+              markdown: oversizedParagraphMarkdown,
+            }),
+            sortOrder: 1,
+          },
+        ],
+      },
+    ]);
+    const firstSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[0].block?.payloadJson ?? "",
+    ).markdown;
+    const secondSlideMarkdown = parseBlockPayload(
+      "rich_text",
+      pages[1].block?.payloadJson ?? "",
+    ).markdown;
+
+    expect(pages).toHaveLength(2);
+    expect(pages[0]).toMatchObject({
+      sourceBlockId: "block-oversized",
+      slideNumber: 1,
+      slideCount: 2,
+    });
+    expect(pages[1]).toMatchObject({
+      sourceBlockId: "block-oversized",
+      slideNumber: 2,
+      slideCount: 2,
+    });
+    expect(firstSlideMarkdown).not.toBe(secondSlideMarkdown);
+    expect(`${firstSlideMarkdown} ${secondSlideMarkdown}`).toBe(
+      oversizedParagraphMarkdown,
+    );
+  });
+
+  it("preserves list markers when a long markdown list item spans multiple slides", () => {
+    const pages = buildReaderPages([
+      {
+        id: "chapter-list",
+        title: "Capítulo com lista",
+        sortOrder: 1,
+        blocks: [
+          {
+            id: "block-list",
+            title: "Lista longa",
+            type: "rich_text" as const,
+            payloadJson: JSON.stringify({
+              markdown: oversizedListItemMarkdown,
+            }),
+            sortOrder: 1,
+          },
+        ],
+      },
+    ]);
+    const slideMarkdown = pages.map(
+      (page) =>
+        parseBlockPayload("rich_text", page.block?.payloadJson ?? "").markdown,
+    );
+
+    expect(pages).toHaveLength(3);
+    expect(slideMarkdown.every((markdown) => markdown.startsWith("- "))).toBe(
+      true,
+    );
+    expect(slideMarkdown.join(" ")).toContain("- item longo item longo");
   });
 });
 

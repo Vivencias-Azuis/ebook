@@ -64,12 +64,24 @@ export function ReaderSidebar({
       id="reader-sidebar-root"
       className="va-reader-panel va-reader-panel-muted order-2 p-5 lg:order-1 lg:max-h-[calc(100vh-7rem)] lg:overflow-auto"
     >
-      <div className="mb-5 flex items-start justify-between gap-4">
-        <div className="min-w-0">
+      <div className="mb-5 space-y-4">
+        <div className="flex items-center justify-between gap-3">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--va-muted)]">
             Sumário
           </p>
-          <h1 className="mt-3 font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)]">
+          <button
+            type="button"
+            aria-expanded={isOpen}
+            aria-controls="reader-sidebar-nav"
+            onClick={() => setIsOpen((currentState) => !currentState)}
+            className="rounded-full border border-[color:var(--va-line)] bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[color:var(--va-blue-800)] shadow-[0_14px_26px_-22px_rgba(11,35,66,0.28)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+          >
+            {isOpen ? "Ocultar sumário" : "Mostrar sumário"}
+          </button>
+        </div>
+
+        <div className="min-w-0">
+          <h1 className="max-w-[12ch] font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)] sm:max-w-none">
             {productTitle}
           </h1>
           <div className="mt-4 h-2 overflow-hidden rounded-full bg-white shadow-inner">
@@ -79,16 +91,6 @@ export function ReaderSidebar({
             />
           </div>
         </div>
-
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-controls="reader-sidebar-nav"
-          onClick={() => setIsOpen((currentState) => !currentState)}
-          className="shrink-0 rounded-full border border-[color:var(--va-line)] bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[color:var(--va-blue-800)] shadow-[0_14px_26px_-22px_rgba(11,35,66,0.28)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
-        >
-          {isOpen ? "Ocultar sumário" : "Mostrar sumário"}
-        </button>
       </div>
 
       {isOpen ? (
@@ -111,9 +113,15 @@ export function ReaderSidebar({
               <div className="space-y-2">
                 {chapter.pages.map((readerPage) => {
                   const isActive = readerPage.pageNumber === currentPageNumber;
-                  const isCompleted = readerPage.block
-                    ? progressByBlockId[readerPage.block.id]?.completed
+                  const progressBlockId =
+                    readerPage.sourceBlockId ?? readerPage.block?.id ?? null;
+                  const isCompleted = progressBlockId
+                    ? progressByBlockId[progressBlockId]?.completed
                     : false;
+                  const pageLabel =
+                    readerPage.slideCount > 1
+                      ? `Parte ${readerPage.slideNumber} de ${readerPage.slideCount}`
+                      : `Página ${readerPage.pageNumber}`;
 
                   return (
                     <Link
@@ -124,13 +132,13 @@ export function ReaderSidebar({
                         isActive ? "va-reader-index-item-active" : ""
                       }`}
                     >
-                      <span className="flex items-center justify-between gap-3">
+                      <span className="flex flex-col items-start gap-2">
                         <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                          Página {readerPage.pageNumber}
+                          {pageLabel}
                         </span>
                         {isCompleted ? (
-                          <span className="rounded-full bg-[color:var(--va-blue-100)] px-2 py-0.5 text-[0.65rem] font-bold text-[color:var(--va-blue-800)]">
-                            lida
+                          <span className="rounded-full bg-[color:var(--va-blue-100)] px-2.5 py-1 text-[0.7rem] font-bold text-[color:var(--va-blue-800)]">
+                            Lido
                           </span>
                         ) : null}
                       </span>

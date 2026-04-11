@@ -19,9 +19,28 @@ const readerPages: ReaderPage[] = [
       payloadJson: '{"content":"<p>Intro</p>"}',
       sortOrder: 1,
     },
+    sourceBlockId: "block-1",
+    slideNumber: 1,
+    slideCount: 2,
   },
   {
     pageNumber: 2,
+    chapterId: "chapter-1",
+    chapterTitle: "Comeco",
+    chapterSortOrder: 1,
+    block: {
+      id: "block-1",
+      title: "Boas-vindas",
+      type: "rich_text",
+      payloadJson: '{"content":"<p>Continuação</p>"}',
+      sortOrder: 1,
+    },
+    sourceBlockId: "block-1",
+    slideNumber: 2,
+    slideCount: 2,
+  },
+  {
+    pageNumber: 3,
     chapterId: "chapter-1",
     chapterTitle: "Comeco",
     chapterSortOrder: 1,
@@ -32,9 +51,12 @@ const readerPages: ReaderPage[] = [
       payloadJson: '{"items":[]}',
       sortOrder: 2,
     },
+    sourceBlockId: "block-2",
+    slideNumber: 1,
+    slideCount: 1,
   },
   {
-    pageNumber: 3,
+    pageNumber: 4,
     chapterId: "chapter-2",
     chapterTitle: "Rede de apoio",
     chapterSortOrder: 2,
@@ -45,6 +67,9 @@ const readerPages: ReaderPage[] = [
       payloadJson: '{"content":"<p>Rede</p>"}',
       sortOrder: 1,
     },
+    sourceBlockId: "block-3",
+    slideNumber: 1,
+    slideCount: 1,
   },
 ];
 
@@ -57,7 +82,7 @@ afterEach(() => {
 });
 
 describe("ReaderSidebar", () => {
-  it("groups pages by chapter and marks completed items", async () => {
+  it("shows slide-aware labels and block-scoped completion copy for fragmented content", async () => {
     const container = document.createElement("div");
     document.body.appendChild(container);
     const root = createRoot(container);
@@ -78,11 +103,43 @@ describe("ReaderSidebar", () => {
     expect(container.textContent).toContain("Guia Pratico");
     expect(container.textContent).toContain("Comeco");
     expect(container.textContent).toContain("Rede de apoio");
+    expect(container.textContent).toContain("Parte 1 de 2");
+    expect(container.textContent).toContain("Parte 2 de 2");
     expect(container.textContent).toContain("Boas-vindas");
     expect(container.textContent).toContain("Checklist inicial");
-    expect(container.textContent).toContain("lida");
+    expect(container.textContent).toContain("Lido");
     expect(container.innerHTML).toContain("page=2");
     expect(container.innerHTML).toContain('aria-current="page"');
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("stacks the sidebar header and item metadata to avoid squeezing the title", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico: Primeiros 30 Dias Após Suspeita ou Diagnóstico"
+          productSlug="guia-pratico"
+          currentPageNumber={2}
+          progressPercent={34}
+          readerPages={readerPages}
+          progressByBlockId={progressByBlockId}
+        />,
+      );
+    });
+
+    expect(container.innerHTML).toContain("mb-5 space-y-4");
+    expect(container.innerHTML).toContain(
+      "flex items-center justify-between gap-3",
+    );
+    expect(container.innerHTML).toContain("flex flex-col items-start gap-2");
+    expect(container.textContent).toContain("Lido");
 
     await act(async () => {
       root.unmount();
@@ -117,6 +174,48 @@ describe("ReaderSidebar", () => {
 
     expect(container.textContent).toContain("Mostrar sumário");
     expect(container.textContent).not.toContain("Boas-vindas");
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("falls back to the block id when sourceBlockId is unavailable", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico"
+          productSlug="guia-pratico"
+          currentPageNumber={1}
+          progressPercent={50}
+          readerPages={[
+            {
+              pageNumber: 1,
+              chapterId: "chapter-1",
+              chapterTitle: "Comeco",
+              chapterSortOrder: 1,
+              block: {
+                id: "block-legacy",
+                title: "Bloco antigo",
+                type: "rich_text",
+                payloadJson: '{"content":"<p>Legado</p>"}',
+                sortOrder: 1,
+              },
+              sourceBlockId: null,
+              slideNumber: 1,
+              slideCount: 1,
+            },
+          ]}
+          progressByBlockId={{ "block-legacy": { completed: true } }}
+        />,
+      );
+    });
+
+    expect(container.textContent).toContain("Lido");
 
     await act(async () => {
       root.unmount();
