@@ -5,6 +5,11 @@ import {
   normalizeReaderPageNumber,
 } from "@/features/reader/pagination";
 
+const longMarkdown = Array.from({ length: 24 }, (_, index) => {
+  const paragraphNumber = index + 1;
+  return `Paragrafo ${paragraphNumber} com texto suficiente para ocupar espaco na leitura e manter a fragmentacao em etapas confortaveis.`;
+}).join("\n\n");
+
 const chapters = [
   {
     id: "chapter-1",
@@ -15,14 +20,16 @@ const chapters = [
         id: "block-1",
         title: "Boas-vindas",
         type: "rich_text" as const,
-        payloadJson: "{}",
+        payloadJson: JSON.stringify({ markdown: longMarkdown }),
         sortOrder: 1,
       },
       {
         id: "block-2",
         title: "Primeiros passos",
         type: "checklist" as const,
-        payloadJson: "{}",
+        payloadJson: JSON.stringify({
+          items: [{ id: "item-1", label: "Fazer o primeiro exercicio" }],
+        }),
         sortOrder: 2,
       },
     ],
@@ -36,27 +43,43 @@ const chapters = [
 ];
 
 describe("buildReaderPages", () => {
-  it("turns each block into a sequential reader page", () => {
+  it("splits long rich-text blocks into sequential slides without changing block progress identity", () => {
     const pages = buildReaderPages(chapters);
 
-    expect(pages).toHaveLength(3);
-    expect(pages.map((page) => page.pageNumber)).toEqual([1, 2, 3]);
+    expect(pages).toHaveLength(4);
+    expect(pages.map((page) => page.pageNumber)).toEqual([1, 2, 3, 4]);
     expect(pages[0]).toMatchObject({
       chapterTitle: "Introdução",
       block: { id: "block-1" },
+      sourceBlockId: "block-1",
+      slideNumber: 1,
+      slideCount: 2,
     });
     expect(pages[1]).toMatchObject({
       chapterTitle: "Introdução",
+      block: { id: "block-1" },
+      sourceBlockId: "block-1",
+      slideNumber: 2,
+      slideCount: 2,
+    });
+    expect(pages[2]).toMatchObject({
+      chapterTitle: "Introdução",
       block: { id: "block-2" },
+      sourceBlockId: "block-2",
+      slideNumber: 1,
+      slideCount: 1,
     });
   });
 
   it("creates a placeholder page for chapters without blocks", () => {
     const pages = buildReaderPages(chapters);
 
-    expect(pages[2]).toMatchObject({
+    expect(pages[3]).toMatchObject({
       chapterTitle: "Sem conteúdo",
       block: null,
+      sourceBlockId: null,
+      slideNumber: 1,
+      slideCount: 1,
     });
   });
 });
