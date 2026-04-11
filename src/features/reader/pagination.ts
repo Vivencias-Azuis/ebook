@@ -114,10 +114,6 @@ function splitMarkdownIntoSlides(markdown: string) {
   return slides;
 }
 
-function splitOversizedParagraph(paragraph: string) {
-  return splitOversizedBlock(paragraph);
-}
-
 function splitOversizedBlock(block: string) {
   if (block.length <= RICH_TEXT_SLIDE_CHARACTER_LIMIT) {
     return [block];

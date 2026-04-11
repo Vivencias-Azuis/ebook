@@ -69,7 +69,9 @@ it("uses the next path as callback and redirect target on login", async () => {
   });
 
   await act(async () => {
-    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    form.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true }),
+    );
   });
 
   expect(authClient.signIn.email).toHaveBeenCalledWith({
@@ -106,7 +108,9 @@ it("shows feedback when sign in returns an auth error payload", async () => {
   }
 
   await act(async () => {
-    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    form.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true }),
+    );
   });
 
   expect(container.textContent).toContain("Email ou senha inválidos.");
@@ -139,7 +143,9 @@ it("shows feedback when sign up returns an auth error payload", async () => {
   }
 
   await act(async () => {
-    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    form.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true }),
+    );
   });
 
   expect(container.textContent).toContain("Este email já está em uso.");

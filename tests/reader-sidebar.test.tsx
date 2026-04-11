@@ -96,7 +96,9 @@ describe("ReaderSidebar", () => {
           progressPercent={34}
           readerPages={readerPages}
           progressByBlockId={progressByBlockId}
-          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          accessiblePageNumbers={
+            new Set(readerPages.map((page) => page.pageNumber))
+          }
           isPreviewMode={false}
         />,
       );
@@ -132,7 +134,9 @@ describe("ReaderSidebar", () => {
           progressPercent={34}
           readerPages={readerPages}
           progressByBlockId={progressByBlockId}
-          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          accessiblePageNumbers={
+            new Set(readerPages.map((page) => page.pageNumber))
+          }
           isPreviewMode={false}
         />,
       );
@@ -164,7 +168,9 @@ describe("ReaderSidebar", () => {
           progressPercent={0}
           readerPages={readerPages}
           progressByBlockId={{}}
-          accessiblePageNumbers={new Set(readerPages.map((page) => page.pageNumber))}
+          accessiblePageNumbers={
+            new Set(readerPages.map((page) => page.pageNumber))
+          }
           isPreviewMode={false}
         />,
       );

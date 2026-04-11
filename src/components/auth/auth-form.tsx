@@ -69,7 +69,12 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
             callbackURL: callbackPath,
           });
 
-      if (result && typeof result === "object" && "error" in result && result.error) {
+      if (
+        result &&
+        typeof result === "object" &&
+        "error" in result &&
+        result.error
+      ) {
         setError(getErrorMessage(result.error));
         return;
       }

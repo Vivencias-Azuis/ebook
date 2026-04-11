@@ -152,15 +152,15 @@ O pedido é transformar esse caminho em um funil mais direto:
 
 ## Arquivos a modificar
 
-| Arquivo | Mudança |
-| --- | --- |
+| Arquivo                                        | Mudança                                                                                           |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `src/components/marketing/catalog-landing.tsx` | Reposicionar a landing para apresentar a Vivências Azuis e listar cursos com CTA único para login |
-| `src/app/page.tsx` | Continua servindo a landing, sem mudança estrutural relevante |
-| `src/app/products/[slug]/read/page.tsx` | Remover redirect para não pagantes, calcular preview liberado e passar estado de bloqueio |
-| `src/features/reader/reader-sidebar.tsx` | Mostrar capítulos bloqueados com cadeado e sombreado |
-| `src/features/reader/*` | Possível componente client para popup/paywall e navegação de preview |
-| `tests/marketing-landing.test.tsx` | Atualizar expectativa da home/catalog |
-| `tests/product-read-page.test.tsx` | Cobrir modo preview, bloqueio e CTA de cobrança |
+| `src/app/page.tsx`                             | Continua servindo a landing, sem mudança estrutural relevante                                     |
+| `src/app/products/[slug]/read/page.tsx`        | Remover redirect para não pagantes, calcular preview liberado e passar estado de bloqueio         |
+| `src/features/reader/reader-sidebar.tsx`       | Mostrar capítulos bloqueados com cadeado e sombreado                                              |
+| `src/features/reader/*`                        | Possível componente client para popup/paywall e navegação de preview                              |
+| `tests/marketing-landing.test.tsx`             | Atualizar expectativa da home/catalog                                                             |
+| `tests/product-read-page.test.tsx`             | Cobrir modo preview, bloqueio e CTA de cobrança                                                   |
 
 ---
 

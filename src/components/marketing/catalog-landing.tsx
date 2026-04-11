@@ -13,7 +13,6 @@ type Product = {
 };
 
 export function CatalogLanding({
-  featuredProduct: _featuredProduct,
   products,
 }: {
   featuredProduct: Product | null;

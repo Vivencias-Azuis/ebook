@@ -13,6 +13,7 @@
 ### Task 1: Update auth redirect and landing catalog CTA
 
 **Files:**
+
 - Modify: `src/components/auth/auth-form.tsx`
 - Modify: `src/app/login/page.tsx`
 - Modify: `src/components/marketing/catalog-landing.tsx`
@@ -85,6 +86,7 @@ Expected: PASS
 ### Task 2: Add preview-mode reader access rules
 
 **Files:**
+
 - Modify: `src/app/products/[slug]/read/page.tsx`
 - Modify: `src/features/reader/reader-sidebar.tsx`
 - Test: `tests/product-read-page.test.tsx`
@@ -130,13 +132,18 @@ const previewChapterId = chapters[0]?.id ?? null;
 const accessibleReaderPages = hasFullAccess
   ? readerPages
   : readerPages.filter((page) => page.chapterId === previewChapterId);
-const safePageNumber = Math.min(requestedPageNumber, accessibleReaderPages.length);
+const safePageNumber = Math.min(
+  requestedPageNumber,
+  accessibleReaderPages.length,
+);
 
 <ReaderSidebar
   readerPages={readerPages}
-  accessiblePageNumbers={new Set(accessibleReaderPages.map((page) => page.pageNumber))}
+  accessiblePageNumbers={
+    new Set(accessibleReaderPages.map((page) => page.pageNumber))
+  }
   isPreviewMode={!hasFullAccess}
-/>
+/>;
 ```
 
 - [ ] **Step 6: Run tests to verify they pass**
@@ -149,6 +156,7 @@ Expected: PASS
 ### Task 3: Show Stripe paywall popup at the end of the preview
 
 **Files:**
+
 - Create: `src/features/reader/reader-preview-shell.tsx`
 - Modify: `src/app/products/[slug]/read/page.tsx`
 - Test: `tests/product-read-page.test.tsx`
@@ -195,6 +203,7 @@ Expected: PASS
 ### Task 4: Run focused regression verification
 
 **Files:**
+
 - Test: `tests/auth-form.test.tsx`
 - Test: `tests/marketing-landing.test.tsx`
 - Test: `tests/product-read-page.test.tsx`

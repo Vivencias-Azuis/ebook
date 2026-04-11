@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { useState } from "react";
 
 type ReaderPreviewShellProps = {
   children: ReactNode;
@@ -17,12 +17,6 @@ export function ReaderPreviewShell({
   productId,
 }: ReaderPreviewShellProps) {
   const [isPaywallOpen, setIsPaywallOpen] = useState(shouldOpenPaywall);
-
-  useEffect(() => {
-    if (shouldOpenPaywall) {
-      setIsPaywallOpen(true);
-    }
-  }, [shouldOpenPaywall]);
 
   return (
     <>
