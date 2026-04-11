@@ -25,6 +25,7 @@ tests/marketing-landing.test.tsx
 ## Task 1: Marketing component tests
 
 **Files:**
+
 - Create: `tests/marketing-landing.test.tsx`
 
 - [ ] Write tests that assert the sales headline, buyer-identification section, FAQ/objection handling, and product CTA are rendered from pure marketing components.
@@ -33,6 +34,7 @@ tests/marketing-landing.test.tsx
 ## Task 2: Marketing components
 
 **Files:**
+
 - Create: `src/components/marketing/catalog-landing.tsx`
 - Create: `src/components/marketing/product-sales-landing.tsx`
 
@@ -42,6 +44,7 @@ tests/marketing-landing.test.tsx
 ## Task 3: Route integration and public theme
 
 **Files:**
+
 - Modify: `src/app/page.tsx`
 - Modify: `src/app/products/[slug]/page.tsx`
 - Modify: `src/app/layout.tsx`
@@ -54,6 +57,7 @@ tests/marketing-landing.test.tsx
 ## Task 4: Verification
 
 **Files:**
+
 - Verify only
 
 - [ ] Run `npm test -- tests/marketing-landing.test.tsx`.

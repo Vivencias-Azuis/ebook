@@ -12,22 +12,23 @@
 
 ## File Map
 
-| Arquivo | Ação | Responsabilidade |
-|---|---|---|
-| `src/components/auth/auth-form.tsx` | Modificar | Labels em português + estilos `va-*` |
-| `src/app/login/page.tsx` | Modificar | Layout split screen |
-| `src/app/register/page.tsx` | Modificar | Layout split screen (espelho do login) |
-| `src/app/library/page.tsx` | Modificar | Hero + cards `va-*` |
-| `src/features/reader/reader-sidebar.tsx` | Criar | Client Component: sidebar recolhível + agrupamento por capítulo |
-| `src/app/products/[slug]/read/page.tsx` | Modificar | Usa `ReaderSidebar`, remove JSX de sidebar embutido |
-| `tests/reader-sidebar.test.tsx` | Criar | Testa agrupamento e toggle |
-| `tests/auth-form.test.tsx` | Criar | Testa labels em português |
+| Arquivo                                  | Ação      | Responsabilidade                                                |
+| ---------------------------------------- | --------- | --------------------------------------------------------------- |
+| `src/components/auth/auth-form.tsx`      | Modificar | Labels em português + estilos `va-*`                            |
+| `src/app/login/page.tsx`                 | Modificar | Layout split screen                                             |
+| `src/app/register/page.tsx`              | Modificar | Layout split screen (espelho do login)                          |
+| `src/app/library/page.tsx`               | Modificar | Hero + cards `va-*`                                             |
+| `src/features/reader/reader-sidebar.tsx` | Criar     | Client Component: sidebar recolhível + agrupamento por capítulo |
+| `src/app/products/[slug]/read/page.tsx`  | Modificar | Usa `ReaderSidebar`, remove JSX de sidebar embutido             |
+| `tests/reader-sidebar.test.tsx`          | Criar     | Testa agrupamento e toggle                                      |
+| `tests/auth-form.test.tsx`               | Criar     | Testa labels em português                                       |
 
 ---
 
 ## Task 1: Atualizar AuthForm — labels portugueses e estilos `va-*`
 
 **Files:**
+
 - Modify: `src/components/auth/auth-form.tsx`
 - Create: `tests/auth-form.test.tsx`
 
@@ -231,6 +232,7 @@ git commit -m "feat: update AuthForm with Portuguese labels and va-* styles"
 ## Task 2: Redesign da página de login
 
 **Files:**
+
 - Modify: `src/app/login/page.tsx`
 
 - [ ] **Step 1: Substituir o conteúdo de `src/app/login/page.tsx`**
@@ -327,6 +329,7 @@ git commit -m "feat: redesign login page — split screen editorial"
 ## Task 3: Redesign da página de registro
 
 **Files:**
+
 - Modify: `src/app/register/page.tsx`
 
 - [ ] **Step 1: Substituir o conteúdo de `src/app/register/page.tsx`**
@@ -422,6 +425,7 @@ git commit -m "feat: redesign register page — split screen editorial"
 ## Task 4: Redesign da Biblioteca
 
 **Files:**
+
 - Modify: `src/app/library/page.tsx`
 
 - [ ] **Step 1: Substituir o conteúdo de `src/app/library/page.tsx`**
@@ -506,7 +510,10 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
               };
 
               return (
-                <article key={product.entitlementId} className="va-panel flex h-full flex-col bg-white">
+                <article
+                  key={product.entitlementId}
+                  className="va-panel flex h-full flex-col bg-white"
+                >
                   <div className="flex-1 space-y-3">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
                       Guia digital
@@ -533,7 +540,8 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                       />
                     </div>
                     <p className="mt-2 text-xs font-medium text-[color:var(--va-muted)]">
-                      {progress.percent}% concluído · {progress.completedBlocks}/{progress.totalBlocks} blocos
+                      {progress.percent}% concluído · {progress.completedBlocks}
+                      /{progress.totalBlocks} blocos
                     </p>
                   </div>
 
@@ -553,7 +561,9 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                       href={`/products/${product.slug}/read${progress.continueReadingChapterId ? `#${progress.continueReadingChapterId}` : ""}`}
                       className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--va-blue-700),var(--va-navy))] px-5 py-2.5 text-sm font-bold text-white shadow-[0_14px_34px_-22px_rgba(11,35,66,0.52)] hover:-translate-y-0.5"
                     >
-                      {progress.completedBlocks > 0 ? "Continuar leitura" : "Ler agora"}
+                      {progress.completedBlocks > 0
+                        ? "Continuar leitura"
+                        : "Ler agora"}
                     </Link>
                   </div>
                 </article>
@@ -591,6 +601,7 @@ git commit -m "feat: redesign library page with va-* tokens and hero layout"
 ## Task 5: Criar `ReaderSidebar` — Client Component recolhível
 
 **Files:**
+
 - Create: `src/features/reader/reader-sidebar.tsx`
 - Create: `tests/reader-sidebar.test.tsx`
 
@@ -864,11 +875,13 @@ git commit -m "feat: add collapsible ReaderSidebar with chapter grouping"
 ## Task 6: Atualizar o Reader para usar `ReaderSidebar`
 
 **Files:**
+
 - Modify: `src/app/products/[slug]/read/page.tsx`
 
 - [ ] **Step 1: Substituir o `<aside>` embutido pelo `<ReaderSidebar>`**
 
 Substituir o conteúdo de `src/app/products/[slug]/read/page.tsx`. As mudanças são:
+
 1. Importar `ReaderSidebar`
 2. Remover o `<aside>` existente (linhas 92-145) e usar `<ReaderSidebar>`
 3. Ajustar `leading` do conteúdo para `leading-[1.9]` e `space-y-6`
@@ -879,7 +892,10 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 import { requireServerSession } from "@/domains/auth/server";
-import { canAccessProduct, getUserProductEntitlement } from "@/domains/orders/access";
+import {
+  canAccessProduct,
+  getUserProductEntitlement,
+} from "@/domains/orders/access";
 import { parseBlockPayload } from "@/domains/content/blocks";
 import {
   getUserProductProgress,
@@ -889,7 +905,10 @@ import {
   setBlockCompletion,
   setChecklistProgress,
 } from "@/domains/progress/mutations";
-import { getProductBySlug, getPublishedProductContent } from "@/domains/products/queries";
+import {
+  getProductBySlug,
+  getPublishedProductContent,
+} from "@/domains/products/queries";
 import { BlockRenderer } from "@/features/reader/block-renderer";
 import { ReaderSidebar } from "@/features/reader/reader-sidebar";
 import {
@@ -923,21 +942,28 @@ export default async function ProductReadPage({
     notFound();
   }
 
-  const entitlement = await getUserProductEntitlement(session.user.id, product.id);
+  const entitlement = await getUserProductEntitlement(
+    session.user.id,
+    product.id,
+  );
 
   if (!canAccessProduct(entitlement)) {
     redirect(`/products/${product.slug}`);
   }
 
   const chapters = await getPublishedProductContent(product.id);
-  const progressByBlockId = await getUserProductProgress(session.user.id, product.id);
+  const progressByBlockId = await getUserProductProgress(
+    session.user.id,
+    product.id,
+  );
   const progressSummary = summarizeProductProgress(chapters, progressByBlockId);
   const readerPages = buildReaderPages(chapters);
   const currentPageNumber = normalizeReaderPageNumber(page, readerPages.length);
   const currentPage = readerPages[currentPageNumber - 1] ?? null;
   const currentBlock = currentPage?.block ?? null;
   const previousPage = currentPageNumber > 1 ? currentPageNumber - 1 : null;
-  const nextPage = currentPageNumber < readerPages.length ? currentPageNumber + 1 : null;
+  const nextPage =
+    currentPageNumber < readerPages.length ? currentPageNumber + 1 : null;
   const progressLabel =
     progressSummary.percent === 100
       ? "Guia concluído"
@@ -1012,7 +1038,8 @@ export default async function ProductReadPage({
                       Transforme esta página em ação.
                     </p>
                     <p className="mt-2 leading-7">
-                      Marque abaixo o que já foi feito e volte quando precisar continuar.
+                      Marque abaixo o que já foi feito e volte quando precisar
+                      continuar.
                     </p>
                   </div>
                 ) : null}
@@ -1038,7 +1065,9 @@ export default async function ProductReadPage({
                         const checkedItemIds = formData
                           .getAll("checkedItemIds")
                           .map(String);
-                        const allItemIds = formData.getAll("allItemIds").map(String);
+                        const allItemIds = formData
+                          .getAll("allItemIds")
+                          .map(String);
 
                         await setChecklistProgress({
                           userId: session.user.id,
@@ -1048,7 +1077,9 @@ export default async function ProductReadPage({
                           allItemIds,
                           checkedItemIds,
                         });
-                        revalidatePath(readerPageHref(product.slug, currentPageNumber));
+                        revalidatePath(
+                          readerPageHref(product.slug, currentPageNumber),
+                        );
                         revalidatePath("/library");
                       }}
                       className="rounded-[1.5rem] border border-[color:var(--va-line)] bg-[linear-gradient(180deg,#ffffff_0%,rgba(215,231,247,0.28)_100%)] p-5 shadow-[0_18px_50px_-42px_rgba(11,35,66,0.28)]"
@@ -1057,16 +1088,27 @@ export default async function ProductReadPage({
                         Plano de ação
                       </p>
                       <div className="mt-4 grid gap-3">
-                        {parseBlockPayload("checklist", currentBlock.payloadJson).items.map((item) => (
-                          <label key={item.id} className="flex items-start gap-3 rounded-[1rem] border border-[color:var(--va-line)] bg-white px-3 py-3 text-sm text-[color:var(--va-ink)]">
-                            <input type="hidden" name="allItemIds" value={item.id} />
+                        {parseBlockPayload(
+                          "checklist",
+                          currentBlock.payloadJson,
+                        ).items.map((item) => (
+                          <label
+                            key={item.id}
+                            className="flex items-start gap-3 rounded-[1rem] border border-[color:var(--va-line)] bg-white px-3 py-3 text-sm text-[color:var(--va-ink)]"
+                          >
+                            <input
+                              type="hidden"
+                              name="allItemIds"
+                              value={item.id}
+                            />
                             <input
                               type="checkbox"
                               name="checkedItemIds"
                               value={item.id}
                               defaultChecked={
-                                progressByBlockId[currentBlock.id]?.checkedItemIds?.includes(item.id) ??
-                                false
+                                progressByBlockId[
+                                  currentBlock.id
+                                ]?.checkedItemIds?.includes(item.id) ?? false
                               }
                               className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-blue)]"
                             />
@@ -1090,9 +1132,12 @@ export default async function ProductReadPage({
                           productId: product.id,
                           chapterId: currentPage?.chapterId ?? "",
                           blockId: currentBlock.id,
-                          completed: !progressByBlockId[currentBlock.id]?.completed,
+                          completed:
+                            !progressByBlockId[currentBlock.id]?.completed,
                         });
-                        revalidatePath(readerPageHref(product.slug, currentPageNumber));
+                        revalidatePath(
+                          readerPageHref(product.slug, currentPageNumber),
+                        );
                         revalidatePath("/library");
                       }}
                     >
@@ -1110,7 +1155,10 @@ export default async function ProductReadPage({
               ) : null}
             </article>
 
-            <nav className="va-reader-bar mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 p-3" aria-label="Navegação entre páginas">
+            <nav
+              className="va-reader-bar mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 p-3"
+              aria-label="Navegação entre páginas"
+            >
               {previousPage ? (
                 <Link
                   href={readerPageHref(product.slug, previousPage)}
@@ -1178,15 +1226,17 @@ git commit -m "feat: update reader page to use ReaderSidebar with chapter groupi
 ## Self-Review
 
 **Spec coverage:**
-- ✅ Login: split screen navy + warm, português, va-* tokens
+
+- ✅ Login: split screen navy + warm, português, va-\* tokens
 - ✅ Registro: mesmo template
-- ✅ AuthForm: labels português, estilos va-*, mensagem de erro em português
+- ✅ AuthForm: labels português, estilos va-\*, mensagem de erro em português
 - ✅ Biblioteca: va-page, hero, va-panel cards, barra de progresso, botão gradiente
 - ✅ Reader: sidebar recolhível (toggle ◀/▶), agrupamento por capítulo
 
 **Placeholder scan:** nenhum TBD, nenhum TODO, todo código completo.
 
 **Type consistency:**
+
 - `ReaderPage` definido em Task 5 (`reader-sidebar.tsx`) é consistente com o tipo que a page cria ao chamar `buildReaderPages(chapters)`
 - `BlockProgressState` em `reader-sidebar.tsx` usa `{ completed: boolean; checkedItemIds: string[] }` — consistente com o restante da aplicação
 - `progressByBlockId` passado como prop tem tipo `Record<string, BlockProgressState>` — correto

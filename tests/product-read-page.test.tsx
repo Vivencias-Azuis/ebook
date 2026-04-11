@@ -41,20 +41,33 @@ vi.mock("@/domains/progress/mutations", () => ({
 
 import ProductReadPage from "@/app/products/[slug]/read/page";
 import { requireServerSession } from "@/domains/auth/server";
-import { canAccessProduct, getUserProductEntitlement } from "@/domains/orders/access";
-import { getUserProductProgress, summarizeProductProgress } from "@/domains/progress/queries";
-import { getProductBySlug, getPublishedProductContent } from "@/domains/products/queries";
+import {
+  canAccessProduct,
+  getUserProductEntitlement,
+} from "@/domains/orders/access";
+import {
+  getUserProductProgress,
+  summarizeProductProgress,
+} from "@/domains/progress/queries";
+import {
+  getProductBySlug,
+  getPublishedProductContent,
+} from "@/domains/products/queries";
 
 describe("ProductReadPage", () => {
   it("renders the editorial reader shell and current progress", async () => {
-    vi.mocked(requireServerSession).mockResolvedValue({ user: { id: "user-1" } } as any);
+    vi.mocked(requireServerSession).mockResolvedValue({
+      user: { id: "user-1" },
+    } as any);
     vi.mocked(getProductBySlug).mockResolvedValue({
       id: "prod-1",
       slug: "guia-pratico",
       title: "Guia Pratico",
       status: "published",
     } as any);
-    vi.mocked(getUserProductEntitlement).mockResolvedValue({ status: "active" } as any);
+    vi.mocked(getUserProductEntitlement).mockResolvedValue({
+      status: "active",
+    } as any);
     vi.mocked(canAccessProduct).mockReturnValue(true);
     vi.mocked(getPublishedProductContent).mockResolvedValue([
       {
@@ -92,7 +105,7 @@ describe("ProductReadPage", () => {
     expect(markup).toContain("va-reader-panel");
     expect(markup).toContain("Ocultar sumário");
     expect(markup).toContain("reader-sidebar-root");
-    expect(markup).toContain("aria-expanded=\"true\"");
+    expect(markup).toContain('aria-expanded="true"');
     expect(markup).toContain("Página 1 de 1");
     expect(markup).toContain("24%");
     expect(markup).toContain("Boas-vindas");

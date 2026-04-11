@@ -2,12 +2,9 @@ import { expect, it } from "vitest";
 
 import { parseBlockPayload } from "@/domains/content/blocks";
 
-it('parses a rich_text payload', () => {
+it("parses a rich_text payload", () => {
   expect(
-    parseBlockPayload(
-      "rich_text",
-      JSON.stringify({ markdown: "Hello" }),
-    ),
+    parseBlockPayload("rich_text", JSON.stringify({ markdown: "Hello" })),
   ).toEqual({ markdown: "Hello" });
 });
 

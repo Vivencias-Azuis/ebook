@@ -92,7 +92,11 @@ export function ReaderSidebar({
       </div>
 
       {isOpen ? (
-        <nav id="reader-sidebar-nav" className="space-y-5" aria-label="Páginas do curso">
+        <nav
+          id="reader-sidebar-nav"
+          className="space-y-5"
+          aria-label="Páginas do curso"
+        >
           {chapters.map((chapter) => (
             <section key={chapter.chapterId} className="space-y-2">
               <header>

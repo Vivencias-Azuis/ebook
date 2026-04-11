@@ -96,9 +96,15 @@ export function ProductSalesLanding({ product }: { product: Product }) {
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/88">
-                  <span className="va-chip va-chip-on-dark">Acesso imediato</span>
-                  <span className="va-chip va-chip-on-dark">Leitura simples</span>
-                  <span className="va-chip va-chip-on-dark">Aplicável na rotina</span>
+                  <span className="va-chip va-chip-on-dark">
+                    Acesso imediato
+                  </span>
+                  <span className="va-chip va-chip-on-dark">
+                    Leitura simples
+                  </span>
+                  <span className="va-chip va-chip-on-dark">
+                    Aplicável na rotina
+                  </span>
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -160,8 +166,8 @@ export function ProductSalesLanding({ product }: { product: Product }) {
               Identificação
             </p>
             <h2 className="mt-4 font-serif text-3xl leading-tight text-[color:var(--va-ink)] sm:text-4xl">
-              Se hoje tudo parece importante ao mesmo tempo, este material é para
-              você
+              Se hoje tudo parece importante ao mesmo tempo, este material é
+              para você
             </h2>
           </div>
           <div className="grid gap-4">
@@ -220,10 +226,10 @@ export function ProductSalesLanding({ product }: { product: Product }) {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
-              Conteúdo
-            </p>
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
+            Conteúdo
+          </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
             O que você vai encontrar
           </h2>
@@ -279,7 +285,8 @@ export function ProductSalesLanding({ product }: { product: Product }) {
               Credibilidade
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight text-white">
-              A mesma linha editorial do Vivências Azuis, agora em formato guiado
+              A mesma linha editorial do Vivências Azuis, agora em formato
+              guiado
             </h2>
             <p className="mt-5 text-base leading-7 text-white/76">
               Este material segue a proposta do Vivências Azuis: conteúdo claro,

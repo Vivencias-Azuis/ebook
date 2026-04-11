@@ -82,7 +82,9 @@ function requireNonEmptyString(
   return value.trim();
 }
 
-function requireAmountTotal(amountTotal: CheckoutSessionCompletedSession["amount_total"]) {
+function requireAmountTotal(
+  amountTotal: CheckoutSessionCompletedSession["amount_total"],
+) {
   if (typeof amountTotal !== "number" || !Number.isInteger(amountTotal)) {
     throw new CheckoutSessionPersistenceError(
       "checkout.session.completed is missing required amount_total",
@@ -93,7 +95,9 @@ function requireAmountTotal(amountTotal: CheckoutSessionCompletedSession["amount
   return amountTotal;
 }
 
-function requireCurrency(currency: CheckoutSessionCompletedSession["currency"]) {
+function requireCurrency(
+  currency: CheckoutSessionCompletedSession["currency"],
+) {
   if (typeof currency !== "string" || currency.trim() === "") {
     throw new CheckoutSessionPersistenceError(
       "checkout.session.completed is missing required currency",

@@ -63,12 +63,11 @@ export async function POST(request: Request) {
         },
       },
     ],
-    success_url: new URL(
-      "/library?checkout=processing",
+    success_url: new URL("/library?checkout=processing", baseUrl).toString(),
+    cancel_url: new URL(
+      `/products/${product.slug}?checkout=cancelled`,
       baseUrl,
     ).toString(),
-    cancel_url: new URL(`/products/${product.slug}?checkout=cancelled`, baseUrl)
-      .toString(),
   });
 
   if (!checkoutSession.url) {

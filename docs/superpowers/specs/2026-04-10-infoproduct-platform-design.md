@@ -247,4 +247,3 @@ Defer unless needed for launch:
 - Decide refund entitlement behavior.
 - Decide whether the first launch needs quizzes active or only the schema and renderer prepared.
 - Decide final visual direction for sales page and reader.
-

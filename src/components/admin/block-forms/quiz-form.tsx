@@ -1,4 +1,7 @@
-import { deleteBlockAction, updateBlockAction } from "@/app/admin/editor/actions";
+import {
+  deleteBlockAction,
+  updateBlockAction,
+} from "@/app/admin/editor/actions";
 import type { EditorBlock } from "@/domains/admin/editor-queries";
 
 export function QuizForm({
@@ -7,7 +10,10 @@ export function QuizForm({
   productId,
 }: {
   block: EditorBlock;
-  payload: { question: string; answers: { id: string; label: string; isCorrect: boolean }[] };
+  payload: {
+    question: string;
+    answers: { id: string; label: string; isCorrect: boolean }[];
+  };
   productId: string;
 }) {
   return (
@@ -37,17 +43,29 @@ export function QuizForm({
       >
         <label className="grid gap-2">
           <span className="text-sm font-medium">Título</span>
-          <input name="title" defaultValue={block.title ?? ""} className="rounded-xl border bg-white px-4 py-3" />
+          <input
+            name="title"
+            defaultValue={block.title ?? ""}
+            className="rounded-xl border bg-white px-4 py-3"
+          />
         </label>
         <label className="grid gap-2">
           <span className="text-sm font-medium">Pergunta</span>
-          <input name="question" defaultValue={payload.question} className="rounded-xl border bg-white px-4 py-3" />
+          <input
+            name="question"
+            defaultValue={payload.question}
+            className="rounded-xl border bg-white px-4 py-3"
+          />
         </label>
         <div className="grid gap-2">
           <span className="text-sm font-medium">Respostas</span>
           {payload.answers.map((answer) => (
             <label key={answer.id} className="flex items-center gap-3">
-              <input type="hidden" name={`answer-id-${answer.id}`} value={answer.id} />
+              <input
+                type="hidden"
+                name={`answer-id-${answer.id}`}
+                value={answer.id}
+              />
               <input
                 type="checkbox"
                 name={`answer-correct-${answer.id}`}
@@ -63,10 +81,19 @@ export function QuizForm({
           ))}
         </div>
         <label className="flex items-center gap-2">
-          <input type="checkbox" name="isPublished" defaultChecked={block.isPublished} />
+          <input
+            type="checkbox"
+            name="isPublished"
+            defaultChecked={block.isPublished}
+          />
           <span className="text-sm">Publicado</span>
         </label>
-        <button type="submit" className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white">Salvar bloco</button>
+        <button
+          type="submit"
+          className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-medium text-white"
+        >
+          Salvar bloco
+        </button>
       </form>
       <form
         action={async () => {
@@ -74,7 +101,12 @@ export function QuizForm({
           await deleteBlockAction(productId, block.id);
         }}
       >
-        <button type="submit" className="rounded-full border px-4 py-2 text-sm font-medium">Excluir</button>
+        <button
+          type="submit"
+          className="rounded-full border px-4 py-2 text-sm font-medium"
+        >
+          Excluir
+        </button>
       </form>
     </div>
   );

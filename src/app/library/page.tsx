@@ -77,7 +77,10 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
               };
 
               return (
-                <article key={product.entitlementId} className="va-panel flex h-full flex-col bg-white">
+                <article
+                  key={product.entitlementId}
+                  className="va-panel flex h-full flex-col bg-white"
+                >
                   <div className="flex-1 space-y-3">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
                       Guia digital
@@ -104,7 +107,8 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                       />
                     </div>
                     <p className="mt-2 text-xs font-medium text-[color:var(--va-muted)]">
-                      {progress.percent}% concluído · {progress.completedBlocks}/{progress.totalBlocks} blocos
+                      {progress.percent}% concluído · {progress.completedBlocks}
+                      /{progress.totalBlocks} blocos
                     </p>
                   </div>
 
@@ -124,7 +128,9 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                       href={`/products/${product.slug}/read${progress.continueReadingChapterId ? `#${progress.continueReadingChapterId}` : ""}`}
                       className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--va-blue-700),var(--va-navy))] px-5 py-2.5 text-sm font-bold text-white shadow-[0_14px_34px_-22px_rgba(11,35,66,0.52)] hover:-translate-y-0.5"
                     >
-                      {progress.completedBlocks > 0 ? "Continuar leitura" : "Ler agora"}
+                      {progress.completedBlocks > 0
+                        ? "Continuar leitura"
+                        : "Ler agora"}
                     </Link>
                   </div>
                 </article>

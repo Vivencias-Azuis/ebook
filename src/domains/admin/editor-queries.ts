@@ -39,7 +39,9 @@ export async function getEditorProduct(productId: string) {
   return product ?? null;
 }
 
-export async function getEditorChapters(productId: string): Promise<EditorChapter[]> {
+export async function getEditorChapters(
+  productId: string,
+): Promise<EditorChapter[]> {
   const productChapters = await db
     .select()
     .from(chapters)
@@ -91,8 +93,8 @@ export function deriveEditorSelection({
 }: EditorSelectionInput) {
   const selectedChapter =
     selectedChapterId === null
-      ? chapters[0] ?? null
-      : chapters.find((chapter) => chapter.id === selectedChapterId) ?? null;
+      ? (chapters[0] ?? null)
+      : (chapters.find((chapter) => chapter.id === selectedChapterId) ?? null);
 
   let selectedBlock = null;
 

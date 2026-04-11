@@ -19,7 +19,10 @@ export async function getUserProductEntitlement(
     .select()
     .from(entitlements)
     .where(
-      and(eq(entitlements.userId, userId), eq(entitlements.productId, productId)),
+      and(
+        eq(entitlements.userId, userId),
+        eq(entitlements.productId, productId),
+      ),
     )
     .limit(1);
 

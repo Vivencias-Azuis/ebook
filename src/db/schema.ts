@@ -92,7 +92,9 @@ export const verification = sqliteTable(
     expiresAt: integer("expires_at", { mode: "timestamp_ms" }).notNull(),
   },
   (table) => ({
-    identifierIndex: index("verification_identifier_index").on(table.identifier),
+    identifierIndex: index("verification_identifier_index").on(
+      table.identifier,
+    ),
   }),
 );
 
@@ -161,7 +163,9 @@ export const orders = sqliteTable("orders", {
   productId: text("product_id")
     .notNull()
     .references(() => products.id, { onDelete: "restrict" }),
-  stripeCheckoutSessionId: text("stripe_checkout_session_id").notNull().unique(),
+  stripeCheckoutSessionId: text("stripe_checkout_session_id")
+    .notNull()
+    .unique(),
   stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
   status: text("status", {
     enum: ["pending", "paid", "failed", "refunded"],
@@ -224,12 +228,7 @@ export const progress = sqliteTable(
   (table) => ({
     userProductScopeTargetUnique: uniqueIndex(
       "progress_user_product_scope_target_unique",
-    ).on(
-      table.userId,
-      table.productId,
-      table.scope,
-      table.targetId,
-    ),
+    ).on(table.userId, table.productId, table.scope, table.targetId),
   }),
 );
 

@@ -59,6 +59,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 1: Admin Access Guard
 
 **Files:**
+
 - Create: `src/domains/admin/access.ts`
 - Modify: `src/domains/auth/server.ts`
 - Modify: `src/app/admin/page.tsx`
@@ -74,6 +75,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 2: Checkout Pending State In Library
 
 **Files:**
+
 - Modify: `src/app/api/checkout/route.ts`
 - Modify: `src/app/library/page.tsx`
 - Modify: `src/domains/products/library.ts`
@@ -87,6 +89,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 3: Reader Progress
 
 **Files:**
+
 - Create: `src/domains/progress/queries.ts`
 - Create: `src/domains/progress/mutations.ts`
 - Modify: `src/domains/products/library.ts`
@@ -105,6 +108,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 4: Complete Admin Editor Operations
 
 **Files:**
+
 - Modify: `src/domains/admin/editor-queries.ts`
 - Modify: `src/domains/admin/editor-mutations.ts`
 - Modify: `src/app/admin/editor/actions.ts`
@@ -123,6 +127,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 5: Basic Orders And Access Visibility
 
 **Files:**
+
 - Create: `src/domains/orders/admin.ts`
 - Modify: `src/app/admin/page.tsx`
 
@@ -133,6 +138,7 @@ tests/admin-editor-mutations.test.ts
 ## Task 6: Final Verification
 
 **Files:**
+
 - Verify only
 
 - [ ] **Step 1: Run `npm test`**

@@ -10,10 +10,19 @@ const PRODUCT_PDF_RENDERER_VERSION = "editorial-v6-2026-04-11";
 
 type ProductPdfNormalizedBlock =
   | { kind: "rich_text"; title: string | null; markdown: string }
-  | { kind: "checklist"; title: string | null; items: Array<{ id: string; label: string }> };
+  | {
+      kind: "checklist";
+      title: string | null;
+      items: Array<{ id: string; label: string }>;
+    };
 
 type ProductPdfNormalizedContent = {
-  product: { id: string; slug: string; title: string; subtitle?: string | null };
+  product: {
+    id: string;
+    slug: string;
+    title: string;
+    subtitle?: string | null;
+  };
   chapters: Array<{
     id: string;
     title: string;
@@ -22,7 +31,12 @@ type ProductPdfNormalizedContent = {
 };
 
 export function normalizeProductContentForPdf(input: {
-  product: { id: string; slug: string; title: string; subtitle?: string | null };
+  product: {
+    id: string;
+    slug: string;
+    title: string;
+    subtitle?: string | null;
+  };
   chapters: Array<{
     id: string;
     title: string;
@@ -57,7 +71,8 @@ export function normalizeProductContentForPdf(input: {
                 {
                   kind: "rich_text",
                   title: block.title,
-                  markdown: parseBlockPayload("rich_text", block.payloadJson).markdown,
+                  markdown: parseBlockPayload("rich_text", block.payloadJson)
+                    .markdown,
                 },
               ];
             }
@@ -67,7 +82,8 @@ export function normalizeProductContentForPdf(input: {
                 {
                   kind: "checklist",
                   title: block.title,
-                  items: parseBlockPayload("checklist", block.payloadJson).items,
+                  items: parseBlockPayload("checklist", block.payloadJson)
+                    .items,
                 },
               ];
             }
@@ -82,7 +98,13 @@ export function buildProductPdfCacheKey(
   normalized: ProductPdfNormalizedContent,
   variant: ProductPdfVariant,
 ) {
-  return sha256(JSON.stringify({ variant, renderer: PRODUCT_PDF_RENDERER_VERSION, normalized }));
+  return sha256(
+    JSON.stringify({
+      variant,
+      renderer: PRODUCT_PDF_RENDERER_VERSION,
+      normalized,
+    }),
+  );
 }
 
 export function buildProductPdfFileName(
@@ -165,7 +187,9 @@ function flushList(listItems: string[], html: string[]) {
     return;
   }
 
-  html.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+  html.push(
+    `<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`,
+  );
   listItems.length = 0;
 }
 
@@ -177,7 +201,10 @@ function normalizeHeadingText(value: string) {
     .toLocaleLowerCase("pt-BR");
 }
 
-function renderMarkdown(markdown: string, options?: { skipFirstHeadingMatching?: string }) {
+function renderMarkdown(
+  markdown: string,
+  options?: { skipFirstHeadingMatching?: string },
+) {
   const html: string[] = [];
   const paragraphLines: string[] = [];
   const listItems: string[] = [];
@@ -199,7 +226,8 @@ function renderMarkdown(markdown: string, options?: { skipFirstHeadingMatching?:
       if (
         !hasRenderedContent &&
         options?.skipFirstHeadingMatching &&
-        normalizeHeadingText(heading[2]) === normalizeHeadingText(options.skipFirstHeadingMatching)
+        normalizeHeadingText(heading[2]) ===
+          normalizeHeadingText(options.skipFirstHeadingMatching)
       ) {
         continue;
       }
@@ -240,9 +268,12 @@ function renderPdfBlock(block: ProductPdfNormalizedBlock) {
   const title = block.title ? `<h3>${escapeHtml(block.title)}</h3>` : "";
 
   if (block.kind === "rich_text") {
-    return `<article class="content-card">${title}<div class="prose">${renderMarkdown(block.markdown, {
-      skipFirstHeadingMatching: block.title ?? undefined,
-    })}</div></article>`;
+    return `<article class="content-card">${title}<div class="prose">${renderMarkdown(
+      block.markdown,
+      {
+        skipFirstHeadingMatching: block.title ?? undefined,
+      },
+    )}</div></article>`;
   }
 
   return `<article class="checklist-card">${title}<ul class="checklist">${block.items
@@ -287,7 +318,9 @@ export async function ensureProductPdf(
 
   try {
     const page = await browser.newPage();
-    await page.setContent(renderProductPdfHtml(normalized, variant), { waitUntil: "load" });
+    await page.setContent(renderProductPdfHtml(normalized, variant), {
+      waitUntil: "load",
+    });
     await page.pdf({
       path: pdfPath,
       format: "A4",

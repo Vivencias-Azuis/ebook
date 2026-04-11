@@ -20,7 +20,11 @@ export async function createChapterAction(productId: string, title: string) {
   revalidatePath(`/admin/editor/${productId}`);
 }
 
-export async function createBlockAction(productId: string, chapterId: string, type: BlockType) {
+export async function createBlockAction(
+  productId: string,
+  chapterId: string,
+  type: BlockType,
+) {
   await requireAdminSession();
   await createBlock(chapterId, type);
   revalidatePath(`/admin/editor/${productId}`);
@@ -42,13 +46,22 @@ export async function deleteBlockAction(productId: string, blockId: string) {
   revalidatePath(`/admin/editor/${productId}`);
 }
 
-export async function reorderChapterAction(productId: string, chapterId: string, direction: ReorderDirection) {
+export async function reorderChapterAction(
+  productId: string,
+  chapterId: string,
+  direction: ReorderDirection,
+) {
   await requireAdminSession();
   await reorderChapter(productId, chapterId, direction);
   revalidatePath(`/admin/editor/${productId}`);
 }
 
-export async function reorderBlockAction(productId: string, chapterId: string, blockId: string, direction: ReorderDirection) {
+export async function reorderBlockAction(
+  productId: string,
+  chapterId: string,
+  blockId: string,
+  direction: ReorderDirection,
+) {
   await requireAdminSession();
   await reorderBlock(chapterId, blockId, direction);
   revalidatePath(`/admin/editor/${productId}`);

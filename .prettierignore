@@ -1,0 +1,9 @@
+.git
+.next
+.generated-pdfs
+.playwright-mcp
+.superpowers
+.worktrees
+coverage
+dist
+node_modules

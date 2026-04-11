@@ -43,7 +43,9 @@ it("renders download blocks as links when an href is provided", () => {
   );
 
   expect(markup).toContain("Material completo");
-  expect(markup).toContain('href="/downloads/guia-pratico-primeiros-30-dias.pdf"');
+  expect(markup).toContain(
+    'href="/downloads/guia-pratico-primeiros-30-dias.pdf"',
+  );
   expect(markup).toContain("Baixar curso completo em PDF");
 });
 

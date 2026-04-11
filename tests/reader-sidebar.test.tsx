@@ -16,7 +16,7 @@ const readerPages: ReaderPage[] = [
       id: "block-1",
       title: "Boas-vindas",
       type: "rich_text",
-      payloadJson: "{\"content\":\"<p>Intro</p>\"}",
+      payloadJson: '{"content":"<p>Intro</p>"}',
       sortOrder: 1,
     },
   },
@@ -29,7 +29,7 @@ const readerPages: ReaderPage[] = [
       id: "block-2",
       title: "Checklist inicial",
       type: "checklist",
-      payloadJson: "{\"items\":[]}",
+      payloadJson: '{"items":[]}',
       sortOrder: 2,
     },
   },
@@ -42,7 +42,7 @@ const readerPages: ReaderPage[] = [
       id: "block-3",
       title: "Quem acionar",
       type: "rich_text",
-      payloadJson: "{\"content\":\"<p>Rede</p>\"}",
+      payloadJson: '{"content":"<p>Rede</p>"}',
       sortOrder: 1,
     },
   },
@@ -82,7 +82,7 @@ describe("ReaderSidebar", () => {
     expect(container.textContent).toContain("Checklist inicial");
     expect(container.textContent).toContain("lida");
     expect(container.innerHTML).toContain("page=2");
-    expect(container.innerHTML).toContain("aria-current=\"page\"");
+    expect(container.innerHTML).toContain('aria-current="page"');
 
     await act(async () => {
       root.unmount();

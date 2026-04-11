@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { buildReaderPages, normalizeReaderPageNumber } from "@/features/reader/pagination";
+import {
+  buildReaderPages,
+  normalizeReaderPageNumber,
+} from "@/features/reader/pagination";
 
 const chapters = [
   {

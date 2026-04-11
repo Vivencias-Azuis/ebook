@@ -1,6 +1,4 @@
-export function hasAdminRole(
-  user: unknown,
-) {
+export function hasAdminRole(user: unknown) {
   return (
     typeof user === "object" &&
     user !== null &&

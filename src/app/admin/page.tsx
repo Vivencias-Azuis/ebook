@@ -118,15 +118,23 @@ export default async function AdminPage() {
               </p>
             </div>
             <div className="divide-y divide-zinc-200">
-              {recentOrders.length > 0 ? recentOrders.map((order) => (
-                <div key={order.id} className="px-6 py-4 text-sm sm:px-8">
-                  <p className="font-medium text-zinc-950">{order.productTitle}</p>
-                  <p className="text-zinc-600">{order.userEmail}</p>
-                  <p className="mt-1 text-zinc-500">
-                    {order.status} • {formatMoney(order.amountCents, order.currency.toUpperCase())}
-                  </p>
-                </div>
-              )) : (
+              {recentOrders.length > 0 ? (
+                recentOrders.map((order) => (
+                  <div key={order.id} className="px-6 py-4 text-sm sm:px-8">
+                    <p className="font-medium text-zinc-950">
+                      {order.productTitle}
+                    </p>
+                    <p className="text-zinc-600">{order.userEmail}</p>
+                    <p className="mt-1 text-zinc-500">
+                      {order.status} •{" "}
+                      {formatMoney(
+                        order.amountCents,
+                        order.currency.toUpperCase(),
+                      )}
+                    </p>
+                  </div>
+                ))
+              ) : (
                 <div className="px-6 py-6 text-sm text-zinc-600 sm:px-8">
                   Nenhum pedido recente.
                 </div>
@@ -141,13 +149,20 @@ export default async function AdminPage() {
               </p>
             </div>
             <div className="divide-y divide-zinc-200">
-              {activeEntitlements.length > 0 ? activeEntitlements.map((entitlement) => (
-                <div key={entitlement.id} className="px-6 py-4 text-sm sm:px-8">
-                  <p className="font-medium text-zinc-950">{entitlement.productTitle}</p>
-                  <p className="text-zinc-600">{entitlement.userEmail}</p>
-                  <p className="mt-1 text-zinc-500">{entitlement.status}</p>
-                </div>
-              )) : (
+              {activeEntitlements.length > 0 ? (
+                activeEntitlements.map((entitlement) => (
+                  <div
+                    key={entitlement.id}
+                    className="px-6 py-4 text-sm sm:px-8"
+                  >
+                    <p className="font-medium text-zinc-950">
+                      {entitlement.productTitle}
+                    </p>
+                    <p className="text-zinc-600">{entitlement.userEmail}</p>
+                    <p className="mt-1 text-zinc-500">{entitlement.status}</p>
+                  </div>
+                ))
+              ) : (
                 <div className="px-6 py-6 text-sm text-zinc-600 sm:px-8">
                   Nenhum acesso ativo.
                 </div>

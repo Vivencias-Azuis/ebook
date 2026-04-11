@@ -30,7 +30,9 @@ describe("product pdf domain", () => {
         {
           id: "c1",
           title: "Cap 1",
-          blocks: [{ kind: "rich_text" as const, title: null, markdown: "novo" }],
+          blocks: [
+            { kind: "rich_text" as const, title: null, markdown: "novo" },
+          ],
         },
       ],
     };
@@ -71,8 +73,12 @@ describe("product pdf domain", () => {
       chapters: [{ id: "c1", title: "Cap 1", sortOrder: 1, blocks: [] }],
     });
 
-    expect(renderProductPdfHtml(normalized, "fast")).toContain('data-variant="fast"');
-    expect(renderProductPdfHtml(normalized, "print")).toContain('data-variant="print"');
+    expect(renderProductPdfHtml(normalized, "fast")).toContain(
+      'data-variant="fast"',
+    );
+    expect(renderProductPdfHtml(normalized, "print")).toContain(
+      'data-variant="print"',
+    );
   });
 
   it("renders escaped product and block content into the pdf html", () => {
@@ -97,7 +103,9 @@ describe("product pdf domain", () => {
               {
                 kind: "checklist",
                 title: "Checklist",
-                items: [{ id: "i1", label: 'Ligar para a escola & dizer "oi"' }],
+                items: [
+                  { id: "i1", label: 'Ligar para a escola & dizer "oi"' },
+                ],
               },
             ],
           },
