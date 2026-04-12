@@ -6,8 +6,8 @@ vi.mock("@/domains/auth/server", () => ({
   requireAdminSession: vi.fn(),
 }));
 
-vi.mock("@/domains/products/queries", () => ({
-  getPublishedProducts: vi.fn(),
+vi.mock("@/domains/admin/product-queries", () => ({
+  getAllProductsForAdmin: vi.fn(),
 }));
 
 vi.mock("@/domains/orders/admin", () => ({
@@ -33,14 +33,24 @@ vi.mock("next/link", () => ({
 
 import AdminPage from "@/app/admin/page";
 import { requireAdminSession } from "@/domains/auth/server";
-import { getPublishedProducts } from "@/domains/products/queries";
+import { getAllProductsForAdmin } from "@/domains/admin/product-queries";
 import { getRecentOrders, getActiveEntitlements } from "@/domains/orders/admin";
+
+const mockProduct = (overrides: Record<string, unknown> = {}) => ({
+  id: "prod-1",
+  title: "Produto Teste",
+  slug: "produto-teste",
+  status: "published",
+  priceCents: 4900,
+  currency: "brl",
+  ...overrides,
+});
 
 describe("AdminPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(requireAdminSession).mockResolvedValue(undefined as any);
-    vi.mocked(getPublishedProducts).mockResolvedValue([]);
+    vi.mocked(getAllProductsForAdmin).mockResolvedValue([]);
     vi.mocked(getRecentOrders).mockResolvedValue([]);
     vi.mocked(getActiveEntitlements).mockResolvedValue([]);
   });
@@ -57,5 +67,42 @@ describe("AdminPage", () => {
     const markup = renderToStaticMarkup(page);
 
     expect(markup).toContain("Novo produto");
+  });
+
+  it('shows products of all statuses (published, draft, archived)', async () => {
+    vi.mocked(getAllProductsForAdmin).mockResolvedValue([
+      mockProduct({ id: "prod-pub", status: "published", slug: "pub" }) as any,
+      mockProduct({ id: "prod-draft", status: "draft", slug: "draft" }) as any,
+      mockProduct({ id: "prod-arch", status: "archived", slug: "arch" }) as any,
+    ]);
+
+    const page = await AdminPage();
+    const markup = renderToStaticMarkup(page);
+
+    expect(markup).toContain("published");
+    expect(markup).toContain("draft");
+    expect(markup).toContain("archived");
+  });
+
+  it('"Configurar" link points to /admin/products/{id}/settings', async () => {
+    vi.mocked(getAllProductsForAdmin).mockResolvedValue([
+      mockProduct({ id: "prod-123" }) as any,
+    ]);
+
+    const page = await AdminPage();
+    const markup = renderToStaticMarkup(page);
+
+    expect(markup).toContain('href="/admin/products/prod-123/settings"');
+  });
+
+  it('"Editar conteúdo" link points to /admin/editor/{id}', async () => {
+    vi.mocked(getAllProductsForAdmin).mockResolvedValue([
+      mockProduct({ id: "prod-456" }) as any,
+    ]);
+
+    const page = await AdminPage();
+    const markup = renderToStaticMarkup(page);
+
+    expect(markup).toContain('href="/admin/editor/prod-456"');
   });
 });
