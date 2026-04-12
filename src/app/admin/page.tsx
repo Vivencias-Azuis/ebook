@@ -30,12 +30,12 @@ export default async function AdminPage() {
             </p>
           </div>
 
-          <button
-            type="button"
+          <Link
+            href="/admin/products/new"
             className="inline-flex items-center justify-center rounded-full border border-zinc-950 bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
           >
             Novo produto
-          </button>
+          </Link>
         </header>
 
         <section className="mt-10 overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.28)] backdrop-blur">
