@@ -36,6 +36,12 @@ function isUniqueConstraintError(err: unknown): boolean {
   return isUnique(str);
 }
 
+function pruneUpdateValues(input: UpdateProductInput): UpdateProductInput {
+  return Object.fromEntries(
+    Object.entries(input).filter(([, value]) => value !== undefined),
+  ) as UpdateProductInput;
+}
+
 function normalizeSlug(slug: string): string {
   return slug.trim().toLowerCase().replace(/\s+/g, "-");
 }
@@ -94,9 +100,7 @@ export async function updateProduct(
   productId: string,
   input: UpdateProductInput,
 ) {
-  const updateValues = Object.fromEntries(
-    Object.entries(input).filter(([, value]) => value !== undefined),
-  ) as UpdateProductInput;
+  const updateValues = pruneUpdateValues(input);
 
   if (updateValues.slug !== undefined) {
     updateValues.slug = normalizeSlug(updateValues.slug);
