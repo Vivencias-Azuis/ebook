@@ -58,24 +58,6 @@ describe("getAllProductsForAdmin", () => {
     await cleanupTestProducts();
   });
 
-  it("returns draft products", async () => {
-    const result = await getAllProductsForAdmin();
-    const ids = result.map((p) => p.id);
-    expect(ids).toContain("test-admin-product-draft");
-  });
-
-  it("returns archived products", async () => {
-    const result = await getAllProductsForAdmin();
-    const ids = result.map((p) => p.id);
-    expect(ids).toContain("test-admin-product-archived");
-  });
-
-  it("returns published products", async () => {
-    const result = await getAllProductsForAdmin();
-    const ids = result.map((p) => p.id);
-    expect(ids).toContain("test-admin-product-published");
-  });
-
   it("returns all statuses in a single call", async () => {
     const result = await getAllProductsForAdmin();
     const testProducts = result.filter((p) => TEST_IDS.includes(p.id));
