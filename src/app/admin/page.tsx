@@ -2,13 +2,13 @@ import Link from "next/link";
 
 import { requireAdminSession } from "@/domains/auth/server";
 import { getActiveEntitlements, getRecentOrders } from "@/domains/orders/admin";
-import { getPublishedProducts } from "@/domains/products/queries";
+import { getAllProductsForAdmin } from "@/domains/admin/product-queries";
 import { formatMoney } from "@/lib/format";
 
 export default async function AdminPage() {
   await requireAdminSession();
   const [products, recentOrders, activeEntitlements] = await Promise.all([
-    getPublishedProducts(),
+    getAllProductsForAdmin(),
     getRecentOrders(),
     getActiveEntitlements(),
   ]);
@@ -30,18 +30,18 @@ export default async function AdminPage() {
             </p>
           </div>
 
-          <button
-            type="button"
+          <Link
+            href="/admin/products/new"
             className="inline-flex items-center justify-center rounded-full border border-zinc-950 bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
           >
             Novo produto
-          </button>
+          </Link>
         </header>
 
         <section className="mt-10 overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 shadow-[0_28px_80px_-48px_rgba(15,23,42,0.28)] backdrop-blur">
           <div className="border-b border-zinc-200 px-6 py-4 sm:px-8">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
-              Produtos publicados
+              Todos os produtos
             </p>
           </div>
 
@@ -58,6 +58,12 @@ export default async function AdminPage() {
                     </th>
                     <th className="px-6 py-4 text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">
                       Preço
+                    </th>
+                    <th className="px-6 py-4 text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">
+                      Configurações
+                    </th>
+                    <th className="px-6 py-4 text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">
+                      Conteúdo
                     </th>
                     <th className="px-6 py-4 text-xs font-medium uppercase tracking-[0.16em] text-zinc-500">
                       Página pública
@@ -78,7 +84,15 @@ export default async function AdminPage() {
                         </div>
                       </td>
                       <td className="px-6 py-5">
-                        <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-800">
+                        <span
+                          className={`inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] ${
+                            product.status === "published"
+                              ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                              : product.status === "archived"
+                                ? "border-amber-200 bg-amber-50 text-amber-700"
+                                : "border-zinc-200 bg-zinc-50 text-zinc-600"
+                          }`}
+                        >
                           {product.status}
                         </span>
                       </td>
@@ -87,6 +101,22 @@ export default async function AdminPage() {
                           product.priceCents,
                           product.currency.toUpperCase(),
                         )}
+                      </td>
+                      <td className="px-6 py-5">
+                        <Link
+                          href={`/admin/products/${product.id}/settings`}
+                          className="text-sm font-medium text-zinc-950 transition-colors hover:text-zinc-600"
+                        >
+                          Configurar
+                        </Link>
+                      </td>
+                      <td className="px-6 py-5">
+                        <Link
+                          href={`/admin/editor/${product.id}`}
+                          className="text-sm font-medium text-zinc-950 transition-colors hover:text-zinc-600"
+                        >
+                          Editar conteúdo
+                        </Link>
                       </td>
                       <td className="px-6 py-5">
                         <Link
@@ -104,7 +134,7 @@ export default async function AdminPage() {
           ) : (
             <div className="px-6 py-10 sm:px-8">
               <div className="rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-sm text-zinc-600">
-                Nenhum produto publicado disponível para listar no momento.
+                Nenhum produto encontrado.
               </div>
             </div>
           )}

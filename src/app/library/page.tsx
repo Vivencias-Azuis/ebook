@@ -43,12 +43,14 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
           >
             Vivências Azuis
           </Link>
-          <Link
-            href="/api/auth/sign-out"
-            className="text-sm font-medium text-[color:var(--va-soft-ink)] hover:text-[color:var(--va-ink)]"
-          >
-            Sair
-          </Link>
+          <form action="/api/auth/sign-out" method="post">
+            <button
+              type="submit"
+              className="text-sm font-medium text-[color:var(--va-soft-ink)] hover:text-[color:var(--va-ink)]"
+            >
+              Sair
+            </button>
+          </form>
         </div>
 
         {/* Hero */}

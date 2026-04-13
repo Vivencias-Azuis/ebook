@@ -1,6 +1,6 @@
 import { act } from "react";
 import { createRoot } from "react-dom/client";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ReaderSidebar } from "@/features/reader/reader-sidebar";
 import type { ReaderPage } from "@/features/reader/pagination";
@@ -252,6 +252,7 @@ describe("ReaderSidebar", () => {
           progressByBlockId={{}}
           accessiblePageNumbers={new Set([1, 2, 3])}
           isPreviewMode
+          onOpenPaywall={() => undefined}
         />,
       );
     });
@@ -260,6 +261,50 @@ describe("ReaderSidebar", () => {
     expect(container.textContent).toContain("Desbloqueie para continuar");
     expect(container.textContent).toContain("🔒");
     expect(container.innerHTML).not.toContain("page=4");
+    expect(
+      container.querySelector('[data-paywall-trigger="locked-page"]'),
+    ).not.toBeNull();
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
+
+  it("opens the paywall when a locked page is clicked in preview mode", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+    const onOpenPaywall = vi.fn();
+
+    await act(async () => {
+      root.render(
+        <ReaderSidebar
+          productTitle="Guia Pratico"
+          productSlug="guia-pratico"
+          currentPageNumber={1}
+          progressPercent={10}
+          readerPages={readerPages}
+          progressByBlockId={{}}
+          accessiblePageNumbers={new Set([1, 2, 3])}
+          isPreviewMode
+          onOpenPaywall={onOpenPaywall}
+        />,
+      );
+    });
+
+    const lockedPageTrigger = container.querySelector(
+      '[data-paywall-trigger="locked-page"]',
+    );
+
+    expect(lockedPageTrigger).not.toBeNull();
+
+    await act(async () => {
+      lockedPageTrigger?.dispatchEvent(
+        new MouseEvent("click", { bubbles: true }),
+      );
+    });
+
+    expect(onOpenPaywall).toHaveBeenCalledTimes(1);
 
     await act(async () => {
       root.unmount();

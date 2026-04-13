@@ -1,6 +1,6 @@
 import { defineConfig } from "drizzle-kit";
 
-const databaseUrl = process.env.DATABASE_URL || "file:local.db";
+const databaseUrl = process.env.DATABASE_URL || "file:dev.db";
 
 export default defineConfig({
   schema: "./src/db/schema.ts",

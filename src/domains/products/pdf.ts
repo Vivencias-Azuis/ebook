@@ -6,7 +6,7 @@ import { generatedPdfPath, sha256 } from "./pdf-cache";
 
 export type ProductPdfVariant = "fast" | "print";
 
-const PRODUCT_PDF_RENDERER_VERSION = "editorial-v6-2026-04-11";
+const PRODUCT_PDF_RENDERER_VERSION = "editorial-v7-2026-04-11";
 
 type ProductPdfNormalizedBlock =
   | { kind: "rich_text"; title: string | null; markdown: string }
@@ -150,8 +150,11 @@ body{margin:0;background:#f3efe7;color:#18324a;font-family:'Avenir Next','Helvet
 .chapter-header{display:grid;grid-template-columns:44px 1fr;gap:13px;align-items:start;margin-bottom:14px}
 .chapter-number{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:14px;background:#d9a84f;color:#082d4a;font-family:Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em}
 h2{margin:0;color:#0b3151;font-family:Georgia,'Times New Roman',serif;font-size:${variant === "fast" ? "20px" : "25px"};line-height:1.1;letter-spacing:-.025em}
-article{margin:0 0 12px;padding:var(--card-pad);border:1px solid rgba(14,75,103,.16);border-radius:18px;background:rgba(255,255,255,.82);box-shadow:0 10px 26px rgba(11,49,81,.08)}
-article.checklist-card{break-inside:avoid-page}
+article{margin:0 0 12px;padding:var(--card-pad);border:1px solid rgba(14,75,103,.16);border-radius:18px;background:rgba(255,255,255,.82);box-shadow:0 10px 26px rgba(11,49,81,.08);break-inside:avoid-page;page-break-inside:avoid}
+article.checklist-card{break-inside:avoid-page;page-break-inside:avoid}
+article + article{break-before:avoid-page}
+section.chapter{break-inside:auto}
+.chapter-header{break-after:avoid-page;page-break-after:avoid}
 article h3{margin:0 0 10px;color:#0f4e68;font-family:Georgia,'Times New Roman',serif;font-size:${variant === "fast" ? "13px" : "15px"};line-height:1.25;letter-spacing:-.01em}
 .prose p{margin:0 0 9px}
 .prose h4,.prose h5{margin:14px 0 7px;color:#0b3151;line-height:1.2}

@@ -31,6 +31,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Product not found" }, { status: 404 });
   }
 
+  if (!product.stripePriceId) {
+    return NextResponse.json(
+      { error: "Product is missing stripePriceId" },
+      { status: 500 },
+    );
+  }
+
   if (!process.env.STRIPE_SECRET_KEY) {
     return NextResponse.json(
       { error: "STRIPE_SECRET_KEY is required" },
@@ -54,13 +61,7 @@ export async function POST(request: Request) {
     line_items: [
       {
         quantity: 1,
-        price_data: {
-          currency: product.currency,
-          unit_amount: product.priceCents,
-          product_data: {
-            name: product.title,
-          },
-        },
+        price: product.stripePriceId,
       },
     ],
     success_url: new URL("/library?checkout=processing", baseUrl).toString(),

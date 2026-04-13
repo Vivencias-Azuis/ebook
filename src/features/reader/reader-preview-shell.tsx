@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { useState } from "react";
+import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 type ReaderPreviewShellProps = {
   children: ReactNode;
@@ -10,6 +10,53 @@ type ReaderPreviewShellProps = {
   productId: string;
 };
 
+type PreviewPaywallContextValue = {
+  isPreviewMode: boolean;
+  openPaywall: () => void;
+};
+
+const PreviewPaywallContext = createContext<PreviewPaywallContextValue | null>(
+  null,
+);
+
+function usePreviewPaywallContext() {
+  return useContext(PreviewPaywallContext);
+}
+
+type ReaderPaywallTriggerProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
+  forceVisible?: boolean;
+};
+
+export function ReaderPaywallTrigger({
+  children,
+  forceVisible = false,
+  onClick,
+  ...props
+}: ReaderPaywallTriggerProps) {
+  const previewPaywall = usePreviewPaywallContext();
+
+  if (!previewPaywall?.isPreviewMode && !forceVisible) {
+    return null;
+  }
+
+  return (
+    <button
+      type="button"
+      {...props}
+      onClick={(event: MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+
+        if (!event.defaultPrevented && previewPaywall) {
+          previewPaywall.openPaywall();
+        }
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 export function ReaderPreviewShell({
   children,
   isPreviewMode,
@@ -17,9 +64,16 @@ export function ReaderPreviewShell({
   productId,
 }: ReaderPreviewShellProps) {
   const [isPaywallOpen, setIsPaywallOpen] = useState(shouldOpenPaywall);
+  const contextValue = useMemo<PreviewPaywallContextValue>(
+    () => ({
+      isPreviewMode,
+      openPaywall: () => setIsPaywallOpen(true),
+    }),
+    [isPreviewMode],
+  );
 
   return (
-    <>
+    <PreviewPaywallContext.Provider value={contextValue}>
       {children}
 
       {isPreviewMode && isPaywallOpen ? (
@@ -57,6 +111,6 @@ export function ReaderPreviewShell({
           </div>
         </div>
       ) : null}
-    </>
+    </PreviewPaywallContext.Provider>
   );
 }

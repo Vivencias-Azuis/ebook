@@ -59,6 +59,8 @@ describe("LibraryPage", () => {
     expect(markup).toContain("Primeiro curso visível mesmo sem pagamento.");
     expect(markup).toContain("Ler capítulo 1");
     expect(markup).toContain("/products/curso-preview/read");
+    expect(markup).toContain('action="/api/auth/sign-out"');
+    expect(markup).toContain('method="post"');
     expect(markup).not.toContain(
       "Você ainda não tem guias liberados na biblioteca.",
     );
