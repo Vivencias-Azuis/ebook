@@ -46,14 +46,19 @@ export async function POST(request: Request) {
   }
 
   const userSession = await getServerSession();
+
+  if (!userSession?.user?.id) {
+    return NextResponse.json(
+      { error: "Authentication required" },
+      { status: 401 },
+    );
+  }
+
   const baseUrl = getAppBaseUrl();
   const metadata: Record<string, string> = {
     productId: product.id,
+    userId: userSession.user.id,
   };
-
-  if (userSession?.user?.id) {
-    metadata.userId = userSession.user.id;
-  }
 
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "payment",

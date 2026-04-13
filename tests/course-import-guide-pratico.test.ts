@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { verifyPassword } from "better-auth/crypto";
 
 import { db } from "@/db/client";
-import { account, entitlements, products, users } from "@/db/schema";
+import { account, entitlements, orders, products, users } from "@/db/schema";
 import {
   buildGuidePraticoCourseDefinition,
   buildGuidePraticoCourseDefinitionFromMarkdown,
@@ -20,6 +20,9 @@ describe("buildGuidePraticoCourseDefinition", () => {
     await db
       .delete(entitlements)
       .where(eq(entitlements.productId, GUIDE_PRATICO_PRODUCT_ID));
+    await db
+      .delete(orders)
+      .where(eq(orders.productId, GUIDE_PRATICO_PRODUCT_ID));
     await db
       .delete(account)
       .where(
