@@ -521,6 +521,8 @@ describe("ProductReadPage", () => {
     expect(markup).toContain("Desbloqueie o restante do curso");
     expect(markup).toContain('name="productId"');
     expect(markup).toContain('value="prod-1"');
+    expect(markup).toContain("Comprar curso");
+    expect(markup).toContain('data-paywall-trigger="header"');
     expect(markup).toContain("Conteúdo premium");
     expect(markup).toContain("Etapa 2 de 2");
     expect(markup).not.toContain("Etapa 3 de 3");

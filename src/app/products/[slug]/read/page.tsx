@@ -25,7 +25,10 @@ import {
   buildReaderPages,
   normalizeReaderPageNumber,
 } from "@/features/reader/pagination";
-import { ReaderPreviewShell } from "@/features/reader/reader-preview-shell";
+import {
+  ReaderPaywallTrigger,
+  ReaderPreviewShell,
+} from "@/features/reader/reader-preview-shell";
 import { ReaderSidebar } from "@/features/reader/reader-sidebar";
 
 type ProductReadPageProps = {
@@ -126,14 +129,22 @@ export default async function ProductReadPage({
             >
               ← Biblioteca
             </Link>
-            <div className="text-right">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/60">
-                {slideLabel}
-              </p>
-              <p className="mt-1 text-sm font-semibold text-white/82">
-                {progressSummary.percent}% concluído
-              </p>
-              <p className="mt-1 text-sm text-white/60">{progressLabel}</p>
+            <div className="flex flex-col gap-3 text-right sm:items-end">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/60">
+                  {slideLabel}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-white/82">
+                  {progressSummary.percent}% concluído
+                </p>
+                <p className="mt-1 text-sm text-white/60">{progressLabel}</p>
+              </div>
+              <ReaderPaywallTrigger
+                data-paywall-trigger="header"
+                className="inline-flex w-fit items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-bold text-[color:var(--va-navy)] transition hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+              >
+                Comprar curso
+              </ReaderPaywallTrigger>
             </div>
           </header>
 

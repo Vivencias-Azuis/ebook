@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import type { BlockProgressState } from "@/domains/progress/queries";
 import type { ReaderPage } from "@/features/reader/pagination";
+import { ReaderPaywallTrigger } from "@/features/reader/reader-preview-shell";
 
 type ReaderSidebarProps = {
   productTitle: string;
@@ -15,6 +16,7 @@ type ReaderSidebarProps = {
   progressByBlockId: Record<string, BlockProgressState>;
   accessiblePageNumbers: Set<number>;
   isPreviewMode: boolean;
+  onOpenPaywall?: () => void;
 };
 
 type ReaderSidebarChapter = {
@@ -59,6 +61,7 @@ export function ReaderSidebar({
   progressByBlockId,
   accessiblePageNumbers,
   isPreviewMode,
+  onOpenPaywall,
 }: ReaderSidebarProps) {
   const [isOpen, setIsOpen] = useState(true);
   const chapters = groupPagesByChapter(readerPages);
@@ -132,10 +135,13 @@ export function ReaderSidebar({
 
                   if (!isAccessible) {
                     return (
-                      <div
+                      <ReaderPaywallTrigger
                         key={`${readerPage.chapterId}-${readerPage.pageNumber}`}
                         aria-disabled="true"
-                        className="va-reader-index-item cursor-not-allowed border-dashed bg-[color:var(--va-paper)]/75 opacity-70"
+                        data-paywall-trigger="locked-page"
+                        forceVisible={isPreviewMode && Boolean(onOpenPaywall)}
+                        onClick={onOpenPaywall}
+                        className="va-reader-index-item w-full cursor-pointer border-dashed bg-[color:var(--va-paper)]/75 text-left opacity-70"
                       >
                         <span className="flex flex-col items-start gap-2">
                           <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
@@ -150,7 +156,7 @@ export function ReaderSidebar({
                         <span className="mt-1 block font-semibold text-[color:var(--va-navy)]">
                           {readerPage.block?.title ?? chapter.chapterTitle}
                         </span>
-                      </div>
+                      </ReaderPaywallTrigger>
                     );
                   }
 
