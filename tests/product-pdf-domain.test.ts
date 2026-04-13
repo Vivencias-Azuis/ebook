@@ -199,4 +199,31 @@ describe("product pdf domain", () => {
 
     expect(html.match(/Para quem este guia é/g)).toHaveLength(1);
   });
+
+  it("adds print pagination guards so cards do not split across pages", () => {
+    const html = renderProductPdfHtml(
+      {
+        product: { id: "prod-1", slug: "guia", title: "Guia" },
+        chapters: [
+          {
+            id: "c1",
+            title: "Comece por aqui",
+            blocks: [
+              {
+                kind: "rich_text",
+                title: "Bloco longo",
+                markdown:
+                  "Texto de exemplo.\n\n- Item 1\n- Item 2\n\nTexto final.",
+              },
+            ],
+          },
+        ],
+      },
+      "print",
+    );
+
+    expect(html).toContain("break-inside:avoid-page");
+    expect(html).toContain("page-break-inside:avoid");
+    expect(html).toContain("break-after:avoid-page");
+  });
 });
