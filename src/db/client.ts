@@ -1,9 +1,16 @@
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 
+import { resolveDatabaseUrl } from "@/lib/database-url";
+import { ensureProductionEnvironment } from "@/lib/production-env";
 import * as schema from "./schema";
 
-const url = process.env.DATABASE_URL || "file:dev.db";
+ensureProductionEnvironment();
+
+const url = resolveDatabaseUrl({
+  nodeEnv: process.env.NODE_ENV,
+  databaseUrl: process.env.DATABASE_URL,
+});
 
 export const client = createClient({
   url,

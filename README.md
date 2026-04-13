@@ -18,7 +18,7 @@ Aplicação Next.js para venda e leitura de infoprodutos digitais com autentica�
 
 - Node.js 20+
 - npm
-- Banco libSQL/Turso configurado, ou uso do arquivo local `local.db`
+- Banco libSQL/Turso configurado para produção
 - Conta Stripe para testar checkout e webhooks
 
 ## Variáveis de ambiente
@@ -26,7 +26,7 @@ Aplicação Next.js para venda e leitura de infoprodutos digitais com autentica�
 Crie um arquivo `.env` na raiz com base em `.env.example`.
 
 ```env
-DATABASE_URL="file:local.db"
+DATABASE_URL="libsql://your-database.turso.io"
 DATABASE_AUTH_TOKEN=""
 BETTER_AUTH_SECRET="replace-with-a-strong-secret"
 BETTER_AUTH_URL="http://localhost:3000"
@@ -37,10 +37,18 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 Notas:
 
-- Se `DATABASE_URL` não for definido, a aplicação cai em `file:local.db`.
-- `DATABASE_AUTH_TOKEN` só é necessário quando o banco estiver remoto.
+- Em `production`, `DATABASE_URL` é obrigatório e deve apontar para Turso/libSQL.
+- Em `development` e `test`, se `DATABASE_URL` não for definido, a aplicação cai em `file:dev.db`.
+- Em `production`, `DATABASE_AUTH_TOKEN` também é obrigatório para Turso/libSQL.
 - Em desenvolvimento, `BETTER_AUTH_URL` e `NEXT_PUBLIC_APP_URL` normalmente ficam em `http://localhost:3000`.
 - O endpoint de webhook exige `STRIPE_WEBHOOK_SECRET`.
+- Em `production`, `BETTER_AUTH_URL` deve ser igual a `NEXT_PUBLIC_APP_URL` e ambas não podem apontar para `localhost`.
+
+Modelo para produção:
+
+```bash
+cp .env.production.example .env.production
+```
 
 ## Instalação
 
@@ -176,5 +184,5 @@ Resumo:
 ## Observações
 
 - O projeto já contém migrações Drizzle versionadas em `drizzle/`.
-- Existe um arquivo `local.db` no repositório para desenvolvimento local.
+- Não use banco local em produção. O app agora falha no boot se `DATABASE_URL` estiver ausente ou apontar para `file:` em `production`.
 - `src/lib/auth.ts` usa um secret de fallback para desenvolvimento; em produção isso deve ser sempre definido por variável de ambiente.

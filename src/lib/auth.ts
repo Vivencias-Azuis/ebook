@@ -3,7 +3,10 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { nextCookies } from "better-auth/next-js";
 
 import { db } from "@/db/client";
+import { ensureProductionEnvironment } from "@/lib/production-env";
 import * as schema from "@/db/schema";
+
+ensureProductionEnvironment();
 
 const authSecret = process.env.BETTER_AUTH_SECRET ?? process.env.AUTH_SECRET;
 
