@@ -33,7 +33,10 @@ function requirePublicUrl(value: string | undefined, variableName: string) {
     );
   }
 
-  if (parsedUrl.hostname === "localhost" || parsedUrl.hostname === "127.0.0.1") {
+  if (
+    parsedUrl.hostname === "localhost" ||
+    parsedUrl.hostname === "127.0.0.1"
+  ) {
     throw new Error(
       `${variableName} must not point to localhost in production.`,
     );
@@ -66,7 +69,10 @@ export function validateProductionEnvironment({
     "DATABASE_AUTH_TOKEN is required in production for the Turso/libSQL database.",
   );
 
-  const appUrl = requirePublicUrl(env.NEXT_PUBLIC_APP_URL, "NEXT_PUBLIC_APP_URL");
+  const appUrl = requirePublicUrl(
+    env.NEXT_PUBLIC_APP_URL,
+    "NEXT_PUBLIC_APP_URL",
+  );
   const authUrl = requirePublicUrl(env.BETTER_AUTH_URL, "BETTER_AUTH_URL");
 
   if (appUrl !== authUrl) {
@@ -78,7 +84,10 @@ export function validateProductionEnvironment({
   requireValue(
     env.BETTER_AUTH_SECRET ?? env.AUTH_SECRET,
     "BETTER_AUTH_SECRET is required in production.",
-    ["ebook-development-secret-not-for-production", "replace-with-strong-secret"],
+    [
+      "ebook-development-secret-not-for-production",
+      "replace-with-strong-secret",
+    ],
   );
 
   requireValue(
