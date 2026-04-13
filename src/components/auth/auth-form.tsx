@@ -14,6 +14,20 @@ type AuthFormProps = {
 };
 
 function getErrorMessage(error: unknown) {
+  const message =
+    error &&
+    typeof error === "object" &&
+    "message" in error &&
+    typeof error.message === "string"
+      ? error.message.trim()
+      : error instanceof Error
+        ? error.message.trim()
+        : "";
+
+  if (message.toLowerCase() === "invalid origin") {
+    return "Não foi possível validar a origem desta página. Recarregue e tente novamente.";
+  }
+
   if (
     error &&
     typeof error === "object" &&
@@ -46,6 +60,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const isRegister = mode === "register";
   const callbackPath = normalizeNextPath(nextPath);
@@ -135,17 +150,44 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         >
           Senha
         </label>
-        <input
-          className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
-          id="password"
-          name="password"
-          type="password"
-          autoComplete={isRegister ? "new-password" : "current-password"}
-          required
-          minLength={8}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <div className="relative">
+          <input
+            className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 pr-12 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
+            id="password"
+            name="password"
+            type={isPasswordVisible ? "text" : "password"}
+            autoComplete={isRegister ? "new-password" : "current-password"}
+            required
+            minLength={8}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button
+            className="absolute inset-y-0 right-0 inline-flex w-12 items-center justify-center text-[color:var(--va-blue-700)] transition hover:text-[color:var(--va-navy)] focus:outline-none focus:ring-2 focus:ring-[color:var(--va-blue-100)] focus:ring-offset-2"
+            type="button"
+            aria-label={isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
+            aria-pressed={isPasswordVisible}
+            onClick={() => setIsPasswordVisible((current) => !current)}
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z" />
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M4 4l16 16"
+                className={isPasswordVisible ? "opacity-0" : "opacity-100"}
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {error ? (

@@ -121,6 +121,49 @@ it("shows feedback when sign in returns an auth error payload", async () => {
   });
 });
 
+it("toggles password visibility from the eye button", async () => {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  const root = createRoot(container);
+
+  await act(async () => {
+    root.render(<AuthForm mode="login" nextPath="/library" />);
+  });
+
+  const passwordInput = container.querySelector<HTMLInputElement>("#password");
+  const toggleButton = container.querySelector<HTMLButtonElement>(
+    'button[aria-label="Mostrar senha"]',
+  );
+
+  if (!passwordInput || !toggleButton) {
+    throw new Error("Password field did not render expected visibility toggle");
+  }
+
+  expect(passwordInput.type).toBe("password");
+
+  await act(async () => {
+    toggleButton.dispatchEvent(
+      new MouseEvent("click", { bubbles: true, cancelable: true }),
+    );
+  });
+
+  expect(passwordInput.type).toBe("text");
+  expect(toggleButton.getAttribute("aria-label")).toBe("Ocultar senha");
+
+  await act(async () => {
+    toggleButton.dispatchEvent(
+      new MouseEvent("click", { bubbles: true, cancelable: true }),
+    );
+  });
+
+  expect(passwordInput.type).toBe("password");
+  expect(toggleButton.getAttribute("aria-label")).toBe("Mostrar senha");
+
+  await act(async () => {
+    root.unmount();
+  });
+});
+
 it("shows feedback when sign up returns an auth error payload", async () => {
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -150,6 +193,45 @@ it("shows feedback when sign up returns an auth error payload", async () => {
 
   expect(container.textContent).toContain("Este email já está em uso.");
   expect(replaceMock).not.toHaveBeenCalled();
+
+  await act(async () => {
+    root.unmount();
+  });
+});
+
+it("maps invalid origin to a user-friendly register error message", async () => {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  const root = createRoot(container);
+
+  signUpEmailMock.mockResolvedValue({
+    error: {
+      message: "Invalid origin",
+    },
+  });
+
+  await act(async () => {
+    root.render(<AuthForm mode="register" nextPath="/library" />);
+  });
+
+  const form = container.querySelector("form");
+
+  if (!form) {
+    throw new Error("Auth form did not render");
+  }
+
+  await act(async () => {
+    form.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true }),
+    );
+  });
+
+  expect(container.textContent).toContain(
+    "Não foi possível validar a origem desta página.",
+  );
+  expect(container.textContent).toContain(
+    "Recarregue e tente novamente.",
+  );
 
   await act(async () => {
     root.unmount();
