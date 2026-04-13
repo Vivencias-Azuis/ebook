@@ -55,7 +55,7 @@ describe("AdminPage", () => {
     vi.mocked(getActiveEntitlements).mockResolvedValue([]);
   });
 
-  it('contains a link to /admin/products/new', async () => {
+  it("contains a link to /admin/products/new", async () => {
     const page = await AdminPage();
     const markup = renderToStaticMarkup(page);
 
@@ -69,7 +69,7 @@ describe("AdminPage", () => {
     expect(markup).toContain("Novo produto");
   });
 
-  it('shows products of all statuses (published, draft, archived)', async () => {
+  it("shows products of all statuses (published, draft, archived)", async () => {
     vi.mocked(getAllProductsForAdmin).mockResolvedValue([
       mockProduct({ id: "prod-pub", status: "published", slug: "pub" }) as any,
       mockProduct({ id: "prod-draft", status: "draft", slug: "draft" }) as any,

@@ -44,9 +44,7 @@ export function ProductForm({ product }: ProductFormProps) {
   return (
     <div className="space-y-8">
       <form action={formAction} className="space-y-6">
-        {isEdit && (
-          <input type="hidden" name="productId" value={product.id} />
-        )}
+        {isEdit && <input type="hidden" name="productId" value={product.id} />}
 
         {/* Title */}
         <div className="space-y-1.5">

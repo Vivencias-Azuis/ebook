@@ -229,9 +229,7 @@ it("maps invalid origin to a user-friendly register error message", async () => 
   expect(container.textContent).toContain(
     "Não foi possível validar a origem desta página.",
   );
-  expect(container.textContent).toContain(
-    "Recarregue e tente novamente.",
-  );
+  expect(container.textContent).toContain("Recarregue e tente novamente.");
 
   await act(async () => {
     root.unmount();

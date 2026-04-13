@@ -19,8 +19,7 @@ export const GUIDE_PRATICO_PRODUCT_ID =
   "product-guia-pratico-primeiros-30-dias";
 export const GUIDE_PRATICO_SLUG =
   "guia-pratico-primeiros-30-dias-apos-diagnostico";
-export const GUIDE_PRATICO_STRIPE_PRICE_ID =
-  "price_1TLLyVI3mgT0p17z0wtnx8Ap";
+export const GUIDE_PRATICO_STRIPE_PRICE_ID = "price_1TLLyVI3mgT0p17z0wtnx8Ap";
 export const GUIDE_PRATICO_TEST_USER_EMAIL =
   "teste.guia.pratico@vivenciasazuis.local";
 export const GUIDE_PRATICO_TEST_USER_ID = "user-guia-pratico-seed";

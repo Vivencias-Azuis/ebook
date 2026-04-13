@@ -15,7 +15,9 @@ vi.mock("@/app/admin/products/actions", () => ({
 // Mock next/navigation (not used directly by ProductForm but transitively)
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
-  notFound: vi.fn(() => { throw new Error("NEXT_NOT_FOUND"); }),
+  notFound: vi.fn(() => {
+    throw new Error("NEXT_NOT_FOUND");
+  }),
 }));
 
 // Mock next/link so href is rendered as a plain anchor in jsdom
@@ -159,9 +161,8 @@ describe("ProductSettingsPage", () => {
     const { requireAdminSession } = await import("@/domains/auth/server");
     vi.mocked(requireAdminSession).mockResolvedValue(undefined as any);
 
-    const { getProductByIdForAdmin } = await import(
-      "@/domains/admin/product-queries"
-    );
+    const { getProductByIdForAdmin } =
+      await import("@/domains/admin/product-queries");
     vi.mocked(getProductByIdForAdmin).mockResolvedValue({
       ...MOCK_PRODUCT,
       createdAt: new Date(),
@@ -170,9 +171,8 @@ describe("ProductSettingsPage", () => {
   });
 
   it("renders the product title in the heading subtitle", async () => {
-    const { default: ProductSettingsPage } = await import(
-      "@/app/admin/products/[productId]/settings/page"
-    );
+    const { default: ProductSettingsPage } =
+      await import("@/app/admin/products/[productId]/settings/page");
 
     const page = await ProductSettingsPage({
       params: Promise.resolve({ productId: MOCK_PRODUCT.id }),
@@ -184,9 +184,8 @@ describe("ProductSettingsPage", () => {
   });
 
   it("renders quick links for public page, reader, and editor", async () => {
-    const { default: ProductSettingsPage } = await import(
-      "@/app/admin/products/[productId]/settings/page"
-    );
+    const { default: ProductSettingsPage } =
+      await import("@/app/admin/products/[productId]/settings/page");
 
     const page = await ProductSettingsPage({
       params: Promise.resolve({ productId: MOCK_PRODUCT.id }),
