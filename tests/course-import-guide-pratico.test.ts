@@ -153,6 +153,8 @@ describe("buildGuidePraticoCourseDefinition", () => {
     expect(markdown).toContain(
       "PDF para imprimir, levar em consulta ou revisar com a escola",
     );
+    expect(markdown).toContain("Essencial nesta semana");
+    expect(markdown).toContain("Opcional nesta semana");
   });
 
   it("adds Brazilian support, rights, caregiver, and family guidance", () => {
@@ -173,7 +175,26 @@ describe("buildGuidePraticoCourseDefinition", () => {
     expect(markdown).toContain("CRAS");
     expect(markdown).toContain("Família inteira");
     expect(markdown).toContain("Cuidador também precisa de plano");
+    expect(markdown).toContain(
+      "O que é direito garantido e o que é boa prática desejável",
+    );
+    expect(markdown).toContain("REFERÊNCIA RÁPIDA: BASE TÉCNICA E LEGAL");
     expect(markdown).toContain("Fontes confiáveis para continuar");
+  });
+
+  it("adds evidence-based guidance, alert signs, and concrete routine examples", () => {
+    const course = buildGuidePraticoCourseDefinition();
+    const markdown = course.chapters
+      .flatMap((chapter) => chapter.blocks)
+      .filter((block) => block.type === "rich_text")
+      .map((block) => JSON.parse(block.payloadJson).markdown)
+      .join("\n");
+
+    expect(markdown).toContain("práticas baseadas em evidências");
+    expect(markdown).toContain("Quando ligar o alerta vermelho");
+    expect(markdown).toContain("Comunicação alternativa e aumentativa em casa");
+    expect(markdown).toContain("Exemplo 1: rotina visual da manhã");
+    expect(markdown).toContain("Quando o cuidador precisa de ajuda");
   });
 
   it("keeps suspicion and diagnosis paths visible in the imported guide", () => {
