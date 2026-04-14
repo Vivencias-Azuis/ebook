@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { formatMoney } from "@/lib/format";
 
@@ -383,23 +384,32 @@ export function ProductSalesLanding({ product }: { product: Product }) {
         </div>
       </section>
 
-      <footer className="border-t border-[color:var(--va-line)] px-6 py-8 text-center text-xs text-[color:var(--va-muted)] lg:px-10">
-        <p>
-          © {new Date().getFullYear()} Vivências Azuis ·{" "}
-          <a
-            href="/privacidade"
-            className="underline hover:text-[color:var(--va-blue)]"
+      <footer className="border-t border-[color:var(--va-line)] px-6 py-10 lg:px-10">
+        <div className="mx-auto max-w-7xl flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <Link
+            href="/"
+            className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
           >
-            Política de privacidade
-          </a>{" "}
-          ·{" "}
-          <a
-            href="/reembolso"
-            className="underline hover:text-[color:var(--va-blue)]"
-          >
-            Reembolso em 7 dias
-          </a>
-        </p>
+            Vivências Azuis
+          </Link>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[color:var(--va-muted)]">
+            <a
+              href="/privacidade"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de privacidade
+            </a>
+            <a
+              href="/reembolso"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de reembolso
+            </a>
+          </nav>
+          <p className="text-xs text-[color:var(--va-muted)]">
+            © {new Date().getFullYear()} Vivências Azuis
+          </p>
+        </div>
       </footer>
     </main>
   );

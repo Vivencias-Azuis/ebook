@@ -172,6 +172,31 @@ export function CatalogLanding({
           </div>
         </section>
       ) : null}
+
+      <footer className="border-t border-[color:var(--va-line)] px-6 py-10 lg:px-10">
+        <div className="mx-auto max-w-7xl flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
+            Vivências Azuis
+          </p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[color:var(--va-muted)]">
+            <Link
+              href="/privacidade"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de privacidade
+            </Link>
+            <Link
+              href="/reembolso"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de reembolso
+            </Link>
+          </nav>
+          <p className="text-xs text-[color:var(--va-muted)]">
+            © {new Date().getFullYear()} Vivências Azuis
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
