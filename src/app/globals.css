@@ -349,7 +349,9 @@ button {
 }
 
 /* Kill drop cap when block is not rich-text-first */
-.va-reader-slide-body .reader-prose.no-drop-cap > p:first-of-type::first-letter {
+.va-reader-slide-body
+  .reader-prose.no-drop-cap
+  > p:first-of-type::first-letter {
   all: unset;
 }
 

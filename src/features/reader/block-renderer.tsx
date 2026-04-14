@@ -163,17 +163,21 @@ function renderRichText(markdown: string) {
       continue;
     }
 
-    elements.push(
-      <p key={`p-${elements.length}`}>{renderInlineText(line)}</p>,
-    );
+    elements.push(<p key={`p-${elements.length}`}>{renderInlineText(line)}</p>);
   }
 
   flushList();
 
-  const firstIsParagraph = elements.length > 0 && lines[0]?.startsWith("- ") === false && !lines[0]?.startsWith("#") && lines[0] !== "---";
+  const firstIsParagraph =
+    elements.length > 0 &&
+    lines[0]?.startsWith("- ") === false &&
+    !lines[0]?.startsWith("#") &&
+    lines[0] !== "---";
   const dropCapClass = firstIsParagraph ? "" : "no-drop-cap";
 
-  return <div className={`reader-prose ${dropCapClass}`.trim()}>{elements}</div>;
+  return (
+    <div className={`reader-prose ${dropCapClass}`.trim()}>{elements}</div>
+  );
 }
 
 function renderBlockContent(

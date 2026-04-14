@@ -148,7 +148,9 @@ describe("ReaderSidebar", () => {
     });
 
     expect(container.innerHTML).toContain('<div class="space-y-4">');
-    expect(container.innerHTML).toContain("flex items-start justify-between gap-3");
+    expect(container.innerHTML).toContain(
+      "flex items-start justify-between gap-3",
+    );
     expect(container.innerHTML).toContain("shrink-0 rounded-full border");
     expect(container.innerHTML).toContain("flex items-center gap-3");
 

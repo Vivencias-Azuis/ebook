@@ -107,7 +107,6 @@ export function ReaderSidebar({
 
       <div className="my-5 h-px bg-[color:var(--va-line)]" />
 
-
       {isOpen ? (
         <nav
           id="reader-sidebar-nav"
