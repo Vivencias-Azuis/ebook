@@ -1,12 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { requireServerSession } from "@/domains/auth/server";
+import { SignOutButton } from "@/components/auth/sign-out-button";
 import {
   deriveLibraryCheckoutMessage,
   getUserLibraryProducts,
 } from "@/domains/products/library";
 import { getUserProgressSummariesForProducts } from "@/domains/progress/queries";
 import { formatMoney } from "@/lib/format";
+import { getProductCoverUrl } from "@/lib/product-assets";
 
 type LibraryPageProps = {
   searchParams?: Promise<{
@@ -43,14 +46,7 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
           >
             Vivências Azuis
           </Link>
-          <form action="/api/auth/sign-out" method="post">
-            <button
-              type="submit"
-              className="text-sm font-medium text-[color:var(--va-soft-ink)] hover:text-[color:var(--va-ink)]"
-            >
-              Sair
-            </button>
-          </form>
+          <SignOutButton className="text-sm font-medium text-[color:var(--va-soft-ink)] hover:text-[color:var(--va-ink)]" />
         </div>
 
         {/* Hero */}
@@ -90,11 +86,24 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                 ? "Liberado"
                 : "Preview gratuito";
 
+              const coverUrl = getProductCoverUrl(product.slug);
+
               return (
                 <article
                   key={product.productId}
                   className="va-panel flex h-full flex-col bg-white"
                 >
+                  {coverUrl ? (
+                    <div className="mb-4 overflow-hidden rounded-[1.25rem]">
+                      <Image
+                        src={coverUrl}
+                        alt={`Capa de ${product.title}`}
+                        width={480}
+                        height={640}
+                        className="w-full object-cover"
+                      />
+                    </div>
+                  ) : null}
                   <div className="flex-1 space-y-3">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
                       Guia digital

@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import { formatMoney } from "@/lib/format";
 
 type Product = {
@@ -133,6 +136,17 @@ export function ProductSalesLanding({ product }: { product: Product }) {
                   <p className="mt-3 text-sm leading-6 text-[color:var(--va-soft-ink)]">
                     {product.subtitle ?? product.description}
                   </p>
+                </div>
+
+                <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-[color:var(--va-line)]">
+                  <Image
+                    src="/images/guia-pratico-cover.png"
+                    alt={`Capa do ${product.title}`}
+                    width={480}
+                    height={640}
+                    className="w-full object-cover"
+                    priority
+                  />
                 </div>
 
                 <div className="mt-5 rounded-[1.25rem] border border-[color:var(--va-line)] bg-[color:var(--va-paper)] p-5">
@@ -313,6 +327,22 @@ export function ProductSalesLanding({ product }: { product: Product }) {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-7xl px-6 pb-10 lg:px-10">
+        <div className="flex items-start gap-5 rounded-[1.75rem] border border-emerald-100 bg-emerald-50 px-7 py-6">
+          <span className="mt-0.5 text-2xl" aria-hidden="true">
+            🛡️
+          </span>
+          <div>
+            <p className="font-semibold text-emerald-900">Garantia de 7 dias</p>
+            <p className="mt-1 text-sm leading-7 text-emerald-800">
+              Se você comprar e sentir que o material não era o que precisava,
+              basta enviar um e-mail em até 7 dias e devolvemos o valor
+              integralmente. Sem perguntas.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto w-full max-w-7xl px-6 pb-18 lg:px-10 lg:pb-24">
         <div className="rounded-[2rem] border border-[color:var(--va-line)] bg-white p-8 shadow-[0_28px_90px_-46px_rgba(11,35,66,0.24)] sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -353,6 +383,34 @@ export function ProductSalesLanding({ product }: { product: Product }) {
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-[color:var(--va-line)] px-6 py-10 lg:px-10">
+        <div className="mx-auto max-w-7xl flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <Link
+            href="/"
+            className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
+          >
+            Vivências Azuis
+          </Link>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[color:var(--va-muted)]">
+            <a
+              href="/privacidade"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de privacidade
+            </a>
+            <a
+              href="/reembolso"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de reembolso
+            </a>
+          </nav>
+          <p className="text-xs text-[color:var(--va-muted)]">
+            © {new Date().getFullYear()} Vivências Azuis
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }

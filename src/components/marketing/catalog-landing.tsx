@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { formatMoney } from "@/lib/format";
+import { getProductCoverUrl } from "@/lib/product-assets";
 
 type Product = {
   id: string;
@@ -80,8 +82,8 @@ export function CatalogLanding({
               </span>
             </div>
             <p className="mx-auto mt-8 max-w-2xl text-sm leading-6 text-white/76">
-              Explore os cursos ativos abaixo. A landing mostra apenas o que já
-              existe no catálogo publicado da plataforma.
+              Explore os materiais disponíveis abaixo e comece pelo que faz mais
+              sentido para o momento da sua família.
             </p>
           </div>
         </div>
@@ -121,6 +123,17 @@ export function CatalogLanding({
                 key={product.id}
                 className="va-panel flex h-full flex-col bg-white"
               >
+                {getProductCoverUrl(product.slug) ? (
+                  <div className="mb-4 overflow-hidden rounded-[1.25rem]">
+                    <Image
+                      src={getProductCoverUrl(product.slug)!}
+                      alt={`Capa de ${product.title}`}
+                      width={480}
+                      height={640}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                ) : null}
                 <div className="flex-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
                     E-book digital
@@ -159,6 +172,31 @@ export function CatalogLanding({
           </div>
         </section>
       ) : null}
+
+      <footer className="border-t border-[color:var(--va-line)] px-6 py-10 lg:px-10">
+        <div className="mx-auto max-w-7xl flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
+            Vivências Azuis
+          </p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[color:var(--va-muted)]">
+            <Link
+              href="/privacidade"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de privacidade
+            </Link>
+            <Link
+              href="/reembolso"
+              className="underline hover:text-[color:var(--va-blue)]"
+            >
+              Política de reembolso
+            </Link>
+          </nav>
+          <p className="text-xs text-[color:var(--va-muted)]">
+            © {new Date().getFullYear()} Vivências Azuis
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
