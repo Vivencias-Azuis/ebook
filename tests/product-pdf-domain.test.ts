@@ -226,4 +226,33 @@ describe("product pdf domain", () => {
     expect(html).toContain("page-break-inside:avoid");
     expect(html).toContain("break-after:avoid-page");
   });
+
+  it("uses a one-page A4 cover so the opening page is fully used without spilling", () => {
+    const html = renderProductPdfHtml(
+      {
+        product: { id: "prod-1", slug: "guia", title: "Guia" },
+        chapters: [{ id: "c1", title: "Cap 1", blocks: [] }],
+      },
+      "print",
+    );
+
+    expect(html).toContain(".cover{");
+    expect(html).toContain("min-height:calc(297mm - (var(--page-pad) * 2))");
+    expect(html).toContain("break-after:page");
+  });
+
+  it("gives the print variant more generous reading density than the fast variant", () => {
+    const normalized = {
+      product: { id: "prod-1", slug: "guia", title: "Guia" },
+      chapters: [{ id: "c1", title: "Cap 1", blocks: [] }],
+    };
+
+    const fastHtml = renderProductPdfHtml(normalized, "fast");
+    const printHtml = renderProductPdfHtml(normalized, "print");
+
+    expect(fastHtml).toContain("--body-size:11px");
+    expect(printHtml).toContain("--body-size:13px");
+    expect(printHtml).toContain("--line:1.72");
+    expect(printHtml).toContain("--card-pad:20px");
+  });
 });

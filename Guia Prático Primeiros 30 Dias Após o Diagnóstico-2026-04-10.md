@@ -266,6 +266,19 @@ Você sai da mistura de informação, culpa e urgência com um mapa mínimo do q
 - separar a pasta de documentos;
 - avisar uma pessoa de confiança.
 
+**Essencial nesta semana:**
+
+- organizar documentos;
+- resumir o laudo ou a suspeita em linguagem simples;
+- escolher até três prioridades;
+- preparar perguntas para a próxima consulta.
+
+**Opcional nesta semana:**
+
+- refinar a pasta em subpastas;
+- transformar o histórico em linha do tempo mais detalhada;
+- começar um diário semanal mais completo.
+
 Se você está em fase de suspeita, esta semana serve para observar sinais e construir uma boa avaliação.
 
 Se você já recebeu o diagnóstico, esta semana serve para transformar o documento em informação útil para casa, escola e profissionais.
@@ -441,6 +454,19 @@ Se você ainda não definiu profissionais, tudo bem. Nesta etapa, o objetivo é 
 
 Nesta semana, o foco é entender quais profissionais podem ajudar e como escolher com critério. A ideia não é montar uma agenda impossível. É começar com prioridades.
 
+**Essencial nesta semana:**
+
+- definir quais áreas realmente precisam de atenção agora;
+- conversar com pelo menos dois profissionais ou serviços;
+- comparar objetivos, frequência e forma de acompanhamento;
+- descartar propostas baseadas em medo, pressa ou promessa exagerada.
+
+**Opcional nesta semana:**
+
+- montar uma planilha de comparação mais detalhada;
+- pedir indicação extra para segunda opinião;
+- pesquisar diretrizes reconhecidas para entender melhor os termos usados.
+
 ### O que isso resolve
 
 Você para de escolher no impulso e passa a comparar opções com critérios mais claros.
@@ -546,6 +572,16 @@ Nos primeiros 30 dias, você não precisa virar especialista em todas as abordag
 
 Existem diferentes modelos e estratégias usados no cuidado de crianças autistas, como intervenções comportamentais, estratégias naturalísticas, comunicação alternativa e aumentativa, integração de rotina, terapia ocupacional com foco sensorial e funcional, fonoaudiologia, orientação parental, recursos visuais e apoio escolar. Algumas famílias também vão ouvir nomes como ABA, TEACCH, PECS, Denver, DIR/Floortime ou outros.
 
+Quando um profissional fala em **práticas baseadas em evidências**, deveria estar falando de estratégias já estudadas, descritas com clareza e alinhadas a diretrizes reconhecidas de saúde, psicologia, desenvolvimento infantil ou educação. Em linguagem simples: não basta dizer que "funciona muito". É preciso mostrar objetivo, forma de aplicar, revisão periódica e como a criança responde ao plano.
+
+Você não precisa decorar artigos. Basta perguntar se a proposta segue diretrizes reconhecidas, como recomendações de sociedades médicas, psicológicas ou de desenvolvimento infantil, e se o profissional consegue explicar por que aquela estratégia faz sentido para o perfil da sua criança.
+
+### O que significa intensidade sem cair no número mágico
+
+Algumas crianças precisam de apoio mais frequente, principalmente quando há grande impacto em comunicação, segurança, participação diária ou aprendizagem. Quando alguém fala em **intensidade**, o ponto não é vender um número fixo de horas por semana. É justificar por que aquela criança precisa de mais ou menos apoio agora, em quais áreas, com quais metas e como a família vai sustentar isso sem colapsar.
+
+Uma proposta séria pode envolver mais de uma sessão por semana, orientação parental, alinhamento com escola e revisão periódica. O problema não é a intensidade. O problema é quando a intensidade vira pacote fechado, sem avaliação clara, sem metas específicas e sem revisão do que está funcionando.
+
 O nome da abordagem, sozinho, não garante qualidade. Uma intervenção séria precisa explicar:
 
 - qual necessidade da criança será trabalhada;
@@ -567,6 +603,32 @@ Perguntas úteis:
 Uma boa prática terapêutica não deve apagar a criança. Ela deve ampliar comunicação, segurança, autonomia, participação e qualidade de vida.
 
 Se alguém vender um método como único caminho, pedir obediência sem explicar objetivos ou tratar sinais de sofrimento como "manha", pare e peça outra opinião.
+
+### Práticas que devem acender alerta
+
+Alguns exemplos de condutas que merecem muito cuidado:
+
+- forçar contato visual como meta central, mesmo quando isso aumenta sofrimento;
+- manter a criança em choro prolongado sem ajustar a demanda;
+- usar punição, humilhação ou retirada de necessidades básicas para obter obediência;
+- impedir pedidos de pausa, água, banheiro, colo ou descanso como "estratégia";
+- tratar dor, fome, sono ou sobrecarga sensorial como birra a ser extinta;
+- ignorar comunicação por gesto, apontar, figuras ou dispositivo porque "ela precisa falar primeiro".
+
+Respeitar a criança não é "passar a mão". É construir aprendizagem com segurança, previsibilidade e metas funcionais.
+
+### Quando ligar o alerta vermelho
+
+Nem tudo é questão de ajuste de rotina. Procure avaliação médica ou profissional com mais rapidez quando houver:
+
+- regressão de habilidades já adquiridas;
+- crises muito intensas com autoagressão, heteroagressão ou risco físico;
+- perda de peso, recusa alimentar importante ou desidratação;
+- insônia grave por vários dias seguidos, ronco importante ou suspeita de apneia;
+- episódios de desmaio, convulsão, olhar fixo estranho ou suspeita neurológica;
+- ansiedade muito intensa, sofrimento persistente ou mudança brusca de comportamento.
+
+Autismo pode coexistir com outras condições, como TDAH, ansiedade, dificuldades importantes de sono, epilepsia e seletividade alimentar severa. O guia ajuda a organizar perguntas, mas esses sinais pedem avaliação mais rápida e direta.
 
 ### Como comparar opções
 
@@ -631,6 +693,19 @@ Você tira a rotina do improviso e passa a observar o que ajuda, o que atrapalha
 - usar frases mais curtas e escolhas limitadas;
 - preparar a conversa com a escola.
 
+**Essencial nesta semana:**
+
+- observar padrões por alguns dias;
+- testar uma rotina visual simples;
+- ajustar a comunicação da casa;
+- preparar um pedido claro para a escola.
+
+**Opcional nesta semana:**
+
+- montar quadros visuais mais completos;
+- testar recursos simples de comunicação alternativa;
+- organizar um registro mais detalhado da rotina escolar.
+
 ### Se você está em fase de suspeita...
 
 - observe em quais momentos a rotina desorganiza mais;
@@ -687,6 +762,48 @@ Algumas crianças se beneficiam de previsibilidade visual. Você pode começar c
 
 Use fotos reais, desenhos simples ou palavras, conforme a compreensão da criança. Mostre a sequência e avise mudanças com antecedência quando possível.
 
+**Exemplo 1: rotina visual da manhã**
+
+- acordar;
+- banheiro;
+- trocar de roupa;
+- café da manhã;
+- escovar os dentes;
+- pegar mochila;
+- sair.
+
+**Exemplo 2: rotina visual da noite**
+
+- jantar;
+- banho;
+- pijama;
+- atividade calma;
+- escovar os dentes;
+- deitar;
+- dormir.
+
+Se a sequência completa for demais, comece com só 3 etapas visíveis. Mais vale uma rotina curta que a criança entende do que um quadro bonito que ninguém usa.
+
+### Modelos simples de quadro visual
+
+Você pode montar com papel, fita adesiva e figuras impressas ou desenhadas.
+
+**Modelo 1: primeiro -> depois**
+
+- primeiro: guardar brinquedos;
+- depois: ver desenho.
+
+**Modelo 2: sequência curta**
+
+- banheiro;
+- comer;
+- brincar.
+
+**Modelo 3: escolha entre duas opções**
+
+- lanche 1: banana;
+- lanche 2: biscoito.
+
 ### Cantinho de regulação
 
 Crie um espaço simples de pausa:
@@ -710,6 +827,21 @@ Tente frases curtas e concretas:
 - "Você quer água ou suco?"
 
 Quando possível, ofereça escolhas limitadas. Muitas opções podem aumentar ansiedade.
+
+### Comunicação alternativa e aumentativa em casa
+
+Se a fala ainda é limitada, inexistente ou pouco funcional, isso não significa ficar parada até a próxima consulta. Você pode apoiar a comunicação em casa com recursos simples, sem substituir a orientação da fono.
+
+Exemplos iniciais:
+
+- apontar para dois itens e nomear as opções;
+- usar fotos ou figuras de água, comida, banheiro, colo, brincar e pausa;
+- aceitar gesto, apontar, olhar direcionado ou entrega de figura como tentativa válida de comunicar;
+- repetir sempre a mesma palavra junto com a figura ou ação: "água", "pausa", "mais", "acabou".
+
+**Exemplo prático:** coloque duas figuras na geladeira, `água` e `banana`. Quando a criança olhar, apontar ou pegar uma delas, responda nomeando e entregando o item. O objetivo inicial não é exigir fala perfeita. É mostrar que comunicar funciona.
+
+Se um recurso visual reduz frustração e aumenta pedido funcional, isso já é um ganho importante para compartilhar depois com a fonoaudióloga ou com a equipe.
 
 ### Mensagem para a escola
 
@@ -743,6 +875,11 @@ Exemplos de adaptações concretas para discutir:
 - usar apoio visual para sequência de tarefas;
 - combinar um canal semanal de comunicação família-escola;
 - observar recreio, entrada e saída, não só sala de aula.
+
+Um jeito simples de tornar isso palpável:
+
+- **Educação infantil:** usar apoio visual para guardar materiais, sentar, lanchar e ir ao banheiro, além de avisar transições com antecedência.
+- **Ensino fundamental:** reduzir cópia extensa quando o objetivo é conteúdo, permitir mais tempo em atividades e combinar forma alternativa de responder em alguns momentos.
 
 ### Checklist da Semana 3
 
@@ -778,6 +915,19 @@ Você transforma o primeiro mês em um caminho que conversa com a rede pública,
 - mapear direitos e caminhos de apoio;
 - fechar os próximos 60 dias com ações pequenas;
 - deixar pronto o que a escola, a UBS ou outro serviço pode pedir.
+
+**Essencial nesta semana:**
+
+- revisar prioridades;
+- organizar laudos, relatórios e protocolos;
+- entender quais portas públicas ou escolares precisam ser acionadas;
+- fechar até cinco ações para os próximos 60 dias.
+
+**Opcional nesta semana:**
+
+- aprofundar busca por benefícios e rede local;
+- organizar segunda via de documentos e relatórios;
+- montar uma pasta separada só para direitos e protocolos.
 
 Se você está em fase de suspeita, esta semana ajuda a localizar o fluxo de avaliação e os registros que sustentam os encaminhamentos.
 
@@ -833,6 +983,8 @@ Volte aos três focos escolhidos na Semana 1. Pergunte:
 
 Esta seção não substitui orientação jurídica, médica, assistencial ou escolar. Ela serve para você saber por onde começar a perguntar e quais documentos manter organizados.
 
+Pela **Lei 12.764/2012**, a pessoa com TEA é considerada pessoa com deficiência para todos os efeitos legais. Na prática, isso sustenta pedidos ligados a prioridade, acessibilidade, educação inclusiva e políticas públicas específicas. Não resolve sozinho a vida real, mas dá base legal importante para seus pedidos.
+
 Um caminho comum começa pela **UBS** ou unidade de saúde de referência da família. Leve o laudo ou relatório, a caderneta de saúde, relatórios anteriores e sua lista de dúvidas.
 
 Você pode dizer:
@@ -871,6 +1023,8 @@ Frase útil:
 
 "Gostaria de saber onde solicito a CIPTEA, quais documentos são exigidos e se vocês podem me informar o prazo ou protocolo do pedido."
 
+Ter a CIPTEA pode ajudar na identificação e no acesso a atendimento prioritário em alguns contextos, mas ela não substitui outros documentos nem cria, sozinha, todos os apoios de que a criança precisa.
+
 ### CRAS, assistência social e BPC/LOAS
 
 Se a família precisa de apoio financeiro, orientação social ou acesso a benefícios, procure o **CRAS** do território. O CRAS não "dá o benefício" automaticamente, mas orienta cadastro, documentação, CadÚnico e caminhos possíveis.
@@ -907,6 +1061,27 @@ Quando pedir apoio, escreva de forma objetiva:
 
 "Gostaria de entender quais adaptações a escola pode oferecer e como vamos acompanhar se elas estão ajudando. Podemos registrar os combinados por escrito?"
 
+### O que é direito garantido e o que é boa prática desejável
+
+Ajuda muito separar essas duas coisas para não entrar em negociação confusa.
+
+**Direitos mais claros em lei ou em proteção educacional:**
+
+- matrícula em escola regular;
+- proibição de recusa de matrícula por causa do diagnóstico;
+- acesso à educação inclusiva e adaptações razoáveis;
+- prioridade de atendimento em contextos previstos;
+- possibilidade de acionar documentação e fluxos de identificação, como a CIPTEA, conforme regras locais.
+
+**Boas práticas desejáveis, mas que podem depender de avaliação, contexto e disponibilidade:**
+
+- mediador exclusivo em tempo integral em qualquer situação;
+- material totalmente individualizado para toda atividade;
+- resposta imediata e ideal da rede pública ou do plano;
+- adaptação idêntica em toda escola ou município.
+
+Isso não significa aceitar menos do que a criança precisa. Significa argumentar melhor: primeiro com base no direito garantido, depois com registro claro da barreira concreta e da adaptação necessária.
+
 Se a escola disser "não temos estrutura", responda sem transformar a primeira conversa em briga:
 
 "Entendo que existem limites práticos. Mesmo assim, preciso que a escola registre quais barreiras foram identificadas, quais adaptações são possíveis agora e qual encaminhamento será feito para garantir participação e segurança."
@@ -929,7 +1104,7 @@ Frase útil:
 
 "Preciso da resposta formal por escrito, com o motivo da negativa ou limitação, o número de protocolo e o prazo de reavaliação."
 
-Quando houver negativa importante, demora que prejudique cuidado, conflito com escola ou dúvida sobre benefício, considere procurar Defensoria Pública, Ministério Público, Procon, advogado especializado ou serviço de orientação jurídica da sua região. O guia não substitui essa orientação; ele ajuda você a chegar com documentos e registros organizados.
+Quando houver negativa importante, demora que prejudique cuidado, conflito com escola ou dúvida sobre benefício, considere procurar Defensoria Pública, Ministério Público, Procon, advogado especializado ou serviço de orientação jurídica da sua região. O guia não substitui essa orientação. Ele ajuda você a chegar com documentos e registros organizados.
 
 ### Fontes confiáveis para continuar
 
@@ -943,7 +1118,7 @@ Quando houver negativa importante, demora que prejudique cuidado, conflito com e
 
 Além de profissionais e familiares, procure também conteúdos produzidos por pessoas autistas adultas e organizações lideradas por autistas. Isso ajuda a família a enxergar o autismo como uma forma de desenvolvimento humano que precisa de apoio, acessibilidade e respeito, não como tragédia ou defeito.
 
-Ao buscar essas vozes, prefira fontes que:
+Ao buscar essas vozes, prefira conteúdos que:
 
 - falem de direitos, comunicação, acessibilidade e qualidade de vida;
 - expliquem sobrecarga sensorial, masking, autonomia e consentimento;
@@ -1093,6 +1268,30 @@ Mensagem para pedir ajuda:
 
 Pedir ajuda prática não é fracasso. É dividir a carga de um período pesado.
 
+### Quando o cuidador precisa de ajuda
+
+Procure apoio psicológico, psiquiátrico, grupo de apoio, CAPS ou outro serviço de saúde quando aparecerem sinais como:
+
+- choro frequente, desesperança ou irritação constante;
+- insônia importante mesmo quando existe chance de descansar;
+- sensação de colapso, culpa esmagadora ou pensamento de que não vai dar conta;
+- crises de ansiedade, falta de ar, taquicardia ou medo constante;
+- isolamento total, perda de apetite ou dificuldade para funcionar no básico;
+- conflito familiar tão intenso que começa a comprometer segurança, trabalho ou cuidado diário.
+
+Você não precisa esperar "piorar de verdade" para buscar ajuda. Se corpo e cabeça estão no limite, isso já importa.
+
+### Limites saudáveis com família e grupos
+
+Nem toda conversa precisa ser comprada.
+
+Exemplos de limites saudáveis:
+
+- "Não vou discutir método no grupo de WhatsApp."
+- "Agora não consigo explicar isso para toda a família."
+- "Se quiser ajudar, preciso de algo prático, não de opinião."
+- "Vou decidir isso com base na equipe que acompanha meu filho."
+
 ## MATERIAIS INTERATIVOS
 
 Use estes materiais como ferramentas de trabalho, no momento em que a jornada pedir.
@@ -1201,4 +1400,39 @@ Preencha uma vez por semana:
 
 Se preferir, mantenha uma versão em PDF deste guia para leitura, impressão e consulta fora da plataforma.
 
-O PDF reúne este conteúdo em formato único para leitura, impressão e revisão com familiares, escola ou profissionais.
+O PDF reúne este conteúdo em um formato único para leitura, impressão e revisão com familiares, escola ou profissionais.
+
+## REFERÊNCIA RÁPIDA: BASE TÉCNICA E LEGAL
+
+### Terapias e evidências em linguagem simples
+
+- Práticas baseadas em evidências são estratégias estudadas, descritas com clareza e acompanhadas por diretrizes reconhecidas.
+- O nome do método sozinho não basta. O profissional precisa explicar meta, frequência, monitoramento e revisão.
+- Intensidade não é número mágico. Precisa fazer sentido para o perfil da criança e para a realidade da família.
+- Objetivos melhores costumam focar comunicação, autonomia, segurança, participação e qualidade de vida.
+- Sinais de alerta técnico incluem punição, exposição forçada, metas centradas em "parecer normal" e desrespeito a dor, sono, fome ou sobrecarga.
+
+### Sinais de alerta clínico e comportamental
+
+- regressão de habilidades;
+- autoagressão ou risco físico importante;
+- perda de peso, recusa alimentar intensa ou desidratação;
+- insônia grave, ronco importante ou suspeita de apneia;
+- crise neurológica, desmaio ou suspeita de convulsão;
+- ansiedade ou sofrimento intenso que foge do ajuste esperado.
+
+### Direitos e base legal
+
+- A Lei 12.764/2012 reconhece a pessoa com TEA como pessoa com deficiência para fins legais.
+- A Lei Brasileira de Inclusão reforça proteção contra discriminação e o direito à participação com acessibilidade.
+- Em educação, isso sustenta matrícula em escola regular, proibição de recusa de matrícula e dever de adaptação razoável.
+- CIPTEA, fluxos de saúde, assistência social e benefícios dependem de regras locais e análise do caso, mas a base documental organizada ajuda muito.
+
+### Como usar esta referência
+
+Leve esta lógica para consultas, escola, UBS, CRAS e plano de saúde:
+
+- qual é a necessidade concreta da criança;
+- qual apoio está sendo pedido;
+- qual base técnica ou legal sustenta esse pedido;
+- como esse apoio será registrado e revisto.
