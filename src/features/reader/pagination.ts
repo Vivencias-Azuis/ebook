@@ -191,6 +191,31 @@ function splitTextBySpaces(text: string, maxLength: number) {
   return chunks;
 }
 
+export function estimateReadingMinutes(block: ReaderBlock | null) {
+  if (!block) {
+    return 1;
+  }
+
+  if (block.type === "rich_text") {
+    try {
+      const { markdown } = parseBlockPayload("rich_text", block.payloadJson);
+      const words = markdown
+        .replace(/[#>*_`-]/g, " ")
+        .split(/\s+/)
+        .filter(Boolean).length;
+      return Math.max(1, Math.round(words / 220));
+    } catch {
+      return 1;
+    }
+  }
+
+  if (block.type === "checklist") {
+    return 2;
+  }
+
+  return 1;
+}
+
 export function normalizeReaderPageNumber(
   rawPage: string | string[] | undefined,
   totalPages: number,

@@ -141,42 +141,43 @@ button {
 .va-reader-index-item {
   display: block;
   border: 1px solid transparent;
-  border-radius: 1.25rem;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(247, 251, 255, 0.94) 100%
-  );
-  padding: 1rem;
-  box-shadow: 0 16px 34px -30px rgba(11, 35, 66, 0.18);
+  border-radius: 1rem;
+  background: transparent;
+  padding: 0.7rem 0.85rem;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
 .va-reader-index-item:hover {
-  transform: translateY(-1px);
-  border-color: rgba(196, 186, 174, 0.85);
-  background: rgba(255, 255, 255, 0.98);
+  transform: translateX(2px);
+  background: rgba(215, 231, 247, 0.35);
 }
 
 .va-reader-index-item-active {
-  border-color: rgba(122, 180, 227, 0.95);
-  background: white;
-  box-shadow: 0 22px 44px -34px rgba(11, 35, 66, 0.28);
+  background: rgba(215, 231, 247, 0.55);
+  border-color: rgba(122, 180, 227, 0.6);
 }
 
 .va-reader-shell {
   background:
-    radial-gradient(circle at top, rgba(122, 180, 227, 0.16), transparent 26%),
     radial-gradient(
-      circle at bottom left,
-      rgba(23, 82, 140, 0.3),
+      circle at top right,
+      rgba(122, 180, 227, 0.14),
       transparent 32%
     ),
-    linear-gradient(180deg, #071a33 0%, #081a30 48%, #06121f 100%);
+    radial-gradient(
+      circle at bottom left,
+      rgba(23, 82, 140, 0.26),
+      transparent 40%
+    ),
+    linear-gradient(180deg, #061427 0%, #081a30 52%, #050f1c 100%);
 }
 
 .va-reader-shell .va-reader-bar {
   border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(8, 25, 47, 0.72);
+  background: rgba(8, 25, 47, 0.62);
   box-shadow: 0 28px 80px -48px rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(22px);
 }
@@ -204,49 +205,229 @@ button {
   backdrop-filter: blur(16px);
 }
 
+/* Stage: transparent wrapper, slide is the only card */
 .va-reader-stage {
   position: relative;
   flex: 1;
   min-height: 0;
-  border-radius: 2.25rem;
-  padding: 1rem;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.02)
-  );
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
+/* Slide: unified cream paper surface, single card */
 .va-reader-slide {
   min-height: 0;
-  border-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.75rem;
   background:
-    radial-gradient(circle at top, rgba(122, 180, 227, 0.16), transparent 28%),
-    linear-gradient(180deg, #102947 0%, #0a1e35 100%);
-  box-shadow: 0 34px 100px -46px rgba(0, 0, 0, 0.78);
+    radial-gradient(
+      circle at 8% 0%,
+      rgba(215, 231, 247, 0.35),
+      transparent 36%
+    ),
+    linear-gradient(180deg, #fbf8f2 0%, #f4efe5 100%);
+  box-shadow:
+    0 40px 110px -48px rgba(0, 0, 0, 0.7),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 0 0 1px rgba(196, 186, 174, 0.35);
+  color: var(--va-ink);
+  overflow: hidden;
+}
+
+/* Decorative bookmark ribbon on the slide's left edge */
+.va-reader-slide::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--va-blue) 0%,
+    var(--va-blue-800) 100%
+  );
+  border-radius: 0 3px 3px 0;
+  opacity: 0.85;
 }
 
 .va-reader-slide-header {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0)
-  );
+  position: relative;
+  background: transparent;
+  border-bottom: 1px solid rgba(196, 186, 174, 0.45);
+  color: var(--va-ink);
+}
+
+.va-reader-slide-header .va-reader-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--va-blue-800);
+}
+
+.va-reader-slide-header .va-reader-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--va-blue);
+}
+
+.va-reader-slide-header h2 {
+  font-family: var(--font-source-serif), serif;
+  font-feature-settings: "liga", "dlig";
+}
+
+.va-reader-slide-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: transparent;
+}
+
+.va-reader-slide-progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--va-blue-300), var(--va-blue));
+  border-radius: 0 2px 2px 0;
+  transition: width 240ms ease;
 }
 
 .va-reader-slide-body {
   min-height: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(248, 244, 237, 0.98) 0%,
-    rgba(242, 239, 234, 0.98) 100%
-  );
+  background: transparent;
   color: var(--va-ink);
 }
 
+/* Reader typography — book rhythm */
 .va-reader-slide-body .reader-prose {
-  max-width: 42rem;
+  max-width: 40rem;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: var(--va-ink);
+  font-feature-settings: "liga", "onum", "kern";
+}
+
+.va-reader-slide-body .reader-prose > p {
+  margin: 0;
+  text-indent: 0;
+  hanging-punctuation: first last;
+  text-wrap: pretty;
+}
+
+.va-reader-slide-body .reader-prose > p + p {
+  margin-top: 1.2em;
+}
+
+/* Drop cap on the first paragraph of a slide */
+.va-reader-slide-body .reader-prose > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-weight: 700;
+  font-size: 4.2em;
+  line-height: 0.82;
+  padding: 0.08em 0.12em 0 0;
+  margin: 0.08em 0.12em 0 -0.04em;
+  color: var(--va-navy);
+  background: linear-gradient(
+    180deg,
+    var(--va-navy) 0%,
+    var(--va-blue-700) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Kill drop cap when block is not rich-text-first */
+.va-reader-slide-body .reader-prose.no-drop-cap > p:first-of-type::first-letter {
+  all: unset;
+}
+
+/* Refined hanging bullets */
+.va-reader-slide-body .reader-prose ul.reader-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.6em 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.va-reader-slide-body .reader-prose ul.reader-list > li {
+  position: relative;
+  padding-left: 1.9rem;
+  line-height: 1.75;
+}
+
+.va-reader-slide-body .reader-prose ul.reader-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.92em;
+  width: 1.1rem;
+  height: 1px;
+  background: var(--va-blue);
+}
+
+.va-reader-slide-body .reader-prose h2,
+.va-reader-slide-body .reader-prose h3,
+.va-reader-slide-body .reader-prose h4 {
+  font-family: var(--font-source-serif), serif;
+  color: var(--va-navy);
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+
+.va-reader-slide-body .reader-prose h2 {
+  font-size: 2.15rem;
+  margin: 2.1em 0 0.8em;
+  line-height: 1.15;
+}
+
+.va-reader-slide-body .reader-prose h3 {
+  font-size: 1.65rem;
+  margin: 1.9em 0 0.7em;
+  line-height: 1.2;
+}
+
+.va-reader-slide-body .reader-prose h4 {
+  font-size: 1.3rem;
+  margin: 1.7em 0 0.6em;
+}
+
+.va-reader-slide-body .reader-prose .reader-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(11, 35, 66, 0.35),
+    transparent
+  );
+  margin: 2.6em auto;
+  max-width: 12rem;
+  position: relative;
+}
+
+.va-reader-slide-body .reader-prose .reader-rule::after {
+  content: "§";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+  background: #f8f4ed;
+  padding: 0 0.6rem;
+  color: var(--va-blue);
+  font-family: var(--font-source-serif), serif;
+  font-size: 0.95rem;
 }
 
 .va-reader-nav {
@@ -278,11 +459,25 @@ button {
     overflow-y: auto;
     scrollbar-gutter: stable;
   }
+
+  .va-reader-slide-body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .va-reader-slide-body::-webkit-scrollbar-thumb {
+    background: rgba(11, 35, 66, 0.18);
+    border-radius: 999px;
+  }
 }
 
 @media (max-width: 1023px) {
-  .va-reader-stage {
-    padding: 0.75rem;
+  .va-reader-slide-body .reader-prose {
+    font-size: 1.06rem;
+    line-height: 1.8;
+  }
+
+  .va-reader-slide-body .reader-prose > p:first-of-type::first-letter {
+    font-size: 3.5em;
   }
 }
 

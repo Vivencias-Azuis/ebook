@@ -106,11 +106,10 @@ function renderRichText(markdown: string) {
     const items = listItems;
     listItems = [];
     elements.push(
-      <ul key={`list-${elements.length}`} className="my-6 space-y-3">
+      <ul key={`list-${elements.length}`} className="reader-list">
         {items.map((item, index) => (
-          <li key={`${item}-${index}`} className="flex gap-3 leading-8">
-            <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--va-blue)]" />
-            <span>{renderInlineText(item.replace(/^- /, ""))}</span>
+          <li key={`${item}-${index}`}>
+            {renderInlineText(item.replace(/^- /, ""))}
           </li>
         ))}
       </ul>,
@@ -123,7 +122,8 @@ function renderRichText(markdown: string) {
       elements.push(
         <div
           key={`divider-${elements.length}`}
-          className="my-10 h-px bg-gradient-to-r from-transparent via-[color:var(--va-line-strong)] to-transparent"
+          className="reader-rule"
+          aria-hidden
         />,
       );
       continue;
@@ -138,10 +138,7 @@ function renderRichText(markdown: string) {
 
     if (line.startsWith("### ")) {
       elements.push(
-        <h4
-          key={`h4-${elements.length}`}
-          className="pt-7 font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)]"
-        >
+        <h4 key={`h4-${elements.length}`}>
           {renderInlineText(line.replace(/^### /, ""))}
         </h4>,
       );
@@ -150,10 +147,7 @@ function renderRichText(markdown: string) {
 
     if (line.startsWith("## ")) {
       elements.push(
-        <h3
-          key={`h3-${elements.length}`}
-          className="pt-8 font-serif text-3xl font-semibold leading-tight text-[color:var(--va-navy)]"
-        >
+        <h3 key={`h3-${elements.length}`}>
           {renderInlineText(line.replace(/^## /, ""))}
         </h3>,
       );
@@ -162,10 +156,7 @@ function renderRichText(markdown: string) {
 
     if (line.startsWith("# ")) {
       elements.push(
-        <h2
-          key={`h2-${elements.length}`}
-          className="font-serif text-4xl font-semibold leading-tight text-[color:var(--va-navy)]"
-        >
+        <h2 key={`h2-${elements.length}`}>
           {renderInlineText(line.replace(/^# /, ""))}
         </h2>,
       );
@@ -173,19 +164,16 @@ function renderRichText(markdown: string) {
     }
 
     elements.push(
-      <p key={`p-${elements.length}`} className="leading-8">
-        {renderInlineText(line)}
-      </p>,
+      <p key={`p-${elements.length}`}>{renderInlineText(line)}</p>,
     );
   }
 
   flushList();
 
-  return (
-    <div className="reader-prose space-y-5 font-serif text-[1.08rem] text-[color:var(--va-ink)]">
-      {elements}
-    </div>
-  );
+  const firstIsParagraph = elements.length > 0 && lines[0]?.startsWith("- ") === false && !lines[0]?.startsWith("#") && lines[0] !== "---";
+  const dropCapClass = firstIsParagraph ? "" : "no-drop-cap";
+
+  return <div className={`reader-prose ${dropCapClass}`.trim()}>{elements}</div>;
 }
 
 function renderBlockContent(

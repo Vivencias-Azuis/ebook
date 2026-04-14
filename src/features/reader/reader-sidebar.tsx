@@ -63,7 +63,7 @@ export function ReaderSidebar({
   isPreviewMode,
   onOpenPaywall,
 }: ReaderSidebarProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const chapters = groupPagesByChapter(readerPages);
 
   return (
@@ -71,53 +71,61 @@ export function ReaderSidebar({
       id="reader-sidebar-root"
       className="va-reader-panel va-reader-panel-muted order-2 p-5 lg:order-1 lg:max-h-[calc(100vh-7rem)] lg:overflow-auto"
     >
-      <div className="mb-5 space-y-4">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--va-muted)]">
-            Sumário
-          </p>
+      <div className="space-y-4">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[0.68rem] font-bold uppercase tracking-[0.26em] text-[color:var(--va-blue)]">
+              Sumário
+            </p>
+            <h1 className="mt-2 font-serif text-xl font-semibold leading-tight text-[color:var(--va-navy)]">
+              {productTitle}
+            </h1>
+          </div>
           <button
             type="button"
             aria-expanded={isOpen}
             aria-controls="reader-sidebar-nav"
             onClick={() => setIsOpen((currentState) => !currentState)}
-            className="rounded-full border border-[color:var(--va-line)] bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[color:var(--va-blue-800)] shadow-[0_14px_26px_-22px_rgba(11,35,66,0.28)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+            className="shrink-0 rounded-full border border-[color:var(--va-line)] bg-white/80 px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[color:var(--va-blue-800)] hover:bg-[color:var(--va-blue-100)]"
           >
-            {isOpen ? "Ocultar sumário" : "Mostrar sumário"}
+            {isOpen ? "Ocultar" : "Abrir"}
           </button>
         </div>
 
-        <div className="min-w-0">
-          <h1 className="max-w-[12ch] font-serif text-2xl font-semibold leading-tight text-[color:var(--va-navy)] sm:max-w-none">
-            {productTitle}
-          </h1>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-white shadow-inner">
+        <div className="flex items-center gap-3">
+          <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-[color:var(--va-line)]">
             <div
               className="h-full rounded-full bg-[linear-gradient(90deg,var(--va-blue-300),var(--va-blue))]"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
+          <span className="font-serif text-xs font-semibold text-[color:var(--va-soft-ink)]">
+            {progressPercent}%
+          </span>
         </div>
       </div>
+
+      <div className="my-5 h-px bg-[color:var(--va-line)]" />
+
 
       {isOpen ? (
         <nav
           id="reader-sidebar-nav"
-          className="space-y-5"
+          className="space-y-6"
           aria-label="Páginas do curso"
         >
           {chapters.map((chapter) => (
             <section key={chapter.chapterId} className="space-y-2">
-              <header>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                  Capítulo {chapter.chapterSortOrder}
+              <header className="mb-2">
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[color:var(--va-blue)]">
+                  {String(chapter.chapterSortOrder).padStart(2, "0")} · Capítulo
                 </p>
-                <h2 className="mt-1 font-serif text-lg font-semibold text-[color:var(--va-navy)]">
+                <h2 className="mt-1 font-serif text-base font-semibold leading-snug text-[color:var(--va-navy)]">
                   {chapter.chapterTitle}
                 </h2>
               </header>
 
-              <div className="space-y-2">
+              <div className="space-y-0.5">
                 {chapter.pages.map((readerPage) => {
                   const isActive = readerPage.pageNumber === currentPageNumber;
                   const isAccessible = accessiblePageNumbers.has(
@@ -141,19 +149,15 @@ export function ReaderSidebar({
                         data-paywall-trigger="locked-page"
                         forceVisible={isPreviewMode && Boolean(onOpenPaywall)}
                         onClick={onOpenPaywall}
-                        className="va-reader-index-item w-full cursor-pointer border-dashed bg-[color:var(--va-paper)]/75 text-left opacity-70"
+                        className="va-reader-index-item flex w-full cursor-pointer items-center gap-3 text-left opacity-70"
                       >
-                        <span className="flex flex-col items-start gap-2">
-                          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                            Conteúdo premium
-                          </span>
-                          {isPreviewMode ? (
-                            <span className="rounded-full bg-white px-2.5 py-1 text-[0.7rem] font-bold text-[color:var(--va-blue-800)]">
-                              🔒 Desbloqueie para continuar
-                            </span>
-                          ) : null}
+                        <span
+                          className="font-serif text-xs text-[color:var(--va-muted)]"
+                          aria-hidden
+                        >
+                          🔒
                         </span>
-                        <span className="mt-1 block font-semibold text-[color:var(--va-navy)]">
+                        <span className="flex-1 truncate font-serif text-sm text-[color:var(--va-soft-ink)]">
                           {readerPage.block?.title ?? chapter.chapterTitle}
                         </span>
                       </ReaderPaywallTrigger>
@@ -165,23 +169,36 @@ export function ReaderSidebar({
                       key={`${readerPage.chapterId}-${readerPage.pageNumber}`}
                       href={readerPageHref(productSlug, readerPage.pageNumber)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`va-reader-index-item group text-sm leading-6 ${
+                      className={`va-reader-index-item flex items-center gap-3 text-sm ${
                         isActive ? "va-reader-index-item-active" : ""
                       }`}
                     >
-                      <span className="flex flex-col items-start gap-2">
-                        <span className="text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
-                          {pageLabel}
+                      <span
+                        className={`font-serif text-xs tabular-nums ${
+                          isActive
+                            ? "text-[color:var(--va-blue-800)]"
+                            : "text-[color:var(--va-muted)]"
+                        }`}
+                      >
+                        {String(readerPage.pageNumber).padStart(2, "0")}
+                      </span>
+                      <span
+                        className={`flex-1 truncate font-serif ${
+                          isActive
+                            ? "font-semibold text-[color:var(--va-navy)]"
+                            : "text-[color:var(--va-soft-ink)]"
+                        }`}
+                      >
+                        {readerPage.block?.title ?? pageLabel}
+                      </span>
+                      {isCompleted ? (
+                        <span
+                          className="text-xs text-[color:var(--va-blue)]"
+                          aria-label="Lido"
+                        >
+                          ✓
                         </span>
-                        {isCompleted ? (
-                          <span className="rounded-full bg-[color:var(--va-blue-100)] px-2.5 py-1 text-[0.7rem] font-bold text-[color:var(--va-blue-800)]">
-                            Lido
-                          </span>
-                        ) : null}
-                      </span>
-                      <span className="mt-1 block font-semibold text-[color:var(--va-navy)]">
-                        {readerPage.block?.title ?? chapter.chapterTitle}
-                      </span>
+                      ) : null}
                     </Link>
                   );
                 })}
