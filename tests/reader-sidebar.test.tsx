@@ -104,14 +104,19 @@ describe("ReaderSidebar", () => {
       );
     });
 
+    const toggle = container.querySelector("button");
+
+    await act(async () => {
+      toggle?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
     expect(container.textContent).toContain("Guia Pratico");
     expect(container.textContent).toContain("Comeco");
     expect(container.textContent).toContain("Rede de apoio");
-    expect(container.textContent).toContain("Parte 1 de 2");
-    expect(container.textContent).toContain("Parte 2 de 2");
     expect(container.textContent).toContain("Boas-vindas");
     expect(container.textContent).toContain("Checklist inicial");
-    expect(container.textContent).toContain("Lido");
+    expect(container.textContent).toContain("Quem acionar");
+    expect(container.innerHTML).toContain('aria-label="Lido"');
     expect(container.innerHTML).toContain("page=2");
     expect(container.innerHTML).toContain('aria-current="page"');
 
@@ -142,12 +147,10 @@ describe("ReaderSidebar", () => {
       );
     });
 
-    expect(container.innerHTML).toContain("mb-5 space-y-4");
-    expect(container.innerHTML).toContain(
-      "flex items-center justify-between gap-3",
-    );
-    expect(container.innerHTML).toContain("flex flex-col items-start gap-2");
-    expect(container.textContent).toContain("Lido");
+    expect(container.innerHTML).toContain('<div class="space-y-4">');
+    expect(container.innerHTML).toContain("flex items-start justify-between gap-3");
+    expect(container.innerHTML).toContain("shrink-0 rounded-full border");
+    expect(container.innerHTML).toContain("flex items-center gap-3");
 
     await act(async () => {
       root.unmount();
@@ -177,15 +180,15 @@ describe("ReaderSidebar", () => {
     });
 
     const toggle = container.querySelector("button");
-    expect(toggle?.textContent).toContain("Ocultar");
-    expect(container.textContent).toContain("Boas-vindas");
+    expect(toggle?.textContent).toContain("Abrir");
+    expect(container.textContent).not.toContain("Boas-vindas");
 
     await act(async () => {
       toggle?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(container.textContent).toContain("Mostrar sumário");
-    expect(container.textContent).not.toContain("Boas-vindas");
+    expect(container.textContent).toContain("Ocultar");
+    expect(container.textContent).toContain("Boas-vindas");
 
     await act(async () => {
       root.unmount();
@@ -229,7 +232,13 @@ describe("ReaderSidebar", () => {
       );
     });
 
-    expect(container.textContent).toContain("Lido");
+    await act(async () => {
+      container
+        .querySelector("button")
+        ?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.innerHTML).toContain('aria-label="Lido"');
 
     await act(async () => {
       root.unmount();
@@ -257,8 +266,13 @@ describe("ReaderSidebar", () => {
       );
     });
 
-    expect(container.textContent).toContain("Conteúdo premium");
-    expect(container.textContent).toContain("Desbloqueie para continuar");
+    await act(async () => {
+      container
+        .querySelector("button")
+        ?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(container.textContent).toContain("Quem acionar");
     expect(container.textContent).toContain("🔒");
     expect(container.innerHTML).not.toContain("page=4");
     expect(
@@ -290,6 +304,12 @@ describe("ReaderSidebar", () => {
           onOpenPaywall={onOpenPaywall}
         />,
       );
+    });
+
+    await act(async () => {
+      container
+        .querySelector("button")
+        ?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
     const lockedPageTrigger = container.querySelector(

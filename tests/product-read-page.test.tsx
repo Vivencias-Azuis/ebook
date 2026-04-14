@@ -179,11 +179,12 @@ describe("ProductReadPage", () => {
     expect(markup).toContain("va-reader-slide");
     expect(markup).toContain("va-reader-bar");
     expect(markup).toContain("va-reader-panel");
-    expect(markup).toContain("Ocultar sumário");
+    expect(markup).toContain(">Abrir<");
     expect(markup).toContain("reader-sidebar-root");
-    expect(markup).toContain('aria-expanded="true"');
+    expect(markup).toContain('aria-expanded="false"');
     expect(markup).toContain("Etapa 1 de 2");
-    expect(markup).toContain("24% concluído");
+    expect(markup).toContain("24%");
+    expect(markup).toContain("Você já começou");
     expect(markup).toContain("Continuar");
     expect(markup).toContain("Boas-vindas");
   });
@@ -521,9 +522,8 @@ describe("ProductReadPage", () => {
     expect(markup).toContain("Desbloqueie o restante do curso");
     expect(markup).toContain('name="productId"');
     expect(markup).toContain('value="prod-1"');
-    expect(markup).toContain("Comprar curso");
+    expect(markup).toContain(">Comprar<");
     expect(markup).toContain('data-paywall-trigger="header"');
-    expect(markup).toContain("Conteúdo premium");
     expect(markup).toContain("Etapa 2 de 2");
     expect(markup).not.toContain("Etapa 3 de 3");
     expect(markup).not.toContain("Conteudo premium");
