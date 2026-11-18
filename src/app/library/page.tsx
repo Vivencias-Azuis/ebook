@@ -38,23 +38,17 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
   return (
     <main className="va-page min-h-screen text-[color:var(--va-ink)]">
       <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 lg:px-10">
-        {/* Nav */}
-        <div className="va-reader-bar mb-8 flex items-center justify-between px-5 py-3">
-          <Link
-            href="/"
-            className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
-          >
+        <div className="mb-8 flex items-center justify-between">
+          <Link href="/" className="va-wordmark">
+            <span className="va-wordmark-ribbon" aria-hidden="true" />
             Vivências Azuis
           </Link>
-          <SignOutButton className="text-sm font-medium text-[color:var(--va-soft-ink)] hover:text-[color:var(--va-ink)]" />
+          <SignOutButton className="va-nav-link" />
         </div>
 
-        {/* Hero */}
         <header className="mb-10 max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
-            Biblioteca
-          </p>
-          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-[color:var(--va-navy)] sm:text-5xl">
+          <p className="va-kicker">Biblioteca</p>
+          <h1 className="mt-3 font-serif text-4xl font-medium leading-tight text-[color:var(--va-ink)] sm:text-5xl">
             Seus guias
           </h1>
           <p className="mt-4 text-base leading-7 text-[color:var(--va-soft-ink)]">
@@ -105,14 +99,12 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                     </div>
                   ) : null}
                   <div className="flex-1 space-y-3">
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
-                      Guia digital
-                    </p>
-                    <h2 className="font-serif text-2xl font-bold leading-tight text-[color:var(--va-navy)]">
+                    <p className="va-kicker">Guia digital</p>
+                    <h2 className="font-serif text-2xl font-medium leading-tight text-[color:var(--va-ink)]">
                       {product.title}
                     </h2>
                     {product.subtitle ? (
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--va-muted)]">
+                      <p className="text-sm leading-6 text-[color:var(--va-muted)]">
                         {product.subtitle}
                       </p>
                     ) : null}
@@ -120,10 +112,10 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                       {product.description}
                     </p>
                     <span
-                      className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] ${
+                      className={`inline-flex text-xs font-medium ${
                         product.hasAccess
-                          ? "bg-[color:var(--va-blue-100)] text-[color:var(--va-blue-800)]"
-                          : "bg-[color:var(--va-paper)] text-[color:var(--va-muted)]"
+                          ? "text-[color:var(--va-navy)]"
+                          : "text-[color:var(--va-muted)]"
                       }`}
                     >
                       {statusLabel}
@@ -132,9 +124,9 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
 
                   {/* Barra de progresso */}
                   <div className="mt-6">
-                    <div className="h-2 overflow-hidden rounded-full bg-[color:var(--va-paper)] shadow-inner">
+                    <div className="h-1 overflow-hidden rounded-sm bg-[color:var(--va-line)]">
                       <div
-                        className="h-full rounded-full bg-[linear-gradient(90deg,var(--va-blue-300),var(--va-blue))]"
+                        className="h-full bg-[color:var(--va-navy)]"
                         style={{ width: `${progress.percent}%` }}
                       />
                     </div>
@@ -146,10 +138,10 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
 
                   <div className="mt-6 flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
+                      <p className="text-xs text-[color:var(--va-muted)]">
                         Preço original
                       </p>
-                      <p className="mt-1 text-xl font-bold text-[color:var(--va-ink)]">
+                      <p className="va-price mt-1 text-xl text-[color:var(--va-ink)]">
                         {formatMoney(
                           product.priceCents,
                           product.currency.toUpperCase(),
@@ -158,7 +150,7 @@ export default async function LibraryPage({ searchParams }: LibraryPageProps) {
                     </div>
                     <Link
                       href={`/products/${product.slug}/read${progress.continueReadingChapterId ? `#${progress.continueReadingChapterId}` : ""}`}
-                      className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--va-blue-700),var(--va-navy))] px-5 py-2.5 text-sm font-bold text-white shadow-[0_14px_34px_-22px_rgba(11,35,66,0.52)] hover:-translate-y-0.5"
+                      className="va-button-primary"
                     >
                       {callToActionLabel}
                     </Link>

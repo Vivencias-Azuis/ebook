@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f2efea;
-  --foreground: #2a2520;
-  --va-paper: #f2efea;
-  --va-surface: #ffffff;
-  --va-line: #ded7d0;
-  --va-line-strong: #c4baae;
-  --va-ink: #2a2520;
-  --va-soft-ink: #6b6155;
-  --va-muted: #8a7e70;
+  --background: #f4efe6;
+  --foreground: #241f1a;
+  --va-paper: #f4efe6;
+  --va-surface: #fbf8f2;
+  --va-line: rgba(36, 31, 26, 0.1);
+  --va-line-strong: rgba(36, 31, 26, 0.18);
+  --va-ink: #241f1a;
+  --va-soft-ink: #5e554a;
+  --va-muted: #7b7266;
   --va-navy: #0b2342;
-  --va-blue: #1e6db0;
-  --va-blue-800: #123a66;
-  --va-blue-700: #17528c;
+  --va-blue: #123a66;
+  --va-blue-800: #0b2342;
+  --va-blue-700: #123a66;
   --va-blue-300: #7ab4e3;
   --va-blue-100: #d7e7f7;
+  --va-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -34,80 +35,358 @@ body {
 a,
 button {
   transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    background-color 160ms var(--va-ease),
+    color 160ms var(--va-ease),
+    border-color 160ms var(--va-ease),
+    transform 160ms var(--va-ease),
+    opacity 160ms var(--va-ease);
 }
 
 .va-page {
-  background:
-    radial-gradient(circle at top, rgba(30, 109, 176, 0.08), transparent 34%),
-    linear-gradient(180deg, #f8f5f0 0%, #f2efea 100%);
+  background: var(--va-paper);
+}
+
+.va-shell {
+  width: 100%;
+  max-width: 1120px;
+  min-width: 0;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 1024px) {
+  .va-shell {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.va-site-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--va-line);
+  background: var(--va-paper);
+}
+
+.va-site-header-inner,
+.va-site-footer-inner {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .va-site-header-inner,
+  .va-site-footer-inner {
+    padding: 0 32px;
+  }
+}
+
+.va-site-footer {
+  border-top: 1px solid var(--va-line);
+  padding: 32px 0;
+}
+
+.va-site-footer-inner {
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+
+.va-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--va-muted);
+}
+
+.va-footer-nav a:hover {
+  color: var(--va-ink);
+}
+
+.va-footer-copy {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--va-muted);
+}
+
+.va-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-source-serif), serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--va-ink);
+}
+
+.va-wordmark-ribbon {
+  display: block;
+  width: 3px;
+  height: 18px;
+  background: var(--va-navy);
+  border-radius: 1px;
+}
+
+.va-wordmark-on-dark {
+  color: #fbf8f2;
+}
+
+.va-wordmark-on-dark .va-wordmark-ribbon {
+  background: #f4efe6;
+}
+
+.va-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--va-soft-ink);
+}
+
+.va-nav-link:hover {
+  color: var(--va-ink);
+}
+
+.va-kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--va-muted);
+}
+
+.va-kicker-num {
+  font-variant-numeric: tabular-nums;
+  color: var(--va-navy);
+}
+
+.va-book {
+  position: relative;
+  width: min(100%, 320px);
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.va-book-hero {
+  width: min(100%, 400px);
+}
+
+.va-book-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px 8px 8px 2px;
+  box-shadow:
+    8px 18px 40px -16px rgba(11, 35, 66, 0.42),
+    0 2px 6px rgba(11, 35, 66, 0.16);
+}
+
+.va-book-ribbon {
+  position: absolute;
+  top: -10px;
+  right: 24px;
+  z-index: 1;
+  width: 8px;
+  height: 56px;
+  background: #f4efe6;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    50% 100%,
+    0 calc(100% - 10px)
+  );
+  box-shadow: 0 2px 6px rgba(11, 35, 66, 0.22);
 }
 
 .va-panel {
   border: 1px solid var(--va-line);
-  border-radius: 1.75rem;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 1.75rem;
-  box-shadow: 0 24px 70px -48px rgba(11, 35, 66, 0.32);
+  border-radius: 16px;
+  background: var(--va-surface);
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(36, 31, 26, 0.05);
 }
 
 .va-panel-dark {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.75rem;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(122, 180, 227, 0.14),
-      transparent 35%
-    ),
-    linear-gradient(180deg, var(--va-blue-800) 0%, var(--va-navy) 100%);
-  padding: 1.75rem;
-  box-shadow: 0 28px 90px -48px rgba(11, 35, 66, 0.58);
+  border: 1px solid rgba(251, 248, 242, 0.08);
+  border-radius: 16px;
+  background: var(--va-navy);
+  padding: 24px;
+  box-shadow: none;
 }
 
 .va-list-card {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   align-items: flex-start;
-  border: 1px solid var(--va-line);
-  border-radius: 1.35rem;
-  background: rgba(255, 255, 255, 0.86);
-  padding: 1.15rem 1.2rem;
-  box-shadow: 0 16px 40px -34px rgba(11, 35, 66, 0.24);
+  border: 0;
+  border-bottom: 1px solid var(--va-line);
+  border-radius: 0;
+  background: transparent;
+  padding: 16px 0;
+  box-shadow: none;
+}
+
+.va-list-card:last-child {
+  border-bottom: 0;
 }
 
 .va-chip {
-  border-radius: 999px;
-  padding: 0.6rem 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(12px);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--va-soft-ink);
 }
 
 .va-chip-on-dark {
-  background: rgba(255, 255, 255, 0.12);
+  color: rgba(251, 248, 242, 0.72);
 }
 
 .va-button-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: white;
-  border: 1px solid rgba(215, 231, 247, 0.32);
-  padding: 0.95rem 1.6rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--va-blue-700);
-  box-shadow: 0 18px 40px -24px rgba(11, 35, 66, 0.52);
+  min-height: 48px;
+  border-radius: 8px;
+  background: var(--va-navy);
+  border: 1px solid var(--va-navy);
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: #fbf8f2;
+  box-shadow: none;
 }
 
 .va-button-primary:hover {
-  transform: translateY(-1px);
-  background: var(--va-blue-100);
+  background: #163456;
+  border-color: #163456;
+}
+
+.va-button-primary:active {
+  transform: scale(0.98);
+}
+
+.va-button-primary:focus-visible {
+  outline: 2px solid var(--va-navy);
+  outline-offset: 3px;
+}
+
+.va-button-on-dark {
+  background: #fbf8f2;
+  border-color: #fbf8f2;
+  color: var(--va-navy);
+}
+
+.va-button-on-dark:hover {
+  background: #efe9df;
+  border-color: #efe9df;
+}
+
+.va-button-on-dark:focus-visible {
+  outline-color: #fbf8f2;
+}
+
+.va-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--va-line-strong);
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--va-navy);
+}
+
+.va-button-secondary:hover {
+  background: var(--va-surface);
+}
+
+.va-price {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.va-offer {
+  background: var(--va-navy);
+  color: #fbf8f2;
+}
+
+.va-offer .va-kicker {
+  color: rgba(251, 248, 242, 0.64);
+}
+
+.va-offer .va-kicker-num {
+  color: #fbf8f2;
+}
+
+.va-auth {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .va-auth {
+    flex-direction: row;
+  }
+}
+
+.va-auth-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  background: var(--va-navy);
+  color: #fbf8f2;
+  padding: 32px 40px;
+}
+
+@media (min-width: 1024px) {
+  .va-auth-stage {
+    width: 48%;
+    padding: 48px 56px;
+  }
+}
+
+.va-auth-form-col {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background: var(--va-paper);
+  padding: 48px 32px;
+}
+
+.va-auth-stage .va-book {
+  width: 128px;
+}
+
+@media (min-width: 1024px) {
+  .va-auth-stage .va-book {
+    width: 176px;
+  }
 }
 
 .va-reader-page {
