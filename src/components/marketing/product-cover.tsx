@@ -11,12 +11,18 @@ export function ProductCover({
   slug: string;
   title: string;
   priority?: boolean;
-  size?: "hero" | "shelf";
+  size?: "hero" | "shelf" | "thumb";
 }) {
   const src = getProductCoverUrl(slug) ?? "/images/guia-pratico-cover.png";
+  const sizeClass =
+    size === "hero"
+      ? "va-book va-book-hero"
+      : size === "thumb"
+        ? "va-book va-book-thumb"
+        : "va-book";
 
   return (
-    <figure className={size === "hero" ? "va-book va-book-hero" : "va-book"}>
+    <figure className={sizeClass}>
       <span className="va-book-ribbon" aria-hidden="true" />
       <Image
         src={src}

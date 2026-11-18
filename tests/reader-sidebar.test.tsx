@@ -151,7 +151,8 @@ describe("ReaderSidebar", () => {
     expect(container.innerHTML).toContain(
       "flex items-start justify-between gap-3",
     );
-    expect(container.innerHTML).toContain("shrink-0 rounded-full border");
+    expect(container.innerHTML).toContain("va-reader-sidebar-toggle");
+    expect(container.innerHTML).toContain("shrink-0");
     expect(container.innerHTML).toContain("flex items-center gap-3");
 
     await act(async () => {
@@ -275,7 +276,8 @@ describe("ReaderSidebar", () => {
     });
 
     expect(container.textContent).toContain("Quem acionar");
-    expect(container.textContent).toContain("🔒");
+    expect(container.innerHTML).toContain('aria-label="Bloqueado"');
+    expect(container.textContent).not.toContain("🔒");
     expect(container.innerHTML).not.toContain("page=4");
     expect(
       container.querySelector('[data-paywall-trigger="locked-page"]'),

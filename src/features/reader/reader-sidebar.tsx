@@ -74,10 +74,8 @@ export function ReaderSidebar({
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.26em] text-[color:var(--va-blue)]">
-              Sumário
-            </p>
-            <h1 className="mt-2 font-serif text-xl font-semibold leading-tight text-[color:var(--va-navy)]">
+            <p className="va-kicker">Sumário</p>
+            <h1 className="mt-2 font-serif text-xl font-medium leading-tight text-[color:var(--va-ink)]">
               {productTitle}
             </h1>
           </div>
@@ -86,20 +84,20 @@ export function ReaderSidebar({
             aria-expanded={isOpen}
             aria-controls="reader-sidebar-nav"
             onClick={() => setIsOpen((currentState) => !currentState)}
-            className="shrink-0 rounded-full border border-[color:var(--va-line)] bg-white/80 px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[color:var(--va-blue-800)] hover:bg-[color:var(--va-blue-100)]"
+            className="va-reader-sidebar-toggle shrink-0"
           >
             {isOpen ? "Ocultar" : "Abrir"}
           </button>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-[color:var(--va-line)]">
+          <div className="h-0.5 flex-1 overflow-hidden bg-[color:var(--va-line)]">
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,var(--va-blue-300),var(--va-blue))]"
+              className="h-full bg-[color:var(--va-navy)]"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
-          <span className="font-serif text-xs font-semibold text-[color:var(--va-soft-ink)]">
+          <span className="text-xs tabular-nums text-[color:var(--va-muted)]">
             {progressPercent}%
           </span>
         </div>
@@ -111,15 +109,18 @@ export function ReaderSidebar({
         <nav
           id="reader-sidebar-nav"
           className="space-y-6"
-          aria-label="Páginas do curso"
+          aria-label="Páginas do guia"
         >
           {chapters.map((chapter) => (
             <section key={chapter.chapterId} className="space-y-2">
               <header className="mb-2">
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[color:var(--va-blue)]">
-                  {String(chapter.chapterSortOrder).padStart(2, "0")} · Capítulo
+                <p className="va-kicker">
+                  <span className="va-kicker-num">
+                    {String(chapter.chapterSortOrder).padStart(2, "0")}
+                  </span>
+                  Capítulo
                 </p>
-                <h2 className="mt-1 font-serif text-base font-semibold leading-snug text-[color:var(--va-navy)]">
+                <h2 className="mt-1 font-serif text-base font-medium leading-snug text-[color:var(--va-ink)]">
                   {chapter.chapterTitle}
                 </h2>
               </header>
@@ -150,13 +151,31 @@ export function ReaderSidebar({
                         onClick={onOpenPaywall}
                         className="va-reader-index-item flex w-full cursor-pointer items-center gap-3 text-left opacity-70"
                       >
-                        <span
-                          className="font-serif text-xs text-[color:var(--va-muted)]"
-                          aria-hidden
-                        >
-                          🔒
+                        <span className="va-reader-lock" aria-label="Bloqueado">
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            aria-hidden
+                          >
+                            <rect
+                              x="3.25"
+                              y="7.25"
+                              width="9.5"
+                              height="6.5"
+                              rx="1"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                            />
+                            <path
+                              d="M5.25 7.25V5.5a2.75 2.75 0 0 1 5.5 0v1.75"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                            />
+                          </svg>
                         </span>
-                        <span className="flex-1 truncate font-serif text-sm text-[color:var(--va-soft-ink)]">
+                        <span className="flex-1 truncate text-sm text-[color:var(--va-soft-ink)]">
                           {readerPage.block?.title ?? chapter.chapterTitle}
                         </span>
                       </ReaderPaywallTrigger>
@@ -182,9 +201,9 @@ export function ReaderSidebar({
                         {String(readerPage.pageNumber).padStart(2, "0")}
                       </span>
                       <span
-                        className={`flex-1 truncate font-serif ${
+                        className={`flex-1 truncate ${
                           isActive
-                            ? "font-semibold text-[color:var(--va-navy)]"
+                            ? "font-medium text-[color:var(--va-ink)]"
                             : "text-[color:var(--va-soft-ink)]"
                         }`}
                       >
