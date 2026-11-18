@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SiteFooter, SiteHeader } from "@/components/marketing/site-chrome";
+
 export const metadata: Metadata = {
   title: "Política de Reembolso",
   description:
@@ -10,15 +12,10 @@ export const metadata: Metadata = {
 export default function ReembolsoPage() {
   return (
     <main className="va-page min-h-screen text-[color:var(--va-ink)]">
+      <SiteHeader />
       <div className="mx-auto max-w-3xl px-6 py-16 lg:px-8">
         <header className="mb-12">
-          <Link
-            href="/"
-            className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
-          >
-            Vivências Azuis
-          </Link>
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-tight text-[color:var(--va-navy)]">
+          <h1 className="font-serif text-4xl font-medium leading-tight text-[color:var(--va-ink)]">
             Política de Reembolso
           </h1>
           <p className="mt-4 text-sm text-[color:var(--va-muted)]">
@@ -28,7 +25,7 @@ export default function ReembolsoPage() {
 
         <div className="space-y-10 text-base leading-8 text-[color:var(--va-soft-ink)]">
           <section className="rounded-[1.5rem] border border-[color:var(--va-line)] bg-white p-7">
-            <p className="text-lg font-semibold text-[color:var(--va-ink)]">
+            <p className="text-lg font-medium text-[color:var(--va-ink)]">
               Resumo simples
             </p>
             <p className="mt-3">
@@ -39,7 +36,7 @@ export default function ReembolsoPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-bold text-[color:var(--va-ink)]">
+            <h2 className="mb-3 text-xl font-medium text-[color:var(--va-ink)]">
               Prazo para solicitação
             </h2>
             <p>
@@ -52,7 +49,7 @@ export default function ReembolsoPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-bold text-[color:var(--va-ink)]">
+            <h2 className="mb-3 text-xl font-medium text-[color:var(--va-ink)]">
               Como solicitar
             </h2>
             <p>
@@ -69,7 +66,7 @@ export default function ReembolsoPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-bold text-[color:var(--va-ink)]">
+            <h2 className="mb-3 text-xl font-medium text-[color:var(--va-ink)]">
               O que acontece com o acesso
             </h2>
             <p>
@@ -79,7 +76,7 @@ export default function ReembolsoPage() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-bold text-[color:var(--va-ink)]">
+            <h2 className="mb-3 text-xl font-medium text-[color:var(--va-ink)]">
               Dúvidas
             </h2>
             <p>
@@ -90,21 +87,20 @@ export default function ReembolsoPage() {
           </section>
         </div>
 
-        <footer className="mt-16 border-t border-[color:var(--va-line)] pt-8 text-sm text-[color:var(--va-muted)]">
-          <p>
-            <Link
-              href="/privacidade"
-              className="text-[color:var(--va-blue)] underline"
-            >
-              Política de privacidade
-            </Link>{" "}
-            ·{" "}
-            <Link href="/" className="text-[color:var(--va-blue)] underline">
-              Voltar ao início
-            </Link>
-          </p>
-        </footer>
+        <p className="mt-16 border-t border-[color:var(--va-line)] pt-8 text-sm text-[color:var(--va-muted)]">
+          <Link
+            href="/privacidade"
+            className="text-[color:var(--va-navy)] underline"
+          >
+            Política de privacidade
+          </Link>{" "}
+          ·{" "}
+          <Link href="/" className="text-[color:var(--va-navy)] underline">
+            Voltar ao início
+          </Link>
+        </p>
       </div>
+      <SiteFooter />
     </main>
   );
 }

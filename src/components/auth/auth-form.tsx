@@ -107,13 +107,13 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
       {isRegister ? (
         <div className="space-y-1.5">
           <label
-            className="block text-sm font-semibold text-[color:var(--va-ink)]"
+            className="block text-sm font-medium text-[color:var(--va-ink)]"
             htmlFor="name"
           >
             Nome
           </label>
           <input
-            className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
+            className="w-full rounded-[8px] border border-[color:var(--va-line)] bg-[color:var(--va-surface)] px-4 py-3 text-[color:var(--va-ink)] outline-none transition-[border-color,box-shadow] focus:border-[color:var(--va-navy)] focus:ring-2 focus:ring-[color:var(--va-navy)]/15"
             id="name"
             name="name"
             autoComplete="name"
@@ -132,7 +132,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
           Email
         </label>
         <input
-          className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
+          className="w-full rounded-[8px] border border-[color:var(--va-line)] bg-[color:var(--va-surface)] px-4 py-3 text-[color:var(--va-ink)] outline-none transition-[border-color,box-shadow] focus:border-[color:var(--va-navy)] focus:ring-2 focus:ring-[color:var(--va-navy)]/15"
           id="email"
           name="email"
           type="email"
@@ -152,7 +152,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
         </label>
         <div className="relative">
           <input
-            className="w-full rounded-[0.75rem] border border-[color:var(--va-line)] bg-white px-4 py-3 pr-12 text-[color:var(--va-ink)] shadow-[0_2px_6px_-4px_rgba(11,35,66,0.12)] outline-none transition focus:border-[color:var(--va-blue-300)] focus:ring-2 focus:ring-[color:var(--va-blue-100)]"
+            className="w-full rounded-[8px] border border-[color:var(--va-line)] bg-[color:var(--va-surface)] px-4 py-3 pr-12 text-[color:var(--va-ink)] outline-none transition-[border-color,box-shadow] focus:border-[color:var(--va-navy)] focus:ring-2 focus:ring-[color:var(--va-navy)]/15"
             id="password"
             name="password"
             type={isPasswordVisible ? "text" : "password"}
@@ -163,7 +163,7 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
             onChange={(event) => setPassword(event.target.value)}
           />
           <button
-            className="absolute inset-y-0 right-0 inline-flex w-12 items-center justify-center text-[color:var(--va-blue-700)] transition hover:text-[color:var(--va-navy)] focus:outline-none focus:ring-2 focus:ring-[color:var(--va-blue-100)] focus:ring-offset-2"
+            className="absolute inset-y-0 right-0 inline-flex w-12 items-center justify-center text-[color:var(--va-muted)] hover:text-[color:var(--va-ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--va-navy)]/20"
             type="button"
             aria-label={isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
             aria-pressed={isPasswordVisible}
@@ -191,13 +191,13 @@ export function AuthForm({ mode, nextPath }: AuthFormProps) {
       </div>
 
       {error ? (
-        <p className="rounded-[0.75rem] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p className="rounded-[8px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </p>
       ) : null}
 
       <button
-        className="inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--va-blue-700),var(--va-navy))] px-4 py-3 text-sm font-bold text-white shadow-[0_14px_34px_-22px_rgba(11,35,66,0.52)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+        className="va-button-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
         type="submit"
         disabled={isPending}
       >

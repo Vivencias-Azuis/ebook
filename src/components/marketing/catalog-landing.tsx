@@ -1,8 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { formatMoney } from "@/lib/format";
-import { getProductCoverUrl } from "@/lib/product-assets";
+import { ProductCover } from "@/components/marketing/product-cover";
+import {
+  Kicker,
+  SiteFooter,
+  SiteHeader,
+} from "@/components/marketing/site-chrome";
 
 type Product = {
   id: string;
@@ -15,13 +19,13 @@ type Product = {
 };
 
 export function CatalogLanding({
+  featuredProduct,
   products,
 }: {
   featuredProduct: Product | null;
   products: Product[];
 }) {
-  const courseHref = (slug: string) =>
-    `/login?next=${encodeURIComponent(`/products/${slug}/read`)}`;
+  const featured = featuredProduct ?? products[0] ?? null;
   const decisionPoints = [
     {
       title: "Organize o que vem primeiro",
@@ -42,64 +46,61 @@ export function CatalogLanding({
 
   return (
     <main className="va-page text-[color:var(--va-ink)]">
-      <header className="px-4 pt-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-[color:var(--va-line)] bg-white/80 px-5 py-3 backdrop-blur sm:px-6">
-          <Link
-            href="/"
-            className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--va-blue)]"
-          >
-            Vivências Azuis
-          </Link>
-          <Link
-            href="/login"
-            className="text-sm font-medium text-[color:var(--va-soft-ink)] transition-colors hover:text-[color:var(--va-blue)]"
-          >
-            Entrar
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <section className="px-4 pt-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl rounded-[2rem] bg-[linear-gradient(135deg,var(--va-blue-800)_0%,var(--va-blue)_52%,var(--va-navy)_100%)] px-8 py-12 text-white shadow-[0_30px_90px_-40px_rgba(11,35,66,0.45)] sm:px-10 lg:px-12 lg:py-14">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[color:var(--va-blue-100)]">
-              Vivências Azuis
-            </p>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-[4.3rem]">
-              Cursos para orientar a jornada com clareza, acolhimento e próximos
-              passos possíveis
-            </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/84 sm:text-xl">
-              A Vivências Azuis reúne cursos e guias digitais para famílias que
-              precisam entender o que fazer primeiro e como avançar com mais
-              segurança no dia a dia.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-semibold text-white/88">
-              <span className="va-chip va-chip-on-dark">Acesso imediato</span>
-              <span className="va-chip va-chip-on-dark">Linguagem simples</span>
-              <span className="va-chip va-chip-on-dark">
-                Aplicável na rotina
-              </span>
+      <section className="va-shell grid min-w-0 items-center gap-10 py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-16 lg:min-h-[calc(100svh-64px)]">
+        <div className="min-w-0">
+          <Kicker index="01">O guia</Kicker>
+          <h1 className="mt-5 max-w-xl text-pretty font-serif text-[32px] font-medium leading-[1.12] text-[color:var(--va-ink)] sm:text-[48px] sm:leading-[1.08] sm:tracking-[-0.02em]">
+            Guias para orientar a jornada com clareza, acolhimento e próximos
+            passos possíveis
+          </h1>
+          <p className="mt-6 max-w-xl text-[18px] leading-8 text-[color:var(--va-soft-ink)]">
+            A Vivências Azuis reúne guias digitais para famílias que precisam
+            entender o que fazer primeiro e como avançar com mais segurança no
+            dia a dia.
+          </p>
+          <p className="mt-5 text-sm leading-6 text-[color:var(--va-muted)]">
+            Acesso imediato · Linguagem simples · Aplicável na rotina
+          </p>
+          {featured ? (
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Link
+                href={`/products/${featured.slug}`}
+                className="va-button-primary"
+              >
+                Ver o guia
+              </Link>
+              <p className="va-price text-sm text-[color:var(--va-soft-ink)]">
+                {formatMoney(
+                  featured.priceCents,
+                  featured.currency.toUpperCase(),
+                )}
+              </p>
             </div>
-            <p className="mx-auto mt-8 max-w-2xl text-sm leading-6 text-white/76">
-              Explore os materiais disponíveis abaixo e comece pelo que faz mais
-              sentido para o momento da sua família.
-            </p>
-          </div>
+          ) : null}
         </div>
+        {featured ? (
+          <div className="flex min-w-0 justify-center lg:justify-end">
+            <ProductCover
+              slug={featured.slug}
+              title={featured.title}
+              priority
+              size="hero"
+            />
+          </div>
+        ) : null}
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {decisionPoints.map((point) => (
-            <article key={point.title} className="va-panel bg-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
-                Clareza
-              </p>
-              <h2 className="mt-4 text-2xl font-semibold text-[color:var(--va-ink)]">
+      <section className="border-t border-[color:var(--va-line)]">
+        <div className="va-shell grid gap-10 py-16 md:grid-cols-3 md:gap-8 lg:py-20">
+          {decisionPoints.map((point, index) => (
+            <article key={point.title}>
+              <Kicker index={String(index + 1).padStart(2, "0")} />
+              <h2 className="mt-3 font-serif text-[24px] font-medium leading-tight text-[color:var(--va-ink)]">
                 {point.title}
               </h2>
-              <p className="mt-4 text-base leading-7 text-[color:var(--va-soft-ink)]">
+              <p className="mt-3 text-[15px] leading-7 text-[color:var(--va-soft-ink)]">
                 {point.description}
               </p>
             </article>
@@ -108,95 +109,69 @@ export function CatalogLanding({
       </section>
 
       {products.length > 0 ? (
-        <section className="mx-auto w-full max-w-7xl px-6 pb-18 lg:px-10 lg:pb-24">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
-              Cursos disponíveis
-            </p>
-            <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-              Escolha por onde começar
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {products.map((product) => (
-              <article
-                key={product.id}
-                className="va-panel flex h-full flex-col bg-white"
-              >
-                {getProductCoverUrl(product.slug) ? (
-                  <div className="mb-4 overflow-hidden rounded-[1.25rem]">
-                    <Image
-                      src={getProductCoverUrl(product.slug)!}
-                      alt={`Capa de ${product.title}`}
-                      width={480}
-                      height={640}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                ) : null}
-                <div className="flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
-                    E-book digital
-                  </p>
-                  <h3 className="mt-4 text-2xl font-semibold text-[color:var(--va-ink)]">
-                    {product.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-medium uppercase tracking-[0.16em] text-[color:var(--va-muted)]">
-                    {product.subtitle ?? "Vivências Azuis"}
-                  </p>
-                  <p className="mt-4 text-base leading-7 text-[color:var(--va-soft-ink)]">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="mt-8 flex items-end justify-between gap-4">
+        <section className="border-t border-[color:var(--va-line)]">
+          <div className="va-shell py-16 lg:py-20">
+            <div className="max-w-2xl">
+              <Kicker index="02">Guias disponíveis</Kicker>
+              <h2 className="mt-4 font-serif text-[32px] font-medium leading-tight sm:text-[40px]">
+                Escolha por onde começar
+              </h2>
+            </div>
+            <div
+              className={
+                products.length === 1
+                  ? "mt-10"
+                  : "mt-10 grid gap-10 md:grid-cols-2"
+              }
+            >
+              {products.map((product) => (
+                <article
+                  key={product.id}
+                  className={
+                    products.length === 1
+                      ? "border-t border-[color:var(--va-line)] pt-10"
+                      : "flex flex-col gap-5"
+                  }
+                >
+                  {products.length === 1 ? null : (
+                    <ProductCover slug={product.slug} title={product.title} />
+                  )}
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
-                      Preço
+                    <p className="va-kicker">Guia digital</p>
+                    <h3 className="mt-3 font-serif text-[24px] font-medium leading-tight text-[color:var(--va-ink)]">
+                      {product.title}
+                    </h3>
+                    {product.subtitle ? (
+                      <p className="mt-2 text-sm leading-6 text-[color:var(--va-muted)]">
+                        {product.subtitle}
+                      </p>
+                    ) : null}
+                    <p className="mt-4 max-w-xl text-[15px] leading-7 text-[color:var(--va-soft-ink)]">
+                      {product.description}
                     </p>
-                    <p className="mt-2 text-xl font-semibold text-[color:var(--va-ink)]">
-                      {formatMoney(
-                        product.priceCents,
-                        product.currency.toUpperCase(),
-                      )}
-                    </p>
+                    <div className="mt-6 flex flex-wrap items-center gap-5">
+                      <p className="va-price text-lg text-[color:var(--va-ink)]">
+                        {formatMoney(
+                          product.priceCents,
+                          product.currency.toUpperCase(),
+                        )}
+                      </p>
+                      <Link
+                        href={`/products/${product.slug}`}
+                        className="va-button-secondary"
+                      >
+                        Ver o guia
+                      </Link>
+                    </div>
                   </div>
-                  <Link
-                    href={courseHref(product.slug)}
-                    className="inline-flex items-center justify-center rounded-full border border-[color:var(--va-line-strong)] px-4 py-2 text-sm font-semibold text-[color:var(--va-blue)] transition-colors hover:bg-[color:var(--va-paper)]"
-                  >
-                    Entrar para começar
-                  </Link>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
 
-      <footer className="border-t border-[color:var(--va-line)] px-6 py-10 lg:px-10">
-        <div className="mx-auto max-w-7xl flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue)]">
-            Vivências Azuis
-          </p>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[color:var(--va-muted)]">
-            <Link
-              href="/privacidade"
-              className="underline hover:text-[color:var(--va-blue)]"
-            >
-              Política de privacidade
-            </Link>
-            <Link
-              href="/reembolso"
-              className="underline hover:text-[color:var(--va-blue)]"
-            >
-              Política de reembolso
-            </Link>
-          </nav>
-          <p className="text-xs text-[color:var(--va-muted)]">
-            © {new Date().getFullYear()} Vivências Azuis
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
