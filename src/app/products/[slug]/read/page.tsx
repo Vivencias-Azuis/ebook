@@ -96,7 +96,7 @@ export default async function ProductReadPage({
   const slideDetailLabel =
     currentPage && currentPage.slideCount > 1
       ? `Parte ${currentPage.slideNumber} de ${currentPage.slideCount}`
-      : "Slide completo";
+      : "Página";
   const readingMinutes = estimateReadingMinutes(currentBlock);
   const slideProgressPercent = Math.min(
     100,
@@ -127,44 +127,43 @@ export default async function ProductReadPage({
       shouldOpenPaywall={shouldOpenPaywall}
       productId={product.id}
     >
-      <main className="va-reader-page va-reader-shell min-h-screen overflow-hidden text-white">
+      <main className="va-reader-page va-reader-shell min-h-screen overflow-hidden text-[color:var(--va-ink)]">
         <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
-          <header className="va-reader-bar va-reader-topbar mb-4 flex flex-col gap-3 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <header className="va-reader-bar va-reader-topbar mb-4 flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
             <div className="flex items-center gap-3">
-              <Link
-                href="/library"
-                className="va-reader-ghost-button inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/82 transition hover:-translate-y-0.5 hover:bg-white/14"
-              >
+              <Link href="/library" className="va-reader-ghost-button">
                 <span aria-hidden>←</span>
-                <span>Biblioteca</span>
+                Biblioteca
               </Link>
               <span
-                className="hidden h-6 w-px bg-white/12 sm:block"
+                className="hidden h-4 w-px bg-[color:var(--va-line)] sm:block"
                 aria-hidden
               />
-              <p className="hidden text-xs uppercase tracking-[0.22em] text-white/55 sm:block">
+              <p className="hidden text-xs text-[color:var(--va-muted)] sm:block">
                 {slideLabel}
               </p>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
                 <div
-                  className="h-1.5 w-24 overflow-hidden rounded-full bg-white/10"
+                  className="h-0.5 w-24 overflow-hidden bg-[color:var(--va-line)]"
                   aria-hidden
                 >
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[color:var(--va-blue-300)] to-white"
+                    className="h-full bg-[color:var(--va-navy)]"
                     style={{ width: `${progressSummary.percent}%` }}
                   />
                 </div>
-                <p className="text-xs font-semibold text-white/78">
+                <p className="text-xs tabular-nums text-[color:var(--va-soft-ink)]">
                   {progressSummary.percent}%{" "}
-                  <span className="text-white/50">· {progressLabel}</span>
+                  <span className="text-[color:var(--va-muted)]">
+                    · {progressLabel}
+                  </span>
                 </p>
               </div>
               <ReaderPaywallTrigger
                 data-paywall-trigger="header"
-                className="inline-flex w-fit items-center justify-center rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[color:var(--va-navy)] transition hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+                className="va-button-primary va-reader-buy"
               >
                 Comprar
               </ReaderPaywallTrigger>
@@ -190,36 +189,37 @@ export default async function ProductReadPage({
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div className="min-w-0 flex-1">
                         <p className="va-reader-kicker">
-                          Capítulo{" "}
-                          {String(currentPage?.chapterSortOrder ?? 1).padStart(
-                            2,
-                            "0",
-                          )}
+                          <span className="va-kicker-num">
+                            {String(
+                              currentPage?.chapterSortOrder ?? 1,
+                            ).padStart(2, "0")}
+                          </span>
+                          Capítulo
                           {currentBlock
                             ? ` · ≈${readingMinutes} min de leitura`
                             : ""}
                         </p>
-                        <h2 className="mt-4 font-serif text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[color:var(--va-navy)] sm:text-[2.8rem]">
+                        <h2 className="mt-4 font-serif text-[2.4rem] font-medium leading-[1.08] tracking-[-0.02em] text-[color:var(--va-ink)] sm:text-[2.8rem]">
                           {currentBlock?.title ??
                             currentPage?.chapterTitle ??
                             "Leitura"}
                         </h2>
                         {currentBlock?.title &&
                         currentBlock.title !== currentPage?.chapterTitle ? (
-                          <p className="mt-3 font-serif text-base italic text-[color:var(--va-soft-ink)]">
+                          <p className="mt-3 font-serif text-base text-[color:var(--va-soft-ink)]">
                             em {currentPage?.chapterTitle}
                           </p>
                         ) : null}
                       </div>
                       <div className="shrink-0 text-right font-serif text-sm text-[color:var(--va-soft-ink)]">
-                        <p className="font-semibold text-[color:var(--va-navy)]">
+                        <p className="font-medium tabular-nums text-[color:var(--va-ink)]">
                           {currentPageNumber}
                           <span className="mx-1 text-[color:var(--va-muted)]">
                             /
                           </span>
                           {totalPagesVisible}
                         </p>
-                        <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[color:var(--va-muted)]">
+                        <p className="mt-1 text-xs text-[color:var(--va-muted)]">
                           {slideDetailLabel}
                         </p>
                       </div>
@@ -231,20 +231,20 @@ export default async function ProductReadPage({
 
                   <div className="va-reader-slide-body flex-1 px-8 py-10 sm:px-12 lg:px-16 lg:py-14">
                     {!currentPage ? (
-                      <div className="mx-auto max-w-xl rounded-[1rem] border border-dashed border-[color:var(--va-line-strong)] bg-white/50 p-6 text-center text-sm text-[color:var(--va-soft-ink)]">
+                      <div className="va-reader-empty">
                         Nenhuma página publicada ainda.
                       </div>
                     ) : null}
 
                     {currentPage && !currentBlock ? (
-                      <div className="mx-auto max-w-xl rounded-[1rem] border border-dashed border-[color:var(--va-line-strong)] bg-white/50 p-6 text-center text-sm text-[color:var(--va-soft-ink)]">
+                      <div className="va-reader-empty">
                         Este capítulo ainda não tem conteúdo publicado.
                       </div>
                     ) : null}
 
                     {currentBlock?.type === "checklist" ? (
-                      <div className="mx-auto mb-6 max-w-[40rem] border-l-2 border-[color:var(--va-blue)] pl-5">
-                        <p className="font-serif text-xl italic text-[color:var(--va-navy)]">
+                      <div className="mx-auto mb-6 max-w-[40rem] border-l-2 border-[color:var(--va-navy)] pl-5">
+                        <p className="font-serif text-xl font-medium text-[color:var(--va-ink)]">
                           Transforme esta página em ação.
                         </p>
                         <p className="mt-2 font-serif text-base leading-7 text-[color:var(--va-soft-ink)]">
@@ -269,7 +269,7 @@ export default async function ProductReadPage({
                   </div>
 
                   {currentBlock ? (
-                    <div className="border-t border-[color:var(--va-line)] bg-[rgba(248,244,237,0.6)] px-8 py-5 sm:px-12">
+                    <div className="border-t border-[color:var(--va-line)] px-8 py-5 sm:px-12">
                       {currentBlock.type === "checklist" ? (
                         <form
                           action={async (formData: FormData) => {
@@ -294,9 +294,10 @@ export default async function ProductReadPage({
                             );
                             revalidatePath("/library");
                           }}
-                          className="rounded-[1.5rem] border border-[color:var(--va-line)] bg-[linear-gradient(180deg,#ffffff_0%,rgba(215,231,247,0.28)_100%)] p-5 shadow-[0_18px_50px_-42px_rgba(11,35,66,0.28)]"
+                          className="va-reader-checklist"
                         >
-                          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--va-blue-700)]">
+                          <p className="va-kicker">
+                            <span className="va-kicker-num">01</span>
                             Plano de ação
                           </p>
                           <div className="mt-4 grid gap-3">
@@ -306,7 +307,7 @@ export default async function ProductReadPage({
                             ).items.map((item) => (
                               <label
                                 key={item.id}
-                                className="flex items-start gap-3 rounded-[1rem] border border-[color:var(--va-line)] bg-white px-3 py-3 text-sm text-[color:var(--va-ink)]"
+                                className="va-reader-check-item"
                               >
                                 <input
                                   type="hidden"
@@ -322,7 +323,7 @@ export default async function ProductReadPage({
                                       item.id,
                                     ) ?? false
                                   }
-                                  className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-blue)]"
+                                  className="mt-1 h-4 w-4 rounded border-[color:var(--va-line-strong)] text-[color:var(--va-navy)]"
                                 />
                                 <span className="leading-6">{item.label}</span>
                               </label>
@@ -330,7 +331,7 @@ export default async function ProductReadPage({
                           </div>
                           <button
                             type="submit"
-                            className="mt-5 rounded-full bg-[color:var(--va-navy)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_18px_38px_-28px_rgba(11,35,66,0.42)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-800)]"
+                            className="va-button-primary mt-5"
                           >
                             Salvar checklist
                           </button>
@@ -359,10 +360,7 @@ export default async function ProductReadPage({
                               vale para todas as partes deste bloco.
                             </p>
                           ) : null}
-                          <button
-                            type="submit"
-                            className="rounded-full border border-[color:var(--va-line-strong)] bg-white px-5 py-2.5 text-sm font-bold text-[color:var(--va-blue-800)] shadow-[0_14px_34px_-30px_rgba(11,35,66,0.24)] hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
-                          >
+                          <button type="submit" className="va-button-secondary">
                             {blockProgress?.completed
                               ? "Marcar bloco como pendente"
                               : "Marcar bloco como lido"}
@@ -375,49 +373,39 @@ export default async function ProductReadPage({
               </div>
 
               <nav
-                className="va-reader-bar va-reader-nav grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-2.5"
+                className="va-reader-bar va-reader-nav grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-2"
                 aria-label="Navegação entre etapas"
               >
                 {previousPage ? (
                   <Link
                     href={readerPageHref(product.slug, previousPage)}
-                    className="va-reader-nav-secondary group inline-flex w-fit items-center gap-2 justify-self-start rounded-full border border-white/14 bg-white/6 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/82 transition hover:-translate-y-0.5 hover:bg-white/14"
+                    className="va-reader-nav-secondary justify-self-start"
                   >
-                    <span
-                      className="transition group-hover:-translate-x-0.5"
-                      aria-hidden
-                    >
-                      ←
-                    </span>
+                    <span aria-hidden>←</span>
                     Anterior
                   </Link>
                 ) : (
                   <span />
                 )}
 
-                <span className="font-serif text-xs tabular-nums text-white/62">
+                <span className="text-xs tabular-nums text-[color:var(--va-muted)]">
                   {currentPageNumber} / {totalPagesVisible}
                 </span>
 
                 {nextPage ? (
                   <Link
                     href={readerPageHref(product.slug, nextPage)}
-                    className="va-reader-nav-primary group inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-navy)] transition hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+                    className="va-reader-nav-primary justify-self-end"
                   >
                     Continuar
-                    <span
-                      className="transition group-hover:translate-x-0.5"
-                      aria-hidden
-                    >
-                      →
-                    </span>
+                    <span aria-hidden>→</span>
                   </Link>
                 ) : (
                   <Link
                     href="/library"
-                    className="va-reader-nav-primary inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--va-navy)] transition hover:-translate-y-0.5 hover:bg-[color:var(--va-blue-100)]"
+                    className="va-reader-nav-primary justify-self-end"
                   >
-                    Finalizar ✓
+                    Voltar à biblioteca
                   </Link>
                 )}
               </nav>

@@ -519,7 +519,7 @@ describe("ProductReadPage", () => {
 
     expect(markup).not.toContain("redirect:/products/guia-pratico");
     expect(markup).toContain("Amostra gratuita concluída");
-    expect(markup).toContain("Desbloqueie o restante do curso");
+    expect(markup).toContain("O restante do guia fica após a compra");
     expect(markup).toContain('name="productId"');
     expect(markup).toContain('value="prod-1"');
     expect(markup).toContain(">Comprar<");

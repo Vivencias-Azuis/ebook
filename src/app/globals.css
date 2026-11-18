@@ -186,6 +186,17 @@ button {
   width: min(100%, 400px);
 }
 
+.va-book-thumb {
+  width: 96px;
+}
+
+.va-book-thumb .va-book-ribbon {
+  top: -6px;
+  right: 10px;
+  width: 6px;
+  height: 28px;
+}
+
 .va-book-image {
   display: block;
   width: 100%;
@@ -213,6 +224,17 @@ button {
     0 calc(100% - 10px)
   );
   box-shadow: 0 2px 6px rgba(11, 35, 66, 0.22);
+}
+
+.va-notice {
+  margin: 0;
+  border: 1px solid var(--va-line);
+  border-radius: 8px;
+  background: var(--va-surface);
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--va-soft-ink);
 }
 
 .va-panel {
@@ -389,173 +411,145 @@ button {
   }
 }
 
-.va-reader-page {
-  background:
-    radial-gradient(circle at top, rgba(30, 109, 176, 0.08), transparent 30%),
-    linear-gradient(180deg, #f8f5f0 0%, #eef3f8 100%);
+.va-reader-page,
+.va-reader-shell {
+  background: var(--va-paper);
+  color: var(--va-ink);
 }
 
 .va-reader-bar {
-  border: 1px solid rgba(196, 186, 174, 0.72);
-  border-radius: 1.6rem;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 20px 54px -44px rgba(11, 35, 66, 0.3);
+  border: 1px solid var(--va-line);
+  border-radius: 8px;
+  background: var(--va-surface);
 }
 
 .va-reader-panel {
-  border: 1px solid rgba(196, 186, 174, 0.72);
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 30px 80px -60px rgba(11, 35, 66, 0.35);
+  border: 1px solid var(--va-line);
+  border-radius: 16px;
+  background: var(--va-surface);
 }
 
 .va-reader-panel-muted {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(247, 251, 255, 0.98) 100%
-  );
+  background: var(--va-surface);
 }
 
 .va-reader-index-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
   border: 1px solid transparent;
-  border-radius: 1rem;
+  border-radius: 8px;
   background: transparent;
-  padding: 0.7rem 0.85rem;
-  transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+  padding: 8px 12px;
 }
 
 .va-reader-index-item:hover {
-  transform: translateX(2px);
-  background: rgba(215, 231, 247, 0.35);
+  background: var(--va-paper);
 }
 
 .va-reader-index-item-active {
-  background: rgba(215, 231, 247, 0.55);
-  border-color: rgba(122, 180, 227, 0.6);
-}
-
-.va-reader-shell {
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(122, 180, 227, 0.14),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at bottom left,
-      rgba(23, 82, 140, 0.26),
-      transparent 40%
-    ),
-    linear-gradient(180deg, #061427 0%, #081a30 52%, #050f1c 100%);
-}
-
-.va-reader-shell .va-reader-bar {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(8, 25, 47, 0.62);
-  box-shadow: 0 28px 80px -48px rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(22px);
+  background: var(--va-paper);
+  border-color: var(--va-line-strong);
 }
 
 .va-reader-topbar {
   position: relative;
-  overflow: hidden;
-}
-
-.va-reader-topbar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(122, 180, 227, 0.08),
-    transparent
-  );
-  pointer-events: none;
 }
 
 .va-reader-ghost-button {
-  box-shadow: 0 16px 36px -28px rgba(0, 0, 0, 0.58);
-  backdrop-filter: blur(16px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--va-line-strong);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--va-navy);
 }
 
-/* Stage: transparent wrapper, slide is the only card */
+.va-reader-ghost-button:hover {
+  background: var(--va-paper);
+}
+
+.va-reader-buy {
+  min-height: 36px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.va-reader-sidebar-toggle {
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--va-line-strong);
+  background: var(--va-paper);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--va-navy);
+}
+
+.va-reader-sidebar-toggle:hover {
+  background: var(--va-surface);
+}
+
+.va-reader-lock {
+  display: inline-flex;
+  width: 16px;
+  color: var(--va-muted);
+}
+
 .va-reader-stage {
   position: relative;
   flex: 1;
   min-height: 0;
   padding: 0;
   background: transparent;
-  box-shadow: none;
 }
 
-/* Slide: unified cream paper surface, single card */
 .va-reader-slide {
   min-height: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.75rem;
-  background:
-    radial-gradient(
-      circle at 8% 0%,
-      rgba(215, 231, 247, 0.35),
-      transparent 36%
-    ),
-    linear-gradient(180deg, #fbf8f2 0%, #f4efe5 100%);
-  box-shadow:
-    0 40px 110px -48px rgba(0, 0, 0, 0.7),
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 0 0 1px rgba(196, 186, 174, 0.35);
+  border: 1px solid var(--va-line);
+  border-radius: 16px;
+  background: var(--va-surface);
   color: var(--va-ink);
   overflow: hidden;
 }
 
-/* Decorative bookmark ribbon on the slide's left edge */
 .va-reader-slide::before {
   content: "";
   position: absolute;
-  top: 1.25rem;
-  bottom: 1.25rem;
+  top: 20px;
+  bottom: 20px;
   left: 0;
   width: 3px;
-  background: linear-gradient(
-    180deg,
-    var(--va-blue) 0%,
-    var(--va-blue-800) 100%
-  );
-  border-radius: 0 3px 3px 0;
-  opacity: 0.85;
+  background: var(--va-navy);
+  border-radius: 0 1px 1px 0;
 }
 
 .va-reader-slide-header {
   position: relative;
   background: transparent;
-  border-bottom: 1px solid rgba(196, 186, 174, 0.45);
+  border-bottom: 1px solid var(--va-line);
   color: var(--va-ink);
 }
 
 .va-reader-slide-header .va-reader-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
   font-family: var(--font-manrope), sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--va-blue-800);
-}
-
-.va-reader-slide-header .va-reader-kicker::before {
-  content: "";
-  display: inline-block;
-  width: 1.75rem;
-  height: 1px;
-  background: var(--va-blue);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--va-muted);
 }
 
 .va-reader-slide-header h2 {
@@ -575,9 +569,7 @@ button {
 .va-reader-slide-progress > span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--va-blue-300), var(--va-blue));
-  border-radius: 0 2px 2px 0;
-  transition: width 240ms ease;
+  background: var(--va-navy);
 }
 
 .va-reader-slide-body {
@@ -586,7 +578,43 @@ button {
   color: var(--va-ink);
 }
 
-/* Reader typography — book rhythm */
+.va-reader-empty {
+  margin: 0 auto;
+  max-width: 36rem;
+  padding: 24px;
+  border: 1px solid var(--va-line);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--va-soft-ink);
+}
+
+.va-reader-checklist {
+  padding: 4px 0;
+}
+
+.va-reader-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--va-line);
+  border-radius: 8px;
+  background: var(--va-paper);
+  font-size: 14px;
+  color: var(--va-ink);
+}
+
+.va-paywall {
+  border: 1px solid var(--va-line);
+  border-radius: 16px;
+  background: var(--va-surface);
+  padding: 24px;
+  color: var(--va-ink);
+  box-shadow: 0 8px 24px rgba(36, 31, 26, 0.08);
+}
+
 .va-reader-slide-body .reader-prose {
   max-width: 40rem;
   font-family: var(--font-source-serif), Georgia, serif;
@@ -607,34 +635,23 @@ button {
   margin-top: 1.2em;
 }
 
-/* Drop cap on the first paragraph of a slide */
 .va-reader-slide-body .reader-prose > p:first-of-type::first-letter {
   float: left;
   font-family: var(--font-source-serif), Georgia, serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 4.2em;
   line-height: 0.82;
   padding: 0.08em 0.12em 0 0;
   margin: 0.08em 0.12em 0 -0.04em;
   color: var(--va-navy);
-  background: linear-gradient(
-    180deg,
-    var(--va-navy) 0%,
-    var(--va-blue-700) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-/* Kill drop cap when block is not rich-text-first */
 .va-reader-slide-body
   .reader-prose.no-drop-cap
   > p:first-of-type::first-letter {
   all: unset;
 }
 
-/* Refined hanging bullets */
 .va-reader-slide-body .reader-prose ul.reader-list {
   list-style: none;
   padding: 0;
@@ -656,14 +673,14 @@ button {
   top: 0.92em;
   width: 1.1rem;
   height: 1px;
-  background: var(--va-blue);
+  background: var(--va-navy);
 }
 
 .va-reader-slide-body .reader-prose h2,
 .va-reader-slide-body .reader-prose h3,
 .va-reader-slide-body .reader-prose h4 {
   font-family: var(--font-source-serif), serif;
-  color: var(--va-navy);
+  color: var(--va-ink);
   text-wrap: balance;
   letter-spacing: -0.015em;
 }
@@ -687,12 +704,7 @@ button {
 
 .va-reader-slide-body .reader-prose .reader-rule {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(11, 35, 66, 0.35),
-    transparent
-  );
+  background: var(--va-line-strong);
   margin: 2.6em auto;
   max-width: 12rem;
   position: relative;
@@ -704,9 +716,9 @@ button {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -52%);
-  background: #f8f4ed;
+  background: var(--va-surface);
   padding: 0 0.6rem;
-  color: var(--va-blue);
+  color: var(--va-navy);
   font-family: var(--font-source-serif), serif;
   font-size: 0.95rem;
 }
@@ -717,7 +729,36 @@ button {
 
 .va-reader-nav-secondary,
 .va-reader-nav-primary {
-  box-shadow: 0 18px 36px -28px rgba(0, 0, 0, 0.62);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.va-reader-nav-secondary {
+  border: 1px solid var(--va-line-strong);
+  background: transparent;
+  color: var(--va-navy);
+}
+
+.va-reader-nav-secondary:hover {
+  background: var(--va-paper);
+}
+
+.va-reader-nav-primary {
+  background: var(--va-navy);
+  border: 1px solid var(--va-navy);
+  color: #fbf8f2;
+}
+
+.va-reader-nav-primary:hover {
+  background: #163456;
+  border-color: #163456;
 }
 
 @media (min-width: 1024px) {
@@ -747,7 +788,7 @@ button {
 
   .va-reader-slide-body::-webkit-scrollbar-thumb {
     background: rgba(11, 35, 66, 0.18);
-    border-radius: 999px;
+    border-radius: 8px;
   }
 }
 

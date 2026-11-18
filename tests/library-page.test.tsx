@@ -60,6 +60,10 @@ describe("LibraryPage", () => {
     expect(markup).toContain("Ler capítulo 1");
     expect(markup).toContain("/products/curso-preview/read");
     expect(markup).toContain("Sair");
+    expect(markup).toContain("Preview gratuito");
+    expect(markup).toContain("va-book");
+    expect(markup).not.toContain("Preço original");
+    expect(markup).not.toContain("blocos");
     expect(markup).not.toContain(
       "Você ainda não tem guias liberados na biblioteca.",
     );

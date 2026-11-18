@@ -1,7 +1,13 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
-export function SiteHeader({ showLogin = true }: { showLogin?: boolean }) {
+export function SiteHeader({
+  showLogin = true,
+  trailing,
+}: {
+  showLogin?: boolean;
+  trailing?: ReactNode;
+}) {
   return (
     <header className="va-site-header">
       <div className="va-site-header-inner">
@@ -9,7 +15,9 @@ export function SiteHeader({ showLogin = true }: { showLogin?: boolean }) {
           <span className="va-wordmark-ribbon" aria-hidden="true" />
           Vivências Azuis
         </Link>
-        {showLogin ? (
+        {trailing ? (
+          trailing
+        ) : showLogin ? (
           <Link href="/login" className="va-nav-link">
             Entrar
           </Link>

@@ -44,6 +44,9 @@ describe("ReaderPreviewShell", () => {
     });
 
     expect(container.textContent).toContain("Amostra gratuita concluída");
+    expect(container.textContent).toContain(
+      "O restante do guia fica após a compra",
+    );
     expect(container.innerHTML).toContain('name="productId"');
     expect(container.innerHTML).toContain('value="prod-1"');
 
