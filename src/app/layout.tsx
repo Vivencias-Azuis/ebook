@@ -12,6 +12,8 @@ const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     default: "Vivências Azuis | Ebooks e Guias Práticos",

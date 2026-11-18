@@ -1,13 +1,17 @@
 const DEFAULT_LOCAL_DATABASE_URL = "file:dev.db";
 
+const BUILD_PLACEHOLDER_DATABASE_URL = "http://127.0.0.1:9";
+
 type ResolveDatabaseUrlInput = {
   nodeEnv?: string;
   databaseUrl?: string;
+  nextPhase?: string;
 };
 
 export function resolveDatabaseUrl({
   nodeEnv,
   databaseUrl,
+  nextPhase,
 }: ResolveDatabaseUrlInput) {
   const normalizedUrl = databaseUrl?.trim();
 
@@ -22,6 +26,10 @@ export function resolveDatabaseUrl({
   }
 
   if (nodeEnv === "production") {
+    if (nextPhase === "phase-production-build") {
+      return BUILD_PLACEHOLDER_DATABASE_URL;
+    }
+
     throw new Error(
       "DATABASE_URL is required in production. Configure the Turso/libSQL connection string before starting the app.",
     );

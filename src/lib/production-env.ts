@@ -103,7 +103,15 @@ export function validateProductionEnvironment({
   );
 }
 
+export function isNextProductionBuild(nextPhase = process.env.NEXT_PHASE) {
+  return nextPhase === "phase-production-build";
+}
+
 export function ensureProductionEnvironment() {
+  if (isNextProductionBuild()) {
+    return;
+  }
+
   validateProductionEnvironment({
     nodeEnv: process.env.NODE_ENV,
     env: process.env,

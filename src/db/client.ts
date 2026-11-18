@@ -10,6 +10,7 @@ ensureProductionEnvironment();
 const url = resolveDatabaseUrl({
   nodeEnv: process.env.NODE_ENV,
   databaseUrl: process.env.DATABASE_URL,
+  nextPhase: process.env.NEXT_PHASE,
 });
 
 export const client = createClient({

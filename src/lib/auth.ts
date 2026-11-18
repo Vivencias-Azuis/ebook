@@ -3,14 +3,21 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { nextCookies } from "better-auth/next-js";
 
 import { db } from "@/db/client";
-import { ensureProductionEnvironment } from "@/lib/production-env";
+import {
+  ensureProductionEnvironment,
+  isNextProductionBuild,
+} from "@/lib/production-env";
 import * as schema from "@/db/schema";
 
 ensureProductionEnvironment();
 
 const authSecret = process.env.BETTER_AUTH_SECRET ?? process.env.AUTH_SECRET;
 
-if (!authSecret && process.env.NODE_ENV === "production") {
+if (
+  !authSecret &&
+  process.env.NODE_ENV === "production" &&
+  !isNextProductionBuild()
+) {
   throw new Error(
     "BETTER_AUTH_SECRET environment variable is required in production. Set it before starting the server.",
   );

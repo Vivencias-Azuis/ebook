@@ -28,6 +28,15 @@ describe("resolveDatabaseUrl", () => {
     ).toThrow("DATABASE_URL is required in production");
   });
 
+  it("uses a placeholder URL while Next.js collects page data without env", () => {
+    expect(
+      resolveDatabaseUrl({
+        nodeEnv: "production",
+        nextPhase: "phase-production-build",
+      }),
+    ).toBe("http://127.0.0.1:9");
+  });
+
   it("fails in production when DATABASE_URL points to a local sqlite file", () => {
     expect(() =>
       resolveDatabaseUrl({
